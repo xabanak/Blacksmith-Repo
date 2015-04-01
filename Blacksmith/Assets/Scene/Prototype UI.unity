@@ -695,7 +695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 39dd2f85ac3ab36419a7d20be6fb5195, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1199,6 +1199,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1302979228}
+  - 114: {fileID: 1302979229}
   m_Layer: 0
   m_Name: CraftingController
   m_TagString: Untagged
@@ -1218,6 +1219,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1302979229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1302979227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b729e356b538b2641a63e02628e9771b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heatSliderObject: {fileID: 1665182075}
+  hammerSliderObject: {fileID: 1868475946}
+  timerSliderObject: {fileID: 275135963}
+  furnaceSliderObject: {fileID: 285304052}
 --- !u!1 &1363407975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,8 +1264,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1, y: 0}
+  m_SizeDelta: {x: -8, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &1533862913
 GameObject:
@@ -1389,8 +1405,8 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 0
-  m_Value: .796000004
+  m_WholeNumbers: 1
+  m_Value: 59
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1443,7 +1459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 757cd071e43f4f14ab49cd0bd06a3923, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1558,7 +1574,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 257.200012, y: 155.5}
+  m_AnchoredPosition: {x: 257, y: 171}
   m_SizeDelta: {x: 250, y: 40}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1868475948
@@ -1602,8 +1618,8 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 0
-  m_Value: 80.5999985
+  m_WholeNumbers: 1
+  m_Value: 81
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
