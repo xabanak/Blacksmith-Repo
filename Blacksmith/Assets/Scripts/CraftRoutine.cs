@@ -20,7 +20,7 @@ public class CraftRoutine : MonoBehaviour {
 	public GameObject timerSliderObject;
 	public GameObject furnaceSliderObject;
 
-    public float timer = 70;
+    public float timer = 10; // timer to track hero return time
     public Text heroReturnText;
 
 
@@ -87,9 +87,13 @@ public class CraftRoutine : MonoBehaviour {
         {
             heroReturnText.text = "Hero returns: " + minutes + ":" + seconds;
         }
-        else
+        else if (seconds < 10 && seconds > 0)
         {
             heroReturnText.text = "Hero returns: " + minutes + ":0" + seconds;
+        }
+        else
+        {
+            heroReturnText.text = "Hero has returned!";
         }
     }
 
