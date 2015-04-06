@@ -36,7 +36,7 @@ public class CraftRoutine : MonoBehaviour
 
     private bool isCrafting;
     private bool furnaceIsMelting;
-    private bool componentOnForge;
+    public bool componentOnForge;
     private bool componentOnAnvil;
     private bool componentInBarrel;
 
@@ -70,7 +70,7 @@ public class CraftRoutine : MonoBehaviour
         if (isCrafting)
         {
             heatSlider.value -= heatSliderChange;
-            hammerSlider.value += hammerSliderChange;
+            hammerSlider.value -= hammerSliderChange;
             timerSlider.value += timeSliderChange;
         }
 
@@ -80,6 +80,29 @@ public class CraftRoutine : MonoBehaviour
         }
     }
 
+    public void hammerHitOnAnvil()
+    {
+        if (componentOnAnvil)
+        {
+            hammerSlider.value += 750;
+        }
+    }
+
+    public void toggleComponentOnForge()
+    {
+        componentOnForge = !componentOnForge;
+    }
+
+    public void toggleComponentOnAnvil()
+    {
+        componentOnAnvil = !componentOnAnvil;
+    }
+
+    void toggleComponentInBarrel()
+    {
+        componentInBarrel = !componentInBarrel;
+    }
+
 	void fixedUpdate () 
     {
        
@@ -87,7 +110,10 @@ public class CraftRoutine : MonoBehaviour
 
     public void bellowsPump()
     {
-        heatSlider.value += 50;
+        if (componentOnForge)
+        {
+            heatSlider.value += 1000;
+        }
     }
 
     public void craftingToggle()

@@ -7,8 +7,12 @@ public class ComponentBehavior : MonoBehaviour {
     private Vector3 offset;
     private Vector3 resetPoint;
 
+    public Vector3 anvilOffset;
+    public Vector3 forgeOffset;
+
     public GameObject anvil;
     public GameObject forge;
+    public CraftRoutine craftController;
 
     public bool onAnvil;
     public bool onForge;
@@ -35,6 +39,7 @@ public class ComponentBehavior : MonoBehaviour {
     {
         if (myCollider.gameObject.name == "Anvil")
         {
+
             onAnvil = false;
         }
         else if (myCollider.gameObject.name == "Forge")
@@ -51,19 +56,29 @@ public class ComponentBehavior : MonoBehaviour {
 
     void OnMouseDown()
     {
+        if (onAnvil)
+        {
+            craftController.toggleComponentOnAnvil();
+        }
+        else if (onForge)
+        {
+            craftController.toggleComponentOnForge();
+        }
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+        //offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
     }
 
     void OnMouseUp() 
     {
         if (onAnvil)
         {
-            transform.position = new Vector3(anvil.transform.position.x, anvil.transform.position.y, 0);
+            transform.position = new Vector3(anvil.transform.position.x, anvil.transform.position.y, 0) + anvilOffset;
+            craftController.toggleComponentOnAnvil();
         }
         else if (onForge)
         {
-            transform.position = new Vector3(forge.transform.position.x, forge.transform.position.y, 0);
+            transform.position = new Vector3(forge.transform.position.x, forge.transform.position.y, 0) + forgeOffset;
+            craftController.toggleComponentOnForge();
         }
         else
         {

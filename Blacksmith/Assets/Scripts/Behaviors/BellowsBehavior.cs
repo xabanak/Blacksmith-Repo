@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class BellowsBehavior : MonoBehaviour 
 {
+    public CraftRoutine craftController;
 
 	// Use this for initialization
 	void Start () 
@@ -10,6 +12,10 @@ public class BellowsBehavior : MonoBehaviour
 	    
 	}
 	
+    void OnMouseDown()
+    {
+        craftController.bellowsPump();
+    }
 	// Update is called once per frame
 	void Update () 
     {

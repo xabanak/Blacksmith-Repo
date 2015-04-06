@@ -218,7 +218,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 129611183}
   - 212: {fileID: 129611182}
-  - 60: {fileID: 129611184}
+  - 61: {fileID: 129611184}
   m_Layer: 0
   m_Name: Anvil
   m_TagString: Untagged
@@ -264,8 +264,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
---- !u!60 &129611184
-PolygonCollider2D:
+--- !u!61 &129611184
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -274,37 +274,9 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: .379999995, y: -.200000003}
-      - {x: .300000012, y: .109999999}
-      - {x: .560000002, y: .230000004}
-      - {x: .75, y: .270000011}
-      - {x: .899999976, y: .389999986}
-      - {x: .980000019, y: .479999989}
-      - {x: .980000019, y: .50999999}
-      - {x: .970000029, y: .540000021}
-      - {x: .850000024, y: .670000017}
-      - {x: .409999996, y: .680000007}
-      - {x: -.270000011, y: .680000007}
-      - {x: -.460000008, y: .560000002}
-      - {x: -1.04999995, y: .569999993}
-      - {x: -1.07000005, y: .5}
-      - {x: -1.07000005, y: .360000014}
-      - {x: -1.02999997, y: .300000012}
-      - {x: -.819999993, y: .170000002}
-      - {x: -.649999976, y: .0799999982}
-      - {x: -.25999999, y: -.129999995}
-      - {x: -.5, y: -.379999995}
-      - {x: -.540000021, y: -.49000001}
-      - {x: -.560000002, y: -.610000014}
-      - {x: -.519999981, y: -.689999998}
-      - {x: -.0900000036, y: -.699999988}
-      - {x: .639999986, y: -.699999988}
-      - {x: .680000007, y: -.670000017}
-      - {x: .689999998, y: -.569999993}
-      - {x: .560000002, y: -.300000012}
+  m_Offset: {x: .00640442595, y: .373526841}
+  serializedVersion: 2
+  m_Size: {x: 1.14290118, y: .751790345}
 --- !u!1 &150367887
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +432,7 @@ GameObject:
   - 4: {fileID: 199337638}
   - 212: {fileID: 199337637}
   - 50: {fileID: 199337640}
+  - 114: {fileID: 199337641}
   - 60: {fileID: 199337639}
   m_Layer: 0
   m_Name: Hammer
@@ -500,9 +473,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 199337636}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100.18, y: 97.1699982, z: 2.01999998}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: .0721601099, w: .997393072}
+  m_LocalPosition: {x: -100.181, y: 97.177002, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -519,36 +492,43 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: .529999971, y: .409999996}
+    - - {x: .550369382, y: .441470683}
+      - {x: .665324628, y: .40238151}
       - {x: .649999976, y: .310000002}
-      - {x: .850000024, y: .140000001}
-      - {x: .959999979, y: .219999999}
-      - {x: 1.07000005, y: .340000004}
-      - {x: 1.07000005, y: .419999987}
+      - {x: .840757072, y: .140929833}
+      - {x: .927627265, y: .176617831}
+      - {x: 1.07635534, y: .343201399}
+      - {x: 1.09066296, y: .434375703}
       - {x: .920000017, y: .600000024}
       - {x: .850000024, y: .589999974}
-      - {x: .790000021, y: .800000012}
-      - {x: .680000007, y: .889999986}
+      - {x: .813754201, y: .632287621}
+      - {x: .809161425, y: .77776432}
+      - {x: .751627803, y: .851889133}
+      - {x: .684127033, y: .89287734}
+      - {x: .596759498, y: .903698981}
       - {x: .5, y: .889999986}
       - {x: .479999989, y: .959999979}
       - {x: .449999988, y: 1.01999998}
+      - {x: .340125442, y: 1.05211866}
       - {x: .239999995, y: 1.01999998}
       - {x: .200000003, y: .939999998}
       - {x: .200000003, y: .860000014}
       - {x: .270000011, y: .74000001}
       - {x: .349999994, y: .709999979}
-      - {x: .180000007, y: .419999987}
-      - {x: -.0399999991, y: .170000002}
+      - {x: .359173417, y: .61650902}
+      - {x: .169833615, y: .411691427}
+      - {x: -.0476546139, y: .175710633}
       - {x: -.319999993, y: -.0900000036}
       - {x: -.629999995, y: -.379999995}
       - {x: -1.05999994, y: -.829999983}
+      - {x: -1.0774883, y: -.891833186}
       - {x: -1.05999994, y: -.939999998}
       - {x: -.99000001, y: -1.01999998}
-      - {x: -.879999995, y: -1.01999998}
+      - {x: -.898752987, y: -1.03182399}
       - {x: -.850000024, y: -1.00999999}
       - {x: -.529999971, y: -.689999998}
-      - {x: -.200000003, y: -.349999994}
-      - {x: .0700000003, y: -.0500000007}
+      - {x: -.199029207, y: -.356681526}
+      - {x: .0757492557, y: -.0582608245}
 --- !u!50 &199337640
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -564,6 +544,20 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+--- !u!114 &199337641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 199337636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d9f9426986f9ea46bb73238c0447288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anvil: {fileID: 129611181}
+  craftController: {fileID: 1302979229}
+  hitAnvil: 0
 --- !u!1 &245350621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,7 +1655,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 858096372}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: .323455721, w: .946243346}
   m_LocalPosition: {x: -103.330002, y: 98.7099991, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1678,8 +1672,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf7acb199c73ed42828cac2b8e0c960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anvilOffset: {x: 0, y: 1.29999995, z: 0}
+  forgeOffset: {x: 0, y: 0, z: 0}
   anvil: {fileID: 129611181}
   forge: {fileID: 758410324}
+  craftController: {fileID: 1302979229}
   onAnvil: 0
   onForge: 0
 --- !u!1 &980094745
@@ -1981,6 +1978,7 @@ MonoBehaviour:
   coolingBarrel: {fileID: 2011556726}
   hammer: {fileID: 199337636}
   anvil: {fileID: 129611181}
+  componentOnForge: 0
 --- !u!1 &1363407975
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,6 +2129,7 @@ GameObject:
   - 4: {fileID: 1585984517}
   - 212: {fileID: 1585984516}
   - 61: {fileID: 1585984515}
+  - 114: {fileID: 1585984518}
   m_Layer: 0
   m_Name: Bellows
   m_TagString: Untagged
@@ -2189,6 +2188,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &1585984518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1585984514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2383292caafe946b2aeb2cc30703ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftController: {fileID: 1302979229}
 --- !u!1 &1665182075
 GameObject:
   m_ObjectHideFlags: 0
