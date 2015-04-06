@@ -40,11 +40,12 @@ public class CraftRoutine : MonoBehaviour
     private bool componentOnAnvil;
     private bool componentInBarrel;
 
-    private Text stage;
-    private bool stageActive;
-
-    private float swordTime;
-    private float tinTime;
+    public Text stage;
+    private float swordTime = 5;
+    private float tinTime = 5;
+    private int curStage = 0;
+    private int totalStages = 4;
+    private bool needToStartCraft = false;
 
 	// Use this for initialization
 	void Start () 
@@ -68,10 +69,11 @@ public class CraftRoutine : MonoBehaviour
         isCrafting = false;
         furnaceIsMelting = false;
 
-        //stage.enabled = false;
-        //stageActive = false;
+        stage.enabled = false;
 
-        timerSlider.maxValue = 20.0f;
+        timerSlider.maxValue = 60.0f;
+
+  
         
 
 	}
@@ -79,11 +81,28 @@ public class CraftRoutine : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
+        if (timerSlider.value == timerSlider.maxValue)
+        {
+            isCrafting = false;
+            timerSlider.value = 0;
+        }
+
         if (isCrafting)
         {
             heatSlider.value -= Time.deltaTime * heatSliderChange;
             hammerSlider.value -= Time.deltaTime * hammerSliderChange;
             timerSlider.value += Time.deltaTime;
+            if (needToStartCraft)
+            {
+                stage.enabled = true;
+                NextStage();
+                needToStartCraft = false;
+            }
+        }
+        else if (!isCrafting)
+        {
+            needToStartCraft = true;
+            stage.enabled = false;
         }
 
         if (furnaceIsMelting)
@@ -136,10 +155,13 @@ public class CraftRoutine : MonoBehaviour
             heatSlider.value = emptySlider;
             hammerSlider.value = emptySlider;
             timerSlider.value = emptySlider;
+            needToStartCraft = true;
+            
         }
         else if(!isCrafting)
         {
             isCrafting = true;
+            curStage = 0;
         }
     }
 
@@ -159,6 +181,9 @@ public class CraftRoutine : MonoBehaviour
 
     void NextStage()
     {
+        curStage++;
+        timerSlider.maxValue = swordTime + tinTime;
+        stage.text = "Stage " + curStage + "/" + totalStages;
 
     }
 }
