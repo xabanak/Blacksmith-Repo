@@ -1843,8 +1843,6 @@ MonoBehaviour:
   hammerSliderObject: {fileID: 1868475946}
   timerSliderObject: {fileID: 275135963}
   furnaceSliderObject: {fileID: 285304052}
-  timer: 70
-  heroReturnText: {fileID: 713411792}
   forge: {fileID: 758410324}
   bellows: {fileID: 1585984514}
   craftingComponent: {fileID: 858096372}
@@ -1945,6 +1943,47 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1533862913}
+--- !u!1 &1565756057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1565756059}
+  - 114: {fileID: 1565756058}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1565756058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1565756057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85c125e09ce3984db5f53302c886fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 10
+  heroReturnText: {fileID: 713411792}
+--- !u!4 &1565756059
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1565756057}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -103.916451, y: 98.1337662, z: 2.23819613}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &1585984514
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class CraftRoutine : MonoBehaviour {
+public class CraftRoutine : MonoBehaviour 
+{
 	public Sprite heatDiffOne;
 	public Sprite heatDiffTwo;
 	public Sprite heatDiffThree;
@@ -20,10 +21,6 @@ public class CraftRoutine : MonoBehaviour {
 	public GameObject timerSliderObject;
 	public GameObject furnaceSliderObject;
 
-    public float timer = 10; // timer to track hero return time
-    public Text heroReturnText;
-
-
     public GameObject forge;
     public GameObject bellows;
     public GameObject craftingComponent; //eventually the game will programmatically find the GameObject that you will use during the current crafting session, for now we will assign it a test object
@@ -35,8 +32,7 @@ public class CraftRoutine : MonoBehaviour {
 	private Slider hammerSlider;
 	private Slider timerSlider;
     private Slider furnaceSlider;
-    private int minutes;
-    private int seconds;
+
 
     private bool isCrafting;
     private bool furnaceIsMelting;
@@ -60,7 +56,7 @@ public class CraftRoutine : MonoBehaviour {
 		hammerSlider.value = 0.0f;
 		timerSlider.value = 0.0f;
 
-        heroReturnText.text = "Doom in: 100 seconds";
+
         furnaceSlider.value = 0.0f;
 
         isCrafting = false;
@@ -82,22 +78,6 @@ public class CraftRoutine : MonoBehaviour {
         {
             furnaceSlider.value += furnaceSliderChange;
         }
-
-        timer -= Time.deltaTime;
-        minutes = (int)(timer / 60.0f);
-        seconds = (int)timer % 60;
-        if (seconds >= 10)
-        {
-            heroReturnText.text = "Hero returns: " + minutes + ":" + seconds;
-        }
-        else if (seconds < 10 && seconds > 0)
-        {
-            heroReturnText.text = "Hero returns: " + minutes + ":0" + seconds;
-        }
-        else
-        {
-            heroReturnText.text = "Hero has returned!";
-        }
     }
 
 	void fixedUpdate () 
@@ -105,6 +85,10 @@ public class CraftRoutine : MonoBehaviour {
        
 	}
 
+    public void bellowsPump()
+    {
+        heatSlider.value += 50;
+    }
 
     public void craftingToggle()
     {

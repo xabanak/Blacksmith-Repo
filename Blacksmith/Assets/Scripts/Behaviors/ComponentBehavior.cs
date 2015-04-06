@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ComponentMovement : MonoBehaviour {
+public class ComponentBehavior : MonoBehaviour {
 
     private Vector3 screenPoint;
-    private Vector3 offset;
+    //private Vector3 offset;
     private Vector3 resetPoint;
 
     public GameObject anvil;
