@@ -102,6 +102,7 @@ public class CraftRoutine : MonoBehaviour {
        
 	}
 
+
     public void craftingToggle()
     {
         if (isCrafting)
