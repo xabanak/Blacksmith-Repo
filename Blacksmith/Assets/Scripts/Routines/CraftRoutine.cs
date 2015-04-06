@@ -40,6 +40,9 @@ public class CraftRoutine : MonoBehaviour
     private bool componentOnAnvil;
     private bool componentInBarrel;
 
+    private Text stage;
+    private bool stageActive;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -62,6 +65,10 @@ public class CraftRoutine : MonoBehaviour
         isCrafting = false;
         furnaceIsMelting = false;
 
+        stage.enabled = false;
+        stageActive = false;
+        
+
 	}
 
 	// Update is called once per frame
@@ -77,6 +84,11 @@ public class CraftRoutine : MonoBehaviour
         if (furnaceIsMelting)
         {
             furnaceSlider.value += furnaceSliderChange;
+        }
+
+        if (stageActive)
+        {
+
         }
     }
 
@@ -143,5 +155,10 @@ public class CraftRoutine : MonoBehaviour
             furnaceIsMelting = true;
             furnaceSlider.value = emptySlider;
         }
+    }
+
+    void NextStage()
+    {
+
     }
 }
