@@ -13,8 +13,7 @@ public class CraftRoutine : MonoBehaviour
     public float timeSliderChange;
     public float furnaceSliderChange;
 
-    private const float fullSlider = 10000.0f;
-    private const float emptySlider = 0.0f;
+    public bool componentOnForge;
 
 	public GameObject heatSliderObject;
 	public GameObject hammerSliderObject;
@@ -28,24 +27,30 @@ public class CraftRoutine : MonoBehaviour
     public GameObject hammer;
     public GameObject anvil;
 
+    public StageTimeMatrix timeMultiplier;
+
+    public Text stage;
+
 	private Slider heatSlider;
 	private Slider hammerSlider;
 	private Slider timerSlider;
     private Slider furnaceSlider;
 
+    private const float fullSlider = 10000.0f;
+    private const float emptySlider = 0.0f;
+    private const float baseTimeStage1 = 60.0f;
 
     private bool isCrafting;
     private bool furnaceIsMelting;
-    public bool componentOnForge;
     private bool componentOnAnvil;
     private bool componentInBarrel;
+    private bool needToStartCraft = false;
 
-    public Text stage;
     private float swordTime = 5;
     private float tinTime = 5;
+
     private int curStage = 0;
     private int totalStages = 4;
-    private bool needToStartCraft = false;
 
 	// Use this for initialization
 	void Start () 
@@ -71,7 +76,7 @@ public class CraftRoutine : MonoBehaviour
 
         stage.enabled = false;
 
-        timerSlider.maxValue = 60.0f;
+        timerSlider.maxValue = baseTimeStage1;
 
   
         
@@ -183,6 +188,8 @@ public class CraftRoutine : MonoBehaviour
     {
         curStage++;
         timerSlider.maxValue = swordTime + tinTime;
+        timerSlider.maxValue = baseTimeStage1 * (float)timeMultiplier.getMultiplier("Sword", "Tin");
+        
         stage.text = "Stage " + curStage + "/" + totalStages;
 
     }
