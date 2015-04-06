@@ -65,8 +65,8 @@ public class CraftRoutine : MonoBehaviour
         isCrafting = false;
         furnaceIsMelting = false;
 
-        stage.enabled = false;
-        stageActive = false;
+        //stage.enabled = false;
+        //stageActive = false;
         
 
 	}
@@ -76,19 +76,14 @@ public class CraftRoutine : MonoBehaviour
     {
         if (isCrafting)
         {
-            heatSlider.value -= heatSliderChange;
-            hammerSlider.value -= hammerSliderChange;
-            timerSlider.value += timeSliderChange;
+            heatSlider.value -= Time.deltaTime * heatSliderChange;
+            hammerSlider.value -= Time.deltaTime * hammerSliderChange;
+            timerSlider.value += Time.deltaTime * timeSliderChange;
         }
 
         if (furnaceIsMelting)
         {
             furnaceSlider.value += furnaceSliderChange;
-        }
-
-        if (stageActive)
-        {
-
         }
     }
 
@@ -96,7 +91,7 @@ public class CraftRoutine : MonoBehaviour
     {
         if (componentOnAnvil)
         {
-            hammerSlider.value += 750;
+            hammerSlider.value += 7.5f;
         }
     }
 
@@ -124,7 +119,7 @@ public class CraftRoutine : MonoBehaviour
     {
         if (componentOnForge)
         {
-            heatSlider.value += 1000;
+            heatSlider.value += 10.0f;
         }
     }
 
