@@ -1827,17 +1827,14 @@ MonoBehaviour:
   hammerSliderObject: {fileID: 1868475946}
   timerSliderObject: {fileID: 275135963}
   furnaceSliderObject: {fileID: 285304052}
-<<<<<<< HEAD
   timer: 70
   heroReturnText: {fileID: 713411792}
-=======
   forge: {fileID: 758410324}
   bellows: {fileID: 1585984514}
   craftingComponent: {fileID: 858096372}
   coolingBarrel: {fileID: 2011556726}
   hammer: {fileID: 199337636}
   anvil: {fileID: 129611181}
->>>>>>> origin/master
 --- !u!1 &1363407975
 GameObject:
   m_ObjectHideFlags: 0

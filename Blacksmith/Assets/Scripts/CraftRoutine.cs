@@ -19,10 +19,10 @@ public class CraftRoutine : MonoBehaviour {
 	public GameObject hammerSliderObject;
 	public GameObject timerSliderObject;
 	public GameObject furnaceSliderObject;
-<<<<<<< HEAD
+
     public float timer = 70;
     public Text heroReturnText;
-=======
+
 
     public GameObject forge;
     public GameObject bellows;
@@ -31,7 +31,6 @@ public class CraftRoutine : MonoBehaviour {
     public GameObject hammer;
     public GameObject anvil;
 
->>>>>>> origin/master
 	private Slider heatSlider;
 	private Slider hammerSlider;
 	private Slider timerSlider;
@@ -57,44 +56,17 @@ public class CraftRoutine : MonoBehaviour {
 		heatSlider.value = 0.0f;
 		hammerSlider.value = 0.0f;
 		timerSlider.value = 0.0f;
-<<<<<<< HEAD
-		furnaceSlider.value = 0.0f;
+
         heroReturnText.text = "Doom in: 100 seconds";
-=======
         furnaceSlider.value = 0.0f;
 
         isCrafting = false;
         furnaceIsMelting = false;
->>>>>>> origin/master
+
 	}
 
 	// Update is called once per frame
-<<<<<<< HEAD
-	void Update () {
-		heatSlider.value += 100.0f;
-		hammerSlider.value += 100.0f;
-		timerSlider.value += 100.0f;
-		furnaceSlider.value += 100.0f;
-        timer -= Time.deltaTime;
-        minutes = (int)(timer / 60.0f);
-        seconds = (int)timer % 60;
-        if (seconds >= 10)
-        {
-            heroReturnText.text = "Hero returns: " + minutes + ":" + seconds;
-        }
-        else
-        {
-            heroReturnText.text = "Hero returns: " + minutes + ":0" + seconds;
-        }
-        
-=======
 	void Update () 
-    {
-    
->>>>>>> origin/master
-	}
-
-	void fixedUpdate () 
     {
         if (isCrafting)
         {
@@ -107,6 +79,23 @@ public class CraftRoutine : MonoBehaviour {
         {
             furnaceSlider.value += furnaceSliderChange;
         }
+
+        timer -= Time.deltaTime;
+        minutes = (int)(timer / 60.0f);
+        seconds = (int)timer % 60;
+        if (seconds >= 10)
+        {
+            heroReturnText.text = "Hero returns: " + minutes + ":" + seconds;
+        }
+        else
+        {
+            heroReturnText.text = "Hero returns: " + minutes + ":0" + seconds;
+        }
+    }
+
+	void fixedUpdate () 
+    {
+       
 	}
 
     public void craftingToggle()
