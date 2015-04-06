@@ -40,6 +40,9 @@ public class CraftRoutine : MonoBehaviour {
 
     private bool isCrafting;
     private bool furnaceIsMelting;
+    private bool componentOnForge;
+    private bool componentOnAnvil;
+    private bool componentInBarrel;
 
 	// Use this for initialization
 	void Start () 

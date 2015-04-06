@@ -6,14 +6,46 @@ public class ComponentMovement : MonoBehaviour {
     private Vector3 screenPoint;
     private Vector3 offset;
     private Vector3 resetPoint;
+
+    public GameObject anvil;
+    public GameObject forge;
+
+    public bool onAnvil;
+    public bool onForge;
+
 	// Use this for initialization
     void Start()
     {
         resetPoint = gameObject.transform.position;
     }
 	
+    void OnTriggerEnter2D(Collider2D myCollider)
+    {
+        if (myCollider.gameObject.name == "Anvil")
+        {
+            onAnvil = true;
+        }
+        else if (myCollider.gameObject.name == "Forge")
+        {
+            onForge = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D myCollider)
+    {
+        if (myCollider.gameObject.name == "Anvil")
+        {
+            onAnvil = false;
+        }
+        else if (myCollider.gameObject.name == "Forge")
+        {
+            onForge = false;
+        }
+    }
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
+        
 	
 	}
 
@@ -25,7 +57,18 @@ public class ComponentMovement : MonoBehaviour {
 
     void OnMouseUp() 
     {
-        transform.position = resetPoint;
+        if (onAnvil)
+        {
+            transform.position = new Vector3(anvil.transform.position.x, anvil.transform.position.y, 0);
+        }
+        else if (onForge)
+        {
+            transform.position = new Vector3(forge.transform.position.x, forge.transform.position.y, 0);
+        }
+        else
+        {
+            transform.position = resetPoint;
+        }
     }
 
     void OnMouseDrag()

@@ -1546,6 +1546,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf7acb199c73ed42828cac2b8e0c960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anvil: {fileID: 129611181}
+  forge: {fileID: 758410324}
+  onAnvil: 0
+  onForge: 0
 --- !u!1 &980094745
 GameObject:
   m_ObjectHideFlags: 0
