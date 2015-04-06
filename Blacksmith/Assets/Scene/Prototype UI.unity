@@ -1735,7 +1735,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1222954272}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1302979229}
+        m_MethodName: craftingToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1222954272
@@ -1807,10 +1819,20 @@ MonoBehaviour:
   heatDiffOne: {fileID: 21300000, guid: 7ab4e72012fc5f64ab344d713c2fa8a3, type: 3}
   heatDiffTwo: {fileID: 21300000, guid: 757cd071e43f4f14ab49cd0bd06a3923, type: 3}
   heatDiffThree: {fileID: 21300000, guid: 3a0b805615892544981bac283bdafa57, type: 3}
+  heatSliderChange: 10
+  hammerSliderChange: 20
+  timeSliderChange: 5
+  furnaceSliderChange: 3
   heatSliderObject: {fileID: 1665182075}
   hammerSliderObject: {fileID: 1868475946}
   timerSliderObject: {fileID: 275135963}
   furnaceSliderObject: {fileID: 285304052}
+  forge: {fileID: 758410324}
+  bellows: {fileID: 1585984514}
+  craftingComponent: {fileID: 858096372}
+  coolingBarrel: {fileID: 2011556726}
+  hammer: {fileID: 199337636}
+  anvil: {fileID: 129611181}
 --- !u!1 &1363407975
 GameObject:
   m_ObjectHideFlags: 0

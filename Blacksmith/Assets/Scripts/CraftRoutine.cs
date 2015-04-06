@@ -20,7 +20,6 @@ public class CraftRoutine : MonoBehaviour {
 	public GameObject timerSliderObject;
 	public GameObject furnaceSliderObject;
 
-    public Button startCraftingButton;
     public GameObject forge;
     public GameObject bellows;
     public GameObject craftingComponent; //eventually the game will programmatically find the GameObject that you will use during the current crafting session, for now we will assign it a test object
@@ -53,8 +52,6 @@ public class CraftRoutine : MonoBehaviour {
 		timerSlider.value = 0.0f;
         furnaceSlider.value = 0.0f;
 
-        startCraftingButton.onClick.AddListener(() => { isCrafting = true; });
-
         isCrafting = false;
         furnaceIsMelting = false;
 	}
@@ -62,24 +59,38 @@ public class CraftRoutine : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        while (isCrafting)
+    
+	}
+
+	void fixedUpdate () 
+    {
+        if (isCrafting)
         {
             heatSlider.value -= heatSliderChange;
             hammerSlider.value += hammerSliderChange;
             timerSlider.value += timeSliderChange;
         }
 
-        while (furnaceIsMelting)
+        if (furnaceIsMelting)
         {
             furnaceSlider.value += furnaceSliderChange;
         }
-
 	}
 
-	void fixedUpdate () 
+    public void craftingToggle()
     {
-
-	}
+        if (isCrafting)
+        {
+            isCrafting = false;
+            heatSlider.value = emptySlider;
+            hammerSlider.value = emptySlider;
+            timerSlider.value = emptySlider;
+        }
+        else if(!isCrafting)
+        {
+            isCrafting = true;
+        }
+    }
 
     public void furnaceToggle()
     {
