@@ -1966,7 +1966,7 @@ MonoBehaviour:
   heatDiffThree: {fileID: 21300000, guid: 3a0b805615892544981bac283bdafa57, type: 3}
   heatSliderChange: 10
   hammerSliderChange: 20
-  timeSliderChange: 5
+  timeSliderChange: 10
   furnaceSliderChange: 3
   heatSliderObject: {fileID: 1665182075}
   hammerSliderObject: {fileID: 1868475946}

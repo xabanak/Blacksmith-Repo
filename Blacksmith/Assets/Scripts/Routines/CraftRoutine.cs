@@ -43,6 +43,9 @@ public class CraftRoutine : MonoBehaviour
     private Text stage;
     private bool stageActive;
 
+    private float swordTime;
+    private float tinTime;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -67,6 +70,8 @@ public class CraftRoutine : MonoBehaviour
 
         //stage.enabled = false;
         //stageActive = false;
+
+        timerSlider.maxValue = 20.0f;
         
 
 	}
@@ -78,7 +83,7 @@ public class CraftRoutine : MonoBehaviour
         {
             heatSlider.value -= Time.deltaTime * heatSliderChange;
             hammerSlider.value -= Time.deltaTime * hammerSliderChange;
-            timerSlider.value += Time.deltaTime * timeSliderChange;
+            timerSlider.value += Time.deltaTime;
         }
 
         if (furnaceIsMelting)
