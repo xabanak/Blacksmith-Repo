@@ -94,7 +94,6 @@ public class CraftRoutine : MonoBehaviour
 
         if (isCrafting)
         {
-<<<<<<< HEAD
             if (componentInBarrel)
             {
                 heatSlider.value -= Time.deltaTime * quenchingSliderChange;
@@ -103,10 +102,7 @@ public class CraftRoutine : MonoBehaviour
             {
                 heatSlider.value -= Time.deltaTime * heatSliderChange;
             } 
-=======
             SetPopUpText("Stage 1");
-            heatSlider.value -= Time.deltaTime * heatSliderChange;
->>>>>>> origin/master
             hammerSlider.value -= Time.deltaTime * hammerSliderChange;
             timerSlider.value += Time.deltaTime;
 
