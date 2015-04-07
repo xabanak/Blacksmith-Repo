@@ -30,6 +30,7 @@ public class CraftRoutine : MonoBehaviour
     public StageTimeMatrix timeMultiplier;
 
     public Text stage;
+    public Text popUpText;
 
 	private Slider heatSlider;
 	private Slider hammerSlider;
@@ -46,8 +47,7 @@ public class CraftRoutine : MonoBehaviour
     private bool componentInBarrel;
     private bool needToStartCraft = false;
 
-    private float swordTime = 5;
-    private float tinTime = 5;
+    private float countDown = 3.0f;
 
     private int curStage = 0;
     private int totalStages = 4;
@@ -77,6 +77,7 @@ public class CraftRoutine : MonoBehaviour
         stage.enabled = false;
 
         timerSlider.maxValue = baseTimeStage1;
+        popUpText.enabled = false;
 
   
         
@@ -86,17 +87,27 @@ public class CraftRoutine : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if (timerSlider.value == timerSlider.maxValue)
-        {
-            isCrafting = false;
-            timerSlider.value = 0;
-        }
+        IsTimerDone();
 
         if (isCrafting)
         {
             heatSlider.value -= Time.deltaTime * heatSliderChange;
             hammerSlider.value -= Time.deltaTime * hammerSliderChange;
             timerSlider.value += Time.deltaTime;
+
+            if (countDown > 0)
+            {
+                countDown -= Time.deltaTime;
+                SetPopUpTextActive(true);
+            }
+
+            popUpText.text = "Stage 1";
+
+            if (countDown <= 0)
+            {
+                SetPopUpTextActive(false);
+            }
+
             if (needToStartCraft)
             {
                 stage.enabled = true;
@@ -187,10 +198,32 @@ public class CraftRoutine : MonoBehaviour
     void NextStage()
     {
         curStage++;
-        timerSlider.maxValue = swordTime + tinTime;
+        ResetCountDown();
         timerSlider.maxValue = baseTimeStage1 * (float)timeMultiplier.getMultiplier("Sword", "Tin");
-        
         stage.text = "Stage " + curStage + "/" + totalStages;
+    }
 
+    void ResetCountDown()
+    {
+        countDown = 3;
+    }
+
+    void SetPopUpText (string phrase)
+    {
+        stage.text = phrase;
+    }
+
+    void IsTimerDone ()
+    {
+        if (timerSlider.value == timerSlider.maxValue)
+        {
+            isCrafting = false;
+            timerSlider.value = 0;
+        }
+    }
+
+    void SetPopUpTextActive (bool change)
+    {
+        popUpText.enabled = change;
     }
 }
