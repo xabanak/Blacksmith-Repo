@@ -14,8 +14,6 @@ public class CraftRoutine : MonoBehaviour
     public float furnaceSliderChange;
     public float quenchingSliderChange;
 
-
-
 	public GameObject heatSliderObject;
 	public GameObject hammerSliderObject;
 	public GameObject timerSliderObject;
@@ -96,6 +94,7 @@ public class CraftRoutine : MonoBehaviour
 
         if (isCrafting)
         {
+<<<<<<< HEAD
             if (componentInBarrel)
             {
                 heatSlider.value -= Time.deltaTime * quenchingSliderChange;
@@ -104,6 +103,10 @@ public class CraftRoutine : MonoBehaviour
             {
                 heatSlider.value -= Time.deltaTime * heatSliderChange;
             } 
+=======
+            SetPopUpText("Stage 1");
+            heatSlider.value -= Time.deltaTime * heatSliderChange;
+>>>>>>> origin/master
             hammerSlider.value -= Time.deltaTime * hammerSliderChange;
             timerSlider.value += Time.deltaTime;
 
@@ -112,8 +115,6 @@ public class CraftRoutine : MonoBehaviour
                 countDown -= Time.deltaTime;
                 SetPopUpTextActive(true);
             }
-
-            popUpText.text = "Stage 1";
 
             if (countDown <= 0)
             {
@@ -170,13 +171,6 @@ public class CraftRoutine : MonoBehaviour
         componentInBarrel = !componentInBarrel;
     }
 
-	void fixedUpdate () 
-    {
-       
-	}
-
-   
-
     public void craftingToggle()
     {
         if (isCrafting)
@@ -224,7 +218,7 @@ public class CraftRoutine : MonoBehaviour
 
     void SetPopUpText (string phrase)
     {
-        stage.text = phrase;
+        popUpText.text = phrase;
     }
 
     void IsTimerDone ()
