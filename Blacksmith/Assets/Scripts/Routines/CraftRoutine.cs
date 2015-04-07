@@ -70,6 +70,9 @@ public class CraftRoutine : MonoBehaviour
 		hammerSlider.value = 0.0f;
 		timerSlider.value = 0.0f;
 
+        componentOnAnvil = false;
+        componentOnForge = false;
+        componentInBarrel = false;
 
         furnaceSlider.value = 0.0f;
 
@@ -91,9 +94,16 @@ public class CraftRoutine : MonoBehaviour
     {
         IsTimerDone();
 
-        if (isCrafting && !componentInBarrel)
+        if (isCrafting)
         {
-            heatSlider.value -= Time.deltaTime * heatSliderChange;
+            if (componentInBarrel)
+            {
+                heatSlider.value -= Time.deltaTime * quenchingSliderChange;
+            }
+            else
+            {
+                heatSlider.value -= Time.deltaTime * heatSliderChange;
+            } 
             hammerSlider.value -= Time.deltaTime * hammerSliderChange;
             timerSlider.value += Time.deltaTime;
 
@@ -116,12 +126,6 @@ public class CraftRoutine : MonoBehaviour
                 NextStage();
                 needToStartCraft = false;
             }
-        }
-        else if (isCrafting && componentInBarrel)
-        {
-            heatSlider.value -= Time.deltaTime * quenchingSliderChange;
-            hammerSlider.value -= Time.deltaTime * hammerSliderChange;
-            timerSlider.value += Time.deltaTime;
         }
         else if (!isCrafting)
         {

@@ -1747,7 +1747,7 @@ MonoBehaviour:
   barrelOffset: {x: 0, y: 0, z: 0}
   anvil: {fileID: 129611181}
   forge: {fileID: 758410324}
-  barrel: {fileID: 0}
+  barrel: {fileID: 2011556726}
   craftController: {fileID: 1302979229}
   onAnvil: 0
   onForge: 0
@@ -2041,7 +2041,7 @@ MonoBehaviour:
   hammerSliderChange: 20
   timeSliderChange: 10
   furnaceSliderChange: 3
-  quenchingSliderChange: 0
+  quenchingSliderChange: 50
   heatSliderObject: {fileID: 1665182075}
   hammerSliderObject: {fileID: 1868475946}
   timerSliderObject: {fileID: 275135963}

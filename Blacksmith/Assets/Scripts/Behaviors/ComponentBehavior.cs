@@ -98,6 +98,7 @@ public class ComponentBehavior : MonoBehaviour {
         else if(inBarrel)
         {
             transform.position = new Vector3(barrel.transform.position.x, barrel.transform.position.y, 0) + barrelOffset;
+            craftController.toggleComponentInBarrel();
         }
         else
         {
