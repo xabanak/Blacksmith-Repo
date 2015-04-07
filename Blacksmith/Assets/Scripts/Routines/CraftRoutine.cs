@@ -12,8 +12,9 @@ public class CraftRoutine : MonoBehaviour
     public float hammerSliderChange;
     public float timeSliderChange;
     public float furnaceSliderChange;
+    public float quenchingSliderChange;
 
-    public bool componentOnForge;
+
 
 	public GameObject heatSliderObject;
 	public GameObject hammerSliderObject;
@@ -45,6 +46,7 @@ public class CraftRoutine : MonoBehaviour
     private bool furnaceIsMelting;
     private bool componentOnAnvil;
     private bool componentInBarrel;
+    private bool componentOnForge;
     private bool needToStartCraft = false;
 
     private float countDown = 3.0f;
@@ -89,7 +91,7 @@ public class CraftRoutine : MonoBehaviour
     {
         IsTimerDone();
 
-        if (isCrafting)
+        if (isCrafting && !componentInBarrel)
         {
             heatSlider.value -= Time.deltaTime * heatSliderChange;
             hammerSlider.value -= Time.deltaTime * hammerSliderChange;
@@ -115,6 +117,12 @@ public class CraftRoutine : MonoBehaviour
                 needToStartCraft = false;
             }
         }
+        else if (isCrafting && componentInBarrel)
+        {
+            heatSlider.value -= Time.deltaTime * quenchingSliderChange;
+            hammerSlider.value -= Time.deltaTime * hammerSliderChange;
+            timerSlider.value += Time.deltaTime;
+        }
         else if (!isCrafting)
         {
             needToStartCraft = true;
@@ -135,6 +143,14 @@ public class CraftRoutine : MonoBehaviour
         }
     }
 
+    public void bellowsPump()
+    {
+        if (componentOnForge)
+        {
+            heatSlider.value += 10.0f;
+        }
+    }
+
     public void toggleComponentOnForge()
     {
         componentOnForge = !componentOnForge;
@@ -145,7 +161,7 @@ public class CraftRoutine : MonoBehaviour
         componentOnAnvil = !componentOnAnvil;
     }
 
-    void toggleComponentInBarrel()
+    public void toggleComponentInBarrel()
     {
         componentInBarrel = !componentInBarrel;
     }
@@ -155,13 +171,7 @@ public class CraftRoutine : MonoBehaviour
        
 	}
 
-    public void bellowsPump()
-    {
-        if (componentOnForge)
-        {
-            heatSlider.value += 10.0f;
-        }
-    }
+   
 
     public void craftingToggle()
     {

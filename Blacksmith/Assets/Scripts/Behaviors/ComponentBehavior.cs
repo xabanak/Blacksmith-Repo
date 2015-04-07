@@ -9,13 +9,16 @@ public class ComponentBehavior : MonoBehaviour {
 
     public Vector3 anvilOffset;
     public Vector3 forgeOffset;
+    public Vector3 barrelOffset;
 
     public GameObject anvil;
     public GameObject forge;
+    public GameObject barrel;
     public CraftRoutine craftController;
 
     public bool onAnvil;
     public bool onForge;
+    public bool inBarrel;
 
 	// Use this for initialization
     void Start()
@@ -33,6 +36,10 @@ public class ComponentBehavior : MonoBehaviour {
         {
             onForge = true;
         }
+        else if (myCollider.gameObject.name == "Barrel")
+        {
+            inBarrel = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D myCollider)
@@ -45,6 +52,10 @@ public class ComponentBehavior : MonoBehaviour {
         else if (myCollider.gameObject.name == "Forge")
         {
             onForge = false;
+        }
+        else if (myCollider.gameObject.name == "Barrel")
+        {
+            inBarrel = false;
         }
     }
 	// Update is called once per frame
@@ -64,6 +75,10 @@ public class ComponentBehavior : MonoBehaviour {
         {
             craftController.toggleComponentOnForge();
         }
+        else if (inBarrel)
+        {
+            craftController.toggleComponentInBarrel();
+        }
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         //offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
     }
@@ -79,6 +94,10 @@ public class ComponentBehavior : MonoBehaviour {
         {
             transform.position = new Vector3(forge.transform.position.x, forge.transform.position.y, 0) + forgeOffset;
             craftController.toggleComponentOnForge();
+        }
+        else if(inBarrel)
+        {
+            transform.position = new Vector3(barrel.transform.position.x, barrel.transform.position.y, 0) + barrelOffset;
         }
         else
         {
