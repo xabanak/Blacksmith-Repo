@@ -61,8 +61,6 @@ public class ComponentBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        
-	
 	}
 
     void OnMouseDown()
@@ -78,6 +76,7 @@ public class ComponentBehavior : MonoBehaviour {
         else if (inBarrel)
         {
             craftController.toggleComponentInBarrel();
+			transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
         }
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         //offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
@@ -98,6 +97,7 @@ public class ComponentBehavior : MonoBehaviour {
         else if(inBarrel)
         {
             transform.position = new Vector3(barrel.transform.position.x, barrel.transform.position.y, 0) + barrelOffset;
+			transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z - 90.0f);
             craftController.toggleComponentInBarrel();
         }
         else

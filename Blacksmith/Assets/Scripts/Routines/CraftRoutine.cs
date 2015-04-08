@@ -36,11 +36,16 @@ public class CraftRoutine : MonoBehaviour
 	public Slider timerSlider;
     public Slider furnaceSlider;
 
-    private const float fullSlider = 10000.0f;
+    private const float fullSlider = 60.0f;
     private const float emptySlider = 0.0f;
     private const float baseTimeStage1 = 60.0f;
+	private const float hammerHitIncrease = 5.0f;
+	private const float bellowsHitIncrese = 5.0f;
+	private const float heatToStart = 25.0f;
+	private const float hammerToStart = 25.0f;
 
-    private bool isCrafting;
+	public bool isBeginningCrafting;
+    public bool isCrafting;
     private bool furnaceIsMelting;
     private bool componentOnAnvil;
     private bool componentInBarrel;
@@ -74,6 +79,7 @@ public class CraftRoutine : MonoBehaviour
 
         furnaceSlider.value = 0.0f;
 
+		isBeginningCrafting = false;
         isCrafting = false;
         furnaceIsMelting = false;
 
@@ -92,43 +98,59 @@ public class CraftRoutine : MonoBehaviour
     {
         IsTimerDone();
 
-        if (isCrafting)
+        if (isCrafting || isBeginningCrafting)
         {
-            if (componentInBarrel)
-            {
-                heatSlider.value -= Time.deltaTime * quenchingSliderChange;
-            }
-            else
-            {
-                heatSlider.value -= Time.deltaTime * heatSliderChange;
-            } 
-            SetPopUpText("Stage 1");
-            hammerSlider.value -= Time.deltaTime * hammerSliderChange;
-            timerSlider.value += Time.deltaTime;
-
-            if (countDown > 0)
-            {
-                countDown -= Time.deltaTime;
-                SetPopUpTextActive(true);
-            }
-
-            if (countDown <= 0)
-            {
-                SetPopUpTextActive(false);
-            }
-
-            if (needToStartCraft)
-            {
-                stage.enabled = true;
-                NextStage();
-                needToStartCraft = false;
-            }
+			if (componentInBarrel)
+			{
+				heatSlider.value -= Time.deltaTime * quenchingSliderChange;
+			}
+			else
+			{
+				heatSlider.value -= Time.deltaTime * heatSliderChange;
+			} 
+			
+			hammerSlider.value -= Time.deltaTime * hammerSliderChange;
+			       
         }
+		else if(isCrafting && !isBeginningCrafting)
+		{
+			timerSlider.value += Time.deltaTime;
+
+			SetPopUpText("Stage 1");
+			
+			if (countDown > 0)
+			{
+				countDown -= Time.deltaTime;
+				SetPopUpTextActive(true);
+			}
+			
+			if (countDown <= 0)
+			{
+				SetPopUpTextActive(false);
+			}
+			
+			if (needToStartCraft)
+			{
+				stage.enabled = true;
+				NextStage();
+				needToStartCraft = false;
+			}
+
+		}
         else if (!isCrafting)
         {
             needToStartCraft = true;
             stage.enabled = false;
         }
+
+		if (isBeginningCrafting && !isCrafting) 
+		{
+			if ((heatSlider.value > heatToStart) && (hammerSlider.value > hammerToStart))
+			{
+				isBeginningCrafting = !isBeginningCrafting;
+				isCrafting = !isCrafting;
+			}
+		}
 
         if (furnaceIsMelting)
         {
@@ -138,17 +160,17 @@ public class CraftRoutine : MonoBehaviour
 
     public void hammerHitOnAnvil()
     {
-        if (componentOnAnvil)
+        if ((isCrafting || isBeginningCrafting) && componentOnAnvil)
         {
-            hammerSlider.value += 7.5f;
+            hammerSlider.value += hammerHitIncrease;
         }
     }
 
     public void bellowsPump()
     {
-        if (componentOnForge)
+        if ((isCrafting || isBeginningCrafting) && componentOnForge)
         {
-            heatSlider.value += 10.0f;
+            heatSlider.value += bellowsHitIncrese;
         }
     }
 
@@ -169,7 +191,12 @@ public class CraftRoutine : MonoBehaviour
 
     public void craftingToggle()
     {
-        if (isCrafting)
+		if (isBeginningCrafting) 
+		{
+			isBeginningCrafting = false;
+			isCrafting = true;
+		}
+        else if (isCrafting)
         {
             isCrafting = false;
             heatSlider.value = emptySlider;
@@ -178,9 +205,9 @@ public class CraftRoutine : MonoBehaviour
             needToStartCraft = true;
             
         }
-        else if(!isCrafting)
+        else if(!isCrafting && !isBeginningCrafting)
         {
-            isCrafting = true;
+            isBeginningCrafting = true;
             curStage = 0;
         }
     }

@@ -410,7 +410,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: .382352948, g: .269696951, b: .199610725, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2276,8 +2276,8 @@ MonoBehaviour:
   heatDiffOne: {fileID: 21300000, guid: 7ab4e72012fc5f64ab344d713c2fa8a3, type: 3}
   heatDiffTwo: {fileID: 21300000, guid: 757cd071e43f4f14ab49cd0bd06a3923, type: 3}
   heatDiffThree: {fileID: 21300000, guid: 3a0b805615892544981bac283bdafa57, type: 3}
-  heatSliderChange: 10
-  hammerSliderChange: 20
+  heatSliderChange: 3
+  hammerSliderChange: 5
   timeSliderChange: 10
   furnaceSliderChange: 3
   quenchingSliderChange: 50
@@ -2294,6 +2294,8 @@ MonoBehaviour:
   timeMultiplier: {fileID: 1565756060}
   stage: {fileID: 1847773638}
   popUpText: {fileID: 287891303}
+  isBeginningCrafting: 0
+  isCrafting: 0
 --- !u!1 &1363407975
 GameObject:
   m_ObjectHideFlags: 0
