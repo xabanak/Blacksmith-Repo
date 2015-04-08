@@ -31,10 +31,10 @@ public class CraftRoutine : MonoBehaviour
     public Text stage;
     public Text popUpText;
 
-	private Slider heatSlider;
-	private Slider hammerSlider;
-	private Slider timerSlider;
-    private Slider furnaceSlider;
+	public Slider heatSlider;
+	public Slider hammerSlider;
+	public Slider timerSlider;
+    public Slider furnaceSlider;
 
     private const float fullSlider = 10000.0f;
     private const float emptySlider = 0.0f;
