@@ -112,7 +112,7 @@ public class CraftRoutine : MonoBehaviour
 			hammerSlider.value -= Time.deltaTime * hammerSliderChange;
 			       
         }
-		else if(isCrafting && !isBeginningCrafting)
+		if(isCrafting && !isBeginningCrafting)
 		{
 			timerSlider.value += Time.deltaTime;
 
