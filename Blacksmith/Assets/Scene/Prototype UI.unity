@@ -2335,6 +2335,7 @@ MonoBehaviour:
   furnaceSlider: {fileID: 0}
   isBeginningCrafting: 0
   isCrafting: 0
+  countDown: 3
 --- !u!1 &1363407975
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,7 +52,7 @@ public class CraftRoutine : MonoBehaviour
     private bool componentOnForge;
     private bool needToStartCraft = false;
 
-    private float countDown = 3.0f;
+    public float countDown = 3.0f;
 
     private int curStage = 0;
     private int totalStages = 4;
@@ -87,11 +87,7 @@ public class CraftRoutine : MonoBehaviour
 
         timerSlider.maxValue = baseTimeStage1;
         popUpText.enabled = false;
-
-  
-        
-
-	}
+    }
 
 	// Update is called once per frame
 	void Update () 
@@ -100,6 +96,25 @@ public class CraftRoutine : MonoBehaviour
 
         if (isCrafting || isBeginningCrafting)
         {
+            if (needToStartCraft)
+            {
+                SetPopUpText("Stage 1");
+                stage.enabled = true;
+                NextStage();
+                needToStartCraft = false;
+            }
+
+            if (countDown > 0)
+            {
+                countDown -= Time.deltaTime;
+                SetPopUpTextActive(true);
+            }
+
+            else if (countDown <= 0)
+            {
+                SetPopUpTextActive(false);
+            }
+
 			if (componentInBarrel)
 			{
 				heatSlider.value -= Time.deltaTime * quenchingSliderChange;
@@ -109,48 +124,26 @@ public class CraftRoutine : MonoBehaviour
 				heatSlider.value -= Time.deltaTime * heatSliderChange;
 			} 
 			
-			hammerSlider.value -= Time.deltaTime * hammerSliderChange;
-			       
+			hammerSlider.value -= Time.deltaTime * hammerSliderChange;       
         }
-		if(isCrafting && !isBeginningCrafting)
-		{
-			timerSlider.value += Time.deltaTime;
 
-			SetPopUpText("Stage 1");
-			
-			if (countDown > 0)
-			{
-				countDown -= Time.deltaTime;
-				SetPopUpTextActive(true);
-			}
-			
-			if (countDown <= 0)
-			{
-				SetPopUpTextActive(false);
-			}
-			
-			if (needToStartCraft)
-			{
-				stage.enabled = true;
-				NextStage();
-				needToStartCraft = false;
-			}
-
-		}
-        else if (!isCrafting)
+        if (isCrafting && !isBeginningCrafting)
+        {
+            timerSlider.value += Time.deltaTime;
+        }
+        else if (isBeginningCrafting && !isCrafting)
+        {
+            if ((heatSlider.value > heatToStart) && (hammerSlider.value > hammerToStart))
+            {
+                isBeginningCrafting = !isBeginningCrafting;
+                isCrafting = !isCrafting;
+            }
+        }
+        else if (!isCrafting && !isBeginningCrafting)
         {
             needToStartCraft = true;
             stage.enabled = false;
         }
-
-		if (isBeginningCrafting && !isCrafting) 
-		{
-			if ((heatSlider.value > heatToStart) && (hammerSlider.value > hammerToStart))
-			{
-				isBeginningCrafting = !isBeginningCrafting;
-				isCrafting = !isCrafting;
-			}
-		}
 
         if (furnaceIsMelting)
         {
