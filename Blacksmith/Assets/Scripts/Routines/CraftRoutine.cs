@@ -30,6 +30,7 @@ public class CraftRoutine : MonoBehaviour
 
     public Text stage;
     public Text popUpText;
+    public Text results;
 
 	public Slider heatSlider;
 	public Slider hammerSlider;
@@ -52,7 +53,9 @@ public class CraftRoutine : MonoBehaviour
     private bool componentOnForge;
     private bool needToStartCraft = false;
 
-    public float countDown = 3.0f;
+    private float countDown = 3.0f;
+    private float quality = 0.0f;
+    private float timeSync = 1.0f;
 
     private int curStage = 0;
     private int totalStages = 4;
@@ -87,12 +90,19 @@ public class CraftRoutine : MonoBehaviour
 
         timerSlider.maxValue = baseTimeStage1;
         popUpText.enabled = false;
+        //results.enabled = false;
     }
 
 	// Update is called once per frame
 	void Update () 
     {
         IsTimerDone();
+
+        if (timeSync > 0)
+        {
+            timeSync -= Time.deltaTime;
+        }
+        
 
         if (isCrafting || isBeginningCrafting)
         {
@@ -130,6 +140,11 @@ public class CraftRoutine : MonoBehaviour
         if (isCrafting && !isBeginningCrafting)
         {
             timerSlider.value += Time.deltaTime;
+            if (timeSync <= 0)
+            {
+                qualityUpdate();
+                timeSync = 1.0f;
+            }
         }
         else if (isBeginningCrafting && !isCrafting)
         {
@@ -143,6 +158,7 @@ public class CraftRoutine : MonoBehaviour
         {
             needToStartCraft = true;
             stage.enabled = false;
+            displayResults();
         }
 
         if (furnaceIsMelting)
@@ -249,5 +265,25 @@ public class CraftRoutine : MonoBehaviour
     void SetPopUpTextActive (bool change)
     {
         popUpText.enabled = change;
+    }
+
+    void qualityUpdate ()
+    {
+        if (heatSlider.value > 25 && heatSlider.value < 75)
+        {
+            quality += 0.5f;
+        }
+        if (hammerSlider.value > 25 && hammerSlider.value < 75)
+        {
+            quality += 0.5f;
+        }
+
+        results.text = "Quality: " + quality;
+    }
+
+    void displayResults()
+    {
+        //results.enabled = true;
+        results.text = "Quality: " + quality;
     }
 }
