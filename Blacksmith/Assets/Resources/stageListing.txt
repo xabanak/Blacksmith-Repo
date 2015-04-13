@@ -1,0 +1,62 @@
+C
+*This file contains the stage that corresponds with the crafting stage of each item type.
+*Lines beginning with a * will be ignored upon loading. Do not modify the first line.
+*Make sure there are no trailing empty lines at the end.
+*
+*Sword
+**Shaping
+0
+**Hardening
+1
+**Grinding
+5
+**Tempering
+2
+**Sharpening
+4
+**Polishing
+3
+*
+*
+****Every item type after sword is a placeholder for debugging.
+****Only the sword stages are in initial prototype
+*Shield
+0
+1
+2
+3
+*Breastplate
+0
+1
+2
+3
+*Helm
+0
+1
+2
+3
+*Bracers
+0
+1
+2
+3
+*Gauntlet
+0
+1
+2
+3
+*Boots
+0
+1
+2
+3
+*Greaves
+0
+1
+2
+3
+*Pauldrons
+0
+1
+2
+3

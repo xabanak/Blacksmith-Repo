@@ -4,9 +4,13 @@ using System.Collections;
 
 public class CraftRoutine : MonoBehaviour 
 {
-	public Sprite heatDiffOne;
-	public Sprite heatDiffTwo;
-	public Sprite heatDiffThree;
+    //sprites to load various background difficulties into the hammer and heat bars
+	public Sprite heatDiff1;
+	public Sprite heatDiff2;
+	public Sprite heatDiff3;
+    public Sprite hammerDiff1;
+    public Sprite hammerDiff2;
+    public Sprite hammerDiff3;
 
     public float heatSliderChange;
     public float hammerSliderChange;
@@ -18,13 +22,20 @@ public class CraftRoutine : MonoBehaviour
 	public GameObject hammerSliderObject;
 	public GameObject timerSliderObject;
 	public GameObject furnaceSliderObject;
+    private Slider heatSlider;
+    private Slider hammerSlider;
+    private Slider timerSlider;
+    private Slider furnaceSlider;
 
     public GameObject forge;
     public GameObject bellows;
-    public GameObject craftingComponent; //eventually the game will programmatically find the GameObject that you will use during the current crafting session, for now we will assign it a test object
+    public GameObject craftingComponent; //eventually the game will programmatically instantiate the GameObject that you will use during the current crafting session, for now we will assign it a test object
     public GameObject coolingBarrel;
     public GameObject hammer;
     public GameObject anvil;
+
+    private Image heatSliderBackground;
+    private Image hammerSliderBackground;
 
     public StageTimeMatrix timeMultiplier;
 
@@ -32,71 +43,95 @@ public class CraftRoutine : MonoBehaviour
     public Text popUpText;
     public Text results;
 
-	public Slider heatSlider;
-	public Slider hammerSlider;
-	public Slider timerSlider;
-    public Slider furnaceSlider;
-
     private const float fullSlider = 60.0f;
     private const float emptySlider = 0.0f;
     private const float baseTimeStage1 = 60.0f;
-	private const float hammerHitIncrease = 5.0f;
+	private const float hammerHitIncrease = 10.0f;
 	private const float bellowsHitIncrese = 5.0f;
 	private const float heatToStart = 25.0f;
 	private const float hammerToStart = 25.0f;
 
-	public bool isBeginningCrafting;
-    public bool isCrafting;
     private bool furnaceIsMelting;
     private bool componentOnAnvil;
     private bool componentInBarrel;
     private bool componentOnForge;
-    private bool needToStartCraft = false;
 
     private float countDown = 3.0f;
     private float quality = 0.0f;
     private float timeSync = 1.0f;
 
-    private int curStage = 0;
-    private int totalStages = 4;
+    private int currentStage;
+    private int currentStageAbsVal; // gets the integer value of the stage itself, not the number of the stage in order of stages for the current item
+    private int totalStages;
+    private double currentStageTime;
 
-	// Use this for initialization
+
+
+    void ResetCrafting()
+    {
+        currentStage = -1;
+
+        componentOnAnvil = false;
+        componentOnForge = false;
+        componentInBarrel = false;
+
+        heatSliderObject.SetActive(false);
+        hammerSliderObject.SetActive(false);
+        timerSliderObject.SetActive(false);
+        //hammer.SetActive(false);
+        //anvil.SetActive(false);
+        //coolingBarrel.SetActive(false);
+        //bellows.SetActive(false);
+        //forge.SetActive(false);
+
+
+        stage.enabled = false;
+        popUpText.enabled = false;
+
+        ResetSliders();
+    }
+
+    void ResetSliders()
+    {
+        heatSlider.value = 0.0f;
+        hammerSlider.value = 0.0f;
+        timerSlider.value = 0.0f;
+
+        furnaceSlider.value = 0.0f; //REALLY need to figure out what scripting is going to manage the furnace and pass information into this object to manage the display slider
+    }
+
 	void Start () 
 	{
-		GameObject heatBck = GameObject.Find("/Canvas/Heat Gauge/Background");
-		Image heatBckImage = heatBck.GetComponent<Image> ();
-		heatBckImage.sprite = heatDiffOne;
+        heatSliderBackground = GameObject.Find("/Canvas/Heat Gauge/Background").GetComponent<Image>();
+        hammerSliderBackground = GameObject.Find("Canvas/Hammer Gauge/Background").GetComponent<Image>();
 
 		heatSlider = heatSliderObject.GetComponent<Slider> ();
 		hammerSlider = hammerSliderObject.GetComponent<Slider> ();
 		timerSlider = timerSliderObject.GetComponent<Slider> ();
 		furnaceSlider = furnaceSliderObject.GetComponent<Slider> ();
 
-		heatSlider.value = 0.0f;
-		hammerSlider.value = 0.0f;
-		timerSlider.value = 0.0f;
+        ResetCrafting();
 
-        componentOnAnvil = false;
-        componentOnForge = false;
-        componentInBarrel = false;
 
-        furnaceSlider.value = 0.0f;
 
-		isBeginningCrafting = false;
-        isCrafting = false;
-        furnaceIsMelting = false;
-
-        stage.enabled = false;
-
-        timerSlider.maxValue = baseTimeStage1;
-        popUpText.enabled = false;
+        //timerSlider.maxValue = baseTimeStage1;
+        
         //results.enabled = false;
     }
 
-	// Update is called once per frame
+    public void StartCrafting(string item, string material)
+    {
+
+    }
+
 	void Update () 
     {
-        IsTimerDone();
+        while (currentStage != -1)
+        {
+
+        }
+
+        /*IsTimerDone();
 
         if (timeSync > 0)
         {
@@ -164,12 +199,24 @@ public class CraftRoutine : MonoBehaviour
         if (furnaceIsMelting)
         {
             furnaceSlider.value += furnaceSliderChange;
-        }
+        }*/
     }
+
+    void ShapingStage()
+    {
+        hammerSliderObject.SetActive(true);
+        heatSliderObject.SetActive(true);
+
+    }
+
+
+
+
+
 
     public void hammerHitOnAnvil()
     {
-        if ((isCrafting || isBeginningCrafting) && componentOnAnvil)
+       // if ((isCrafting || isBeginningCrafting) && componentOnAnvil)
         {
             hammerSlider.value += hammerHitIncrease;
         }
@@ -177,7 +224,7 @@ public class CraftRoutine : MonoBehaviour
 
     public void bellowsPump()
     {
-        if ((isCrafting || isBeginningCrafting) && componentOnForge)
+        //if ((isCrafting || isBeginningCrafting) && componentOnForge)
         {
             heatSlider.value += bellowsHitIncrese;
         }
@@ -198,7 +245,7 @@ public class CraftRoutine : MonoBehaviour
         componentInBarrel = !componentInBarrel;
     }
 
-    public void craftingToggle()
+    /*public void craftingToggle()
     {
 		if (isBeginningCrafting) 
 		{
@@ -285,5 +332,5 @@ public class CraftRoutine : MonoBehaviour
     {
         //results.enabled = true;
         results.text = "Quality: " + quality;
-    }
+    }*/
 }
