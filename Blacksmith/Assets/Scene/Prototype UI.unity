@@ -741,9 +741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anvil: {fileID: 129611181}
   craftController: {fileID: 1302979229}
-<<<<<<< HEAD
   snapBack: 0
-=======
   hitAnvil: 0
 --- !u!1001 &209891154
 Prefab:
@@ -847,7 +845,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
   m_IsPrefabParent: 0
->>>>>>> origin/master
 --- !u!1 &245350621
 GameObject:
   m_ObjectHideFlags: 0
