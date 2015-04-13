@@ -889,7 +889,6 @@ GameObject:
   - 222: {fileID: 248877293}
   - 114: {fileID: 248877292}
   - 114: {fileID: 248877291}
-  - 114: {fileID: 248877295}
   m_Layer: 5
   m_Name: Inventory Window
   m_TagString: Untagged
@@ -968,8 +967,8 @@ MonoBehaviour:
   m_Content: {fileID: 488633467}
   m_Horizontal: 1
   m_Vertical: 1
-  m_MovementType: 1
-  m_Elasticity: .100000001
+  m_MovementType: 2
+  m_Elasticity: 0
   m_Inertia: 1
   m_DecelerationRate: .135000005
   m_ScrollSensitivity: 1
@@ -980,24 +979,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &248877295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 248877289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c92caa37997795241be850b3b5cbf32d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  background: {fileID: 488633466}
-  textBox1: {fileID: 11406032, guid: 4e4a3abd5bd67ce47887378d2a8c5999, type: 2}
-  textBox2: {fileID: 11421822, guid: dfe892f198bdbb4479a33cb3fc96fc42, type: 2}
-  inventoryCanvas: {fileID: 308779213}
-  singleLine: {fileID: 138322, guid: 18ac15eb04c9adb4fb083758d2274faf, type: 2}
-  tempLine: {fileID: 0}
-  inventoryScrollbar: {fileID: 729276920}
 --- !u!1001 &257637197
 Prefab:
   m_ObjectHideFlags: 0
@@ -1845,7 +1826,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 229, y: -142.49968}
+  m_AnchoredPosition: {x: 229, y: -142.499802}
   m_SizeDelta: {x: 460, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &488633468
@@ -2113,6 +2094,7 @@ MonoBehaviour:
   background: {fileID: 488633466}
   textBox1: {fileID: 11418308, guid: 043cdba70897f1942939447ad57c9772, type: 2}
   textBox2: {fileID: 11421822, guid: dfe892f198bdbb4479a33cb3fc96fc42, type: 2}
+  testText: {fileID: 0}
   inventoryCanvas: {fileID: 308779213}
   singleLine: {fileID: 138322, guid: 18ac15eb04c9adb4fb083758d2274faf, type: 2}
   tempLine: {fileID: 0}
@@ -2452,8 +2434,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 908668411}
   m_HandleRect: {fileID: 908668410}
   m_Direction: 3
-  m_Value: .499998152
-  m_Size: .712500393
+  m_Value: .499999613
+  m_Size: .712499797
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2965,7 +2947,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 579605889}
-        m_MethodName: SetText
+        m_MethodName: ResetScrollbar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3375,7 +3357,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 579605889}
-        m_MethodName: SetText
+        m_MethodName: ResetScrollbar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
