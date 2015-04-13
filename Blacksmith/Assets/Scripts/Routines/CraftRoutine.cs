@@ -8,24 +8,24 @@ public class CraftRoutine : MonoBehaviour
 	public Sprite heatDiff1;
 	public Sprite heatDiff2;
 	public Sprite heatDiff3;
-    public Sprite hammerDiff1;
-    public Sprite hammerDiff2;
-    public Sprite hammerDiff3;
+	public Sprite hammerDiff1;
+	public Sprite hammerDiff2;
+	public Sprite hammerDiff3;
 
-    public float heatSliderChange;
-    public float hammerSliderChange;
-    public float timeSliderChange;
-    public float furnaceSliderChange;
-    public float quenchingSliderChange;
+	public float heatSliderChange;
+	public float hammerSliderChange;
+	public float timeSliderChange;
+	public float furnaceSliderChange;
+	public float quenchingSliderChange;
 
 	public GameObject heatSliderObject;
 	public GameObject hammerSliderObject;
 	public GameObject timerSliderObject;
 	public GameObject furnaceSliderObject;
-    private Slider heatSlider;
-    private Slider hammerSlider;
-    private Slider timerSlider;
-    private Slider furnaceSlider;
+	private Slider heatSlider;
+	private Slider hammerSlider;
+	private Slider timerSlider;
+	private Slider furnaceSlider;
 
     public GameObject forge;
     public GameObject bellows;
@@ -60,6 +60,10 @@ public class CraftRoutine : MonoBehaviour
     private float quality = 0.0f;
     private float timeSync = 1.0f;
 
+
+	private string itemType;
+	private string materialType;
+	
     private int currentStage;
     private int currentStageAbsVal; // gets the integer value of the stage itself, not the number of the stage in order of stages for the current item
     private int totalStages;
@@ -121,8 +125,58 @@ public class CraftRoutine : MonoBehaviour
 
     public void StartCrafting(string item, string material)
     {
-
+	itemType = item;
+	materialType = material;
+	
+		
+	nextStage();
     }
+
+	void nextStage()
+	{
+		currentStage++;
+		if (currentStage == totalStages)
+		{
+			endCrafting();
+			return;
+		}
+		currentStageAbsVal = timeMultiplier.getStage(itemType, currentStage);
+		
+		switch(currentStage)
+		{
+			case 0:
+				//stageShaping();
+				break;
+			
+			case 1:
+				//stageHardening();
+				break;
+			
+			case 2:
+				//stageTempering();
+				break;
+				
+			case 3:
+				//stagePolishing();
+				break;
+				
+			case 4:
+				//stageSharpening();
+				break;
+				
+			case 5:
+				//stageGrinding();
+				break;
+				
+			default:
+				Debug.Log("Error: currentStage is out of range for crafting process, current stage is " + currentStage);
+		}
+	}
+
+	void endCrafting()
+	{
+		
+	}
 
 	void Update () 
     {
