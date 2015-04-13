@@ -31,6 +31,78 @@ public class CreateInventory : MonoBehaviour {
 
     private bool setValue = false;
 
+    private int[] gold;
+    private int[] fuel;
+    private int[] ore;
+    private int[] ingot;
+    private int[] skin;
+    private int[] leather;
+    private int[] gem;
+    private int[] gemstone;
+    private int[] wood;
+    private int[] lumber;
+    private int[] leatherStrap;
+    private int[] leatherPadding;
+    private int[] hilt;
+    private int[] sheath;
+    private int[] handle;
+
+    //private int[] axe;
+    //private int[] mace;
+    //private int[] flail;
+    //private int[] hammer;
+
+    private int[] swordQty;
+    private string[] swordName;
+    private const int swordSize = 10;
+    private SortedInventory swords;
+
+    private int[] shieldQty;
+    private string[] shieldName;
+    private const int shieldSize = 10;
+    private SortedInventory shields;
+
+    private int[] breastplateQty;
+    private string[] breastplateName;
+    private const int breastPlateSize = 10;
+    private SortedInventory breastplates;
+
+    private int[] helmQty;
+    private string[] helmName;
+    private const int helmSize = 10;
+    private SortedInventory helms;
+
+    private int[] bracersQty;
+    private string[] bracersName;
+    private const int bracersSize = 10;
+    private SortedInventory bracers;
+
+    private int[] gauntletsQty;
+    private string[] gauntletsName;
+    private const int gauntletsSize = 10;
+    private SortedInventory gauntlets;
+
+    private int[] bootsQty;
+    private string[] bootsName;
+    private const int bootsSize = 10;
+    private SortedInventory boots;
+
+    private int[] greavesQty;
+    private string[] greavesName;
+    private const int greavesSize = 10;
+    private SortedInventory greaves;
+
+    private int[] pauldronsQty;
+    private string[] pauldronsName;
+    private const int pauldronsSize = 10;
+    private SortedInventory pauldrons;
+    
+    
+
+
+    
+
+
 
 	// Use this for initialization
 	void Start ()
@@ -131,5 +203,12 @@ public class CreateInventory : MonoBehaviour {
     {
         inventoryScrollbar.value = 1;
     }
+
+}
+
+public class SortedInventory
+{
+    private GameObject[] storedItems;
+
 
 }
