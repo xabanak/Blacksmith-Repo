@@ -1,0 +1,31 @@
+B
+*This file contages the number of stages for each item type. 
+*Lines beginning with a * will be ignored upon loading. Do not modify the first line.
+*Make sure there are no trailing empty lines at the end.
+*
+*Sword
+6
+*
+*Shield
+4
+*
+*Breastplate
+4
+*
+*Helm
+4
+*
+*Bracers
+4
+*
+*Gauntlet
+4
+*
+*Boots
+4
+*
+*Greaves
+4
+*
+*Pauldrons
+4

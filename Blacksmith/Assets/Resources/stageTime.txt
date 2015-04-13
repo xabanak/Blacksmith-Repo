@@ -1,9 +1,22 @@
-0.5
-1
-1.4
-1.6
-1.8
-2
-2.2
-2.4
-2.6
+A
+*This file contains the base times for each type of stage. 
+*Lines beginning with a * will be ignored upon loading. Do not modify the first line.
+*Make sure there are no trailing empty lines at the end.
+*
+*Shaping stage
+30
+*
+*Hardening stage
+15
+*
+*Tempering stage
+20
+*
+*Polishing stage
+30
+*
+*Sharpening stage
+60
+*
+*Grinding stage
+45
