@@ -5,7 +5,7 @@ using System.Collections;
 public class CraftRoutine : MonoBehaviour 
 {
     //sprites to load various background difficulties into the hammer and heat bars
-	public Sprite heatDiff1;
+    public Sprite heatDiff1;
 	public Sprite heatDiff2;
 	public Sprite heatDiff3;
 	public Sprite hammerDiff1;
@@ -49,6 +49,7 @@ public class CraftRoutine : MonoBehaviour
 	private const float hammerHitIncrease = 10.0f;
 	private const float bellowsHitIncrese = 5.0f;
 	private const float heatToStart = 25.0f;
+
 	private const float hammerToStart = 25.0f;
 
     private bool furnaceIsMelting;
@@ -68,6 +69,12 @@ public class CraftRoutine : MonoBehaviour
     private int currentStageAbsVal; // gets the integer value of the stage itself, not the number of the stage in order of stages for the current item
     private int totalStages;
     private double currentStageTime;
+
+    private string annText;
+    private bool annActive;
+    private double annTimer;
+
+    private bool timerActive;
 
 
 
