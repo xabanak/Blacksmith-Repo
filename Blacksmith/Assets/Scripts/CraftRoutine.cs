@@ -71,7 +71,7 @@ public class CraftRoutine : MonoBehaviour
 
 
 
-    void ResetCrafting()
+    void resetCrafting()
     {
         currentStage = -1;
 
@@ -92,10 +92,10 @@ public class CraftRoutine : MonoBehaviour
         stage.enabled = false;
         popUpText.enabled = false;
 
-        ResetSliders();
+        resetSliders();
     }
 
-    void ResetSliders()
+    void resetSliders()
     {
         heatSlider.value = 0.0f;
         hammerSlider.value = 0.0f;
@@ -114,7 +114,7 @@ public class CraftRoutine : MonoBehaviour
 		timerSlider = timerSliderObject.GetComponent<Slider> ();
 		furnaceSlider = furnaceSliderObject.GetComponent<Slider> ();
 
-        ResetCrafting();
+        resetCrafting();
 
 
 
@@ -123,7 +123,7 @@ public class CraftRoutine : MonoBehaviour
         //results.enabled = false;
     }
 
-    public void StartCrafting(string item, string material)
+    public void startCrafting(string item, string material)
     {
 	itemType = item;
 	materialType = material;
@@ -145,7 +145,7 @@ public class CraftRoutine : MonoBehaviour
 		switch(currentStage)
 		{
 			case 0:
-				//stageShaping();
+				stageShaping();
 				break;
 			
 			case 1:
@@ -257,17 +257,12 @@ public class CraftRoutine : MonoBehaviour
         }*/
     }
 
-    void ShapingStage()
+    void stageShaping()
     {
         hammerSliderObject.SetActive(true);
         heatSliderObject.SetActive(true);
 
     }
-
-
-
-
-
 
     public void hammerHitOnAnvil()
     {

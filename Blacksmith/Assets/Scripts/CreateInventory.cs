@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class CreateInventory : MonoBehaviour {
 
@@ -706,9 +707,125 @@ public class CreateInventory : MonoBehaviour {
 
 public class SortedInventory
 {
+    private int inventorySize = 10;
     private GameObject[] storedItems;
+    private SortedInventory()
+    {
+        storedItems = new GameObject[inventorySize];
+    }
+
+    private void increaseSize()
+    {
+        inventorySize *= 2;
+        GameObject[] tempArray = new GameObject[inventorySize];
+        int count = 0;
+        foreach(GameObject item in storedItems)
+        {
+            tempArray[count] = storedItems[count];
+            count++;
+        }
+        storedItems = tempArray;
+    }
+
+    private void decreaseSize()
+    {
+        inventorySize /= 2;
+        GameObject[] tempArray = new GameObject[inventorySize];
+        int count = 0;
+        foreach (GameObject item in storedItems)
+        {
+            tempArray[count] = storedItems[count];
+            count++;
+        }
+        storedItems = tempArray;
+    }
+
+    public bool addItem(GameObject item)
+    {
+        if (storedItems.Length >= (inventorySize/2))
+        {
+            increaseSize();
+        }
+        string material = item.GetComponent<ItemScript>().getMaterial();
+
+        for(int i = 0; i < storedItems.Length; i++)
+        {
+            if ((int)Enum.Parse(typeof(Material), material) > (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().getMaterial()))
+            {
+                continue;
+            }
+            /*else if ((int)Enum.Parse(typeof(Material), material) < (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>.getMaterial()))
+            {
+                insertItem(item, i - 1);
+            }*/
+            else
+            {
+                insertItem(item, i);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool removeItem(GameObject item)
+    {
+        int count = 0;
+        foreach(GameObject listItem in storedItems)
+        {
+            if (listItem == item)
+            {
+                if (count == storedItems.Length)
+                {
+                    storedItems[count] = storedItems[count + 1];
+                }
+                else
+                {
+                    for (int i = count; i < (storedItems.Length - 1); i++)
+                    {
+                        storedItems[i] = storedItems[i + 1];
+                    }
+                    storedItems[storedItems.Length] = storedItems[storedItems.Length + 1];
+                }
+                if ((inventorySize / 2)  > storedItems.Length)
+                {
+                    if (inventorySize > 10)
+                    {
+                        decreaseSize();
+                    }
+                }
+                return true;
+            }
+            count++;
+        }
+        return false;
+    }
+
+    private void insertItem(GameObject item, int insertionPoint)
+    {
+        for(int i = (storedItems.Length-1); i >= insertionPoint; i--)
+        {
+            storedItems[i + 1] = storedItems[i];
+        }
+        storedItems[insertionPoint] = item;
+    }
+
+<<<<<<< HEAD:Blacksmith/Assets/Scripts/Routines/CreateInventory.cs
 
 
-
-
+=======
+    enum Material
+    {
+        Tin = 0,
+        Copper,
+        Bronze,
+        Brass,
+        Iron,
+        BlackenedIron,
+        Steel,
+        SteelAlloyL1,
+        SteelAlloyL2,
+        Titanium
+    }
+>>>>>>> origin/master:Blacksmith/Assets/Scripts/CreateInventory.cs
 }
