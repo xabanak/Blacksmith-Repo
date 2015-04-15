@@ -437,14 +437,14 @@ public class CreateInventory : MonoBehaviour {
     {
         for (int i = 0; i < 5; i++)
         {
-            oreQty[i] = Random.Range(1, 9);
-            ingotQty[i] = Random.Range(1, 9);
-            skinQty[i] = Random.Range(1, 9);
-            leatherQty[i] = Random.Range(1, 9);
-            gemQty[i] = Random.Range(1, 9);
-            gemstoneQty[i] = Random.Range(1, 9);
-            woodQty[i] = Random.Range(1, 9);
-            lumberQty[i] = Random.Range(1, 9);
+            oreQty[i] = UnityEngine.Random.Range(1, 9);
+            ingotQty[i] = UnityEngine.Random.Range(1, 9);
+            skinQty[i] = UnityEngine.Random.Range(1, 9);
+            leatherQty[i] = UnityEngine.Random.Range(1, 9);
+            gemQty[i] = UnityEngine.Random.Range(1, 9);
+            gemstoneQty[i] = UnityEngine.Random.Range(1, 9);
+            woodQty[i] = UnityEngine.Random.Range(1, 9);
+            lumberQty[i] = UnityEngine.Random.Range(1, 9);
         }
     }
 
@@ -810,10 +810,6 @@ public class SortedInventory
         storedItems[insertionPoint] = item;
     }
 
-<<<<<<< HEAD:Blacksmith/Assets/Scripts/Routines/CreateInventory.cs
-
-
-=======
     enum Material
     {
         Tin = 0,
@@ -827,5 +823,4 @@ public class SortedInventory
         SteelAlloyL2,
         Titanium
     }
->>>>>>> origin/master:Blacksmith/Assets/Scripts/CreateInventory.cs
 }
