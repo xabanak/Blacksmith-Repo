@@ -148,7 +148,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 920689}
---- !u!224 &4497562
+--- !u!224 &4497562 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22488546, guid: ad548ca8df1ccc346a679d47f0f8e611,
     type: 2}
@@ -613,7 +613,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 173548340}
---- !u!4 &192869915
+--- !u!4 &192869915 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 845c07f4df1d8f14985fbbb6c29ec629, type: 3}
   m_PrefabInternal: {fileID: 740625260}
@@ -1660,7 +1660,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 362748521}
---- !u!224 &404609549
+--- !u!224 &404609549 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22488546, guid: ad548ca8df1ccc346a679d47f0f8e611,
     type: 2}
@@ -2438,7 +2438,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 908668411}
   m_HandleRect: {fileID: 908668410}
   m_Direction: 3
-  m_Value: .49999842
+  m_Value: .499998927
   m_Size: .712499917
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2603,7 +2603,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1012210086}
   m_RootOrder: 5
---- !u!224 &797087810
+--- !u!224 &797087810 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22488546, guid: ad548ca8df1ccc346a679d47f0f8e611,
     type: 2}
@@ -3063,7 +3063,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 908668409}
---- !u!224 &940701170
+--- !u!224 &940701170 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22488546, guid: ad548ca8df1ccc346a679d47f0f8e611,
     type: 2}
@@ -3353,7 +3353,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
---- !u!224 &1202714713
+--- !u!224 &1202714713 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22488546, guid: ad548ca8df1ccc346a679d47f0f8e611,
     type: 2}
@@ -3720,7 +3720,7 @@ MonoBehaviour:
   stage: {fileID: 1847773638}
   popUpText: {fileID: 287891303}
   results: {fileID: 405393747}
---- !u!4 &1339662934
+--- !u!4 &1339662934 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
   m_PrefabInternal: {fileID: 1415363313}
