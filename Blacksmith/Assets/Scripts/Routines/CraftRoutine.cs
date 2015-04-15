@@ -140,7 +140,7 @@ public class CraftRoutine : MonoBehaviour
 			endCrafting();
 			return;
 		}
-		currentStageAbsVal = timeMultiplier.getStage(itemType, currentStage);
+		currentStageAbsVal = (timeMultiplier.getStage(itemType, currentStage));
 		
 		switch(currentStage)
 		{
@@ -170,6 +170,7 @@ public class CraftRoutine : MonoBehaviour
 				
 			default:
 				Debug.Log("Error: currentStage is out of range for crafting process, current stage is " + currentStage);
+                break;
 		}
 	}
 

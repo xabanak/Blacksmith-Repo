@@ -20,7 +20,7 @@ public class CreateInventory : MonoBehaviour {
     public Scrollbar inventoryScrollbar;
 
     private float lineStartPosition = 2.95f;
-    private float spacer = 0.375f;
+    private float spacer = 0.35f;
 
     private int totalItems = 30;
     private int[] testInts;
@@ -32,26 +32,71 @@ public class CreateInventory : MonoBehaviour {
     private bool setValue = false;
 
     private int[] gold;
-    private int[] fuel;
-    private int[] ore;
-    private int[] ingot;
-    private int[] skin;
-    private int[] leather;
-    private int[] gem;
-    private int[] gemstone;
-    private int[] wood;
-    private int[] lumber;
-    private int[] leatherStrap;
-    private int[] leatherPadding;
-    private int[] hilt;
-    private int[] sheath;
-    private int[] handle;
+
+    // Material declarations
+    private int[] fuelQty;
+    private string[] fuelName;
+    private const int fuelSize = 5;
+
+    private int[] oreQty;
+    private string[] oreName;
+    private const int oreSize = 10;
+
+    private int[] ingotQty;
+    private string[] ingotName;
+    private const int ingotSize = 10;
+
+    private int[] skinQty;
+    private string[] skinName;
+    private const int skinSize = 10;
+
+    private int[] leatherQty;
+    private string[] leatherName;
+    private const int leatherSize = 10;
+
+    private int[] gemQty;
+    private string[] gemName;
+    private const int gemSize = 10;
+
+    private int[] gemstoneQty;
+    private string[] gemstoneName;
+    private const int gemstoneSize = 10;
+
+    private int[] woodQty;
+    private string[] woodName;
+    private const int woodSize = 10;
+
+    private int[] lumberQty;
+    private string[] lumberName;
+    private const int lumberSize = 10;
+
+    // Component declarations
+    private int[] leatherStrapQty;
+    private string[] leatherStrapName;
+    private const int leatherStrapSize = 5;
+
+    private int[] leatherPaddingQty;
+    private string[] leatherPaddingName;
+    private const int leatherPaddingSize = 5;
+
+    private int[] hiltQty;
+    private string[] hiltName;
+    private const int hiltSize = 5;
+
+    private int[] sheathQty;
+    private string[] sheathName;
+    private const int sheathSize = 5;
+
+    private int[] handleQty;
+    private string[] handleName;
+    private const int handleSize = 5;
 
     //private int[] axe;
     //private int[] mace;
     //private int[] flail;
     //private int[] hammer;
 
+    // Weapon & shield declarations
     private int[] swordQty;
     private string[] swordName;
     private const int swordSize = 10;
@@ -62,6 +107,7 @@ public class CreateInventory : MonoBehaviour {
     private const int shieldSize = 10;
     private SortedInventory shields;
 
+    // Armor declarations
     private int[] breastplateQty;
     private string[] breastplateName;
     private const int breastPlateSize = 10;
@@ -171,9 +217,236 @@ public class CreateInventory : MonoBehaviour {
         testInts[28] = 85;
         testInts[29] = 95;
 
+        //Define sword types and start quantities.
+        swordQty = new int[swordSize];
+        swordName = new string[swordSize];
+
+        for (int i = 0; i < swordSize; i++)
+        {
+            swordQty[i] = 0;
+        }
+
+        swordName[0] = "Tin Sword";
+        swordName[1] = "Copper Sword";
+        swordName[2] = "Bronze Sword";
+        swordName[3] = "Brass Sword";
+        swordName[4] = "Iron Sword";
+        swordName[5] = "BlackenedIron Sword";
+        swordName[6] = "Steel Sword";
+        swordName[7] = "SteelAlloyL1 Sword";
+        swordName[8] = "SteelAlloyL2 Sword";
+        swordName[9] = "Titanium Sword";
+        //End Define sword
+
+        // Define material types
+        // fuel, ore, ingot, skin, leather, gem, gemstone, wood, lumber
+
+        // Define fuel types
+        fuelQty = new int[fuelSize];
+        fuelName = new string[fuelSize];
+
+        for (int i = 0; i < fuelSize; i++)
+        {
+            fuelQty[i] = 0;
+        }
+
+        fuelName[0] = "Basic Fuel";
+        fuelName[0] = "Standard Fuel";
+        fuelName[0] = "Good Fuel";
+        fuelName[0] = "Excellent Fuel";
+        fuelName[0] = "Expert Fuel";
+        // End Define fuel types
+
+            // Define ore types
+            oreQty = new int[oreSize];
+        oreName = new string[oreSize];
+
+        for (int i = 0; i < oreSize; i++)
+        {
+            oreQty[i] = 0;
+        }
+
+        oreName[0] = "Tin Ore";
+        oreName[1] = "Copper Ore";
+        oreName[2] = "Zinc Ore";
+        oreName[3] = "Black Ore";
+        oreName[4] = "Unknown Ore 5";
+        oreName[5] = "Unknown Ore 6";
+        oreName[6] = "Unknown Ore 7";
+        oreName[7] = "Unknown Ore 8";
+        oreName[8] = "Unknown Ore 9";
+        oreName[9] = "Unknown Ore 10";
+        // End Define ore types
+
+        // Define ingot types
+        ingotQty = new int[ingotSize];
+        ingotName = new string[ingotSize];
+
+        for (int i = 0; i < ingotSize; i++)
+        {
+            ingotQty[i] = 0;
+        }
+
+        ingotName[0] = "Tin Ingot";
+        ingotName[1] = "Copper Ingot";
+        ingotName[2] = "Bronze Ingot";
+        ingotName[3] = "Brass Ingot";
+        ingotName[4] = "Iron Ingot";
+        ingotName[5] = "BlackenedIron Ingot";
+        ingotName[6] = "Steel Ingot";
+        ingotName[7] = "SteelAlloyL1 Ingot";
+        ingotName[8] = "SteelAlloyL2 Ingot";
+        ingotName[9] = "Titanium Ingot";
+        // End Define ingot types
+
+        // Define skin types
+        skinQty = new int[skinSize];
+        skinName = new string[skinSize];
+
+        for (int i = 0; i < skinSize; i++)
+        {
+            skinQty[i] = 0;
+        }
+
+        skinName[0] = "Sheep Skin";
+        skinName[1] = "Buffalo Skin";
+        skinName[2] = "Unknown Skin 3";
+        skinName[3] = "Unknown Skin 4";
+        skinName[4] = "Unknown Skin 5";
+        skinName[5] = "Unknown Skin 6";
+        skinName[6] = "Unknown Skin 7";
+        skinName[7] = "Unknown Skin 8";
+        skinName[8] = "Unknown Skin 9";
+        skinName[9] = "Unknown Skin 10";
+        // End Define skin types
+
+        // Define leather types
+        leatherQty = new int[leatherSize];
+        leatherName = new string[leatherSize];
+
+        for (int i = 0; i < leatherSize; i++)
+        {
+            leatherQty[i] = 0;
+        }
+
+        leatherName[0] = "Unknown Leather 1";
+        leatherName[1] = "Unknown Leather 2";
+        leatherName[2] = "Unknown Leather 3";
+        leatherName[3] = "Unknown Leather 4";
+        leatherName[4] = "Unknown Leather 5";
+        leatherName[5] = "Unknown Leather 6";
+        leatherName[6] = "Unknown Leather 7";
+        leatherName[7] = "Unknown Leather 8";
+        leatherName[8] = "Unknown Leather 9";
+        leatherName[9] = "Unknown Leather 10";
+        // End Define leather types
+
+        // Define gem types
+        gemQty = new int[gemSize];
+        gemName = new string[gemSize];
+
+        for (int i = 0; i < gemSize; i++)
+        {
+            gemQty[i] = 0;
+        }
+
+        gemName[0] = "Unknown Gem 1";
+        gemName[1] = "Unknown Gem 2";
+        gemName[2] = "Unknown Gem 3";
+        gemName[3] = "Unknown Gem 4";
+        gemName[4] = "Unknown Gem 5";
+        gemName[5] = "Unknown Gem 6";
+        gemName[6] = "Unknown Gem 7";
+        gemName[7] = "Unknown Gem 8";
+        gemName[8] = "Unknown Gem 9";
+        gemName[9] = "Unknown Gem 10";
+        // End Define gem types
+
+        // Define gemstone types
+        gemstoneQty = new int[gemstoneSize];
+        gemstoneName = new string[gemstoneSize];
+
+        for (int i = 0; i < gemstoneSize; i++)
+        {
+            gemstoneQty[i] = 0;
+        }
+
+        gemstoneName[0] = "Unknown Gemstone 1";
+        gemstoneName[1] = "Unknown Gemstone 2";
+        gemstoneName[2] = "Unknown Gemstone 3";
+        gemstoneName[3] = "Unknown Gemstone 4";
+        gemstoneName[4] = "Unknown Gemstone 5";
+        gemstoneName[5] = "Unknown Gemstone 6";
+        gemstoneName[6] = "Unknown Gemstone 7";
+        gemstoneName[7] = "Unknown Gemstone 8";
+        gemstoneName[8] = "Unknown Gemstone 9";
+        gemstoneName[9] = "Unknown Gemstone 10";
+        // End Define gemstone types
+
+        // Define wood types
+        woodQty = new int[woodSize];
+        woodName = new string[woodSize];
+
+        for (int i = 0; i < woodSize; i++)
+        {
+            woodQty[i] = 0;
+        }
+
+        woodName[0] = "Unknown Wood 1";
+        woodName[1] = "Unknown Wood 2";
+        woodName[2] = "Unknown Wood 3";
+        woodName[3] = "Unknown Wood 4";
+        woodName[4] = "Unknown Wood 5";
+        woodName[5] = "Unknown Wood 6";
+        woodName[6] = "Unknown Wood 7";
+        woodName[7] = "Unknown Wood 8";
+        woodName[8] = "Unknown Wood 9";
+        woodName[9] = "Unknown Wood 10";
+        // End Define wood types
+
+        // Define lumber types
+        lumberQty = new int[lumberSize];
+        lumberName = new string[lumberSize];
+
+        for (int i = 0; i < lumberSize; i++)
+        {
+            lumberQty[i] = 0;
+        }
+
+        lumberName[0] = "Unknown Lumber 1";
+        lumberName[1] = "Unknown Lumber 2";
+        lumberName[2] = "Unknown Lumber 3";
+        lumberName[3] = "Unknown Lumber 4";
+        lumberName[4] = "Unknown Lumber 5";
+        lumberName[5] = "Unknown Lumber 6";
+        lumberName[6] = "Unknown Lumber 7";
+        lumberName[7] = "Unknown Lumber 8";
+        lumberName[8] = "Unknown Lumber 9";
+        lumberName[9] = "Unknown Lumber 10";
+        // End Define lumber types
+
+
+
         inventoryScrollbar.value = 1;
+
+        SetQuantitiesTestMethod();
 	}
-	
+
+    void SetQuantitiesTestMethod()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            oreQty[i] = Random.Range(1, 9);
+            ingotQty[i] = Random.Range(1, 9);
+            skinQty[i] = Random.Range(1, 9);
+            leatherQty[i] = Random.Range(1, 9);
+            gemQty[i] = Random.Range(1, 9);
+            gemstoneQty[i] = Random.Range(1, 9);
+            woodQty[i] = Random.Range(1, 9);
+            lumberQty[i] = Random.Range(1, 9);
+        }
+    }
+
 	// Update is called once per frame
 	void Update ()
     {
@@ -204,11 +477,238 @@ public class CreateInventory : MonoBehaviour {
         inventoryScrollbar.value = 1;
     }
 
+    // Calls all updates to update the current on hand inventory.
+    void BuildInventory()
+    {
+        UpdateWeaponList();
+        UpdateArmorList();
+        UpdateMaterialList();
+        UpdateComponentList();
+        UpdateMiscList();
+    }
+
+    // Creates the list displaying all the weapons in inventory.
+    public void UpdateWeaponList()
+    {
+        // Generate sword list
+        for (int i = 0; i < swordSize; i++)
+        {
+            if (swordQty[i] > 0)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(background.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = swordName[i];
+                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText2.transform.SetParent(tempText1.transform);
+                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText2.text = "" + swordQty[i];
+            }
+        }
+    }
+
+    // Creates a list displaying all the armor in inventory.
+    void UpdateArmorList()
+    {
+
+    }
+
+    // Creates a list displaying all the materials in inventory.
+    public void UpdateMaterialList()
+    {
+        // fuel, ore, ingot, skin, leather, gem, gemstone, wood, lumber
+
+        // Generate fuel list
+        for (int i = 0; i < fuelSize; i++)
+        {
+            if (fuelQty[i] > 0)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(background.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = fuelName[i];
+                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText2.transform.SetParent(tempText1.transform);
+                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText2.text = "" + fuelQty[i];
+            }
+        }
+        
+        // Generate ore list
+        for (int i = 0; i < oreSize; i++)
+        {
+            if (oreQty[i] > 0)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(background.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = oreName[i];
+                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText2.transform.SetParent(tempText1.transform);
+                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText2.text = "" + oreQty[i];
+            }
+        }
+
+        // Generate ingot list
+        for (int i = 0; i < ingotSize; i++)
+        {
+            if (ingotQty[i] > 0)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(background.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = ingotName[i];
+                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText2.transform.SetParent(tempText1.transform);
+                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText2.text = "" + ingotQty[i];
+            }
+        }
+
+        // Generate skin list
+        for (int i = 0; i < skinSize; i++)
+        {
+            if (skinQty[i] > 0)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(background.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = skinName[i];
+                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText2.transform.SetParent(tempText1.transform);
+                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText2.text = "" + skinQty[i];
+            }
+        }
+
+        // Generate leather list
+        for (int i = 0; i < leatherSize; i++)
+        {
+            if (leatherQty[i] > 0)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(background.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = leatherName[i];
+                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText2.transform.SetParent(tempText1.transform);
+                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText2.text = "" + leatherQty[i];
+            }
+        }
+
+        // Generate gem list
+        for (int i = 0; i < gemSize; i++)
+        {
+            if (gemQty[i] > 0)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(background.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = gemName[i];
+                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText2.transform.SetParent(tempText1.transform);
+                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText2.text = "" + gemQty[i];
+            }
+        }
+        
+        // Generate gemstone list
+        for (int i = 0; i < gemstoneSize; i++)
+        {
+            if (gemstoneQty[i] > 0)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(background.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = gemstoneName[i];
+                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText2.transform.SetParent(tempText1.transform);
+                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText2.text = "" + gemstoneQty[i];
+            }
+        }
+
+        // Generate wood list
+        for (int i = 0; i < woodSize; i++)
+        {
+            if (woodQty[i] > 0)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(background.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = woodName[i];
+                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText2.transform.SetParent(tempText1.transform);
+                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText2.text = "" + woodQty[i];
+            }
+        }
+
+        // Generate lumber list
+        for (int i = 0; i < lumberSize; i++)
+        {
+            if (lumberQty[i] > 0)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(background.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = lumberName[i];
+                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText2.transform.SetParent(tempText1.transform);
+                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText2.text = "" + lumberQty[i];
+            }
+        }
+
+        
+    }
+
+    // Creates a list displaying all the components in inventory.
+    void UpdateComponentList()
+    {
+
+    }
+
+    // Creates a list displaying all the miscellaneous items in inventory.
+    void UpdateMiscList()
+    {
+
+    }
+
+    // Take an item object and add it to the on hand inventory.
+    void AddNewItem()
+    {
+
+    }
 }
 
 public class SortedInventory
 {
     private GameObject[] storedItems;
+
+
 
 
 }

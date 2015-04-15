@@ -183,14 +183,14 @@ public class StageTimeMatrix : MonoBehaviour
         return stageTimeMult[itemValue, matValue];
     }
 
-    public double getStageCount(string item)
+    public int getStageCount(string item)
     {
         int itemValue = (int)Enum.Parse(typeof(Item), item);
 
         return stageCount[itemValue];
     }
 
-    public double getStage(string item, int stage)
+    public int getStage(string item, int stage)
     {
         int itemValue = (int)Enum.Parse(typeof(Item), item);
 
