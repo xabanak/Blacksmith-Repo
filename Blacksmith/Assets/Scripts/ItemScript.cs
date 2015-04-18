@@ -8,7 +8,7 @@ public class ItemScript : MonoBehaviour
     private string quality;
     private int power;
 
-    public void setItemStats(string material, string item, string quality, int power)
+    public void SetItemStats(string material, string item, string quality, int power)
     {
         this.material = material;
         this.item = item;
@@ -16,22 +16,22 @@ public class ItemScript : MonoBehaviour
         this.power = power;
     }
 
-    public int getPower()
+    public int GetPower()
     {
         return power;
     }
 
-    public string getItem()
+    public string GetItem()
     {
         return item;
     }
 
-    public string getMaterial()
+    public string GetMaterial()
     {
         return material;
     }
 
-    public string getItemDescription()
+    public string GetItemDescription()
     {
         return material + " " + item + " (" + quality + ")";
     }

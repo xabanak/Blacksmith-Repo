@@ -12,7 +12,6 @@ public class CreateInventory : MonoBehaviour {
     public GameObject miscBackground;
     public GameObject inventoryWindow;
 
-
     public Text textBox1;
     public Text textBox2;
     public Text testText;
@@ -37,6 +36,7 @@ public class CreateInventory : MonoBehaviour {
     private ScrollRect tempRect;
 
     private bool setValue = false;
+    private bool resetScrollBar = false;
 
     private int[] gold;
 
@@ -440,14 +440,6 @@ public class CreateInventory : MonoBehaviour {
         handleName[4] = "Unknown Handle 5";
         // End Define handle types
 
-
-
-
-
-
-
-            inventoryScrollbar.value = 1;
-
         SetQuantitiesTestMethod();
 	}
 
@@ -478,27 +470,13 @@ public class CreateInventory : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        
-	}
-
-    public void SetBackground()
-    {
-
-        /*for (int i = 0; i < totalItems; i++)
+        if (resetScrollBar)
         {
-            tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-            tempLine.transform.SetParent(background.transform);
-            tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-            tempText1.transform.SetParent(tempLine.transform);
-            tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            tempText1.text = testStrings[i];
-            tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-            tempText2.transform.SetParent(tempText1.transform);
-            tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            tempText2.text = "" + testInts[i];
-        }*/
-
-    }
+            viewMaterialList();
+            ResetScrollbar();
+            resetScrollBar = false;
+        }
+	}
 
     public void ResetScrollbar()
     {
@@ -508,46 +486,151 @@ public class CreateInventory : MonoBehaviour {
     // Calls all updates to update the current on hand inventory.
     public void BuildInventory()
     {
-        //UpdateWeaponList();
-        //UpdateArmorList();
+        UpdateWeaponList();
+        UpdateArmorList();
         UpdateMaterialList();
         UpdateComponentList();
         //UpdateMiscList();
 
-        //ResetScrollbar();
-
-        weaponBackground.SetActive(false);
-        armorBackground.SetActive(false);
-        materialBackground.SetActive(false);
-        componentBackground.SetActive(false);
-        miscBackground.SetActive(false);
+        DisableInventoryWindows();
     }
 
     // Creates the list displaying all the weapons in inventory.
     public void UpdateWeaponList()
     {
-        // Generate sword list
-        /*for (int i = 0; i < swordSize; i++)
+        if (swords != null)
         {
-            if (swordQty[i] > 0)
+            // Generate swords list
+            for (int i = 0; i < swords.GetSize(); i++)
             {
                 tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(background.transform);
+                tempLine.transform.SetParent(materialBackground.transform);
                 tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
                 tempText1.transform.SetParent(tempLine.transform);
                 tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = swordName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + swordQty[i];
+                tempText1.text = swords.ReturnItem(i).GetComponent<ItemScript>().GetItemDescription();
             }
-        }*/
+        }
+
+        Debug.Log("Weapon list built.");
     }
 
-    // Creates a list displaying all the armor in inventory.
+    // Creates a list displaying all the armor/shields in inventory.
     void UpdateArmorList()
     {
+        if (shields != null)
+        {
+            // Generate shield list
+            for (int i = 0; i < shields.GetSize(); i++)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(materialBackground.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = shields.ReturnItem(i).GetComponent<ItemScript>().GetItemDescription();
+            }
+        }
+
+        if (breastplates != null)
+        {
+            // Generate breastplate list
+            for (int i = 0; i < breastplates.GetSize(); i++)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(materialBackground.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = breastplates.ReturnItem(i).GetComponent<ItemScript>().GetItemDescription();
+            }
+        }
+
+        if (helms != null)
+        {
+            // Generate helm list
+            for (int i = 0; i < helms.GetSize(); i++)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(materialBackground.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = helms.ReturnItem(i).GetComponent<ItemScript>().GetItemDescription();
+            }
+        }
+
+        if (bracers != null)
+        {
+            // Generate bracers list
+            for (int i = 0; i < bracers.GetSize(); i++)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(materialBackground.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = bracers.ReturnItem(i).GetComponent<ItemScript>().GetItemDescription();
+            }
+        }
+
+        if (gauntlets != null)
+        {
+            // Generate gauntlets list
+            for (int i = 0; i < gauntlets.GetSize(); i++)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(materialBackground.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = gauntlets.ReturnItem(i).GetComponent<ItemScript>().GetItemDescription();
+            }
+        }
+
+        if (boots != null)
+        {
+            // Generate boots list
+            for (int i = 0; i < boots.GetSize(); i++)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(materialBackground.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = boots.ReturnItem(i).GetComponent<ItemScript>().GetItemDescription();
+            }
+        }
+
+        if (greaves != null)
+        {
+            // Generate greaves list
+            for (int i = 0; i < greaves.GetSize(); i++)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(materialBackground.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = greaves.ReturnItem(i).GetComponent<ItemScript>().GetItemDescription();
+            }
+        }
+
+        if (pauldrons != null)
+        {
+            // Generate pauldrons list
+            for (int i = 0; i < pauldrons.GetSize(); i++)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(materialBackground.transform);
+                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+                tempText1.transform.SetParent(tempLine.transform);
+                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                tempText1.text = pauldrons.ReturnItem(i).GetComponent<ItemScript>().GetItemDescription();
+            }
+        }
+
+        Debug.Log("Armor list built.");
 
     }
 
@@ -718,7 +801,7 @@ public class CreateInventory : MonoBehaviour {
             }
         }
 
-        
+        Debug.Log("Material list built.");
     }
 
     // Creates a list displaying all the components in inventory.
@@ -816,10 +899,16 @@ public class CreateInventory : MonoBehaviour {
             }
         }
 
-
-        
+        Debug.Log("Component list built.");
     }
 
+    // Creates a list displaying all the miscellaneous items in inventory.
+    void UpdateMiscList()
+    {
+
+    }
+
+    // Set the weapons window as the only active window
     public void viewWeaponList()
     {
         // weapons
@@ -834,6 +923,7 @@ public class CreateInventory : MonoBehaviour {
         ResetScrollbar();
     }
 
+    // Set the armor window as the only active window
     public void viewArmorList()
     {
         // armor
@@ -848,6 +938,7 @@ public class CreateInventory : MonoBehaviour {
         ResetScrollbar();
     }
 
+    // Set the material window as the only active window
     public void viewMaterialList()
     {
         // materials
@@ -862,6 +953,7 @@ public class CreateInventory : MonoBehaviour {
         ResetScrollbar();
     }
 
+    // Set the component window as the only active window
     public void viewComponentList()
     {
         // components
@@ -876,6 +968,7 @@ public class CreateInventory : MonoBehaviour {
         ResetScrollbar();
     }
 
+    // Set the miscellaneous window as the only active window
     public void viewMiscList()
     {
         // misc
@@ -890,19 +983,129 @@ public class CreateInventory : MonoBehaviour {
         ResetScrollbar();
     }
 
-    // Creates a list displaying all the miscellaneous items in inventory.
-    void UpdateMiscList()
-    {
-
-    }
-
     // Take an item object and add it to the on hand inventory.
-    void AddNewItem()
+    void AddNewItem(GameObject newItem)
     {
+        // Item types: sword, shield, breastplate, helm, bracers, gauntlets, boots, greaves, pauldrons.
 
+        // Stores the item type to determine what sortedArray to store the GameObject in.
+        string itemType = newItem.GetComponent<ItemScript>().GetItem();
+
+        switch (itemType)
+        {
+            case "sword":
+                if (swords.AddItem(newItem))
+                {
+                    Debug.Log("Added new sword to inventory.");
+                }
+                else
+                {
+                    Debug.Log("Could not add new sword to inventory.");
+                }
+                break;
+
+            case "shield":
+                if (shields.AddItem(newItem))
+                {
+                    Debug.Log("Added new shield to inventory.");
+                }
+                else
+                {
+                    Debug.Log("Could not add new shield to inventory.");
+                }
+                break;
+
+            case "breastplate":
+                if (breastplates.AddItem(newItem))
+                {
+                    Debug.Log("Added new breastplate to inventory.");
+                }
+                else
+                {
+                    Debug.Log("Could not add new breastplate to inventory.");
+                }
+                break;
+
+            case "helm":
+                if (helms.AddItem(newItem))
+                {
+                    Debug.Log("Added new helm to inventory.");
+                }
+                else
+                {
+                    Debug.Log("Could not add new helm to inventory.");
+                }
+                break;
+
+            case "bracers":
+                if (bracers.AddItem(newItem))
+                {
+                    Debug.Log("Added new set of bracers to inventory.");
+                }
+                else
+                {
+                    Debug.Log("Could not add new set of bracers to inventory.");
+                }
+                break;
+
+            case "gauntlets":
+                if (gauntlets.AddItem(newItem))
+                {
+                    Debug.Log("Added new set of gauntlets to inventory.");
+                }
+                else
+                {
+                    Debug.Log("Could not add new set of gauntlets to inventory.");
+                }
+                break;
+
+            case "boots":
+                if (boots.AddItem(newItem))
+                {
+                    Debug.Log("Added new set of boots to inventory.");
+                }
+                else
+                {
+                    Debug.Log("Could not add new set of boots to inventory.");
+                }
+                break;
+
+            case "greaves":
+                if (greaves.AddItem(newItem))
+                {
+                    Debug.Log("Added new set of greaves to inventory.");
+                }
+                else
+                {
+                    Debug.Log("Could not add new set of greaves to inventory.");
+                }
+                break;
+
+            case "pauldrons":
+                if (pauldrons.AddItem(newItem))
+                {
+                    Debug.Log("Added new set of pauldrons to inventory.");
+                }
+                else
+                {
+                    Debug.Log("Could not add new set of pauldrons to inventory.");
+                }
+                break;
+
+            default:
+                Debug.Log("Item type was not found.");
+                break;
+        }
     }
 
-    
+    private void DisableInventoryWindows()
+    {
+        weaponBackground.SetActive(false);
+        armorBackground.SetActive(false);
+        materialBackground.SetActive(false);
+        componentBackground.SetActive(false);
+        miscBackground.SetActive(false);
+    }
 }
 
 public class SortedInventory
@@ -914,7 +1117,7 @@ public class SortedInventory
         storedItems = new GameObject[inventorySize];
     }
 
-    private void increaseSize()
+    private void IncreaseSize()
     {
         inventorySize *= 2;
         GameObject[] tempArray = new GameObject[inventorySize];
@@ -927,7 +1130,7 @@ public class SortedInventory
         storedItems = tempArray;
     }
 
-    private void decreaseSize()
+    private void DecreaseSize()
     {
         inventorySize /= 2;
         GameObject[] tempArray = new GameObject[inventorySize];
@@ -940,17 +1143,17 @@ public class SortedInventory
         storedItems = tempArray;
     }
 
-    public bool addItem(GameObject item)
+    public bool AddItem(GameObject item)
     {
         if (storedItems.Length >= (inventorySize/2))
         {
-            increaseSize();
+            IncreaseSize();
         }
-        string material = item.GetComponent<ItemScript>().getMaterial();
+        string material = item.GetComponent<ItemScript>().GetMaterial();
 
         for(int i = 0; i < storedItems.Length; i++)
         {
-            if ((int)Enum.Parse(typeof(Material), material) > (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().getMaterial()))
+            if ((int)Enum.Parse(typeof(Material), material) > (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
             {
                 continue;
             }
@@ -960,7 +1163,7 @@ public class SortedInventory
             }*/
             else
             {
-                insertItem(item, i);
+                InsertItem(item, i);
                 return true;
             }
         }
@@ -968,7 +1171,7 @@ public class SortedInventory
         return false;
     }
 
-    public bool removeItem(GameObject item)
+    public bool RemoveItem(GameObject item)
     {
         int count = 0;
         foreach(GameObject listItem in storedItems)
@@ -991,7 +1194,7 @@ public class SortedInventory
                 {
                     if (inventorySize > 10)
                     {
-                        decreaseSize();
+                        DecreaseSize();
                     }
                 }
                 return true;
@@ -1001,13 +1204,23 @@ public class SortedInventory
         return false;
     }
 
-    private void insertItem(GameObject item, int insertionPoint)
+    private void InsertItem(GameObject item, int insertionPoint)
     {
         for(int i = (storedItems.Length-1); i >= insertionPoint; i--)
         {
             storedItems[i + 1] = storedItems[i];
         }
         storedItems[insertionPoint] = item;
+    }
+
+    public int GetSize()
+    {
+        return inventorySize;
+    }
+
+    public GameObject ReturnItem(int index)
+    {
+        return storedItems[index];
     }
 
     enum Material
