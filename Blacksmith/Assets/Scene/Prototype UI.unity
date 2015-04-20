@@ -2016,6 +2016,10 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
+--- !u!1 &529397639 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 845c07f4df1d8f14985fbbb6c29ec629, type: 3}
+  m_PrefabInternal: {fileID: 740625260}
 --- !u!1 &558075458
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,6 +2206,23 @@ MonoBehaviour:
   singleLine: {fileID: 138322, guid: 18ac15eb04c9adb4fb083758d2274faf, type: 2}
   tempLine: {fileID: 0}
   inventoryScrollbar: {fileID: 729276920}
+--- !u!1 &609553031 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 1324f4eff93024043a283f40270cc3b4, type: 3}
+  m_PrefabInternal: {fileID: 162856512}
+--- !u!61 &609553035
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 609553031}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: .000108584805, y: .0109776435}
+  serializedVersion: 2
+  m_Size: {x: .0202196594, y: .0219550133}
 --- !u!1 &642491424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,8 +2657,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 908668411}
   m_HandleRect: {fileID: 908668410}
   m_Direction: 3
-  m_Value: .499996424
-  m_Size: .722499907
+  m_Value: .499994367
+  m_Size: .72249943
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2928,11 +2949,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf7acb199c73ed42828cac2b8e0c960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anvilOffset: {x: 1.5, y: .300000012, z: 0}
-  forgeOffset: {x: 0, y: 0, z: 0}
+  anvilOffset: {x: .400000006, y: 1.5, z: 0}
+  forgeOffset: {x: 0, y: 1.79999995, z: 0}
   barrelOffset: {x: 0, y: 0, z: 0}
-  anvil: {fileID: 0}
-  forge: {fileID: 0}
+  anvil: {fileID: 529397639}
+  forge: {fileID: 609553031}
   barrel: {fileID: 2011556726}
   craftController: {fileID: 1302979229}
   onAnvil: 0
@@ -4671,9 +4692,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -6.32905139e-05, y: .00127132819}
+  m_Offset: {x: .000283902307, y: .00138086383}
   serializedVersion: 2
-  m_Size: {x: .00719538843, y: .00284337997}
+  m_Size: {x: .00887357909, y: .00364400283}
 --- !u!1 &1986428440
 GameObject:
   m_ObjectHideFlags: 0
