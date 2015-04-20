@@ -1274,7 +1274,6 @@ public class SortedInventory
             currentSize++;
             return true;
         }
-
         else if (currentSize > 0)
         {
             for (int i = 0; i < currentSize; i++)
@@ -1282,17 +1281,23 @@ public class SortedInventory
                 if ((int)Enum.Parse(typeof(Material), material) <= (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
                 {
                     Debug.Log("New item is lower or same quality");
+
+                    if(i == (currentSize-1))
+                    {
+                        InsertItem(item, (i + 1));
+                        currentSize++;
+                        return true;
+                    }
+
+                    continue;
                 }
                 else if ((int)Enum.Parse(typeof(Material), material) > (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
                 {
+                    Debug.Log("New item is higher quality");
                     InsertItem(item, i);
                     currentSize++;
                     return true;
                 }
-
-                InsertItem(item, i);
-                currentSize++;
-                return true;
             }
         }
 
@@ -1307,24 +1312,25 @@ public class SortedInventory
 
     public bool RemoveItem(GameObject item)
     {
-        int count = 0;
-        foreach(GameObject listItem in storedItems)
+        for(int i = 0; i < currentSize; i++)
         {
-            if (listItem == item)
+            if (storedItems[i] == item)
             {
-                if (count == storedItems.Length)
+                if (i == (currentSize - 1))
                 {
-                    storedItems[count] = storedItems[count + 1];
+                    storedItems[i] = storedItems[i + 1];
+                    currentSize--;
                 }
                 else
                 {
-                    for (int i = count; i < (storedItems.Length - 1); i++)
+                    for (int j = i; j < (currentSize - 1); j++)
                     {
-                        storedItems[i] = storedItems[i + 1];
+                        storedItems[j] = storedItems[j + 1];
+                        currentSize--;
                     }
-                    storedItems[storedItems.Length] = storedItems[storedItems.Length + 1];
+                    storedItems[currentSize] = storedItems[currentSize + 1];
                 }
-                if ((inventorySize / 2)  > storedItems.Length)
+                if ((inventorySize / 2)  > currentSize)
                 {
                     if (inventorySize > 10)
                     {
@@ -1333,7 +1339,6 @@ public class SortedInventory
                 }
                 return true;
             }
-            count++;
         }
         return false;
     }
