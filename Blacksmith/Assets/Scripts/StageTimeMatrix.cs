@@ -61,7 +61,13 @@ public class StageTimeMatrix : MonoBehaviour
         readDataFile(dir + "stageListing.txt");
         readDataFile(dir + "stageTimeMult.txt");
 
-        testInt = stageCount[0];
+        /*for(int i = 0; i < numItems; i++)
+        {
+            for (int j = 0; j < numStages; j++)
+            {
+                Debug.Log(stageListing[i, j]);
+            }
+        }*/
 	}
     void readDataFile(string filePath)
     {
@@ -70,7 +76,7 @@ public class StageTimeMatrix : MonoBehaviour
         char fileIdentity = Convert.ToChar(inputStream.ReadLine());
 
         int i = 0;
-                int j = 0;
+        int j = 0;
 
         switch(fileIdentity)
         {
@@ -122,16 +128,21 @@ public class StageTimeMatrix : MonoBehaviour
                     {
                         continue;
                     }
-                    if (j == numStages)
+                    if (j == numStages || tempString[0] == '+')
                     {
                         i++;
                         j = 0;
+                        if (tempString[0] == '+')
+                        {
+                            continue;
+                        }                       
                     }
                     if (i < numItems)
                     {
                         if (j < numStages)
                         {
                             stageListing[i, j] = Convert.ToInt32(tempString);
+                            j++;
                         }
                     }
                     else if (i == numItems)
@@ -159,6 +170,7 @@ public class StageTimeMatrix : MonoBehaviour
                         if (j < numMats)
                         {
                             stageTimeMult[i, j] = Convert.ToDouble(tempString);
+                            j++;
                         }
                     }
                     else if (i == numItems)
@@ -192,8 +204,11 @@ public class StageTimeMatrix : MonoBehaviour
 
     public int getStage(string item, int stage)
     {
+
+        Debug.Log("Getting stage for " + item + "for stage " + stage);
         int itemValue = (int)Enum.Parse(typeof(Item), item);
 
+        Debug.Log("Stage listing is" + stageListing[itemValue, stage]);
         return stageListing[itemValue, stage];
     }
 
