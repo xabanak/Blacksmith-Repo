@@ -1263,7 +1263,7 @@ public class SortedInventory
             Debug.Log("Size increased");
         }
         
-        /*
+        
         string material = item.GetComponent<ItemScript>().GetMaterial();
 
         
@@ -1279,52 +1279,27 @@ public class SortedInventory
         {
             for (int i = 0; i < currentSize; i++)
             {
-                if ((int)Enum.Parse(typeof(Material), material) >= (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
+                if ((int)Enum.Parse(typeof(Material), material) <= (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
                 {
-                    Debug.Log("New item is higher or same quality");
-                    //InsertItem(item, i + 1);
-                    //return true;
-
-                    if ((int)Enum.Parse(typeof(Material), material) >= (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
-                    {
-                        do
-                        {
-                            Debug.Log("i is: " + i);
-                            i++;
-                        } while ((int)Enum.Parse(typeof(Material), material) >= (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()) && i < currentSize);
-                    }
-
-                    InsertItem(item, i + 1);
-                    currentSize++;
-                    return true;
+                    Debug.Log("New item is lower or same quality");
                 }
-                else if ((int)Enum.Parse(typeof(Material), material) < (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
+                else if ((int)Enum.Parse(typeof(Material), material) > (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
                 {
-                    Debug.Log("New item is lower quality");
-                    //InsertItem(item, i);
-                    //return true;
-
-                    if ((int)Enum.Parse(typeof(Material), material) < (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
-                    {
-                        do
-                        {
-                            Debug.Log("i is: " + i);
-                            i++;
-                        } while ((int)Enum.Parse(typeof(Material), material) < (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()) && i < currentSize);
-                    }
-
-                    Debug.Log("i is: " + i);
                     InsertItem(item, i);
                     currentSize++;
                     return true;
                 }
-            }
-        }*/
 
-        Debug.Log("Adding item to the array");
-        InsertItem(item, currentSize);
-        currentSize++;
-        return true;
+                InsertItem(item, i);
+                currentSize++;
+                return true;
+            }
+        }
+
+        //Debug.Log("Adding item to the array");
+        //InsertItem(item, currentSize);
+        //currentSize++;
+        //return true;
 
         Debug.Log("Returning False");
         return false;
