@@ -442,28 +442,7 @@ public class CreateInventory : MonoBehaviour {
 
     // Creates the list displaying all the weapons in inventory.
     public void UpdateWeaponList()
-    {
-        /*
-        int i = 0;
-
-        
-        if (swords != null)
-        {
-            // Generate swords list
-            foreach (GameObject sword in swords.ReturnList())
-            {
-                Debug.Log("Added item " + i + "to list");
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(weaponBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = sword.GetComponent<ItemScript>().GetItemDescription();
-                i++;
-            }
-        }*/
-         
-        
+    {    
         for (int i = 0; i < swords.GetCurrentSize(); i++)
         {
             tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
@@ -473,144 +452,11 @@ public class CreateInventory : MonoBehaviour {
             tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             tempText1.text = swords.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
         }
-       
-        Debug.Log("Weapon list built.");
-
     }
 
     // Creates a list displaying all the armor/shields in inventory.
     void UpdateArmorList()
     {
-        /*
-        int i = 0;
-
-        if (shields != null)
-        {
-            // Generate shield list
-            foreach (GameObject shield in shields.ReturnList())
-            {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = shield.GetComponent<ItemScript>().GetItemDescription();
-                i++;
-            }
-        }
-
-        if (breastplates != null)
-        {
-            i = 0;
-            // Generate breastplate list
-            foreach (GameObject breastplate in breastplates.ReturnList())
-            {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = breastplate.GetComponent<ItemScript>().GetItemDescription();
-                i++;
-            }
-        }
-
-        if (helms != null)
-        {
-            i = 0;
-            // Generate helm list
-            foreach (GameObject helm in helms.ReturnList())
-            {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = helm.GetComponent<ItemScript>().GetItemDescription();
-                i++;
-            }
-        }
-
-        if (bracers != null)
-        {
-            i = 0;
-            // Generate bracers list
-            foreach (GameObject bracer in bracers.ReturnList())
-            {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = bracer.GetComponent<ItemScript>().GetItemDescription();
-                i++;
-            }
-        }
-
-        if (gauntlets != null)
-        {
-            i = 0;
-            // Generate gauntlets list
-            foreach (GameObject gauntlet in gauntlets.ReturnList())
-            {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = gauntlet.GetComponent<ItemScript>().GetItemDescription();
-                i++;
-            }
-        }
-
-        if (boots != null)
-        {
-            i = 0;
-            // Generate boots list
-            foreach (GameObject boot in boots.ReturnList())
-            {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = boot.GetComponent<ItemScript>().GetItemDescription();
-                i++;
-            }
-        }
-
-        if (greaves != null)
-        {
-            i = 0;
-            // Generate greaves list
-            foreach (GameObject greave in greaves.ReturnList())
-            {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = greave.GetComponent<ItemScript>().GetItemDescription();
-                i++;
-            }
-        }
-
-        if (pauldrons != null)
-        {
-            i = 0;
-            // Generate pauldrons list
-            foreach (GameObject pauldron in pauldrons.ReturnList())
-            {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = pauldron.GetComponent<ItemScript>().GetItemDescription();
-                i++;
-            }
-        }*/
-
         for (int i = 0; i < shields.GetCurrentSize(); i++)
         {
             tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
@@ -690,9 +536,6 @@ public class CreateInventory : MonoBehaviour {
             tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             tempText1.text = pauldrons.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
         }
-
-        Debug.Log("Armor list built.");
-
     }
 
     // Creates a list displaying all the materials in inventory.
@@ -861,8 +704,6 @@ public class CreateInventory : MonoBehaviour {
                 tempText2.text = "" + lumberQty[i];
             }
         }
-
-        Debug.Log("Material list built.");
     }
 
     // Creates a list displaying all the components in inventory.
@@ -959,15 +800,13 @@ public class CreateInventory : MonoBehaviour {
                 tempText2.text = "" + handleQty[i];
             }
         }
-
-        Debug.Log("Component list built.");
     }
 
     // Creates a list displaying all the miscellaneous items in inventory.
-    void UpdateMiscList()
+    /*void UpdateMiscList()
     {
 
-    }
+    }*/
 
     // Set the weapons window as the only active window
     public void viewWeaponList()
@@ -1047,114 +886,47 @@ public class CreateInventory : MonoBehaviour {
     // Take an item object and add it to the on hand inventory.
     void AddNewItem(GameObject newItem)
     {
-        Debug.Log("AddNewItem called");
         // Item types: sword, shield, breastplate, helm, bracers, gauntlets, boots, greaves, pauldrons.
 
         // Stores the item type to determine what sortedArray to store the GameObject in.
         string itemType = newItem.GetComponent<ItemScript>().GetItem();
-        Debug.Log("itemType stored");
 
         switch (itemType)
         {
             case "Sword":
-                Debug.Log("Sword type identified");
-                if (swords.AddItem(newItem))
-                {
-                    Debug.Log("Added new sword to inventory.");
-                }
-                else
-                {
-                    Debug.Log("Could not add new sword to inventory.");
-                }
+                swords.AddItem(newItem);
                 break;
 
             case "Shield":
-                Debug.Log("Shield type identified");
-                if (shields.AddItem(newItem))
-                {
-                    Debug.Log("Added new shield to inventory.");
-                }
-                else
-                {
-                    Debug.Log("Could not add new shield to inventory.");
-                }
+                shields.AddItem(newItem);
                 break;
 
             case "Breastplate":
-                if (breastplates.AddItem(newItem))
-                {
-                    Debug.Log("Added new breastplate to inventory.");
-                }
-                else
-                {
-                    Debug.Log("Could not add new breastplate to inventory.");
-                }
+                breastplates.AddItem(newItem);
                 break;
 
             case "Helm":
-                if (helms.AddItem(newItem))
-                {
-                    Debug.Log("Added new helm to inventory.");
-                }
-                else
-                {
-                    Debug.Log("Could not add new helm to inventory.");
-                }
+                helms.AddItem(newItem);
                 break;
 
             case "Bracers":
-                if (bracers.AddItem(newItem))
-                {
-                    Debug.Log("Added new set of bracers to inventory.");
-                }
-                else
-                {
-                    Debug.Log("Could not add new set of bracers to inventory.");
-                }
+                bracers.AddItem(newItem);
                 break;
 
             case "Gauntlets":
-                if (gauntlets.AddItem(newItem))
-                {
-                    Debug.Log("Added new set of gauntlets to inventory.");
-                }
-                else
-                {
-                    Debug.Log("Could not add new set of gauntlets to inventory.");
-                }
+                gauntlets.AddItem(newItem);
                 break;
 
             case "Boots":
-                if (boots.AddItem(newItem))
-                {
-                    Debug.Log("Added new set of boots to inventory.");
-                }
-                else
-                {
-                    Debug.Log("Could not add new set of boots to inventory.");
-                }
+                boots.AddItem(newItem);
                 break;
 
             case "Greaves":
-                if (greaves.AddItem(newItem))
-                {
-                    Debug.Log("Added new set of greaves to inventory.");
-                }
-                else
-                {
-                    Debug.Log("Could not add new set of greaves to inventory.");
-                }
+                greaves.AddItem(newItem);
                 break;
 
             case "Pauldrons":
-                if (pauldrons.AddItem(newItem))
-                {
-                    Debug.Log("Added new set of pauldrons to inventory.");
-                }
-                else
-                {
-                    Debug.Log("Could not add new set of pauldrons to inventory.");
-                }
+                pauldrons.AddItem(newItem);
                 break;
 
             default:
@@ -1172,59 +944,27 @@ public class CreateInventory : MonoBehaviour {
         miscBackground.SetActive(false);
     }
 
-    public void CreateSwordTest()
+    public void ClearInventory()
     {
-        testSword = Instantiate(testSword, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        testSword.GetComponent<ItemScript>().SetItemStats("Copper", "Sword", "Good", 10);
-        Debug.Log("Added test sword");
+        foreach (Transform child in weaponBackground.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
 
-        testSword2 = Instantiate(testSword2, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        testSword2.GetComponent<ItemScript>().SetItemStats("Iron", "Sword", "Poor", 10);
-        Debug.Log("Added test sword 2");
-    }
+        foreach (Transform child in armorBackground.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
 
-    public void CreateShieldTest()
-    {
-        testShield = Instantiate(testShield, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        testShield.GetComponent<ItemScript>().SetItemStats("Iron", "Shield", "Poor", 10);
-        Debug.Log("Added test armor");
+        foreach (Transform child in materialBackground.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
 
-        testShield2 = Instantiate(testShield2, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        testShield2.GetComponent<ItemScript>().SetItemStats("Tin", "Shield", "Excellent", 10);
-        Debug.Log("Added test armor 2");
-
-        testShield3 = Instantiate(testShield3, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        testShield3.GetComponent<ItemScript>().SetItemStats("Copper", "Shield", "Perfect", 10);
-        Debug.Log("Added test armor 3");
-
-        testShield4 = Instantiate(testShield4, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        testShield4.GetComponent<ItemScript>().SetItemStats("Titanium", "Shield", "Bad", 10);
-        Debug.Log("Added test armor 4");
-
-        testShield5 = Instantiate(testShield5, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        testShield5.GetComponent<ItemScript>().SetItemStats("Tin", "Shield", "Good", 10);
-        Debug.Log("Added test armor 5");
-    }
-
-    public void FeedSwordTest()
-    {
-        Debug.Log("Starting feedswordtest");
-        AddNewItem(testSword);
-        AddNewItem(testSword2);
-        Debug.Log("Sword fed to inventory");
-    }
-
-    public void FeedShieldTest()
-    {
-        Debug.Log("Starting feedshieldtest");
-        AddNewItem(testShield);
-        AddNewItem(testShield2);
-        AddNewItem(testShield3);
-        AddNewItem(testShield4);
-        AddNewItem(testShield5);
-        shields.RemoveItem(testShield2);
-        shields.RemoveItem(testShield4);
-        Debug.Log("Shield fed to inventory");
+        foreach (Transform child in componentBackground.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 }
 
@@ -1274,16 +1014,20 @@ public class SortedInventory
         if (currentSize >= (inventorySize/2))
         {
             IncreaseSize();
+<<<<<<< HEAD
             //Debug.Log("Size increased");
+=======
+>>>>>>> origin/master
         }
-        
-        
+
         string material = item.GetComponent<ItemScript>().GetMaterial();
 
-        
         if (currentSize == 0)
         {
+<<<<<<< HEAD
             //Debug.Log("Adding first item to array");
+=======
+>>>>>>> origin/master
             InsertItem(item, currentSize);
             currentSize++;
             return true;
@@ -1294,8 +1038,11 @@ public class SortedInventory
             {
                 if ((int)Enum.Parse(typeof(Material), material) <= (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
                 {
+<<<<<<< HEAD
                     //Debug.Log("New item is lower or same quality");
 
+=======
+>>>>>>> origin/master
                     if(i == (currentSize-1))
                     {
                         InsertItem(item, (i + 1));
@@ -1307,7 +1054,10 @@ public class SortedInventory
                 }
                 else if ((int)Enum.Parse(typeof(Material), material) > (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
                 {
+<<<<<<< HEAD
                     //Debug.Log("New item is higher quality");
+=======
+>>>>>>> origin/master
                     InsertItem(item, i);
                     currentSize++;
                     return true;
@@ -1315,7 +1065,11 @@ public class SortedInventory
             }
         }
 
+<<<<<<< HEAD
         //Debug.Log("Returning False");
+=======
+        Debug.Log("Unable to add item to inventory");
+>>>>>>> origin/master
         return false;
     }
 
@@ -1367,11 +1121,6 @@ public class SortedInventory
 
         //Debug.Log("InsertItem finished");
     }
-
-    /*public GameObject[] ReturnList()
-    {
-        return storedItems;
-    }*/
 
     public GameObject GetItem(int index)
     {
