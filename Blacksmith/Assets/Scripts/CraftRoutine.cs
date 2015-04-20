@@ -49,7 +49,6 @@ public class CraftRoutine : MonoBehaviour
 	private const float hammerHitIncrease = 10.0f;
 	private const float bellowsHitIncrese = 5.0f;
 	private const float heatToStart = 25.0f;
-
 	private const float hammerToStart = 25.0f;
 
     private bool furnaceIsMelting;
@@ -61,7 +60,8 @@ public class CraftRoutine : MonoBehaviour
     private float quality = 0.0f;
     private float timeSync = 1.0f;
 
-
+    private double itemQuality;
+    private double possibleItemQuality;
 	private string itemType;
 	private string materialType;
 	
@@ -72,11 +72,27 @@ public class CraftRoutine : MonoBehaviour
 
     private string annText;
     private bool annActive;
+    private double annEndTime;
     private double annTimer;
 
     private bool timerActive;
+    private double timerEndTime;
+    private double timerTimer;
 
+    void setTimer(double time)
+    {
+        timerTimer = 0.0f;
+        timerEndTime = time;
+        timerActive = true;
+    }
 
+    void setAnnouncement(string announcement, double time)
+    {
+        annText = announcement;
+        annEndTime = time;
+        annTimer = 0.0f;
+        annActive = true;
+    }
 
     void resetCrafting()
     {
@@ -147,32 +163,34 @@ public class CraftRoutine : MonoBehaviour
 			endCrafting();
 			return;
 		}
+
+        stage.text = "Stage: " + currentStage + "/" + totalStages;
 		currentStageAbsVal = (timeMultiplier.getStage(itemType, currentStage));
 		
-		switch(currentStage)
+		switch(currentStageAbsVal)
 		{
 			case 0:
 				stageShaping();
 				break;
 			
 			case 1:
-				//stageHardening();
+				stageHardening();
 				break;
 			
 			case 2:
-				//stageTempering();
+				stageTempering();
 				break;
 				
 			case 3:
-				//stagePolishing();
+				stagePolishing();
 				break;
 				
 			case 4:
-				//stageSharpening();
+				stageSharpening();
 				break;
 				
 			case 5:
-				//stageGrinding();
+				stageGrinding();
 				break;
 				
 			default:
@@ -188,10 +206,52 @@ public class CraftRoutine : MonoBehaviour
 
 	void Update () 
     {
-        while (currentStage != -1)
+        if (timerActive)
         {
-
+            timerTimer += Time.deltaTime;
+            if (timerTimer >= timerEndTime)
+            {
+                timerActive = false;
+            }
         }
+        if (annActive)
+        {
+            annTimer += Time.deltaTime;
+            if (annTimer >= annEndTime)
+            {
+                annActive = false;
+            }
+        }
+
+        if (currentStage != -1)
+        {
+            if (currentStageAbsVal == 1)
+            {
+                
+            }
+            else if (currentStageAbsVal == 2)
+            {
+
+            }
+            else if (currentStageAbsVal == 3)
+            {
+
+            }
+            else if (currentStageAbsVal == 4)
+            {
+
+            }
+            else if (currentStageAbsVal == 5)
+            {
+
+            }
+            else if(currentStageAbsVal == 6)
+            {
+
+            }
+        }
+
+
 
         /*IsTimerDone();
 
@@ -263,13 +323,43 @@ public class CraftRoutine : MonoBehaviour
             furnaceSlider.value += furnaceSliderChange;
         }*/
     }
+    void resetBetweenStages()
+    {
+
+    }
 
     void stageShaping()
     {
+
         hammerSliderObject.SetActive(true);
         heatSliderObject.SetActive(true);
+        
+    }
+
+
+    void stageHardening()
+    {
 
     }
+
+    void stageTempering()
+    {
+    }
+
+    void stageGrinding()
+    {
+    }
+
+    void stageSharpening()
+    {
+    }
+
+    void stagePolishing()
+    {
+    }
+
+
+
 
     public void hammerHitOnAnvil()
     {

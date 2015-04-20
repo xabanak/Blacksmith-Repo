@@ -1274,7 +1274,7 @@ public class SortedInventory
         if (currentSize >= (inventorySize/2))
         {
             IncreaseSize();
-            Debug.Log("Size increased");
+            //Debug.Log("Size increased");
         }
         
         
@@ -1283,7 +1283,7 @@ public class SortedInventory
         
         if (currentSize == 0)
         {
-            Debug.Log("Adding first item to array");
+            //Debug.Log("Adding first item to array");
             InsertItem(item, currentSize);
             currentSize++;
             return true;
@@ -1294,17 +1294,11 @@ public class SortedInventory
             {
                 if ((int)Enum.Parse(typeof(Material), material) <= (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
                 {
-                    Debug.Log("New item is lower or same quality");
+                    //Debug.Log("New item is lower or same quality");
 
-<<<<<<< HEAD
-                    if (i == (currentSize-1))
-                    {
-                        InsertItem(item, i + 1);
-=======
                     if(i == (currentSize-1))
                     {
                         InsertItem(item, (i + 1));
->>>>>>> origin/master
                         currentSize++;
                         return true;
                     }
@@ -1313,7 +1307,7 @@ public class SortedInventory
                 }
                 else if ((int)Enum.Parse(typeof(Material), material) > (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
                 {
-                    Debug.Log("New item is higher quality");
+                    //Debug.Log("New item is higher quality");
                     InsertItem(item, i);
                     currentSize++;
                     return true;
@@ -1321,7 +1315,7 @@ public class SortedInventory
             }
         }
 
-        Debug.Log("Returning False");
+        //Debug.Log("Returning False");
         return false;
     }
 
@@ -1341,8 +1335,8 @@ public class SortedInventory
                     for (int j = i; j < (currentSize - 1); j++)
                     {
                         storedItems[j] = storedItems[j + 1];
-                        currentSize--;
                     }
+                    currentSize--;
                     storedItems[currentSize] = storedItems[currentSize + 1];
                 }
                 if ((inventorySize / 2)  > currentSize)
@@ -1360,18 +1354,18 @@ public class SortedInventory
 
     private void InsertItem(GameObject item, int insertionPoint)
     {
-        Debug.Log("Insertion point is: " + insertionPoint);
+        //Debug.Log("Insertion point is: " + insertionPoint);
         for(int i = currentSize; i >= insertionPoint; i--)
         {
-            Debug.Log("current size is: " + currentSize);
-            Debug.Log("Swapped: " + i + " times");
+            //Debug.Log("current size is: " + currentSize);
+            //Debug.Log("Swapped: " + i + " times");
             storedItems[i + 1] = storedItems[i];
         }
 
-        Debug.Log("Item type: " + item.GetComponent<ItemScript>().GetMaterial());
+        //Debug.Log("Item type: " + item.GetComponent<ItemScript>().GetMaterial());
         storedItems[insertionPoint] = item;
 
-        Debug.Log("InsertItem finished");
+        //Debug.Log("InsertItem finished");
     }
 
     /*public GameObject[] ReturnList()
