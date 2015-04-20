@@ -10,6 +10,8 @@ public class CreateInventory : MonoBehaviour {
     public GameObject testShield;
     public GameObject testShield2;
     public GameObject testShield3;
+    public GameObject testShield4;
+    public GameObject testShield5;
 
     public GameObject weaponBackground;
     public GameObject armorBackground;
@@ -1184,7 +1186,7 @@ public class CreateInventory : MonoBehaviour {
     public void CreateShieldTest()
     {
         testShield = Instantiate(testShield, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        testShield.GetComponent<ItemScript>().SetItemStats("Copper", "Shield", "Poor", 10);
+        testShield.GetComponent<ItemScript>().SetItemStats("Iron", "Shield", "Poor", 10);
         Debug.Log("Added test armor");
 
         testShield2 = Instantiate(testShield2, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
@@ -1192,8 +1194,16 @@ public class CreateInventory : MonoBehaviour {
         Debug.Log("Added test armor 2");
 
         testShield3 = Instantiate(testShield3, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        testShield3.GetComponent<ItemScript>().SetItemStats("Iron", "Shield", "Perfect", 10);
+        testShield3.GetComponent<ItemScript>().SetItemStats("Copper", "Shield", "Perfect", 10);
         Debug.Log("Added test armor 3");
+
+        testShield4 = Instantiate(testShield4, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        testShield4.GetComponent<ItemScript>().SetItemStats("Titanium", "Shield", "Bad", 10);
+        Debug.Log("Added test armor 4");
+
+        testShield5 = Instantiate(testShield5, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        testShield5.GetComponent<ItemScript>().SetItemStats("Tin", "Shield", "Good", 10);
+        Debug.Log("Added test armor 5");
     }
 
     public void FeedSwordTest()
@@ -1210,6 +1220,10 @@ public class CreateInventory : MonoBehaviour {
         AddNewItem(testShield);
         AddNewItem(testShield2);
         AddNewItem(testShield3);
+        AddNewItem(testShield4);
+        AddNewItem(testShield5);
+        shields.RemoveItem(testShield2);
+        shields.RemoveItem(testShield4);
         Debug.Log("Shield fed to inventory");
     }
 }
@@ -1282,6 +1296,15 @@ public class SortedInventory
                 if ((int)Enum.Parse(typeof(Material), material) <= (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
                 {
                     Debug.Log("New item is lower or same quality");
+
+                    if (i == (currentSize-1))
+                    {
+                        InsertItem(item, i + 1);
+                        currentSize++;
+                        return true;
+                    }
+
+                    continue;
                 }
                 else if ((int)Enum.Parse(typeof(Material), material) > (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
                 {
@@ -1289,17 +1312,8 @@ public class SortedInventory
                     currentSize++;
                     return true;
                 }
-
-                InsertItem(item, i);
-                currentSize++;
-                return true;
             }
         }
-
-        //Debug.Log("Adding item to the array");
-        //InsertItem(item, currentSize);
-        //currentSize++;
-        //return true;
 
         Debug.Log("Returning False");
         return false;

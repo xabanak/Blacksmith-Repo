@@ -2258,6 +2258,8 @@ MonoBehaviour:
   testShield: {fileID: 131350, guid: 414ac7b7e5cd47f4dbc5cf17dbc812ff, type: 2}
   testShield2: {fileID: 131350, guid: 414ac7b7e5cd47f4dbc5cf17dbc812ff, type: 2}
   testShield3: {fileID: 131350, guid: 414ac7b7e5cd47f4dbc5cf17dbc812ff, type: 2}
+  testShield4: {fileID: 131350, guid: 414ac7b7e5cd47f4dbc5cf17dbc812ff, type: 2}
+  testShield5: {fileID: 131350, guid: 414ac7b7e5cd47f4dbc5cf17dbc812ff, type: 2}
   weaponBackground: {fileID: 1986428440}
   armorBackground: {fileID: 1790439168}
   materialBackground: {fileID: 488633466}
@@ -2705,8 +2707,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 908668411}
   m_HandleRect: {fileID: 908668410}
   m_Direction: 3
-  m_Value: .499999046
-  m_Size: .722499669
+  m_Value: .499996424
+  m_Size: .722499907
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
