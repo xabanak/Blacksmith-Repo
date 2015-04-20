@@ -1014,20 +1014,12 @@ public class SortedInventory
         if (currentSize >= (inventorySize/2))
         {
             IncreaseSize();
-<<<<<<< HEAD
-            //Debug.Log("Size increased");
-=======
->>>>>>> origin/master
         }
 
         string material = item.GetComponent<ItemScript>().GetMaterial();
 
         if (currentSize == 0)
         {
-<<<<<<< HEAD
-            //Debug.Log("Adding first item to array");
-=======
->>>>>>> origin/master
             InsertItem(item, currentSize);
             currentSize++;
             return true;
@@ -1038,11 +1030,6 @@ public class SortedInventory
             {
                 if ((int)Enum.Parse(typeof(Material), material) <= (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
                 {
-<<<<<<< HEAD
-                    //Debug.Log("New item is lower or same quality");
-
-=======
->>>>>>> origin/master
                     if(i == (currentSize-1))
                     {
                         InsertItem(item, (i + 1));
@@ -1054,22 +1041,13 @@ public class SortedInventory
                 }
                 else if ((int)Enum.Parse(typeof(Material), material) > (int)Enum.Parse(typeof(Material), storedItems[i].GetComponent<ItemScript>().GetMaterial()))
                 {
-<<<<<<< HEAD
-                    //Debug.Log("New item is higher quality");
-=======
->>>>>>> origin/master
                     InsertItem(item, i);
                     currentSize++;
                     return true;
                 }
             }
         }
-
-<<<<<<< HEAD
-        //Debug.Log("Returning False");
-=======
         Debug.Log("Unable to add item to inventory");
->>>>>>> origin/master
         return false;
     }
 
