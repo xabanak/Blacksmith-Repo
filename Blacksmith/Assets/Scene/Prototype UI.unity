@@ -3689,10 +3689,8 @@ MonoBehaviour:
   stage: {fileID: 1847773638}
   popUpText: {fileID: 287891303}
   results: {fileID: 405393747}
-<<<<<<< HEAD
   itemQuality: 0
   possibleItemQuality: 0
-=======
 --- !u!114 &1302979230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3706,7 +3704,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryCamera: {fileID: 120458557}
   workshopCamera: {fileID: 150367887}
->>>>>>> origin/master
 --- !u!4 &1339662934 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
