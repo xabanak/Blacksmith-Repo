@@ -354,7 +354,7 @@ GameObject:
   - 81: {fileID: 120458559}
   m_Layer: 0
   m_Name: Inventory Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2186,13 +2186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c92caa37997795241be850b3b5cbf32d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testSword: {fileID: 103102, guid: a9c503ddd43d7474baaddb730c05da43, type: 2}
-  testSword2: {fileID: 103102, guid: a9c503ddd43d7474baaddb730c05da43, type: 2}
-  testShield: {fileID: 131350, guid: 414ac7b7e5cd47f4dbc5cf17dbc812ff, type: 2}
-  testShield2: {fileID: 131350, guid: 414ac7b7e5cd47f4dbc5cf17dbc812ff, type: 2}
-  testShield3: {fileID: 131350, guid: 414ac7b7e5cd47f4dbc5cf17dbc812ff, type: 2}
-  testShield4: {fileID: 131350, guid: 414ac7b7e5cd47f4dbc5cf17dbc812ff, type: 2}
-  testShield5: {fileID: 131350, guid: 414ac7b7e5cd47f4dbc5cf17dbc812ff, type: 2}
   weaponBackground: {fileID: 1986428440}
   armorBackground: {fileID: 1790439168}
   materialBackground: {fileID: 488633466}
@@ -2201,7 +2194,6 @@ MonoBehaviour:
   inventoryWindow: {fileID: 248877289}
   textBox1: {fileID: 11418308, guid: 043cdba70897f1942939447ad57c9772, type: 2}
   textBox2: {fileID: 11421822, guid: dfe892f198bdbb4479a33cb3fc96fc42, type: 2}
-  testText: {fileID: 0}
   inventoryCanvas: {fileID: 308779213}
   singleLine: {fileID: 138322, guid: 18ac15eb04c9adb4fb083758d2274faf, type: 2}
   tempLine: {fileID: 0}
@@ -3612,6 +3604,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1302979228}
   - 114: {fileID: 1302979229}
+  - 114: {fileID: 1302979230}
   m_Layer: 0
   m_Name: CraftingController
   m_TagString: Untagged
@@ -3667,6 +3660,19 @@ MonoBehaviour:
   stage: {fileID: 1847773638}
   popUpText: {fileID: 287891303}
   results: {fileID: 405393747}
+--- !u!114 &1302979230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1302979227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 198210b185909c54891869e60aeb1f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryCamera: {fileID: 120458557}
+  workshopCamera: {fileID: 150367887}
 --- !u!4 &1339662934 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
@@ -3871,8 +3877,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1565756061}
-        m_MethodName: DisplayInventoryToggle
+      - m_Target: {fileID: 1302979230}
+        m_MethodName: DisplayInventory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3882,7 +3888,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1447851364
@@ -4038,6 +4044,7 @@ GameObject:
   - 114: {fileID: 1565756058}
   - 114: {fileID: 1565756060}
   - 114: {fileID: 1565756061}
+  - 114: {fileID: 1565756062}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -4099,6 +4106,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tester: {fileID: 2003011388}
+--- !u!114 &1565756062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1565756057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b41cd2edd61c144caf872e335282696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryCamera: {fileID: 120458557}
+  workshopCamera: {fileID: 150367887}
+  townCamera: {fileID: 0}
 --- !u!1 &1665182075
 GameObject:
   m_ObjectHideFlags: 0

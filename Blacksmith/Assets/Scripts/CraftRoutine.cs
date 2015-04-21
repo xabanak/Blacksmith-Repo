@@ -136,7 +136,6 @@ public class CraftRoutine : MonoBehaviour
         //bellows.SetActive(false);
         //forge.SetActive(false);
 
-
         stage.enabled = false;
         popUpText.enabled = false;
         resetTimer();
@@ -453,6 +452,16 @@ public class CraftRoutine : MonoBehaviour
     public void toggleComponentInBarrel()
     {
         componentInBarrel = !componentInBarrel;
+    }
+
+    public bool isCrafting()
+    {
+        if (currentStage == -1)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     /*public void craftingToggle()
