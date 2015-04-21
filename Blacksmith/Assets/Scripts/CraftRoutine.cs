@@ -43,8 +43,8 @@ public class CraftRoutine : MonoBehaviour
     public Text popUpText;
     public Text results;
 
-    private const double fullSlider = 60.0f;
-    private const double emptySlider = 0.0f;
+    private const float fullSlider = 60.0f;
+    private const float emptySlider = 0.0f;
     //private const double baseTimeStage1 = 60.0f;
 	private const float hammerHitIncrease = 10.0f;
 	private const float bellowsHitIncrese = 5.0f;
@@ -56,13 +56,13 @@ public class CraftRoutine : MonoBehaviour
     private bool componentInBarrel;
     private bool componentOnForge;
 
-    private double countDown = 3.0f;
-    private double quality;
-    private const double timeSync = 1.0f;
-    private double timeQuality;
+    private float countDown = 3.0f;
+    private float quality;
+    private const float timeSync = 1.0f;
+    private float timeQuality;
 
-    private double itemQuality;
-    private double possibleItemQuality;
+    public float itemQuality;
+    public float possibleItemQuality;
 	private string itemType;
 	private string materialType;
 	
@@ -73,18 +73,19 @@ public class CraftRoutine : MonoBehaviour
 
     private string annText;
     private bool annActive;
-    private double annEndTime;
-    private double annTimer;
+    private float annEndTime;
+    private float annTimer;
 
     private bool timerSet;
     private bool timerActive;
-    private double timerEndTime;
-    private double timerTimer;
+    private float timerEndTime;
+    private float timerTimer;
 
-    void setTimer(double time)
+    void setTimer(float time)
     {
         timerTimer = 0.0f;
         timerEndTime = time;
+        timerSlider.maxValue = timerEndTime;
         timerSet = true;
         //timerActive = true;
     }
@@ -103,7 +104,7 @@ public class CraftRoutine : MonoBehaviour
         timerActive = false;
     }
 
-    void setAnnouncement(string announcement, double time)
+    void setAnnouncement(string announcement, float time)
     {
         annText = announcement;
         annEndTime = time;
@@ -201,7 +202,7 @@ public class CraftRoutine : MonoBehaviour
 
         stage.text = "Stage: " + (currentStage+1) + "/" + totalStages;
 		currentStageAbsVal = (timeMultiplier.getStage(itemType, currentStage));
-        Debug.Log("Current stage abs val is:" + currentStageAbsVal);
+        //Debug.Log("Current stage abs val is:" + currentStageAbsVal);
 		
 		switch(currentStageAbsVal)
 		{
@@ -245,6 +246,7 @@ public class CraftRoutine : MonoBehaviour
         if (timerActive)
         {
             timerTimer += Time.deltaTime;
+            timerSlider.value = timerTimer;
             if (timerTimer >= timerEndTime)
             {
                 timerActive = false;
@@ -261,9 +263,18 @@ public class CraftRoutine : MonoBehaviour
 
         if (currentStage != -1)
         {
-            if (currentStageAbsVal == 1)
+            if (currentStageAbsVal == 0)
             {
-                if (!timerActive && heatSlider.value > heatToStart && hammerSlider.value > hammerToStart)
+                if (componentInBarrel)
+                {
+                    heatSlider.value -= (Time.deltaTime * quenchingSliderChange); ;
+                }
+                else
+                {
+                    heatSlider.value -= (Time.deltaTime * heatSliderChange);
+                }
+                hammerSlider.value -= (Time.deltaTime * hammerSliderChange);
+                if (timerSet && !timerActive && heatSlider.value > heatToStart && hammerSlider.value > hammerToStart)
                 {
                     startTimer();
                 }
@@ -280,16 +291,18 @@ public class CraftRoutine : MonoBehaviour
                         {
                             itemQuality += 0.5f;
                         }
-
-                        heatSlider.value -= (Time.deltaTime * heatSliderChange);
-                        hammerSlider.value -= (Time.deltaTime * hammerSliderChange);
                     }
+
                     timeQuality -= Time.deltaTime;               
                 }
                 if (!timerActive && !timerSet)
                 {
                     nextStage();
                 }
+            }
+            else if (currentStageAbsVal == 1)
+            {
+
             }
             else if (currentStageAbsVal == 2)
             {
@@ -303,11 +316,7 @@ public class CraftRoutine : MonoBehaviour
             {
 
             }
-            else if (currentStageAbsVal == 5)
-            {
-
-            }
-            else if(currentStageAbsVal == 6)
+            else if(currentStageAbsVal == 5)
             {
 
             }
@@ -396,7 +405,12 @@ public class CraftRoutine : MonoBehaviour
         hammerSliderObject.SetActive(true);
         heatSliderObject.SetActive(true);
 
-        setTimer(timeMultiplier.getStageTime(currentStageAbsVal) * timeMultiplier.getMult(itemType, materialType));
+        hammerSliderBackground.sprite = hammerDiff1;
+        heatSliderBackground.sprite = heatDiff1;
+
+        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+
+        possibleItemQuality += timerEndTime;
     }
 
 
@@ -428,7 +442,10 @@ public class CraftRoutine : MonoBehaviour
     {
         if (currentStageAbsVal == 0)
         {
-            hammerSlider.value += hammerHitIncrease;
+            if (componentOnAnvil)
+            {
+                hammerSlider.value += hammerHitIncrease;
+            }
         }
     }
 
@@ -436,7 +453,10 @@ public class CraftRoutine : MonoBehaviour
     {
         if (currentStageAbsVal == 0 || currentStageAbsVal == 1 || currentStageAbsVal == 2)
         {
-            heatSlider.value += bellowsHitIncrese;
+            if (componentOnForge)
+            {
+                heatSlider.value += bellowsHitIncrese;
+            }
         }
     }
 
