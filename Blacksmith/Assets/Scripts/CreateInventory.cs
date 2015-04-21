@@ -5,14 +5,6 @@ using System;
 
 public class CreateInventory : MonoBehaviour {
 
-    public GameObject testSword;
-    public GameObject testSword2;
-    public GameObject testShield;
-    public GameObject testShield2;
-    public GameObject testShield3;
-    public GameObject testShield4;
-    public GameObject testShield5;
-
     public GameObject weaponBackground;
     public GameObject armorBackground;
     public GameObject materialBackground;
@@ -22,7 +14,6 @@ public class CreateInventory : MonoBehaviour {
 
     public Text textBox1;
     public Text textBox2;
-    public Text testText;
 
     private Text tempText1;
     private Text tempText2;
