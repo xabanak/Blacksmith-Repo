@@ -2657,8 +2657,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 908668411}
   m_HandleRect: {fileID: 908668410}
   m_Direction: 3
-  m_Value: .499994367
-  m_Size: .72249943
+  m_Value: .49999547
+  m_Size: .722500205
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3091,6 +3091,35 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22488546, guid: ad548ca8df1ccc346a679d47f0f8e611,
     type: 2}
   m_PrefabInternal: {fileID: 289630964}
+--- !u!1 &946332781 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
+  m_PrefabInternal: {fileID: 1415363313}
+--- !u!61 &946332785
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 946332781}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -.00376531505, y: .0147053152}
+  serializedVersion: 2
+  m_Size: {x: .00905376766, y: .00888385158}
+--- !u!114 &946332786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 946332781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2383292caafe946b2aeb2cc30703ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftController: {fileID: 1302979229}
 --- !u!1 &980094745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3667,6 +3696,8 @@ MonoBehaviour:
   stage: {fileID: 1847773638}
   popUpText: {fileID: 287891303}
   results: {fileID: 405393747}
+  itemQuality: 0
+  possibleItemQuality: 0
 --- !u!4 &1339662934 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
@@ -3743,31 +3774,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.75999999
+      value: -1.13999939
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.78000021
+      value: -5.18634796
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.07999992
+      value: 3.46175241
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -1.00764845e-08
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: .998085558
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -.0618490204
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -1.62920685e-07
+      value: -1.62608771e-07
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_RootOrder
@@ -3779,15 +3810,15 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 8f886f8d3c7aba545b2aaf947bc9329a, type: 2}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalScale.x
-      value: 188.457581
+      value: 151.870026
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalScale.y
-      value: 188.45752
+      value: 151.869965
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalScale.z
-      value: 188.45752
+      value: 151.869965
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_Name
