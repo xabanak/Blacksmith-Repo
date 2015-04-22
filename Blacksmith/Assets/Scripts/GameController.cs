@@ -9,6 +9,11 @@ public class GameController : MonoBehaviour {
     public GameObject workshopCamera;
     public GameObject townCamera;
 
+    public Camera workCamera;
+
+    public Canvas workshopCanvas;
+    public Canvas inventoryCanvas;
+
     private bool workshop = true;
     private bool town = false;
 
@@ -23,6 +28,7 @@ public class GameController : MonoBehaviour {
 	void Update () 
     {
         InventoryToggle();
+        CanvasToggle();
 	}
 
     void InventoryToggle()
@@ -55,6 +61,15 @@ public class GameController : MonoBehaviour {
         {
             town = true;
             workshop = false;
+        }
+    }
+
+    void CanvasToggle()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("Changed camera");
+            inventoryCanvas.worldCamera = workCamera;
         }
     }
 }

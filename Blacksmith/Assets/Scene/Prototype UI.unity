@@ -424,7 +424,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 120458557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.5, y: .300000012, z: -10}
+  m_LocalPosition: {x: 32.5, y: .300000012, z: -12.5500002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1385808360}
@@ -4204,7 +4204,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1447851361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 866077240}
@@ -4497,6 +4497,9 @@ MonoBehaviour:
   inventoryCamera: {fileID: 120458557}
   workshopCamera: {fileID: 150367887}
   townCamera: {fileID: 0}
+  workCamera: {fileID: 150367891}
+  workshopCanvas: {fileID: 2056784991}
+  inventoryCanvas: {fileID: 308779213}
 --- !u!1 &1618646210
 GameObject:
   m_ObjectHideFlags: 0
