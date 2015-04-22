@@ -95,6 +95,8 @@ public class CraftRoutine : MonoBehaviour
     //GRINDING STAGE VARIABLES
 
     private bool grinded;
+    private Transform tiltedRight;
+    private Transform tiltedLeft;
 
     void setTimer(float time)
     {
@@ -180,6 +182,9 @@ public class CraftRoutine : MonoBehaviour
 		hammerSlider = hammerSliderObject.GetComponent<Slider> ();
 		timerSlider = timerSliderObject.GetComponent<Slider> ();
 		furnaceSlider = furnaceSliderObject.GetComponent<Slider> ();
+
+        tiltedLeft = craftingComponent.transform;
+        //tiltedLeft.rotation = new Vector4(tiltedLeft.rotation.x, tiltedLeft.rotation.y, tiltedLeft.rotation.z, tiltedLeft.rotation.w);
 
         resetCrafting();
 
