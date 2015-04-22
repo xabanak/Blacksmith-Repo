@@ -361,7 +361,18 @@ public class CraftRoutine : MonoBehaviour
             {
                 if (!grinded)
                 {
-                    //craftingComponent.transform
+                    //craftingComponent.transform.rotation = Quaternion.RotateTowards(transform.rotation, )
+
+                    /*
+                     * public class ExampleClass : MonoBehaviour {
+                            public Transform target;
+                            public float speed;
+                            void Update() {
+                                float step = speed * Time.deltaTime;
+                                transform.rotation = Quaternion.RotateTowards(transform.rotation, target.rotation, step);
+                            }
+                        }
+                     * */
                 }
             }
             else if (currentStageAbsVal == 3)

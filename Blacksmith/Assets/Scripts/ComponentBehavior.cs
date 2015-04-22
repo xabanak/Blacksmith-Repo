@@ -43,11 +43,7 @@ public class ComponentBehavior : MonoBehaviour {
         {
             inBarrel = true;
         }
-<<<<<<< HEAD
-        else if (myCollider.gameObject.name == "Grinding Collider")
-=======
         else if (myCollider.gameObject.name == "Grinder")
->>>>>>> origin/master
         {
             onGrinder = true;
         }
