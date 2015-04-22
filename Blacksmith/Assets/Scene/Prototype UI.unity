@@ -4010,7 +4010,7 @@ MonoBehaviour:
   heatDiff1: {fileID: 21300000, guid: 5e6e7e684b9231541af20ad1dd7749ee, type: 3}
   heatDiff2: {fileID: 21300000, guid: 98c787e9ed595f64a91cc088efddd544, type: 3}
   heatDiff3: {fileID: 21300000, guid: 353457499deb5c5448e89cb2db31a2e3, type: 3}
-  hammerDiff1: {fileID: 0}
+  hammerDiff1: {fileID: 21300000, guid: f263a26c48868954da041ea2e5f5196a, type: 3}
   hammerDiff2: {fileID: 0}
   hammerDiff3: {fileID: 0}
   heatSliderChange: 3
