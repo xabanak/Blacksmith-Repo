@@ -92,6 +92,10 @@ public class CraftRoutine : MonoBehaviour
     private bool heated;
     private bool cooled;
 
+    //GRINDING STAGE VARIABLES
+
+    private bool grinded;
+
     void setTimer(float time)
     {
         timerTimer = 0.0f;
@@ -355,7 +359,10 @@ public class CraftRoutine : MonoBehaviour
             }
             else if (currentStageAbsVal == 2)
             {
-
+                if (!grinded)
+                {
+                    //craftingComponent.transform
+                }
             }
             else if (currentStageAbsVal == 3)
             {

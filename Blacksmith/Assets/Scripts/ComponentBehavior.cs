@@ -43,7 +43,7 @@ public class ComponentBehavior : MonoBehaviour {
         {
             inBarrel = true;
         }
-        else if (myCollider.gameObject.name == "Grinding Collider") ;
+        else if (myCollider.gameObject.name == "Grinding Collider")
         {
             onGrinder = true;
         }
@@ -88,6 +88,10 @@ public class ComponentBehavior : MonoBehaviour {
         {
             craftController.toggleComponentInBarrel();
 			transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+        }
+        else if (onGrinder)
+        {
+            craftController.toggleComponentOnGrinder();
         }
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         //offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
