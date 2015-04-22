@@ -81,6 +81,11 @@ public class CraftRoutine : MonoBehaviour
     private float timerEndTime;
     private float timerTimer;
 
+    //HARDERNING STAGE VARIABLES
+
+    private bool heated;
+    private bool cooled;
+
     void setTimer(float time)
     {
         timerTimer = 0.0f;
@@ -106,7 +111,8 @@ public class CraftRoutine : MonoBehaviour
 
     void setAnnouncement(string announcement, float time)
     {
-        annText = announcement;
+        popUpText.enabled = true;
+        popUpText.text = announcement;
         annEndTime = time;
         annTimer = 0.0f;
         annActive = true;
@@ -114,10 +120,11 @@ public class CraftRoutine : MonoBehaviour
 
     void resetAnnouncement()
     {
-        annText = "";
+        popUpText.text = "";
         annEndTime = 0.0f;
         annTimer = 0.0f;
         annActive = false;
+        popUpText.enabled = false;
     }
 
     void resetCrafting()
@@ -177,13 +184,14 @@ public class CraftRoutine : MonoBehaviour
 
     public void startCrafting(string item, string material)
     {
-	itemType = item;
-	materialType = material;
-    stage.enabled = true;
+        itemType = item;
+        materialType = material;
+        stage.enabled = true;
+        
 
-    totalStages = timeMultiplier.getStageCount(itemType);
+        totalStages = timeMultiplier.getStageCount(itemType);
 
-	nextStage();
+        nextStage();
     }
 
 	void nextStage()
@@ -256,7 +264,7 @@ public class CraftRoutine : MonoBehaviour
             annTimer += Time.deltaTime;
             if (annTimer >= annEndTime)
             {
-                annActive = false;
+                resetAnnouncement();
             }
         }
 
@@ -276,6 +284,7 @@ public class CraftRoutine : MonoBehaviour
                 if (timerSet && !timerActive && heatSlider.value > heatToStart && hammerSlider.value > hammerToStart)
                 {
                     startTimer();
+                    timeQuality = timeSync;
                 }
                 if (timerActive)
                 {
@@ -301,7 +310,41 @@ public class CraftRoutine : MonoBehaviour
             }
             else if (currentStageAbsVal == 1)
             {
+                if (!heated || !cooled)
+                {
+                    if (componentInBarrel)
+                    {
+                        heatSlider.value -= (Time.deltaTime * quenchingSliderChange); ;
+                    }
+                    else
+                    {
+                        heatSlider.value -= (Time.deltaTime * heatSliderChange);
+                    }
 
+                    if (!timerActive)
+                    {
+                        timeQuality -= Time.deltaTime;
+                        if (timeQuality <= 0)
+                        {
+                            timeQuality = timeSync;
+
+                            itemQuality -= 1.0f;
+                        }
+                    }
+                }
+                if (heatSlider.value > 99.0f)
+                {
+                    heated = true;
+                    setAnnouncement("Quench!", 3.0f);
+                }
+                if (heatSlider.value < 1.0f && heated)
+                {
+                    cooled = true;
+                }
+                if (heated && cooled)
+                {
+                    nextStage();
+                }
             }
             else if (currentStageAbsVal == 2)
             {
@@ -323,6 +366,9 @@ public class CraftRoutine : MonoBehaviour
     }
     void resetBetweenStages()
     {
+        timerSliderObject.SetActive(false);
+        hammerSliderObject.SetActive(false);
+        heatSliderObject.SetActive(false);
         resetTimer();
     }
 
@@ -343,7 +389,22 @@ public class CraftRoutine : MonoBehaviour
 
     void stageHardening()
     {
+        heatSliderObject.SetActive(true);
+        timerSliderObject.SetActive(true);
 
+
+        heated = false;
+        cooled = false;
+
+        heatSliderBackground.sprite = heatDiff1;
+
+        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        startTimer();
+        possibleItemQuality += timerEndTime;
+        itemQuality += timerEndTime;
+        timeQuality = timeSync;
+
+        setAnnouncement("Heat!", 3.0f);
     }
 
     void stageTempering()
