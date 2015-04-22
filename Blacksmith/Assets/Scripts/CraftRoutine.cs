@@ -18,10 +18,15 @@ public class CraftRoutine : MonoBehaviour
 	public float furnaceSliderChange;
 	public float quenchingSliderChange;
 
+    public GameObject craftingCamera;
+    public GameObject background1;
+    public GameObject background2;
+    private bool workshopFront = true;
+
 	public GameObject heatSliderObject;
 	public GameObject hammerSliderObject;
 	public GameObject timerSliderObject;
-	public GameObject furnaceSliderObject;
+    public GameObject furnaceSliderObject;
 	private Slider heatSlider;
 	private Slider hammerSlider;
 	private Slider timerSlider;
@@ -55,6 +60,7 @@ public class CraftRoutine : MonoBehaviour
     private bool componentOnAnvil;
     private bool componentInBarrel;
     private bool componentOnForge;
+    private bool componentOnGrinder;
 
     private float countDown = 3.0f;
     private float quality;
@@ -127,6 +133,7 @@ public class CraftRoutine : MonoBehaviour
         componentOnAnvil = false;
         componentOnForge = false;
         componentInBarrel = false;
+        componentOnGrinder = false;
 
         heatSliderObject.SetActive(false);
         hammerSliderObject.SetActive(false);
@@ -352,10 +359,13 @@ public class CraftRoutine : MonoBehaviour
 
     void stageGrinding()
     {
+        //enable the new ui for grinding
+        //switch camera location
     }
 
     void stageSharpening()
     {
+
     }
 
     void stagePolishing()
@@ -402,6 +412,11 @@ public class CraftRoutine : MonoBehaviour
         componentInBarrel = !componentInBarrel;
     }
 
+    public void toggleComponentOnGrinder()
+    {
+        componentOnGrinder = !componentOnGrinder;
+    }
+
     public bool isCrafting()
     {
         if (currentStage == -1)
@@ -410,5 +425,19 @@ public class CraftRoutine : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void switchRoom()
+    {
+        if (workshopFront == true)
+        {
+            craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, background2.transform.position.z - 10);
+            workshopFront = false;
+        }
+        else if (workshopFront == false)
+        {
+            craftingCamera.transform.position = new Vector3(background1.transform.position.x, background2.transform.position.y, background2.transform.position.z - 10);
+            workshopFront = true;
+        }
     }
 }

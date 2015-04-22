@@ -10,15 +10,18 @@ public class ComponentBehavior : MonoBehaviour {
     public Vector3 anvilOffset;
     public Vector3 forgeOffset;
     public Vector3 barrelOffset;
+    public Vector3 grinderOffset;
 
     public GameObject anvil;
     public GameObject forge;
     public GameObject barrel;
+    public GameObject grinder;
     public CraftRoutine craftController;
 
     public bool onAnvil;
     public bool onForge;
     public bool inBarrel;
+    public bool onGrinder;
 
 	// Use this for initialization
     void Start()
@@ -40,6 +43,10 @@ public class ComponentBehavior : MonoBehaviour {
         {
             inBarrel = true;
         }
+        else if (myCollider.gameObject.name == "Grinding Collider") ;
+        {
+            onGrinder = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D myCollider)
@@ -56,6 +63,10 @@ public class ComponentBehavior : MonoBehaviour {
         else if (myCollider.gameObject.name == "Barrel")
         {
             inBarrel = false;
+        }
+        else if (myCollider.gameObject.name == "Grinder Collider")
+        {
+            onGrinder = false;
         }
     }
 	// Update is called once per frame
@@ -99,6 +110,11 @@ public class ComponentBehavior : MonoBehaviour {
             transform.position = new Vector3(barrel.transform.position.x, barrel.transform.position.y, 0) + barrelOffset;
 			transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z - 90.0f);
             craftController.toggleComponentInBarrel();
+        }
+        else if(onGrinder)
+        {
+            transform.position = new Vector3(grinder.transform.position.x, grinder.transform.position.y, 0) + grinderOffset;
+            craftController.toggleComponentOnGrinder();
         }
         else
         {
