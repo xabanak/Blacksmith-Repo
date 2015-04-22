@@ -153,6 +153,47 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22488546, guid: ad548ca8df1ccc346a679d47f0f8e611,
     type: 2}
   m_PrefabInternal: {fileID: 209891154}
+--- !u!1 &15241700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 15241701}
+  - 61: {fileID: 15241702}
+  m_Layer: 0
+  m_Name: Barrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &15241701
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 15241700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.01999664, y: -1.56999969, z: .340000004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1012210086}
+  m_RootOrder: 5
+--- !u!61 &15241702
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 15241700}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: .0273132324, y: -.575500488}
+  serializedVersion: 2
+  m_Size: {x: 1.49012232, y: 2.5307138}
 --- !u!1 &50147814
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +591,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1324f4eff93024043a283f40270cc3b4, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 1324f4eff93024043a283f40270cc3b4, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -571,6 +612,10 @@ Prefab:
     - target: {fileID: 100000, guid: 1324f4eff93024043a283f40270cc3b4, type: 3}
       propertyPath: m_Name
       value: Forge
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1324f4eff93024043a283f40270cc3b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1324f4eff93024043a283f40270cc3b4, type: 3}
@@ -696,7 +741,7 @@ Transform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1012210086}
-  m_RootOrder: 5
+  m_RootOrder: 9
 --- !u!60 &199337639
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -766,7 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9f9426986f9ea46bb73238c0447288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anvil: {fileID: 0}
+  anvil: {fileID: 1129777919}
   craftController: {fileID: 1302979229}
   snapBack: 1
 --- !u!1001 &209891154
@@ -1706,6 +1751,47 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &322486360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 322486361}
+  - 61: {fileID: 322486362}
+  m_Layer: 0
+  m_Name: Forge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &322486361
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 322486360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.11999989, y: -.769999981, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1012210086}
+  m_RootOrder: 4
+--- !u!61 &322486362
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 322486360}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -.249186516, y: .403445721}
+  serializedVersion: 2
+  m_Size: {x: 4.18008757, y: 1.80689549}
 --- !u!1 &362748521
 GameObject:
   m_ObjectHideFlags: 0
@@ -2178,10 +2264,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
---- !u!1 &529397639 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: 845c07f4df1d8f14985fbbb6c29ec629, type: 3}
-  m_PrefabInternal: {fileID: 740625260}
 --- !u!1 &558075458
 GameObject:
   m_ObjectHideFlags: 0
@@ -2339,7 +2421,7 @@ Transform:
   m_LocalScale: {x: .387249768, y: .387249947, z: .387249947}
   m_Children: []
   m_Father: {fileID: 1012210086}
-  m_RootOrder: 8
+  m_RootOrder: 12
 --- !u!61 &575663659
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2368,10 +2450,10 @@ MonoBehaviour:
   forgeOffset: {x: 0, y: 1.79999995, z: 0}
   barrelOffset: {x: 0, y: 0, z: 0}
   grinderOffset: {x: 0, y: 0, z: 0}
-  anvil: {fileID: 529397639}
+  anvil: {fileID: 1129777919}
   forge: {fileID: 609553031}
-  barrel: {fileID: 2011556726}
-  grinder: {fileID: 62403891}
+  barrel: {fileID: 15241700}
+  grinder: {fileID: 1473750754}
   craftController: {fileID: 1302979229}
   onAnvil: 0
   onForge: 0
@@ -2992,7 +3074,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 845c07f4df1d8f14985fbbb6c29ec629, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 845c07f4df1d8f14985fbbb6c29ec629, type: 3}
       propertyPath: m_Name
@@ -3014,6 +3096,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8f886f8d3c7aba545b2aaf947bc9329a, type: 2}
+    - target: {fileID: 100000, guid: 845c07f4df1d8f14985fbbb6c29ec629, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 845c07f4df1d8f14985fbbb6c29ec629, type: 3}
   m_IsPrefabParent: 0
@@ -3196,11 +3282,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 858096372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .330001831, y: 1.58999634, z: 0}
-  m_LocalScale: {x: .387249768, y: .387249947, z: .387249947}
+  m_LocalPosition: {x: .330000013, y: 1.59000003, z: 0}
+  m_LocalScale: {x: .291101724, y: .291101843, z: .291101843}
   m_Children: []
   m_Father: {fileID: 1012210086}
-  m_RootOrder: 6
+  m_RootOrder: 10
 --- !u!114 &858096377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3212,14 +3298,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf7acb199c73ed42828cac2b8e0c960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anvilOffset: {x: .400000006, y: 1.5, z: 0}
-  forgeOffset: {x: 0, y: 1.79999995, z: 0}
+  anvilOffset: {x: .200000003, y: .200000003, z: 0}
+  forgeOffset: {x: .0500000007, y: .0500000007, z: 0}
   barrelOffset: {x: 0, y: 0, z: 0}
   grinderOffset: {x: 0, y: 0, z: 0}
-  anvil: {fileID: 529397639}
-  forge: {fileID: 609553031}
-  barrel: {fileID: 2011556726}
-  grinder: {fileID: 62403891}
+  anvil: {fileID: 1129777919}
+  forge: {fileID: 322486360}
+  barrel: {fileID: 15241700}
+  grinder: {fileID: 1473750754}
   craftController: {fileID: 1302979229}
   onAnvil: 0
   onForge: 0
@@ -3545,6 +3631,10 @@ Transform:
   - {fileID: 1339662934}
   - {fileID: 150367892}
   - {fileID: 1302979228}
+  - {fileID: 1129777920}
+  - {fileID: 322486361}
+  - {fileID: 15241701}
+  - {fileID: 1473750755}
   - {fileID: 192869915}
   - {fileID: 2011556728}
   - {fileID: 199337638}
@@ -3841,6 +3931,47 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1110360314}
+--- !u!1 &1129777919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1129777920}
+  - 61: {fileID: 1129777921}
+  m_Layer: 0
+  m_Name: Anvil
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1129777920
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1129777919}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.8900001, y: -1.84000003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1012210086}
+  m_RootOrder: 3
+--- !u!61 &1129777921
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1129777919}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: .166121721, y: .0593298674}
+  serializedVersion: 2
+  m_Size: {x: 2.63749838, y: .881343544}
 --- !u!224 &1202714713 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22488546, guid: ad548ca8df1ccc346a679d47f0f8e611,
@@ -4025,12 +4156,12 @@ MonoBehaviour:
   hammerSliderObject: {fileID: 1868475946}
   timerSliderObject: {fileID: 275135963}
   furnaceSliderObject: {fileID: 285304052}
-  forge: {fileID: 609553031}
+  forge: {fileID: 322486360}
   bellows: {fileID: 946332781}
   craftingComponent: {fileID: 858096372}
-  coolingBarrel: {fileID: 2011556726}
+  coolingBarrel: {fileID: 15241700}
   hammer: {fileID: 199337636}
-  anvil: {fileID: 529397639}
+  anvil: {fileID: 1129777919}
   timeMultiplier: {fileID: 1565756060}
   stage: {fileID: 1847773638}
   popUpText: {fileID: 287891303}
@@ -4126,15 +4257,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.13999939
+      value: -.910000026
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.18634796
+      value: -3.91000009
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.46175241
+      value: 3.29999995
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d0e1997553bcdd641b4308f4a3867636, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4295,6 +4426,47 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1447851361}
+--- !u!1 &1473750754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1473750755}
+  - 61: {fileID: 1473750756}
+  m_Layer: 0
+  m_Name: Grinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1473750755
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1473750754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -35.1409988, y: -.540000021, z: -.689999998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1012210086}
+  m_RootOrder: 6
+--- !u!61 &1473750756
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1473750754}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: .013710022, y: .0913382173}
+  serializedVersion: 2
+  m_Size: {x: 2.12358737, y: 1.85866761}
 --- !u!1 &1520702906
 GameObject:
   m_ObjectHideFlags: 0
@@ -4322,7 +4494,7 @@ Transform:
   m_LocalScale: {x: .462406874, y: .464880228, z: .0222074483}
   m_Children: []
   m_Father: {fileID: 1012210086}
-  m_RootOrder: 9
+  m_RootOrder: 13
 --- !u!212 &1520702908
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5203,7 +5375,7 @@ Transform:
   m_LocalScale: {x: .462406874, y: .464880228, z: .0222074483}
   m_Children: []
   m_Father: {fileID: 1012210086}
-  m_RootOrder: 10
+  m_RootOrder: 14
 --- !u!212 &1891814040
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5452,7 +5624,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2011556727
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5490,7 +5662,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1012210086}
-  m_RootOrder: 4
+  m_RootOrder: 8
 --- !u!60 &2011556729
 PolygonCollider2D:
   m_ObjectHideFlags: 0

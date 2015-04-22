@@ -31,7 +31,7 @@ public class ComponentBehavior : MonoBehaviour {
 	
     void OnTriggerEnter2D(Collider2D myCollider)
     {
-        if (myCollider.gameObject.name == "Anvil Collider")
+        if (myCollider.gameObject.name == "Anvil")
         {
             onAnvil = true;
         }
@@ -43,7 +43,7 @@ public class ComponentBehavior : MonoBehaviour {
         {
             inBarrel = true;
         }
-        else if (myCollider.gameObject.name == "Grinding Collider") ;
+        else if (myCollider.gameObject.name == "Grinder")
         {
             onGrinder = true;
         }
@@ -51,7 +51,7 @@ public class ComponentBehavior : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D myCollider)
     {
-        if (myCollider.gameObject.name == "Anvil Collider")
+        if (myCollider.gameObject.name == "Anvil")
         {
 
             onAnvil = false;
@@ -64,7 +64,7 @@ public class ComponentBehavior : MonoBehaviour {
         {
             inBarrel = false;
         }
-        else if (myCollider.gameObject.name == "Grinder Collider")
+        else if (myCollider.gameObject.name == "Grinder")
         {
             onGrinder = false;
         }

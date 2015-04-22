@@ -34,7 +34,7 @@ public class HammerBehavior : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D myCollider)
     {
-        if (myCollider.gameObject.name == "Anvil Collider")
+        if (myCollider.gameObject.name == "Anvil")
         {
             craftController.hammerHitOnAnvil();
         }
