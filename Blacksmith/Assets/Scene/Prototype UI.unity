@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 603df19487124604d9c2bd1d24b2a1d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d782fb62c4ba12b4c8a979491fb58698, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: e107ad3119d569d48ac613c2bf6e7e96, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cdcab87afc99e2e409dc0d592dc35cc9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -678,7 +678,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: beb471087adc8bc47800becab1ab6b16, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70b72650bb638874b910e0000ac6fe10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &199337638
 Transform:
@@ -1202,7 +1202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 769448970c72d8b4d940a1b1329859ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d22cbdcb957414f4ca2a2d4951cde2ac, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2649,8 +2649,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 908668411}
   m_HandleRect: {fileID: 908668410}
   m_Direction: 3
-  m_Value: .49999547
-  m_Size: .722500205
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2916,7 +2916,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7e15e716b1a99554a8c1ce808fd83010, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 66e6104dc674c0043b474ad1fc53fddd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &858096376
 Transform:
@@ -4001,7 +4001,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 606ab104fb7ebfa4e89a132ab510459c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ab2bec5624a9bd41a4f13bfdaab871b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1533862913
 GameObject:
