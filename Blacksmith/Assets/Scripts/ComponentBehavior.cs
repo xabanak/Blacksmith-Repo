@@ -23,6 +23,8 @@ public class ComponentBehavior : MonoBehaviour {
     public bool inBarrel;
     public bool onGrinder;
 
+    public bool mouseDrag;
+
 	// Use this for initialization
     void Start()
     {
@@ -76,6 +78,7 @@ public class ComponentBehavior : MonoBehaviour {
 
     void OnMouseDown()
     {
+        mouseDrag = true;
         if (onAnvil)
         {
             craftController.toggleComponentOnAnvil();
@@ -99,6 +102,7 @@ public class ComponentBehavior : MonoBehaviour {
 
     void OnMouseUp() 
     {
+        mouseDrag = false;
         if (onAnvil)
         {
             transform.position = new Vector3(anvil.transform.position.x, anvil.transform.position.y, 0) + anvilOffset;

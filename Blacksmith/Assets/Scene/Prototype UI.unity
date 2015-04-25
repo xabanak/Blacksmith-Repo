@@ -2436,6 +2436,7 @@ MonoBehaviour:
   onForge: 0
   inBarrel: 0
   onGrinder: 0
+  mouseDrag: 0
 --- !u!50 &575663661
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -3275,10 +3276,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf7acb199c73ed42828cac2b8e0c960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anvilOffset: {x: .200000003, y: .200000003, z: 0}
-  forgeOffset: {x: .0500000007, y: .0500000007, z: 0}
-  barrelOffset: {x: 0, y: 0, z: 0}
-  grinderOffset: {x: 0, y: 0, z: 0}
+  anvilOffset: {x: .200000003, y: .200000003, z: -1}
+  forgeOffset: {x: .0500000007, y: .0500000007, z: -1}
+  barrelOffset: {x: 0, y: 0, z: -1}
+  grinderOffset: {x: 0, y: 0, z: -1}
   anvil: {fileID: 1129777919}
   forge: {fileID: 322486360}
   barrel: {fileID: 15241700}
@@ -3288,6 +3289,7 @@ MonoBehaviour:
   onForge: 0
   inBarrel: 0
   onGrinder: 0
+  mouseDrag: 0
 --- !u!1 &866077237
 GameObject:
   m_ObjectHideFlags: 0
