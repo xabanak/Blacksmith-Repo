@@ -95,8 +95,14 @@ public class CraftRoutine : MonoBehaviour
     //GRINDING STAGE VARIABLES
 
     private bool grinded;
-    private Transform tiltedRight;
-    private Transform tiltedLeft;
+    public Transform tiltedRight;
+    public Transform tiltedLeft;
+    public GameObject grinderGauge;
+    private const int speed = 3;
+    private float step;
+    private bool grindCycle;
+    private float grindTime;
+    private bool rotateRight;
 
     void setTimer(float time)
     {
@@ -148,6 +154,11 @@ public class CraftRoutine : MonoBehaviour
         componentInBarrel = false;
         componentOnGrinder = false;
 
+        // Grinder Stage
+        grinded = false;
+        rotateRight = true;
+        grindCycle = false;
+
         heatSliderObject.SetActive(false);
         hammerSliderObject.SetActive(false);
         timerSliderObject.SetActive(false);
@@ -182,9 +193,6 @@ public class CraftRoutine : MonoBehaviour
 		hammerSlider = hammerSliderObject.GetComponent<Slider> ();
 		timerSlider = timerSliderObject.GetComponent<Slider> ();
 		furnaceSlider = furnaceSliderObject.GetComponent<Slider> ();
-
-        tiltedLeft = craftingComponent.transform;
-        //tiltedLeft.rotation = new Vector4(tiltedLeft.rotation.x, tiltedLeft.rotation.y, tiltedLeft.rotation.z, tiltedLeft.rotation.w);
 
         resetCrafting();
 
@@ -264,7 +272,7 @@ public class CraftRoutine : MonoBehaviour
 		
 	}
 
-	void Update () 
+    void Update()
     {
         if (timerActive)
         {
@@ -317,7 +325,7 @@ public class CraftRoutine : MonoBehaviour
                         }
                     }
 
-                    timeQuality -= Time.deltaTime;               
+                    timeQuality -= Time.deltaTime;
                 }
                 if (!timerActive && !timerSet)
                 {
@@ -364,21 +372,8 @@ public class CraftRoutine : MonoBehaviour
             }
             else if (currentStageAbsVal == 2)
             {
-                if (!grinded)
-                {
-                    //craftingComponent.transform.rotation = Quaternion.RotateTowards(transform.rotation, )
 
-                    /*
-                     * public class ExampleClass : MonoBehaviour {
-                            public Transform target;
-                            public float speed;
-                            void Update() {
-                                float step = speed * Time.deltaTime;
-                                transform.rotation = Quaternion.RotateTowards(transform.rotation, target.rotation, step);
-                            }
-                        }
-                     * */
-                }
+
             }
             else if (currentStageAbsVal == 3)
             {
@@ -388,9 +383,31 @@ public class CraftRoutine : MonoBehaviour
             {
 
             }
-            else if(currentStageAbsVal == 5)
+            else if (currentStageAbsVal == 5)
             {
-
+                if (!grinded)
+                {
+                    if (grindCycle == false)
+                    {
+                        grindTime = Random.Range(2.0f, 5.0f);
+                        grindCycle = true;
+                        rotateRight = !rotateRight;
+                    }
+                    grindTime -= Time.deltaTime;
+                    step = speed * Time.deltaTime;
+                    if (rotateRight)
+                    {
+                        grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
+                    }
+                    else
+                    {
+                        grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, step);
+                    }
+                    if (grindTime <= 0.0f)
+                    {
+                        grindCycle = false;
+                    }
+                }
             }
         }
     }
@@ -422,7 +439,6 @@ public class CraftRoutine : MonoBehaviour
         heatSliderObject.SetActive(true);
         timerSliderObject.SetActive(true);
 
-
         heated = false;
         cooled = false;
 
@@ -443,8 +459,10 @@ public class CraftRoutine : MonoBehaviour
 
     void stageGrinding()
     {
-        //enable the new ui for grinding
-        //switch camera location
+        grinderGauge.SetActive(true);
+        switchRoom();
+
+        setAnnouncement("Grind!", 3.0f);
     }
 
     void stageSharpening()
