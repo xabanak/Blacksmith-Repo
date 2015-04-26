@@ -133,9 +133,11 @@ public class CraftRoutine : MonoBehaviour
     public GameObject grinderGauge;
     private const int speed = 3;
     private float step;
+    private float counterStep;
     private bool grindCycle;
     private float grindTime;
     private bool rotateRight;
+    private int playerRotation; // 0 for none, 1 for right, 2 for left
 
     void setTimer(float time)
     {
@@ -150,6 +152,7 @@ public class CraftRoutine : MonoBehaviour
     {
         timerSet = false;
         timerActive = true;
+        Debug.Log("startTimer set timerActive true");
     }
 
     void resetTimer()
@@ -158,6 +161,7 @@ public class CraftRoutine : MonoBehaviour
         timerEndTime = 0.0f;
         timerSet = false;
         timerActive = false;
+        Debug.Log("resettimer set timerActive false");
     }
 
     void setAnnouncement(string announcement, float time)
@@ -199,6 +203,7 @@ public class CraftRoutine : MonoBehaviour
         grinded = false;
         rotateRight = false;
         grindCycle = false;
+        playerRotation = 0;
 
         heatSliderObject.SetActive(false);
         hammerSliderObject.SetActive(false);
@@ -327,6 +332,11 @@ public class CraftRoutine : MonoBehaviour
 
     void Update()
     {
+        if (timerSliderObject.GetComponent<Slider>().value >= 45)
+        {
+            timerActive = false;
+        }
+
         if (timerActive)
         {
             timerTimer += Time.deltaTime;
@@ -420,6 +430,7 @@ public class CraftRoutine : MonoBehaviour
                 }
                 if (heated && cooled)
                 {
+                    Debug.Log("Quality is: " + itemQuality);
                     nextStage();
                 }
             }
@@ -438,39 +449,96 @@ public class CraftRoutine : MonoBehaviour
             }
             else if (currentStageAbsVal == 5)
             {
-                if (!grinded)
-                {/*
+                if (componentOnGrinder && timerSet)
+                {
+                    startTimer();
+                    timeQuality = timeSync;
+                }
+
+                if (timerActive)
+                {
+                    // The first section is automated and creates imbalance on the component
                     if (grindCycle == false)
                     {
                         grindTime = Random.Range(2.0f, 5.0f);
                         grindCycle = true;
                         rotateRight = !rotateRight;
-                    }*/
+                    }
 
-                    //grindTime -= Time.deltaTime;
+                    grindTime -= Time.deltaTime;
                     step = speed * Time.deltaTime;
 
-                    //if (!rotateRight)
-                    //{
+                    if (rotateRight)
+                    {
+                        grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
+                    }
+                    else
+                    {
                         grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, step);
-                        //if (grinderGauge.transform.rotation.z <= -25)
-                        //{
-                        //    grindCycle = false;
-                        //}
-                    //}
-                    //else
-                    //{
-                        //grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
-                        //if (grinderGauge.transform.rotation.z >= 25)
-                        //{
-                        //    grindCycle = false;
-                        //}
-                    //}
-                    //if (grindTime <= 0.0f)
-                    //{
-                    //    Debug.Log("Grind Cycle ended");
-                    //    grindCycle = false;
-                    //}
+                    }
+
+                    if (grindTime <= 0.0f)
+                    {
+                        //Debug.Log("Grind Cycle ended");
+                        grindCycle = false;
+                    }
+
+                    // In this section the player controls the balance of the grinding process
+                    counterStep = speed * 2 * Time.deltaTime;
+
+                    if (Input.GetKeyDown(KeyCode.W))
+                    {
+                        playerRotation = 0;
+                    }
+                    else if (Input.GetKeyDown(KeyCode.D))
+                    {
+                        playerRotation = 1;
+                    }
+                    else if (Input.GetKeyDown(KeyCode.A))
+                    {
+                        playerRotation = 2;
+                    }
+
+                    if (playerRotation == 1)
+                    {
+                        grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, counterStep);
+                    }
+                    else if (playerRotation == 2)
+                    {
+                        grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, counterStep);
+                    }
+
+                    if (timeQuality <= 0)
+                    {
+                        timeQuality = timeSync;
+                        if (grinderGauge.GetComponent<RectTransform>().transform.rotation.z <= 0.04f && grinderGauge.GetComponent<RectTransform>().transform.rotation.z >= -0.04f)
+                        {
+                            Debug.Log(grinderGauge.GetComponent<RectTransform>().transform.rotation.z);
+                            itemQuality += 1;
+                        }
+                        else if (grinderGauge.GetComponent<RectTransform>().transform.rotation.z <= 0.08f && grinderGauge.GetComponent<RectTransform>().transform.rotation.z >= -0.08f)
+                        {
+                            itemQuality += 0.5f;
+                        }
+                    }
+
+                    timeQuality -= Time.deltaTime;
+
+                    /*if (grinderGauge.transform.rotation.z >= 355 || grinderGauge.transform.rotation.z <= 5)
+                    {
+                        itemQuality += 1;
+                    }
+                    else if (grinderGauge.transform.rotation.z >= 350 || grinderGauge.transform.rotation.z <= 10)
+                    {
+                        itemQuality += 0.5f;
+                    }*/
+                }
+
+
+                if (!timerActive && !timerSet)
+                {
+                    setAnnouncement("Grinding Done", 1.0f);
+                    nextStage();
                 }
             }
         }
@@ -538,10 +606,18 @@ public class CraftRoutine : MonoBehaviour
 
     void stageGrinding()
     {
+        switchRoom();
+
         useGrinder = true;
 
         grinderGauge.SetActive(true);
-        switchRoom();
+        timerSliderObject.SetActive(true);
+
+        grinded = false;
+        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        timerSliderObject.GetComponent<Slider>().value = 0;
+
+        possibleItemQuality += timerEndTime;
 
         setAnnouncement("Grind!", 3.0f);
     }
