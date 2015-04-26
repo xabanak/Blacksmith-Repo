@@ -32,12 +32,12 @@ public class CraftRoutine : MonoBehaviour
 	private Slider timerSlider;
 	private Slider furnaceSlider;
 
-    public GameObject forge;
-    public GameObject bellows;
+    private GameObject forge;
+    private GameObject bellows;
     public GameObject craftingComponent; //eventually the game will programmatically instantiate the GameObject that you will use during the current crafting session, for now we will assign it a test object
-    public GameObject coolingBarrel;
-    public GameObject hammer;
-    public GameObject anvil;
+    private GameObject coolingBarrel;
+    private GameObject hammer;
+    private GameObject anvil;
 
     private Image heatSliderBackground;
     private Image hammerSliderBackground;
@@ -48,13 +48,36 @@ public class CraftRoutine : MonoBehaviour
     public Text popUpText;
     public Text results;
 
+    //CRAFTING TOOL INTERACTION ALLOWANCES
+
+    bool useAnvil;
+    bool useForge;
+    bool useHammer;
+    bool useGrinder;
+    bool useSharpener;
+    bool usePolisher;
+    bool useBarrel;
+
+    //CRAFTING TOOL TRACKING/LEVELS
+
+    int hammerLevel;
+    int anvilLevel;
+    int forgeLevel;
+    int grinderLevel;
+    int sharpeningLevel;
+    int polishingLevel;
+    int barrelLevel;
+
+    //CRAFTING CONSTANTS
+
     private const float fullSlider = 60.0f;
     private const float emptySlider = 0.0f;
-    //private const double baseTimeStage1 = 60.0f;
 	private const float hammerHitIncrease = 10.0f;
 	private const float bellowsHitIncrese = 5.0f;
 	private const float heatToStart = 25.0f;
 	private const float hammerToStart = 25.0f;
+
+    //COMPONENT CONTROL
 
     private bool furnaceIsMelting;
     private bool componentOnAnvil;
@@ -62,37 +85,47 @@ public class CraftRoutine : MonoBehaviour
     private bool componentOnForge;
     private bool componentOnGrinder;
 
+    //TIMER
+
     private float countDown = 3.0f;
     private float quality;
     private const float timeSync = 1.0f;
     private float timeQuality;
+
+    //ITEM QUALITY TRACKING
 
     public float itemQuality;
     public float possibleItemQuality;
 	private string itemType;
 	private string materialType;
 	
+    //STAGE CONTROL
+
     private int currentStage;
     private int currentStageAbsVal; // gets the integer value of the stage itself, not the number of the stage in order of stages for the current item
     private int totalStages;
     private double currentStageTime;
+
+    //ANNOUNCEMENT TIMER 
 
     private string annText;
     private bool annActive;
     private float annEndTime;
     private float annTimer;
 
+    //STAGE TIMER
+
     private bool timerSet;
     private bool timerActive;
     private float timerEndTime;
     private float timerTimer;
 
-    //HARDERNING STAGE VARIABLES
+    //HARDERNING STAGE
 
     private bool heated;
     private bool cooled;
 
-    //GRINDING STAGE VARIABLES
+    //GRINDING STAGE
 
     private bool grinded;
     private Transform tiltedRight;
@@ -148,6 +181,14 @@ public class CraftRoutine : MonoBehaviour
         componentInBarrel = false;
         componentOnGrinder = false;
 
+        useAnvil = false;
+        useForge = false;
+        useHammer = false;
+        useGrinder = false;
+        useSharpener = false;
+        usePolisher = false;
+        useBarrel = false;
+
         heatSliderObject.SetActive(false);
         hammerSliderObject.SetActive(false);
         timerSliderObject.SetActive(false);
@@ -178,6 +219,12 @@ public class CraftRoutine : MonoBehaviour
         heatSliderBackground = GameObject.Find("/Canvas/Heat Gauge/Background").GetComponent<Image>();
         hammerSliderBackground = GameObject.Find("Canvas/Hammer Gauge/Background").GetComponent<Image>();
 
+        anvil = GameObject.Find("Crafting/Anvil");
+        forge = GameObject.Find("Crafting/Forge");
+        bellows = GameObject.Find("Crafting/Bellows");
+        coolingBarrel = GameObject.Find("Crafting/Barrel");
+        hammer = GameObject.Find("Crafting/Hammer");
+
 		heatSlider = heatSliderObject.GetComponent<Slider> ();
 		hammerSlider = hammerSliderObject.GetComponent<Slider> ();
 		timerSlider = timerSliderObject.GetComponent<Slider> ();
@@ -186,11 +233,17 @@ public class CraftRoutine : MonoBehaviour
         tiltedLeft = craftingComponent.transform;
         //tiltedLeft.rotation = new Vector4(tiltedLeft.rotation.x, tiltedLeft.rotation.y, tiltedLeft.rotation.z, tiltedLeft.rotation.w);
 
-        resetCrafting();
+        hammerLevel = 1;
+        anvilLevel = 1;
+        forgeLevel = 1;
+        grinderLevel = 1;
+        sharpeningLevel = 1;
+        polishingLevel = 1;
+        barrelLevel = 1;
 
-        //timerSlider.maxValue = baseTimeStage1;
         
-        //results.enabled = false;
+
+        resetCrafting();
     }
 
     public void testCrafting()
@@ -396,6 +449,14 @@ public class CraftRoutine : MonoBehaviour
     }
     void resetBetweenStages()
     {
+        useAnvil = false;
+        useForge = false;
+        useHammer = false;
+        useGrinder = false;
+        useSharpener = false;
+        usePolisher = false;
+        useBarrel = false;
+
         timerSliderObject.SetActive(false);
         hammerSliderObject.SetActive(false);
         heatSliderObject.SetActive(false);
@@ -404,6 +465,10 @@ public class CraftRoutine : MonoBehaviour
 
     void stageShaping()
     {
+        useAnvil = true;
+        useForge = true;
+        useBarrel = true;
+
         timerSliderObject.SetActive(true);
         hammerSliderObject.SetActive(true);
         heatSliderObject.SetActive(true);
@@ -419,9 +484,11 @@ public class CraftRoutine : MonoBehaviour
 
     void stageHardening()
     {
+        useForge = true;
+        useBarrel = true;
+
         heatSliderObject.SetActive(true);
         timerSliderObject.SetActive(true);
-
 
         heated = false;
         cooled = false;
@@ -523,5 +590,37 @@ public class CraftRoutine : MonoBehaviour
             craftingCamera.transform.position = new Vector3(background1.transform.position.x, background2.transform.position.y, background2.transform.position.z - 10);
             workshopFront = true;
         }
+    }
+
+    //PUBLIC METHODS TO FIND IF THE COMPONENT IS ALLOWED TO INTERACT WITH A CERTAIN CRAFTING TOOL
+
+    public bool canUseAnvil()
+    {
+        return useAnvil;
+    }
+
+    public bool canUseForge()
+    {
+        return useForge;
+    }
+
+    public bool canUseBarrel()
+    {
+        return useBarrel;
+    }
+
+    public bool canUseGrinder()
+    {
+        return useGrinder;
+    }
+
+    public bool canUsePolisher()
+    {
+        return usePolisher;
+    }
+
+    public bool canUseSharpener()
+    {
+        return useSharpener;
     }
 }

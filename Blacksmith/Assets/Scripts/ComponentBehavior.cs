@@ -55,7 +55,6 @@ public class ComponentBehavior : MonoBehaviour {
     {
         if (myCollider.gameObject.name == "Anvil")
         {
-
             onAnvil = false;
         }
         else if (myCollider.gameObject.name == "Forge")
@@ -103,23 +102,23 @@ public class ComponentBehavior : MonoBehaviour {
     void OnMouseUp() 
     {
         mouseDrag = false;
-        if (onAnvil)
+        if (onAnvil && craftController.canUseAnvil())
         {
             transform.position = new Vector3(anvil.transform.position.x, anvil.transform.position.y, 0) + anvilOffset;
             craftController.toggleComponentOnAnvil();
         }
-        else if (onForge)
+        else if (onForge && craftController.canUseForge())
         {
             transform.position = new Vector3(forge.transform.position.x, forge.transform.position.y, 0) + forgeOffset;
             craftController.toggleComponentOnForge();
         }
-        else if(inBarrel)
+        else if(inBarrel && craftController.canUseBarrel())
         {
             transform.position = new Vector3(barrel.transform.position.x, barrel.transform.position.y, 0) + barrelOffset;
 			transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z - 90.0f);
             craftController.toggleComponentInBarrel();
         }
-        else if(onGrinder)
+        else if(onGrinder && craftController.canUseGrinder())
         {
             transform.position = new Vector3(grinder.transform.position.x, grinder.transform.position.y, 0) + grinderOffset;
             craftController.toggleComponentOnGrinder();

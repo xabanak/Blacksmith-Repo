@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HammerBehavior : MonoBehaviour {
-
+public class HammerBehavior : MonoBehaviour
+{
+    private int hammerLevel;
 
     private Vector3 screenPoint;
     public Vector3 offset;
@@ -18,6 +19,7 @@ public class HammerBehavior : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        hammerLevel = 1;
         resetPoint = gameObject.transform.position;
         isDragged = false;
         hasHit = false;
@@ -48,21 +50,9 @@ public class HammerBehavior : MonoBehaviour {
             hasHit = true;
             craftController.hammerHitOnAnvil();
         }
-        
+
     }
 
-    /*void OnTriggerExit2D(Collider2D myCollider)
-    {
-        if(myCollider.gameObject.name == "Component")
-        {
-            if (snapBack)
-            {
-                isDragged = false;
-                transform.position = resetPoint;
-            }
-            hasHit = false;
-        }
-    }*/
     void OnMouseDown()
     {
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -86,18 +76,13 @@ public class HammerBehavior : MonoBehaviour {
         }
     }
 
-    /*void OnMouseDrag()
+    void incrementHammerLevel()
     {
-        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+        hammerLevel++;
+    }
 
-        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint);
-        transform.position = curPosition;
-
-        if (hitAnvil)
-        {
-            hitAnvil = !hitAnvil;
-            transform.position = resetPoint;
-            return;
-        }
-    }*/
+    int getHammerLevel()
+    {
+        return hammerLevel;
+    }
 }
