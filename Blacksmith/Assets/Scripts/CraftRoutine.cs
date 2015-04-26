@@ -528,6 +528,8 @@ public class CraftRoutine : MonoBehaviour
 
     void stageGrinding()
     {
+        useGrinder = true;
+
         grinderGauge.SetActive(true);
         switchRoom();
 

@@ -624,11 +624,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 22493424, guid: 3ac7f47db885286409546a4f58500a7d, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22476668, guid: 3ac7f47db885286409546a4f58500a7d, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22451034, guid: 3ac7f47db885286409546a4f58500a7d, type: 2}
       propertyPath: m_LocalPosition.x
@@ -705,10 +705,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ac7f47db885286409546a4f58500a7d, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &192869915 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400000, guid: 845c07f4df1d8f14985fbbb6c29ec629, type: 3}
-  m_PrefabInternal: {fileID: 740625260}
 --- !u!1 &199337636
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,7 +2039,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -50.7599983, y: 50.4000015}
@@ -5445,7 +5441,7 @@ RectTransform:
   - {fileID: 379732315}
   - {fileID: 276864332}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
