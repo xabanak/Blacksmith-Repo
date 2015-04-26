@@ -187,7 +187,6 @@ public class CraftRoutine : MonoBehaviour
         componentInBarrel = false;
         componentOnGrinder = false;
 
-<<<<<<< HEAD
         useAnvil = false;
         useForge = false;
         useHammer = false;
@@ -195,12 +194,11 @@ public class CraftRoutine : MonoBehaviour
         useSharpener = false;
         usePolisher = false;
         useBarrel = false;
-=======
+
         // Grinder Stage
         grinded = false;
         rotateRight = true;
         grindCycle = false;
->>>>>>> origin/master
 
         heatSliderObject.SetActive(false);
         hammerSliderObject.SetActive(false);
@@ -243,7 +241,6 @@ public class CraftRoutine : MonoBehaviour
 		timerSlider = timerSliderObject.GetComponent<Slider> ();
 		furnaceSlider = furnaceSliderObject.GetComponent<Slider> ();
 
-<<<<<<< HEAD
         tiltedLeft = craftingComponent.transform;
         //tiltedLeft.rotation = new Vector4(tiltedLeft.rotation.x, tiltedLeft.rotation.y, tiltedLeft.rotation.z, tiltedLeft.rotation.w);
 
@@ -254,13 +251,8 @@ public class CraftRoutine : MonoBehaviour
         sharpeningLevel = 1;
         polishingLevel = 1;
         barrelLevel = 1;
-=======
-        resetCrafting();
->>>>>>> origin/master
 
-        
-
-        resetCrafting();
+      resetCrafting();
     }
 
     public void testCrafting()

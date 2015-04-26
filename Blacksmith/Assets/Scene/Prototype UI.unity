@@ -615,8 +615,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 173548340}
-<<<<<<< HEAD
-=======
 --- !u!1001 &180965187
 Prefab:
   m_ObjectHideFlags: 0
@@ -711,7 +709,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 845c07f4df1d8f14985fbbb6c29ec629, type: 3}
   m_PrefabInternal: {fileID: 740625260}
->>>>>>> origin/master
 --- !u!1 &199337636
 GameObject:
   m_ObjectHideFlags: 0
