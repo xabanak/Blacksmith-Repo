@@ -197,7 +197,7 @@ public class CraftRoutine : MonoBehaviour
 
         // Grinder Stage
         grinded = false;
-        rotateRight = true;
+        rotateRight = false;
         grindCycle = false;
 
         heatSliderObject.SetActive(false);
@@ -239,10 +239,7 @@ public class CraftRoutine : MonoBehaviour
 		heatSlider = heatSliderObject.GetComponent<Slider> ();
 		hammerSlider = hammerSliderObject.GetComponent<Slider> ();
 		timerSlider = timerSliderObject.GetComponent<Slider> ();
-		furnaceSlider = furnaceSliderObject.GetComponent<Slider> ();
-
-        tiltedLeft = craftingComponent.transform;
-        //tiltedLeft.rotation = new Vector4(tiltedLeft.rotation.x, tiltedLeft.rotation.y, tiltedLeft.rotation.z, tiltedLeft.rotation.w);
+        furnaceSlider = furnaceSliderObject.GetComponent<Slider>();
 
         hammerLevel = 1;
         anvilLevel = 1;
@@ -251,6 +248,8 @@ public class CraftRoutine : MonoBehaviour
         sharpeningLevel = 1;
         polishingLevel = 1;
         barrelLevel = 1;
+
+        Random.seed = (int)System.DateTime.Now.Ticks;
 
       resetCrafting();
     }
@@ -440,27 +439,38 @@ public class CraftRoutine : MonoBehaviour
             else if (currentStageAbsVal == 5)
             {
                 if (!grinded)
-                {
+                {/*
                     if (grindCycle == false)
                     {
                         grindTime = Random.Range(2.0f, 5.0f);
                         grindCycle = true;
                         rotateRight = !rotateRight;
-                    }
-                    grindTime -= Time.deltaTime;
+                    }*/
+
+                    //grindTime -= Time.deltaTime;
                     step = speed * Time.deltaTime;
-                    if (rotateRight)
-                    {
-                        grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
-                    }
-                    else
-                    {
+
+                    //if (!rotateRight)
+                    //{
                         grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, step);
-                    }
-                    if (grindTime <= 0.0f)
-                    {
-                        grindCycle = false;
-                    }
+                        //if (grinderGauge.transform.rotation.z <= -25)
+                        //{
+                        //    grindCycle = false;
+                        //}
+                    //}
+                    //else
+                    //{
+                        //grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
+                        //if (grinderGauge.transform.rotation.z >= 25)
+                        //{
+                        //    grindCycle = false;
+                        //}
+                    //}
+                    //if (grindTime <= 0.0f)
+                    //{
+                    //    Debug.Log("Grind Cycle ended");
+                    //    grindCycle = false;
+                    //}
                 }
             }
         }
