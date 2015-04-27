@@ -8,6 +8,15 @@ public class CraftRoutine : MonoBehaviour
     public Sprite heatDiff1;
 	public Sprite heatDiff2;
 	public Sprite heatDiff3;
+
+    public Sprite hardenDiff1;
+    public Sprite hardenDiff2;
+    public Sprite hardenDiff3;
+
+    public Sprite temperDiff1;
+    public Sprite temperDiff2;
+    public Sprite temperDiff3;
+
 	public Sprite hammerDiff1;
 	public Sprite hammerDiff2;
 	public Sprite hammerDiff3;
@@ -602,6 +611,24 @@ public class CraftRoutine : MonoBehaviour
 
     void stageTempering()
     {
+        switchRoom();
+
+        useForge = true;
+        useBarrel = true;
+        heatSliderObject.SetActive(true);
+        timerSliderObject.SetActive(true);
+
+        heated = false;
+        cooled = false;
+
+        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        startTimer();
+
+        possibleItemQuality += timerEndTime;
+        itemQuality += timerEndTime;
+        timeQuality = timeSync;
+
+        setAnnouncement("Heat!", 3.0f);
     }
 
     void stageGrinding()
