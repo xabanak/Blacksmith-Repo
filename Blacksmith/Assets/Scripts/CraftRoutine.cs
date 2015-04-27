@@ -30,6 +30,7 @@ public class CraftRoutine : MonoBehaviour
     public GameObject craftingCamera;
     public GameObject background1;
     public GameObject background2;
+    public GameObject background3;
     private bool workshopFront = true;
 
 	public GameObject heatSliderObject;
@@ -149,6 +150,42 @@ public class CraftRoutine : MonoBehaviour
     private float grindTime;
     private bool rotateRight;
     private int playerRotation; // 0 for none, 1 for right, 2 for left
+
+    //POlISHING STAGE
+
+    private const int basePolishTime = 5;
+    private float polishTimer;
+    private bool polishCycle;
+    private int shineSpot;
+    public GameObject shine;
+    public GameObject shine1;
+    public GameObject shine2;
+    public GameObject shine3;
+    public GameObject shine4;
+    public GameObject shine5;
+    public GameObject shine6;
+    public GameObject shine7;
+    public GameObject shine8;
+    public GameObject shine9;
+    public GameObject shine10;
+    public GameObject shine11;
+    public GameObject shine12;
+    private bool shimmer;
+    private bool shimmer1;
+    private bool shimmer2;
+    private bool shimmer3;
+    private bool shimmer4;
+    private bool shimmer5;
+    private bool shimmer6;
+    private bool shimmer7;
+    private bool shimmer8;
+    private bool shimmer9;
+    private bool shimmer10;
+    private bool shimmer11;
+    private bool shimmer12;
+
+
+
 
     void setTimer(float time)
     {
@@ -287,7 +324,7 @@ public class CraftRoutine : MonoBehaviour
 
         stage.text = "Stage: " + (currentStage+1) + "/" + totalStages;
 		currentStageAbsVal = (timeMultiplier.getStage(itemType, currentStage));
-        //Debug.Log("Current stage abs val is:" + currentStageAbsVal);
+        Debug.Log("Current stage abs val is:" + currentStageAbsVal);
 		
 		switch(currentStageAbsVal)
 		{
@@ -454,6 +491,101 @@ public class CraftRoutine : MonoBehaviour
             }
             else if (currentStageAbsVal == 3)
             {
+                // polishing
+
+                if (timerSet)
+                {
+                    startTimer();
+                    polishTimer = 0;
+                    resetShimmers();
+                }
+
+                if (timerActive)
+                {
+                       
+                    polishTimer -= Time.deltaTime;
+
+                    if (polishTimer <= 0)
+                    {
+                        shineSpot = Random.Range(0, 12);
+
+                        destoryShimmers();
+
+                        switch (shineSpot)
+                        {
+                            case 0:
+                                Debug.Log("Shine made");
+                                Instantiate(shine);
+                                shimmer = true;
+                                break;
+                            case 1:
+                                Debug.Log("Shine1 made");
+                                Instantiate(shine1);
+                                shimmer1 = true;
+                                break;
+                            case 2:
+                                Debug.Log("Shine2 made");
+                                Instantiate(shine2);
+                                shimmer2 = true;
+                                break;
+                            case 3:
+                                Debug.Log("Shine3 made");
+                                Instantiate(shine3);
+                                shimmer3 = true;
+                                break;
+                            case 4:
+                                Debug.Log("Shine4 made");
+                                Instantiate(shine4);
+                                shimmer4 = true;
+                                break;
+                            case 5:
+                                Debug.Log("Shine5 made");
+                                Instantiate(shine5);
+                                shimmer5 = true;
+                                break;
+                            case 6:
+                                Debug.Log("Shine6 made");
+                                Instantiate(shine6);
+                                shimmer6 = true;
+                                break;
+                            case 7:
+                                Debug.Log("Shine7 made");
+                                Instantiate(shine7);
+                                shimmer7 = true;
+                                break;
+                            case 8:
+                                Debug.Log("Shine8 made");
+                                Instantiate(shine8);
+                                shimmer8 = true;
+                                break;
+                            case 9:
+                                Debug.Log("Shine9 made");
+                                Instantiate(shine9);
+                                shimmer9 = true;
+                                break;
+                            case 10:
+                                Debug.Log("Shine10 made");
+                                Instantiate(shine10);
+                                shimmer10 = true;
+                                break;
+                            case 11:
+                                Debug.Log("Shine11 made");
+                                Instantiate(shine11);
+                                shimmer11 = true;
+                                break;
+                            case 12:
+                                Debug.Log("Shine12 made");
+                                Instantiate(shine12);
+                                shimmer12 = true;
+                                break;
+                            default:
+                                Debug.Log("Random shine integer outside of range");
+                                break;
+                        }
+
+                        polishTimer = basePolishTime;
+                    }
+                }
 
             }
             else if (currentStageAbsVal == 4)
@@ -666,6 +798,18 @@ public class CraftRoutine : MonoBehaviour
 
     void stagePolishing()
     {
+        Debug.Log("Polishing stage reached");
+
+        craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, background3.transform.position.z - 10);
+
+        usePolisher = true;
+
+        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        timerSliderObject.GetComponent<Slider>().value = 0;
+
+        possibleItemQuality += timerEndTime;
+
+        setAnnouncement("Polish!", 3.0f);
     }
 
 
@@ -777,5 +921,93 @@ public class CraftRoutine : MonoBehaviour
     public bool canUseSharpener()
     {
         return useSharpener;
+    }
+
+    private void resetShimmers()
+    {
+        shimmer = false;
+        shimmer1 = false;
+        shimmer2 = false;
+        shimmer3 = false;
+        shimmer4 = false;
+        shimmer5 = false;
+        shimmer6 = false;
+        shimmer7 = false;
+        shimmer8 = false;
+        shimmer9 = false;
+        shimmer10 = false;
+        shimmer11 = false;
+        shimmer12 = false;
+    }
+
+    private void destoryShimmers()
+    {
+        if (shimmer)
+        {
+            DestroyImmediate(shine, true);
+            shimmer = false;
+        }
+        else if (shimmer1)
+        {
+            DestroyImmediate(shine1, true);
+            shimmer1 = false;
+        }
+        else if (shimmer2)
+        {
+            DestroyImmediate(shine2, true);
+            shimmer2 = false;
+        }
+        else if (shimmer3)
+        {
+            DestroyImmediate(shine3, true);
+            shimmer3 = false;
+        }
+        else if (shimmer4)
+        {
+            DestroyImmediate(shine4, true);
+            shimmer4 = false;
+        }
+        else if (shimmer5)
+        {
+            DestroyImmediate(shine5, true);
+            shimmer5 = false;
+        }
+        else if (shimmer6)
+        {
+            DestroyImmediate(shine6, true);
+            shimmer6 = false;
+        }
+        else if (shimmer7)
+        {
+            DestroyImmediate(shine7, true);
+            shimmer7 = false;
+        }
+        else if (shimmer8)
+        {
+            DestroyImmediate(shine8, true);
+            shimmer8 = false;
+        }
+        else if (shimmer9)
+        {
+            DestroyImmediate(shine9, true);
+            shimmer9 = false;
+        }
+        else if (shimmer10)
+        {
+            DestroyImmediate(shine10, true);
+            shimmer10 = false;
+        }
+        else if (shimmer11)
+        {
+            DestroyImmediate(shine11, true);
+            shimmer11 = false;
+        }
+        else if (shimmer12)
+        {
+            DestroyImmediate(shine12, true);
+            shimmer12 = false;
+        }
+
+        Debug.Log("Destroy shimmers called");
     }
 }
