@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ComponentBehavior : MonoBehaviour {
@@ -88,8 +89,11 @@ public class ComponentBehavior : MonoBehaviour {
         }
         else if (inBarrel)
         {
-            craftController.toggleComponentInBarrel();
-			transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+            if (craftController.barrelSliderObject.GetComponent<Slider>().value == 0)
+            {
+                craftController.toggleComponentInBarrel();
+                transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+            }
         }
         else if (onGrinder)
         {

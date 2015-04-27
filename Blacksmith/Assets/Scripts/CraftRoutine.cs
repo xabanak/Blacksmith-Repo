@@ -204,29 +204,10 @@ public class CraftRoutine : MonoBehaviour
 
         resetBetweenStages();
 
-//         useAnvil = false;
-//         useForge = false;
-//         useHammer = false;
-//         useGrinder = false;
-//         useSharpener = false;
-//         usePolisher = false;
-//         useBarrel = false;
-
-        // Grinder Stage
         grinded = false;
         rotateRight = false;
         grindCycle = false;
         playerRotation = 0;
-
-//         heatSliderObject.SetActive(false);
-//         hammerSliderObject.SetActive(false);
-//         timerSliderObject.SetActive(false);
-//         grinderGauge.SetActive(false);
-        //hammer.SetActive(false);
-        //anvil.SetActive(false);
-        //coolingBarrel.SetActive(false);
-        //bellows.SetActive(false);
-        //forge.SetActive(false);
 
         stage.enabled = false;
         popUpText.enabled = false;
@@ -347,6 +328,13 @@ public class CraftRoutine : MonoBehaviour
 
     void Update()
     {
+        if (barrelSliderObject.activeSelf)
+        {
+            if (barrelSlider.value > 80.0f)
+            {
+                heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
+            }
+        }
         if (timerActive)
         {
             timerTimer += Time.deltaTime;
@@ -369,11 +357,7 @@ public class CraftRoutine : MonoBehaviour
         {
             if (currentStageAbsVal == 0)
             {
-                if (componentInBarrel)
-                {
-                    heatSlider.value -= (Time.deltaTime * quenchingSliderChange); ;
-                }
-                else
+                if (!componentInBarrel)
                 {
                     heatSlider.value -= (Time.deltaTime * heatSliderChange);
                 }
@@ -409,15 +393,21 @@ public class CraftRoutine : MonoBehaviour
             {
                 if (!heated || !cooled)
                 {
-                    if (componentInBarrel)
-                    {
-                        heatSlider.value -= (Time.deltaTime * quenchingSliderChange); ;
-                    }
-                    else
+                    if (!componentInBarrel)
                     {
                         heatSlider.value -= (Time.deltaTime * heatSliderChange);
                     }
-
+                    else
+                    {
+                        if (barrelSlider.value > 80.0f)
+                        {
+                            heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
+                        }
+                        else
+                        {
+                            heatSlider.value -= (Time.deltaTime * heatSliderChange);
+                        }
+                    }
                     if (!timerActive)
                     {
                         timeQuality -= Time.deltaTime;
@@ -446,8 +436,21 @@ public class CraftRoutine : MonoBehaviour
             }
             else if (currentStageAbsVal == 2)
             {
-
-
+                if (!componentInBarrel)
+                {
+                    heatSlider.value -= (Time.deltaTime * heatSliderChange);
+                }
+                else
+                {
+                    if (barrelSlider.value > 80.0f)
+                    {
+                        heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
+                    }
+                    else
+                    {
+                        heatSlider.value -= (Time.deltaTime * heatSliderChange);
+                    }
+                }
             }
             else if (currentStageAbsVal == 3)
             {
@@ -705,7 +708,12 @@ public class CraftRoutine : MonoBehaviour
         if (componentInBarrel)
         {
             barrelSliderObject.SetActive(false);
-
+            craftingComponent.SetActive(true);
+        }
+        else if (!componentInBarrel)
+        {
+            barrelSlider.gameObject.SetActive(true);
+            craftingComponent.SetActive(false);
         }
         componentInBarrel = !componentInBarrel;
     }
