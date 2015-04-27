@@ -36,10 +36,12 @@ public class CraftRoutine : MonoBehaviour
 	public GameObject hammerSliderObject;
 	public GameObject timerSliderObject;
     public GameObject furnaceSliderObject;
+    public GameObject barrelSliderObject;
 	private Slider heatSlider;
 	private Slider hammerSlider;
 	private Slider timerSlider;
 	private Slider furnaceSlider;
+    private Slider barrelSlider;
 
     private GameObject forge;
     private GameObject bellows;
@@ -200,13 +202,15 @@ public class CraftRoutine : MonoBehaviour
         componentInBarrel = false;
         componentOnGrinder = false;
 
-        useAnvil = false;
-        useForge = false;
-        useHammer = false;
-        useGrinder = false;
-        useSharpener = false;
-        usePolisher = false;
-        useBarrel = false;
+        resetBetweenStages();
+
+//         useAnvil = false;
+//         useForge = false;
+//         useHammer = false;
+//         useGrinder = false;
+//         useSharpener = false;
+//         usePolisher = false;
+//         useBarrel = false;
 
         // Grinder Stage
         grinded = false;
@@ -214,9 +218,10 @@ public class CraftRoutine : MonoBehaviour
         grindCycle = false;
         playerRotation = 0;
 
-        heatSliderObject.SetActive(false);
-        hammerSliderObject.SetActive(false);
-        timerSliderObject.SetActive(false);
+//         heatSliderObject.SetActive(false);
+//         hammerSliderObject.SetActive(false);
+//         timerSliderObject.SetActive(false);
+//         grinderGauge.SetActive(false);
         //hammer.SetActive(false);
         //anvil.SetActive(false);
         //coolingBarrel.SetActive(false);
@@ -254,6 +259,7 @@ public class CraftRoutine : MonoBehaviour
 		hammerSlider = hammerSliderObject.GetComponent<Slider> ();
 		timerSlider = timerSliderObject.GetComponent<Slider> ();
         furnaceSlider = furnaceSliderObject.GetComponent<Slider>();
+        barrelSlider = barrelSliderObject.GetComponent<Slider>();
 
         hammerLevel = 1;
         anvilLevel = 1;
@@ -341,11 +347,6 @@ public class CraftRoutine : MonoBehaviour
 
     void Update()
     {
-        if (timerSliderObject.GetComponent<Slider>().value >= 45)
-        {
-            timerActive = false;
-        }
-
         if (timerActive)
         {
             timerTimer += Time.deltaTime;
@@ -562,9 +563,11 @@ public class CraftRoutine : MonoBehaviour
         usePolisher = false;
         useBarrel = false;
 
+        barrelSliderObject.SetActive(false);
         timerSliderObject.SetActive(false);
         hammerSliderObject.SetActive(false);
         heatSliderObject.SetActive(false);
+        grinderGauge.SetActive(false);
         resetTimer();
     }
 
@@ -593,6 +596,8 @@ public class CraftRoutine : MonoBehaviour
         useBarrel = true;
 
         heatSliderObject.SetActive(true);
+        heatSliderBackground.sprite = hardenDiff1;
+
         timerSliderObject.SetActive(true);
 
         heated = false;
@@ -616,6 +621,8 @@ public class CraftRoutine : MonoBehaviour
         useForge = true;
         useBarrel = true;
         heatSliderObject.SetActive(true);
+        heatSliderBackground.sprite = temperDiff1;
+
         timerSliderObject.SetActive(true);
 
         heated = false;
@@ -695,6 +702,11 @@ public class CraftRoutine : MonoBehaviour
 
     public void toggleComponentInBarrel()
     {
+        if (componentInBarrel)
+        {
+            barrelSliderObject.SetActive(false);
+
+        }
         componentInBarrel = !componentInBarrel;
     }
 
