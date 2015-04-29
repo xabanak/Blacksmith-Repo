@@ -6,6 +6,7 @@ public class SoundController : MonoBehaviour {
     private AudioSource hammerHit;
     private AudioSource bellowsDown;
     private AudioSource forgeAmbient;
+    private AudioSource cooling;
 
 	// Use this for initialization
 	void Start () 
@@ -13,6 +14,7 @@ public class SoundController : MonoBehaviour {
         hammerHit = GameObject.Find("Sounds/HammerHit").GetComponent<AudioSource>();
         bellowsDown = GameObject.Find("Sounds/BellowsDown").GetComponent<AudioSource>();
         forgeAmbient = GameObject.Find("Sounds/ForgeAmbient").GetComponent<AudioSource>();
+        cooling = GameObject.Find("Sounds/Cooling").GetComponent<AudioSource>();
         
 	}
 	
@@ -39,5 +41,15 @@ public class SoundController : MonoBehaviour {
     public void StopForgeAmbient()
     {
         forgeAmbient.mute = true;
+    }
+
+    public void PlayCooling()
+    {
+        cooling.Play();
+    }
+
+    public bool IsCoolingPlaying()
+    {
+        return cooling.isPlaying;
     }
 }
