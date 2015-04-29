@@ -3517,7 +3517,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2383292caafe946b2aeb2cc30703ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  craftController: {fileID: 1302979229}
 --- !u!1 &958029591
 GameObject:
   m_ObjectHideFlags: 0
@@ -6265,6 +6264,7 @@ GameObject:
   - 212: {fileID: 2112113944}
   - 60: {fileID: 2112113943}
   - 114: {fileID: 2112113942}
+  - 50: {fileID: 2112113945}
   m_Layer: 0
   m_Name: Polishing Stone 1
   m_TagString: Untagged
@@ -6279,7 +6279,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2112113940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.9400024, y: .959999084, z: 0}
+  m_LocalPosition: {x: -50.9400024, y: .959999084, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1012210086}
@@ -6361,3 +6361,18 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cda8ccd1728bb8c4ba18d05944ed5a0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!50 &2112113945
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2112113940}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
