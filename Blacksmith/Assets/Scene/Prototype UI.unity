@@ -4647,11 +4647,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1370886550}
   - 212: {fileID: 1370886554}
-  - 50: {fileID: 1370886553}
-  - 114: {fileID: 1370886552}
   - 61: {fileID: 1370886551}
   m_Layer: 0
-  m_Name: Component 2
+  m_Name: Polishing Component
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4682,46 +4680,6 @@ BoxCollider2D:
   m_Offset: {x: -.100000001, y: .100000001}
   serializedVersion: 2
   m_Size: {x: 8, y: 1.20000005}
---- !u!114 &1370886552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1370886549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cf7acb199c73ed42828cac2b8e0c960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anvilOffset: {x: .400000006, y: 1.5, z: 0}
-  forgeOffset: {x: 0, y: 1.79999995, z: 0}
-  barrelOffset: {x: 0, y: 0, z: 0}
-  grinderOffset: {x: 0, y: 0, z: 0}
-  anvil: {fileID: 1129777919}
-  forge: {fileID: 0}
-  barrel: {fileID: 15241700}
-  grinder: {fileID: 1473750754}
-  craftController: {fileID: 1302979229}
-  onAnvil: 0
-  onForge: 0
-  inBarrel: 0
-  onGrinder: 0
-  mouseDrag: 0
---- !u!50 &1370886553
-Rigidbody2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1370886549}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 1
-  m_FixedAngle: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
 --- !u!212 &1370886554
 SpriteRenderer:
   m_ObjectHideFlags: 0

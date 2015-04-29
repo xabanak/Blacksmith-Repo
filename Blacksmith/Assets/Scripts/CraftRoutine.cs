@@ -376,7 +376,8 @@ public class CraftRoutine : MonoBehaviour
 
 	void endCrafting()
 	{
-		
+        currentStage = -1;
+        Debug.Log("lol endcrafting");
 	}
 
     void Update()

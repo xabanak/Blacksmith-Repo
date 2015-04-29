@@ -204,6 +204,10 @@ public class StageTimeMatrix : MonoBehaviour
 
     public int getStage(string item, int stage)
     {
+        if (stage >= numStages)
+        {
+            return -1;
+        }
 
         Debug.Log("Getting stage for " + item + "for stage " + stage);
         int itemValue = (int)Enum.Parse(typeof(Item), item);
