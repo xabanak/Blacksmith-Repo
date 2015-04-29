@@ -21,6 +21,10 @@ public class CraftRoutine : MonoBehaviour
 	public Sprite hammerDiff2;
 	public Sprite hammerDiff3;
 
+    public Sprite bellowsClosed;
+    public Sprite bellowsMid;
+    public Sprite bellowsOpen;
+
 	public float heatSliderChange;
 	public float hammerSliderChange;
 	public float timeSliderChange;
@@ -38,11 +42,13 @@ public class CraftRoutine : MonoBehaviour
 	public GameObject timerSliderObject;
     public GameObject furnaceSliderObject;
     public GameObject barrelSliderObject;
+    public GameObject bellowsSliderObject;
 	private Slider heatSlider;
 	private Slider hammerSlider;
 	private Slider timerSlider;
 	private Slider furnaceSlider;
     private Slider barrelSlider;
+    private Slider bellowsSlider;
 
     private GameObject forge;
     private GameObject bellows;
@@ -85,7 +91,7 @@ public class CraftRoutine : MonoBehaviour
     private const float fullSlider = 60.0f;
     private const float emptySlider = 0.0f;
 	private const float hammerHitIncrease = 10.0f;
-	private const float bellowsHitIncrese = 5.0f;
+	private const float bellowsHitIncrese = 2.0f;
 	private const float heatToStart = 25.0f;
 	private const float hammerToStart = 25.0f;
 
@@ -186,7 +192,8 @@ public class CraftRoutine : MonoBehaviour
     private int polishCount;
     private int polishesNeeded;
 
-
+    private float bellowsPosition;
+    private const float homeBellowsPosition = 6.0f;
 
 
     void setTimer(float time)
@@ -280,6 +287,7 @@ public class CraftRoutine : MonoBehaviour
 		timerSlider = timerSliderObject.GetComponent<Slider> ();
         furnaceSlider = furnaceSliderObject.GetComponent<Slider>();
         barrelSlider = barrelSliderObject.GetComponent<Slider>();
+        bellowsSlider = GameObject.Find("Canvas/Bellows Slider").GetComponent<Slider>();
 
         hammerLevel = 1;
         anvilLevel = 1;
@@ -288,6 +296,8 @@ public class CraftRoutine : MonoBehaviour
         sharpeningLevel = 1;
         polishingLevel = 1;
         barrelLevel = 1;
+
+        bellowsPosition = homeBellowsPosition;
 
         Random.seed = (int)System.DateTime.Now.Ticks;
 
@@ -367,6 +377,41 @@ public class CraftRoutine : MonoBehaviour
 
     void Update()
     {
+        if (bellowsSliderObject.activeSelf)
+        {
+            if (bellowsPosition < 2.0f)
+            {
+                bellowsPosition = bellowsSlider.value;
+
+                if (bellowsPosition >= 2.0f)
+                {
+                    bellowsPump();
+                    bellowsChange();
+                }
+            }
+            else if (bellowsPosition >= 2.0f && bellowsPosition < 4.0f)
+            {
+                bellowsPosition = bellowsSlider.value;
+
+                if (bellowsPosition < 2.0f)
+                {
+                    bellowsChange();
+                }
+                else if (bellowsPosition >= 4.0f)
+                {
+                    bellowsPump();
+                    bellowsChange();
+                }
+            }
+            else
+            {
+                bellowsPosition = bellowsSlider.value;
+                if (bellowsPosition < 4.0f)
+                {
+                    bellowsChange();
+                }
+            }
+        }
         if (barrelSliderObject.activeSelf)
         {
             if (barrelSlider.value > 80.0f)
@@ -687,6 +732,8 @@ public class CraftRoutine : MonoBehaviour
     }
     void resetBetweenStages()
     {
+        bellowsPosition = homeBellowsPosition;
+
         useAnvil = false;
         useForge = false;
         useHammer = false;
@@ -695,6 +742,7 @@ public class CraftRoutine : MonoBehaviour
         usePolisher = false;
         useBarrel = false;
 
+        bellowsSliderObject.SetActive(false);
         barrelSliderObject.SetActive(false);
         timerSliderObject.SetActive(false);
         hammerSliderObject.SetActive(false);
@@ -709,6 +757,7 @@ public class CraftRoutine : MonoBehaviour
         useForge = true;
         useBarrel = true;
 
+        bellowsSliderObject.SetActive(true);
         timerSliderObject.SetActive(true);
         hammerSliderObject.SetActive(true);
         heatSliderObject.SetActive(true);
@@ -727,6 +776,7 @@ public class CraftRoutine : MonoBehaviour
         useForge = true;
         useBarrel = true;
 
+        bellowsSliderObject.SetActive(true);
         heatSliderObject.SetActive(true);
         heatSliderBackground.sprite = hardenDiff1;
 
@@ -750,6 +800,7 @@ public class CraftRoutine : MonoBehaviour
     {
         switchRoom();
 
+        bellowsSliderObject.SetActive(true);
         useForge = true;
         useBarrel = true;
         heatSliderObject.SetActive(true);
@@ -828,14 +879,27 @@ public class CraftRoutine : MonoBehaviour
         }
     }
 
-    public void bellowsPump()
+    private void bellowsChange()
     {
-        if (currentStageAbsVal == 0 || currentStageAbsVal == 1 || currentStageAbsVal == 2)
+        if (bellowsSlider.value >= 4.0f)
         {
-            if (componentOnForge)
-            {
-                heatSlider.value += bellowsHitIncrese;
-            }
+            bellows.GetComponent<SpriteRenderer>().sprite = bellowsClosed;
+        }
+        else if (bellowsSlider.value >= 2.0f && bellowsSlider.value < 4.0f)
+        {
+            bellows.GetComponent<SpriteRenderer>().sprite = bellowsMid;
+        }
+        else
+        {
+            bellows.GetComponent<SpriteRenderer>().sprite = bellowsOpen;
+        }
+    }
+
+    private void bellowsPump()
+    {
+        if (componentOnForge)
+        {
+            heatSlider.value += bellowsHitIncrese;
         }
     }
 
