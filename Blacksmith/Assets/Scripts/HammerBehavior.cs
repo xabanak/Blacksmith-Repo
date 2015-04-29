@@ -12,10 +12,12 @@ public class HammerBehavior : MonoBehaviour
 
     public GameObject anvil;
     public CraftRoutine craftController;
+    private GameObject craftingController;
 
     public bool snapBack;
     private bool hasHit;
     private bool isDragged;
+
     // Use this for initialization
     void Start()
     {
@@ -23,6 +25,7 @@ public class HammerBehavior : MonoBehaviour
         resetPoint = gameObject.transform.position;
         isDragged = false;
         hasHit = false;
+        craftingController = GameObject.Find("Crafting/CraftingController");
     }
 
     void Update()

@@ -195,6 +195,8 @@ public class CraftRoutine : MonoBehaviour
     private float bellowsPosition;
     private const float homeBellowsPosition = 6.0f;
 
+    private SoundController soundController;
+
 
     void setTimer(float time)
     {
@@ -273,6 +275,8 @@ public class CraftRoutine : MonoBehaviour
 
 	void Start () 
 	{
+        soundController = this.GetComponent<SoundController>();
+
         heatSliderBackground = GameObject.Find("/Canvas/Heat Gauge/Background").GetComponent<Image>();
         hammerSliderBackground = GameObject.Find("Canvas/Hammer Gauge/Background").GetComponent<Image>();
 
@@ -871,6 +875,7 @@ public class CraftRoutine : MonoBehaviour
             if (componentOnAnvil)
             {
                 hammerSlider.value += hammerHitIncrease;
+                soundController.PlayHammerHit();
             }
         }
     }
