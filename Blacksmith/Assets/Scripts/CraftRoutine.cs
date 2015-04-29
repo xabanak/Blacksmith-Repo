@@ -548,7 +548,7 @@ public class CraftRoutine : MonoBehaviour
                     resetShimmers();
                 }
 
-                if (timerActive && polishesNeeded > 0) // && iterations !done
+                if (timerActive && polishesNeeded > 0)
                 {
                     polishTimer -= Time.deltaTime;
 
@@ -622,9 +622,16 @@ public class CraftRoutine : MonoBehaviour
                     }
                 }
 
-                if (!timerActive && !timerSet && polishesNeeded <= 0)
+                if (!timerActive && !timerSet)
                 {
-                    setAnnouncement("Polish Done", 1.0f);
+                    setAnnouncement("Polish Done", 3.0f);
+                    destoryShimmers();
+                    nextStage();
+                }
+                else if (polishesNeeded == 0)
+                {
+                    setAnnouncement("Polish Done", 3.0f);
+                    timerActive = false;
                     destoryShimmers();
                     nextStage();
                 }
@@ -666,7 +673,6 @@ public class CraftRoutine : MonoBehaviour
 
                     if (grindTime <= 0.0f)
                     {
-                        //Debug.Log("Grind Cycle ended");
                         grindCycle = false;
                     }
 
@@ -710,15 +716,6 @@ public class CraftRoutine : MonoBehaviour
                     }
 
                     timeQuality -= Time.deltaTime;
-
-                    /*if (grinderGauge.transform.rotation.z >= 355 || grinderGauge.transform.rotation.z <= 5)
-                    {
-                        itemQuality += 1;
-                    }
-                    else if (grinderGauge.transform.rotation.z >= 350 || grinderGauge.transform.rotation.z <= 10)
-                    {
-                        itemQuality += 0.5f;
-                    }*/
                 }
 
 
@@ -846,7 +843,6 @@ public class CraftRoutine : MonoBehaviour
 
     void stagePolishing()
     {
-        Debug.Log("Polishing stage reached");
         setPolishCount(3);
         setPolishesNeeded(5);
 
@@ -860,7 +856,7 @@ public class CraftRoutine : MonoBehaviour
 
         timerSliderObject.GetComponent<Slider>().value = 0;
 
-        possibleItemQuality += timerEndTime;
+        possibleItemQuality += polishesNeeded * 5;
 
         setAnnouncement("Polish!", 3.0f);
     }
@@ -1071,7 +1067,6 @@ public class CraftRoutine : MonoBehaviour
             shimmer12 = false;
         }
 
-        Debug.Log("Destroy shimmers called");
     }
 
     public void polishUpdateQuality()
@@ -1082,13 +1077,15 @@ public class CraftRoutine : MonoBehaviour
         {
             itemQuality += 5;
             resetShimmerCycle();
-            setPolishesNeeded(polishesNeeded--);
+            setPolishesNeeded(polishesNeeded - 1);
+            Debug.Log("Quality is: " + itemQuality);
         }
     }
 
     public void resetShimmerCycle()
     {
         polishTimer = 0;
+        polishCount = 5;
     }
     
     public void setPolishCount(int polish)
