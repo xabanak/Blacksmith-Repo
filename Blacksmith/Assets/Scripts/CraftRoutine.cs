@@ -468,6 +468,8 @@ public class CraftRoutine : MonoBehaviour
                 if (heated && cooled)
                 {
                     Debug.Log("Quality is: " + itemQuality);
+                    //craftingComponent.SetActive(true);
+                    toggleComponentInBarrel();
                     nextStage();
                 }
             }
@@ -805,6 +807,7 @@ public class CraftRoutine : MonoBehaviour
         usePolisher = true;
 
         setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+
         timerSliderObject.GetComponent<Slider>().value = 0;
 
         possibleItemQuality += timerEndTime;
@@ -879,6 +882,7 @@ public class CraftRoutine : MonoBehaviour
 
     public void switchRoom()
     {
+        craftingComponent.GetComponent<ComponentBehavior>().switchRoom();
         if (workshopFront == true)
         {
             craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, background2.transform.position.z - 10);

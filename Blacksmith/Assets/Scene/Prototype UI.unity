@@ -2338,7 +2338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &575663658
 Transform:
   m_ObjectHideFlags: 0
@@ -2346,7 +2346,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 575663657}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.5200005, y: -3.3599999, z: 0}
+  m_LocalPosition: {x: -29.5400009, y: .75, z: 0}
   m_LocalScale: {x: .387249768, y: .387249947, z: .387249947}
   m_Children: []
   m_Father: {fileID: 1012210086}
@@ -2542,6 +2542,33 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 642491424}
+--- !u!1 &659887564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 659887565}
+  m_Layer: 0
+  m_Name: Room2Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &659887565
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 659887564}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -29.9819946, y: 1.64600372, z: 1.83500004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1012210086}
+  m_RootOrder: 15
 --- !u!1 &666941660
 GameObject:
   m_ObjectHideFlags: 0
@@ -3507,6 +3534,8 @@ Transform:
   - {fileID: 1891814039}
   - {fileID: 1007853836}
   - {fileID: 1370886550}
+  - {fileID: 1105503722}
+  - {fileID: 659887565}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!1 &1033968458
@@ -3696,6 +3725,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!1 &1105503721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1105503722}
+  m_Layer: 0
+  m_Name: Room1Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1105503722
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1105503721}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .861999512, y: 1.69599915, z: 1.55200005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1012210086}
+  m_RootOrder: 14
 --- !u!1 &1110360314
 GameObject:
   m_ObjectHideFlags: 0
@@ -4022,6 +4078,7 @@ MonoBehaviour:
   craftingCamera: {fileID: 150367887}
   background1: {fileID: 1520702906}
   background2: {fileID: 1891814038}
+  background3: {fileID: 0}
   heatSliderObject: {fileID: 1665182075}
   hammerSliderObject: {fileID: 1868475946}
   timerSliderObject: {fileID: 275135963}
@@ -4037,6 +4094,19 @@ MonoBehaviour:
   tiltedRight: {fileID: 22495206, guid: 7ee1e09b86acb9240aafe5a9c8e95c9e, type: 2}
   tiltedLeft: {fileID: 22457576, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
   grinderGauge: {fileID: 276864331}
+  shine: {fileID: 0}
+  shine1: {fileID: 0}
+  shine2: {fileID: 0}
+  shine3: {fileID: 0}
+  shine4: {fileID: 0}
+  shine5: {fileID: 0}
+  shine6: {fileID: 0}
+  shine7: {fileID: 0}
+  shine8: {fileID: 0}
+  shine9: {fileID: 0}
+  shine10: {fileID: 0}
+  shine11: {fileID: 0}
+  shine12: {fileID: 0}
 --- !u!114 &1302979230
 MonoBehaviour:
   m_ObjectHideFlags: 0

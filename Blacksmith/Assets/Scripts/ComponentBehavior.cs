@@ -4,6 +4,9 @@ using System.Collections;
 
 public class ComponentBehavior : MonoBehaviour {
 
+    private GameObject room1Position;
+    private GameObject room2Position;
+
     private Vector3 screenPoint;
     private Vector3 offset;
     private Vector3 resetPoint;
@@ -24,12 +27,17 @@ public class ComponentBehavior : MonoBehaviour {
     public bool inBarrel;
     public bool onGrinder;
 
+    bool inRoom1;
+
     public bool mouseDrag;
 
 	// Use this for initialization
     void Start()
     {
+        inRoom1 = true;
         resetPoint = gameObject.transform.position;
+        room1Position = GameObject.Find("Crafting/Room1Position");
+        room2Position = GameObject.Find("Crafting/Room2Position");
     }
 	
     void OnTriggerEnter2D(Collider2D myCollider)
@@ -129,7 +137,15 @@ public class ComponentBehavior : MonoBehaviour {
         }
         else
         {
-            transform.position = resetPoint;
+            if (inRoom1)
+            {
+                transform.position = room1Position.transform.position;
+            }
+            else
+            {
+                transform.position = room2Position.transform.position;
+            }
+            
         }
     }
 
@@ -139,5 +155,10 @@ public class ComponentBehavior : MonoBehaviour {
 
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint);
         transform.position = curPosition;
+    }
+
+    public void switchRoom()
+    {
+        inRoom1 = !inRoom1;
     }
 }
