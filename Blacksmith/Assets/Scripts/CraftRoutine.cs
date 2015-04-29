@@ -535,21 +535,64 @@ public class CraftRoutine : MonoBehaviour
             }
             else if (currentStageAbsVal == 2)
             {
-                if (!componentInBarrel)
+                if (!heated || !cooled)
                 {
-                    heatSlider.value -= (Time.deltaTime * heatSliderChange);
-                }
-                else
-                {
-                    if (barrelSlider.value > 80.0f)
-                    {
-                        heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
-                    }
-                    else
+                    if (!componentInBarrel)
                     {
                         heatSlider.value -= (Time.deltaTime * heatSliderChange);
                     }
+                    else
+                    {
+                        if (barrelSlider.value > 80.0f)
+                        {
+                            heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
+                        }
+                        else
+                        {
+                            heatSlider.value -= (Time.deltaTime * heatSliderChange);
+                        }
+                    }
+                    if (!timerActive)
+                    {
+                        timeQuality -= Time.deltaTime;
+                        if (timeQuality <= 0)
+                        {
+                            timeQuality = timeSync;
+
+                            itemQuality -= 1.0f;
+                        }
+                    }
                 }
+                if (heatSlider.value > 70.0f)
+                {
+                    heated = true;
+                    setAnnouncement("Quench!", 3.0f);
+                }
+                if (heatSlider.value < 1.0f && heated)
+                {
+                    cooled = true;
+                }
+                if (heated && cooled)
+                {
+                    Debug.Log("Quality is: " + itemQuality);
+                    craftingComponent.GetComponent<ComponentBehavior>().removeFromBarrel();
+                    nextStage();
+                }
+//                 if (!componentInBarrel)
+//                 {
+//                     heatSlider.value -= (Time.deltaTime * heatSliderChange);
+//                 }
+//                 else
+//                 {
+//                     if (barrelSlider.value > 80.0f)
+//                     {
+//                         heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
+//                     }
+//                     else
+//                     {
+//                         heatSlider.value -= (Time.deltaTime * heatSliderChange);
+//                     }
+//                 }
             }
             else if (currentStageAbsVal == 3)
             {
@@ -744,6 +787,7 @@ public class CraftRoutine : MonoBehaviour
     void resetBetweenStages()
     {
         bellowsPosition = homeBellowsPosition;
+        barrelSlider.value = 0.0f;
 
         useAnvil = false;
         useForge = false;
