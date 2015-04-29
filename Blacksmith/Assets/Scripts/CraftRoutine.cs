@@ -157,7 +157,6 @@ public class CraftRoutine : MonoBehaviour
     private float polishTimer;
     private bool polishCycle;
     private int shineSpot;
-    public GameObject shine;
     public GameObject shine1;
     public GameObject shine2;
     public GameObject shine3;
@@ -183,6 +182,7 @@ public class CraftRoutine : MonoBehaviour
     private bool shimmer10;
     private bool shimmer11;
     private bool shimmer12;
+    private int lastShine;
 
 
 
@@ -509,74 +509,62 @@ public class CraftRoutine : MonoBehaviour
 
                     if (polishTimer <= 0)
                     {
-                        shineSpot = Random.Range(0, 12);
+                        do
+                        {
+                            shineSpot = Random.Range(1, 12);
+                        } while (shineSpot == lastShine);
+
+                        lastShine = shineSpot;
 
                         destoryShimmers();
 
                         switch (shineSpot)
                         {
-                            case 0:
-                                Debug.Log("Shine made");
-                                Instantiate(shine);
-                                shimmer = true;
-                                break;
                             case 1:
-                                Debug.Log("Shine1 made");
                                 Instantiate(shine1);
                                 shimmer1 = true;
                                 break;
                             case 2:
-                                Debug.Log("Shine2 made");
                                 Instantiate(shine2);
                                 shimmer2 = true;
                                 break;
                             case 3:
-                                Debug.Log("Shine3 made");
                                 Instantiate(shine3);
                                 shimmer3 = true;
                                 break;
                             case 4:
-                                Debug.Log("Shine4 made");
                                 Instantiate(shine4);
                                 shimmer4 = true;
                                 break;
                             case 5:
-                                Debug.Log("Shine5 made");
                                 Instantiate(shine5);
                                 shimmer5 = true;
                                 break;
                             case 6:
-                                Debug.Log("Shine6 made");
                                 Instantiate(shine6);
                                 shimmer6 = true;
                                 break;
                             case 7:
-                                Debug.Log("Shine7 made");
                                 Instantiate(shine7);
                                 shimmer7 = true;
                                 break;
                             case 8:
-                                Debug.Log("Shine8 made");
                                 Instantiate(shine8);
                                 shimmer8 = true;
                                 break;
                             case 9:
-                                Debug.Log("Shine9 made");
                                 Instantiate(shine9);
                                 shimmer9 = true;
                                 break;
                             case 10:
-                                Debug.Log("Shine10 made");
                                 Instantiate(shine10);
                                 shimmer10 = true;
                                 break;
                             case 11:
-                                Debug.Log("Shine11 made");
                                 Instantiate(shine11);
                                 shimmer11 = true;
                                 break;
                             case 12:
-                                Debug.Log("Shine12 made");
                                 Instantiate(shine12);
                                 shimmer12 = true;
                                 break;
@@ -587,6 +575,13 @@ public class CraftRoutine : MonoBehaviour
 
                         polishTimer = basePolishTime;
                     }
+                }
+
+                if (!timerActive && !timerSet)
+                {
+                    Debug.Log("End Polishing");
+                    setAnnouncement("Polishing Done", 1.0f);
+                    nextStage();
                 }
 
             }
@@ -806,6 +801,8 @@ public class CraftRoutine : MonoBehaviour
 
         usePolisher = true;
 
+        timerSliderObject.SetActive(true);
+
         setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
 
         timerSliderObject.GetComponent<Slider>().value = 0;
@@ -929,6 +926,7 @@ public class CraftRoutine : MonoBehaviour
 
     private void resetShimmers()
     {
+        shineSpot = 0;
         shimmer = false;
         shimmer1 = false;
         shimmer2 = false;
@@ -946,69 +944,64 @@ public class CraftRoutine : MonoBehaviour
 
     private void destoryShimmers()
     {
-        if (shimmer)
+        if (shimmer1)
         {
-            DestroyImmediate(shine, true);
-            shimmer = false;
-        }
-        else if (shimmer1)
-        {
-            DestroyImmediate(shine1, true);
+            Destroy(GameObject.Find("Shimmer 1(Clone)"));
             shimmer1 = false;
         }
         else if (shimmer2)
         {
-            DestroyImmediate(shine2, true);
+            Destroy(GameObject.Find("Shimmer 2(Clone)"));
             shimmer2 = false;
         }
         else if (shimmer3)
         {
-            DestroyImmediate(shine3, true);
+            Destroy(GameObject.Find("Shimmer 3(Clone)"));
             shimmer3 = false;
         }
         else if (shimmer4)
         {
-            DestroyImmediate(shine4, true);
+            Destroy(GameObject.Find("Shimmer 4(Clone)"));
             shimmer4 = false;
         }
         else if (shimmer5)
         {
-            DestroyImmediate(shine5, true);
+            Destroy(GameObject.Find("Shimmer 5(Clone)"));
             shimmer5 = false;
         }
         else if (shimmer6)
         {
-            DestroyImmediate(shine6, true);
+            Destroy(GameObject.Find("Shimmer 6(Clone)"));
             shimmer6 = false;
         }
         else if (shimmer7)
         {
-            DestroyImmediate(shine7, true);
+            Destroy(GameObject.Find("Shimmer 7(Clone)"));
             shimmer7 = false;
         }
         else if (shimmer8)
         {
-            DestroyImmediate(shine8, true);
+            Destroy(GameObject.Find("Shimmer 8(Clone)"));
             shimmer8 = false;
         }
         else if (shimmer9)
         {
-            DestroyImmediate(shine9, true);
+            Destroy(GameObject.Find("Shimmer 9(Clone)"));
             shimmer9 = false;
         }
         else if (shimmer10)
         {
-            DestroyImmediate(shine10, true);
+            Destroy(GameObject.Find("Shimmer 10(Clone)"));
             shimmer10 = false;
         }
         else if (shimmer11)
         {
-            DestroyImmediate(shine11, true);
+            Destroy(GameObject.Find("Shimmer 11(Clone)"));
             shimmer11 = false;
         }
         else if (shimmer12)
         {
-            DestroyImmediate(shine12, true);
+            Destroy(GameObject.Find("Shimmer 12(Clone)"));
             shimmer12 = false;
         }
 

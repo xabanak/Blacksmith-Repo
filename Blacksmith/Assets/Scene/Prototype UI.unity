@@ -4078,7 +4078,7 @@ MonoBehaviour:
   craftingCamera: {fileID: 150367887}
   background1: {fileID: 1520702906}
   background2: {fileID: 1891814038}
-  background3: {fileID: 0}
+  background3: {fileID: 1007853834}
   heatSliderObject: {fileID: 1665182075}
   hammerSliderObject: {fileID: 1868475946}
   timerSliderObject: {fileID: 275135963}
@@ -4094,19 +4094,18 @@ MonoBehaviour:
   tiltedRight: {fileID: 22495206, guid: 7ee1e09b86acb9240aafe5a9c8e95c9e, type: 2}
   tiltedLeft: {fileID: 22457576, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
   grinderGauge: {fileID: 276864331}
-  shine: {fileID: 0}
-  shine1: {fileID: 0}
-  shine2: {fileID: 0}
-  shine3: {fileID: 0}
-  shine4: {fileID: 0}
-  shine5: {fileID: 0}
-  shine6: {fileID: 0}
-  shine7: {fileID: 0}
-  shine8: {fileID: 0}
-  shine9: {fileID: 0}
-  shine10: {fileID: 0}
-  shine11: {fileID: 0}
-  shine12: {fileID: 0}
+  shine1: {fileID: 112036, guid: 353099a435ca13844ab85978406d2167, type: 2}
+  shine2: {fileID: 192162, guid: d5a3f5e1727f25948b43afde38461c93, type: 2}
+  shine3: {fileID: 102510, guid: 0d5be4011d722234992bcf8c2817c956, type: 2}
+  shine4: {fileID: 110012, guid: 096577e82f7e11b4594d704b89b4ac52, type: 2}
+  shine5: {fileID: 137924, guid: ecbab1d0d7dacd847b39623bced2b931, type: 2}
+  shine6: {fileID: 151948, guid: a34258a1491506a4187aa608034e0d32, type: 2}
+  shine7: {fileID: 183440, guid: 6164231922634f3468c968b9bcc2db53, type: 2}
+  shine8: {fileID: 167476, guid: 4937c542ab60dbe46a69d408bc7189da, type: 2}
+  shine9: {fileID: 110238, guid: 65e0cd6cfa082604faad545a92013cdd, type: 2}
+  shine10: {fileID: 134614, guid: b4daf75a7c900bb4b8688ee4bb372ce3, type: 2}
+  shine11: {fileID: 109642, guid: 2ceaff23688c1d6428e35aafb16f076a, type: 2}
+  shine12: {fileID: 144430, guid: f73d0b3683d4ba1449fbb2ba5769c2b7, type: 2}
 --- !u!114 &1302979230
 MonoBehaviour:
   m_ObjectHideFlags: 0
