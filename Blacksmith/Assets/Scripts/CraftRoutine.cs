@@ -183,6 +183,8 @@ public class CraftRoutine : MonoBehaviour
     private bool shimmer11;
     private bool shimmer12;
     private int lastShine;
+    private int polishCount;
+    private int polishesNeeded;
 
 
 
@@ -502,9 +504,8 @@ public class CraftRoutine : MonoBehaviour
                     resetShimmers();
                 }
 
-                if (timerActive)
+                if (timerActive && polishesNeeded > 0) // && iterations !done
                 {
-                       
                     polishTimer -= Time.deltaTime;
 
                     if (polishTimer <= 0)
@@ -577,10 +578,10 @@ public class CraftRoutine : MonoBehaviour
                     }
                 }
 
-                if (!timerActive && !timerSet)
+                if (!timerActive && !timerSet && polishesNeeded <= 0)
                 {
-                    Debug.Log("End Polishing");
-                    setAnnouncement("Polishing Done", 1.0f);
+                    setAnnouncement("Polish Done", 1.0f);
+                    destoryShimmers();
                     nextStage();
                 }
 
@@ -796,6 +797,8 @@ public class CraftRoutine : MonoBehaviour
     void stagePolishing()
     {
         Debug.Log("Polishing stage reached");
+        setPolishCount(3);
+        setPolishesNeeded(5);
 
         craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, background3.transform.position.z - 10);
 
@@ -1006,5 +1009,32 @@ public class CraftRoutine : MonoBehaviour
         }
 
         Debug.Log("Destroy shimmers called");
+    }
+
+    public void polishUpdateQuality()
+    {
+        polishCount--;
+
+        if (polishCount <= 0)
+        {
+            itemQuality += 5;
+            resetShimmerCycle();
+            setPolishesNeeded(polishesNeeded--);
+        }
+    }
+
+    public void resetShimmerCycle()
+    {
+        polishTimer = 0;
+    }
+    
+    public void setPolishCount(int polish)
+    {
+        polishCount = polish;
+    }
+
+    public void setPolishesNeeded (int polishes)
+    {
+        polishesNeeded = polishes;
     }
 }
