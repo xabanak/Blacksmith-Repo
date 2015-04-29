@@ -1,15 +1,16 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &162142
+--- !u!1 &112036
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 451608}
-  - 198: {fileID: 19865690}
-  - 199: {fileID: 19924762}
+  - 4: {fileID: 414434}
+  - 198: {fileID: 19893044}
+  - 199: {fileID: 19993732}
+  - 61: {fileID: 6192922}
   m_Layer: 0
   m_Name: Shimmer 1
   m_TagString: Untagged
@@ -17,24 +18,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &451608
+--- !u!4 &414434
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 162142}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -159.949997, y: 96.4000015, z: 0}
-  m_LocalScale: {x: .236249939, y: 1, z: 1}
+  m_GameObject: {fileID: 112036}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -162.399994, y: 96.2519989, z: -1}
+  m_LocalScale: {x: .0248272419, y: -.076617375, z: 1.33215714}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!198 &19865690
+--- !u!61 &6192922
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112036}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: .289997786, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 8, y: 2.5}
+--- !u!198 &19893044
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 162142}
+  m_GameObject: {fileID: 112036}
   lengthInSec: 5
   startDelay: 0
   speed: 1
@@ -46,7 +60,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 1
+      scalar: 2.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -206,7 +220,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: .200000003
+      scalar: .100000001
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -263,7 +277,7 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 10
+    maxNumParticles: 100
   ShapeModule:
     serializedVersion: 2
     enabled: 1
@@ -1072,12 +1086,12 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
---- !u!199 &19924762
+--- !u!199 &19993732
 ParticleSystemRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 162142}
+  m_GameObject: {fileID: 112036}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -1117,5 +1131,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 162142}
+  m_RootGameObject: {fileID: 112036}
   m_IsPrefabParent: 1
