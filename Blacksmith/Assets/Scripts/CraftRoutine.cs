@@ -755,6 +755,7 @@ public class CraftRoutine : MonoBehaviour
 
     void stageShaping()
     {
+        soundController.PlayForgeAmbient();
         useAnvil = true;
         useForge = true;
         useBarrel = true;
@@ -886,6 +887,7 @@ public class CraftRoutine : MonoBehaviour
         if (bellowsSlider.value >= 4.0f)
         {
             bellows.GetComponent<SpriteRenderer>().sprite = bellowsClosed;
+            soundController.PlayBellowsDown();
         }
         else if (bellowsSlider.value >= 2.0f && bellowsSlider.value < 4.0f)
         {
