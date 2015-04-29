@@ -843,8 +843,8 @@ public class CraftRoutine : MonoBehaviour
 
     void stagePolishing()
     {
-        setPolishCount(3);
-        setPolishesNeeded(5);
+        setPolishCount(1);
+        setPolishesNeeded(30);
 
         craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, background3.transform.position.z - 10);
 
@@ -856,7 +856,7 @@ public class CraftRoutine : MonoBehaviour
 
         timerSliderObject.GetComponent<Slider>().value = 0;
 
-        possibleItemQuality += polishesNeeded * 5;
+        possibleItemQuality += polishesNeeded * 1;
 
         setAnnouncement("Polish!", 3.0f);
     }
@@ -1085,7 +1085,7 @@ public class CraftRoutine : MonoBehaviour
     public void resetShimmerCycle()
     {
         polishTimer = 0;
-        polishCount = 5;
+        polishCount = 1;
     }
     
     public void setPolishCount(int polish)
