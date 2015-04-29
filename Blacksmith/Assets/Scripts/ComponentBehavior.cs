@@ -149,6 +149,12 @@ public class ComponentBehavior : MonoBehaviour {
         }
     }
 
+    public void removeFromBarrel()
+    {
+        craftController.toggleComponentInBarrel();
+        transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+    }
+
     void OnMouseDrag()
     {
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
@@ -160,5 +166,13 @@ public class ComponentBehavior : MonoBehaviour {
     public void switchRoom()
     {
         inRoom1 = !inRoom1;
+        if (inRoom1)
+        {
+            transform.position = room1Position.transform.position;
+        }
+        else
+        {
+            transform.position = room2Position.transform.position;
+        }
     }
 }
