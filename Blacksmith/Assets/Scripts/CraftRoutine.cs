@@ -468,8 +468,7 @@ public class CraftRoutine : MonoBehaviour
                 if (heated && cooled)
                 {
                     Debug.Log("Quality is: " + itemQuality);
-                    //craftingComponent.SetActive(true);
-                    toggleComponentInBarrel();
+                    craftingComponent.GetComponent<ComponentBehavior>().removeFromBarrel();
                     nextStage();
                 }
             }
