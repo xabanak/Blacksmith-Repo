@@ -301,11 +301,10 @@ public class CraftRoutine : MonoBehaviour
         polishingLevel = 1;
         barrelLevel = 1;
 
-        bellowsPosition = homeBellowsPosition;
 
         Random.seed = (int)System.DateTime.Now.Ticks;
 
-      resetCrafting();
+        resetCrafting();
     }
 
     public void testCrafting()
@@ -388,8 +387,17 @@ public class CraftRoutine : MonoBehaviour
             {
                 bellowsPosition = bellowsSlider.value;
 
-                if (bellowsPosition >= 2.0f)
+                if (bellowsPosition >= 2.0f && bellowsPosition < 4.0f)
                 {
+                    Debug.Log("First Bellows Pump");
+                    bellowsPump();
+                    bellowsChange();
+                }
+                else if (bellowsPosition >= 4.0f)
+                {
+                    Debug.Log("Two pumps at once");
+                    bellowsPump();
+                    bellowsChange();
                     bellowsPump();
                     bellowsChange();
                 }
@@ -404,6 +412,7 @@ public class CraftRoutine : MonoBehaviour
                 }
                 else if (bellowsPosition >= 4.0f)
                 {
+                    Debug.Log("Second Bellows Pump");
                     bellowsPump();
                     bellowsChange();
                 }
@@ -876,8 +885,8 @@ public class CraftRoutine : MonoBehaviour
         {
             if (componentOnAnvil)
             {
-                hammerSlider.value += hammerHitIncrease;
                 soundController.PlayHammerHit();
+                hammerSlider.value += hammerHitIncrease;
             }
         }
     }
