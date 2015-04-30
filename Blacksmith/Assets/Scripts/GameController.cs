@@ -5,71 +5,82 @@ public class GameController : MonoBehaviour {
 
     private CraftRoutine craftRoutine;
 
-    public GameObject inventoryCamera;
-    public GameObject workshopCamera;
-    public GameObject townCamera;
+    private GameObject hammer;
+    private GameObject component;
+
+    public GameObject inventory;
 
     public Camera workCamera;
+    public Camera inventoryCamera;
+    public Camera townCamera;
 
     public Canvas workshopCanvas;
     public Canvas inventoryCanvas;
 
-    private bool workshop = true;
-    private bool town = false;
+    private bool workshop;
+    private bool town;
+
 
 	// Use this for initialization
 	void Start () 
     {
         craftRoutine = GameObject.Find("CraftingController").GetComponent<CraftRoutine>();
-
+        hammer = GameObject.Find("Crafting/Hammer");
+        component = GameObject.Find("Crafting/Component");
+        SetScene("workshop");
     }
 	
 	// Update is called once per frame
 	void Update () 
     {
         InventoryToggle();
-        CanvasToggle();
 	}
 
     void InventoryToggle()
     {
-        if (!craftRoutine.isCrafting() && Input.GetKeyDown(KeyCode.I) && workshopCamera.activeSelf)
+        if (!craftRoutine.isCrafting() && Input.GetKeyDown(KeyCode.I) && workshop && !inventory.activeSelf)
         {
-            workshopCamera.SetActive(false);
-            inventoryCamera.SetActive(true);
+            //Debug.Log("Inventory Enabled");
+            inventoryCanvas.worldCamera = workCamera;
+            inventory.SetActive(true);
+            ToggleTools();
         }
-        else if (!craftRoutine.isCrafting() && Input.GetKeyDown(KeyCode.I) && inventoryCamera.activeSelf && workshop)
+        else if (Input.GetKeyDown(KeyCode.I) && inventory.activeSelf)
         {
-            workshopCamera.SetActive(true);
-            inventoryCamera.SetActive(false);
+            //Debug.Log("Inventory Disabled");
+            inventoryCanvas.worldCamera = inventoryCamera;
+            inventory.SetActive(false);
+            ToggleTools();
         }
-        else if (!craftRoutine.isCrafting() && Input.GetKeyDown(KeyCode.I) && inventoryCamera.activeSelf && town)
+        else if (Input.GetKeyDown(KeyCode.I) && town && !inventory.activeSelf)
         {
-            townCamera.SetActive(true);
-            inventoryCamera.SetActive(false);
+            inventoryCanvas.worldCamera = townCamera;
+        }
+        else if (Input.GetKeyDown(KeyCode.I) && inventory.activeSelf)
+        {
+            inventoryCanvas.worldCamera = inventoryCamera;
         }
     }
 
     void SetScene(string scene)
     {
-        if (scene == "workshop")
+        switch(scene)
         {
-            workshop = true;
-            town = false;
-        }
-        else if (scene == "town")
-        {
-            town = true;
-            workshop = false;
+            case "workshop":
+                workshop = true;
+                break;
+            case "town":
+                town = true;
+                break;
+            default:
+                Debug.Log("scene not found");
+                break;
         }
     }
 
-    void CanvasToggle()
+    void ToggleTools()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("Changed camera");
-            inventoryCanvas.worldCamera = workCamera;
-        }
+        hammer.SetActive(!hammer.activeSelf);
+        component.SetActive(!component.activeSelf);
     }
 }

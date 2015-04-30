@@ -3,12 +3,14 @@ using System.Collections;
 
 public class ShowInventory : MonoBehaviour {
 
-    public GameObject inventoryCamera;
-    public GameObject workshopCamera;
+    private GameObject inventoryCamera;
+    private GameObject craftingCamera;
 
 	// Use this for initialization
 	void Start () 
     {
+        inventoryCamera = GameObject.Find("Inventory/Inventory Camera");
+        craftingCamera = GameObject.Find("Crafting/Crafting Camera");
     }
 	// Update is called once per frame
 	void Update () {
@@ -17,7 +19,7 @@ public class ShowInventory : MonoBehaviour {
 
     public void DisplayInventory()
     {
-        workshopCamera.SetActive(false);
+        craftingCamera.SetActive(false);
         inventoryCamera.SetActive(true);
     }
 }
