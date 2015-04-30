@@ -163,31 +163,8 @@ public class CraftRoutine : MonoBehaviour
     private float polishTimer;
     private bool polishCycle;
     private int shineSpot;
-    public GameObject shine1;
-    public GameObject shine2;
-    public GameObject shine3;
-    public GameObject shine4;
-    public GameObject shine5;
-    public GameObject shine6;
-    public GameObject shine7;
-    public GameObject shine8;
-    public GameObject shine9;
-    public GameObject shine10;
-    public GameObject shine11;
-    public GameObject shine12;
-    private bool shimmer;
-    private bool shimmer1;
-    private bool shimmer2;
-    private bool shimmer3;
-    private bool shimmer4;
-    private bool shimmer5;
-    private bool shimmer6;
-    private bool shimmer7;
-    private bool shimmer8;
-    private bool shimmer9;
-    private bool shimmer10;
-    private bool shimmer11;
-    private bool shimmer12;
+    public GameObject[] swordShines;
+    private bool[] swordShimmers;
     private int lastShine;
     private int polishCount;
     private int polishesNeeded;
@@ -300,6 +277,16 @@ public class CraftRoutine : MonoBehaviour
         sharpeningLevel = 1;
         polishingLevel = 1;
         barrelLevel = 1;
+
+        // Polishing Stage Setup
+        swordShines = new GameObject[12];
+        swordShimmers = new bool[12];
+
+        for (int i = 0; i < swordShines.Length; i++)
+        {
+            swordShines[i] = GameObject.Find("Shimmers/Sword/Shimmer " + (i + 1));
+        }
+
 
 
         Random.seed = (int)System.DateTime.Now.Ticks;
@@ -613,66 +600,23 @@ public class CraftRoutine : MonoBehaviour
                     {
                         do
                         {
-                            shineSpot = Random.Range(1, 12);
+                            shineSpot = Random.Range(0, 11);
                         } while (shineSpot == lastShine);
 
                         lastShine = shineSpot;
+                        Debug.Log("Shinespot = " + (shineSpot + 1));
 
                         destoryShimmers();
 
-                        switch (shineSpot)
+                        GameObject tempObj = Instantiate(swordShines[shineSpot]) as GameObject;
+                        tempObj.SetActive(true);
+
+                        swordShimmers[shineSpot] = true;
+                        
+
+                        if (shineSpot < 1 || shineSpot > 12)
                         {
-                            case 1:
-                                Instantiate(shine1);
-                                shimmer1 = true;
-                                break;
-                            case 2:
-                                Instantiate(shine2);
-                                shimmer2 = true;
-                                break;
-                            case 3:
-                                Instantiate(shine3);
-                                shimmer3 = true;
-                                break;
-                            case 4:
-                                Instantiate(shine4);
-                                shimmer4 = true;
-                                break;
-                            case 5:
-                                Instantiate(shine5);
-                                shimmer5 = true;
-                                break;
-                            case 6:
-                                Instantiate(shine6);
-                                shimmer6 = true;
-                                break;
-                            case 7:
-                                Instantiate(shine7);
-                                shimmer7 = true;
-                                break;
-                            case 8:
-                                Instantiate(shine8);
-                                shimmer8 = true;
-                                break;
-                            case 9:
-                                Instantiate(shine9);
-                                shimmer9 = true;
-                                break;
-                            case 10:
-                                Instantiate(shine10);
-                                shimmer10 = true;
-                                break;
-                            case 11:
-                                Instantiate(shine11);
-                                shimmer11 = true;
-                                break;
-                            case 12:
-                                Instantiate(shine12);
-                                shimmer12 = true;
-                                break;
-                            default:
-                                Debug.Log("Random shine integer outside of range");
-                                break;
+                            Debug.Log("Shinespot out of range!");
                         }
 
                         polishTimer = basePolishTime;
@@ -1050,84 +994,24 @@ public class CraftRoutine : MonoBehaviour
     private void resetShimmers()
     {
         shineSpot = 0;
-        shimmer = false;
-        shimmer1 = false;
-        shimmer2 = false;
-        shimmer3 = false;
-        shimmer4 = false;
-        shimmer5 = false;
-        shimmer6 = false;
-        shimmer7 = false;
-        shimmer8 = false;
-        shimmer9 = false;
-        shimmer10 = false;
-        shimmer11 = false;
-        shimmer12 = false;
+
+        for (int i = 0; i < swordShimmers.Length; i++)
+        {
+            swordShimmers[i] = false;
+        }
     }
 
     private void destoryShimmers()
     {
-        if (shimmer1)
+        for (int i = 0; i < swordShimmers.Length; i++)
         {
-            Destroy(GameObject.Find("Shimmer 1(Clone)"));
-            shimmer1 = false;
+            if (swordShimmers[i])
+            {
+                Destroy(GameObject.Find("Shimmer " + (i + 1) + "(Clone)"));
+                swordShimmers[i] = false;
+                Debug.Log("Shimmer " + (i + 1) + " destroyed");
+            }
         }
-        else if (shimmer2)
-        {
-            Destroy(GameObject.Find("Shimmer 2(Clone)"));
-            shimmer2 = false;
-        }
-        else if (shimmer3)
-        {
-            Destroy(GameObject.Find("Shimmer 3(Clone)"));
-            shimmer3 = false;
-        }
-        else if (shimmer4)
-        {
-            Destroy(GameObject.Find("Shimmer 4(Clone)"));
-            shimmer4 = false;
-        }
-        else if (shimmer5)
-        {
-            Destroy(GameObject.Find("Shimmer 5(Clone)"));
-            shimmer5 = false;
-        }
-        else if (shimmer6)
-        {
-            Destroy(GameObject.Find("Shimmer 6(Clone)"));
-            shimmer6 = false;
-        }
-        else if (shimmer7)
-        {
-            Destroy(GameObject.Find("Shimmer 7(Clone)"));
-            shimmer7 = false;
-        }
-        else if (shimmer8)
-        {
-            Destroy(GameObject.Find("Shimmer 8(Clone)"));
-            shimmer8 = false;
-        }
-        else if (shimmer9)
-        {
-            Destroy(GameObject.Find("Shimmer 9(Clone)"));
-            shimmer9 = false;
-        }
-        else if (shimmer10)
-        {
-            Destroy(GameObject.Find("Shimmer 10(Clone)"));
-            shimmer10 = false;
-        }
-        else if (shimmer11)
-        {
-            Destroy(GameObject.Find("Shimmer 11(Clone)"));
-            shimmer11 = false;
-        }
-        else if (shimmer12)
-        {
-            Destroy(GameObject.Find("Shimmer 12(Clone)"));
-            shimmer12 = false;
-        }
-
     }
 
     public void polishUpdateQuality()

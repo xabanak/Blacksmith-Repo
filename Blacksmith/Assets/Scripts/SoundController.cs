@@ -14,7 +14,7 @@ public class SoundController : MonoBehaviour {
         hammerHit = GameObject.Find("Sounds/HammerHit").GetComponent<AudioSource>();
         bellowsDown = GameObject.Find("Sounds/BellowsDown").GetComponent<AudioSource>();
         forgeAmbient = GameObject.Find("Sounds/ForgeAmbient").GetComponent<AudioSource>();
-        cooling = GameObject.Find("Sounds/Cooling").GetComponent<AudioSource>();
+        //cooling = GameObject.Find("Sounds/Cooling").GetComponent<AudioSource>();
         
 	}
 	
