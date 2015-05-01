@@ -168,6 +168,11 @@ public class CraftRoutine : MonoBehaviour
     private int lastShine;
     private int polishCount;
     private int polishesNeeded;
+    private GameObject polishStone1;
+
+    //SHARPENING STAGE
+
+    private GameObject file;
 
     private float bellowsPosition;
     private const float homeBellowsPosition = 6.0f;
@@ -278,15 +283,20 @@ public class CraftRoutine : MonoBehaviour
         polishingLevel = 1;
         barrelLevel = 1;
 
-        // Polishing Stage Setup
+        // POLISHING STAGE SETUP
+
         swordShines = new GameObject[12];
         swordShimmers = new bool[12];
+        polishStone1 = GameObject.Find("Crafting/Polishing Stone 1");
 
         for (int i = 0; i < swordShines.Length; i++)
         {
             swordShines[i] = GameObject.Find("Shimmers/Sword/Shimmer " + (i + 1));
         }
 
+        // SHARPENING STAGE SETUP
+
+        file = GameObject.Find("Crafting/File");
 
 
         Random.seed = (int)System.DateTime.Now.Ticks;
@@ -474,6 +484,7 @@ public class CraftRoutine : MonoBehaviour
                     nextStage();
                 }
             }
+            // SHAPING STAGE
             else if (currentStageAbsVal == 1)
             {
                 if (!heated || !cooled)
@@ -520,6 +531,7 @@ public class CraftRoutine : MonoBehaviour
                     nextStage();
                 }
             }
+            // TEMPERING STAGE
             else if (currentStageAbsVal == 2)
             {
                 if (!heated || !cooled)
@@ -581,6 +593,7 @@ public class CraftRoutine : MonoBehaviour
 //                     }
 //                 }
             }
+            // POLISHING STAGE
             else if (currentStageAbsVal == 3)
             {
                 // polishing
@@ -638,10 +651,12 @@ public class CraftRoutine : MonoBehaviour
                 }
 
             }
+            // SHARPENING STAGE
             else if (currentStageAbsVal == 4)
             {
 
             }
+            // GRINDING STAGE
             else if (currentStageAbsVal == 5)
             {
                 if (componentOnGrinder && timerSet)
@@ -845,13 +860,26 @@ public class CraftRoutine : MonoBehaviour
 
     void stageSharpening()
     {
+        polishStone1.SetActive(false);
+        file.SetActive(true);
 
+        craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, background3.transform.position.z - 10);
+
+        timerSliderObject.SetActive(true);
+
+        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        timerSliderObject.GetComponent<Slider>().value = 0;
+        setAnnouncement("Sharpen!", 3.0f);
+
+        startTimer();
     }
 
     void stagePolishing()
     {
         setPolishCount(1);
         setPolishesNeeded(30);
+        polishStone1.SetActive(true);
+        file.SetActive(false);
 
         craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, background3.transform.position.z - 10);
 
