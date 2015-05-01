@@ -666,10 +666,12 @@ public class CraftRoutine : MonoBehaviour
                     if (rotateRight)
                     {
                         grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
+                        grinderGauge.GetComponent<Slider>().value += step;
                     }
                     else
                     {
                         grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, step);
+                        grinderGauge.GetComponent<Slider>().value -= step;
                     }
 
                     if (grindTime <= 0.0f)
@@ -696,21 +698,22 @@ public class CraftRoutine : MonoBehaviour
                     if (playerRotation == 1)
                     {
                         grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, counterStep);
+                        grinderGauge.GetComponent<Slider>().value += counterStep;
                     }
                     else if (playerRotation == 2)
                     {
                         grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, counterStep);
+                        grinderGauge.GetComponent<Slider>().value -= counterStep;
                     }
 
                     if (timeQuality <= 0)
                     {
                         timeQuality = timeSync;
-                        if (grinderGauge.GetComponent<RectTransform>().transform.rotation.z <= 0.04f && grinderGauge.GetComponent<RectTransform>().transform.rotation.z >= -0.04f)
+                        if (grinderGauge.GetComponent<Slider>().value > 25 && grinderGauge.GetComponent<Slider>().value < 35)
                         {
-                            Debug.Log(grinderGauge.GetComponent<RectTransform>().transform.rotation.z);
                             itemQuality += 1;
                         }
-                        else if (grinderGauge.GetComponent<RectTransform>().transform.rotation.z <= 0.08f && grinderGauge.GetComponent<RectTransform>().transform.rotation.z >= -0.08f)
+                        else if (grinderGauge.GetComponent<Slider>().value > 20 && grinderGauge.GetComponent<Slider>().value < 40)
                         {
                             itemQuality += 0.5f;
                         }
@@ -829,6 +832,7 @@ public class CraftRoutine : MonoBehaviour
 
         grinderGauge.SetActive(true);
         timerSliderObject.SetActive(true);
+        grinderGauge.GetComponent<Slider>().value = grinderGauge.GetComponent<Slider>().maxValue / 2;
 
         grinded = false;
         setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));

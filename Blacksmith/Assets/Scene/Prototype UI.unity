@@ -708,7 +708,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22457576, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -52
+      value: -74
       objectReference: {fileID: 0}
     - target: {fileID: 22457576, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
       propertyPath: m_AnchoredPosition.y
@@ -756,6 +756,26 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22495460, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406648, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
+      propertyPath: m_MaxValue
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 11480654, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11480654, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11480654, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11480654, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
+      propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1066,7 +1086,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 233561307}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -103.71347, y: 96.9772034, z: 0}
+  m_LocalPosition: {x: -85.9000015, y: 96.9800034, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1071204558}
@@ -6569,7 +6589,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 81
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
