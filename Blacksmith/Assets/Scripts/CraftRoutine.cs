@@ -4,6 +4,7 @@ using System.Collections;
 
 public class CraftRoutine : MonoBehaviour 
 {
+    private GameObject testObj;
     //sprites to load various background difficulties into the hammer and heat bars
     public Sprite heatDiff1;
 	public Sprite heatDiff2;
@@ -186,6 +187,7 @@ public class CraftRoutine : MonoBehaviour
 
     //OTHER STUFF
 
+    private CreateInventory createInventory;
     private float bellowsPosition;
     private const float homeBellowsPosition = 6.0f;
 
@@ -270,6 +272,7 @@ public class CraftRoutine : MonoBehaviour
 	void Start () 
 	{
         soundController = this.GetComponent<SoundController>();
+        createInventory = this.GetComponent<CreateInventory>();
 
         heatSliderBackground = GameObject.Find("/Canvas/Heat Gauge/Background").GetComponent<Image>();
         hammerSliderBackground = GameObject.Find("Canvas/Hammer Gauge/Background").GetComponent<Image>();
@@ -394,6 +397,7 @@ public class CraftRoutine : MonoBehaviour
 	{
         currentStage = -1;
         Debug.Log("lol endcrafting");
+        //CreateItem();
 	}
 
     void Update()
@@ -1188,5 +1192,12 @@ public class CraftRoutine : MonoBehaviour
         }
 
         Debug.Log("Destroy all called");
+    }
+
+    private void CreateItem()
+    {
+        testObj = Instantiate(GameObject.Find("Equipment/Test Sword")) as GameObject;
+        testObj.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 5);
+        createInventory.AddNewItem(testObj);
     }
 }

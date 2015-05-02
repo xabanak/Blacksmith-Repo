@@ -875,7 +875,7 @@ public class CreateInventory : MonoBehaviour {
     }
 
     // Take an item object and add it to the on hand inventory.
-    void AddNewItem(GameObject newItem)
+    public void AddNewItem(GameObject newItem)
     {
         // Item types: sword, shield, breastplate, helm, bracers, gauntlets, boots, greaves, pauldrons.
 

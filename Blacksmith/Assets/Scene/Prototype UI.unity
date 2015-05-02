@@ -606,6 +606,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1012210086}
   m_RootOrder: 1
+--- !u!1 &171395989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 171395990}
+  m_Layer: 0
+  m_Name: Equipment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &171395990
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 171395989}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -108.589752, y: 96.8754578, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 447296162}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &173548340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,6 +2573,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 408233851}
+--- !u!4 &447296162 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 432936, guid: a9c503ddd43d7474baaddb730c05da43, type: 2}
+  m_PrefabInternal: {fileID: 894658630}
 --- !u!1 &475072945
 GameObject:
   m_ObjectHideFlags: 0
@@ -4721,6 +4753,48 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 472442, guid: 8b60fa0e1bc1b2749af50f8054480d17, type: 2}
   m_PrefabInternal: {fileID: 877877838}
+--- !u!1001 &894658630
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 171395990}
+    m_Modifications:
+    - target: {fileID: 432936, guid: a9c503ddd43d7474baaddb730c05da43, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -70
+      objectReference: {fileID: 0}
+    - target: {fileID: 432936, guid: a9c503ddd43d7474baaddb730c05da43, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 432936, guid: a9c503ddd43d7474baaddb730c05da43, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 432936, guid: a9c503ddd43d7474baaddb730c05da43, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432936, guid: a9c503ddd43d7474baaddb730c05da43, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432936, guid: a9c503ddd43d7474baaddb730c05da43, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 432936, guid: a9c503ddd43d7474baaddb730c05da43, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 432936, guid: a9c503ddd43d7474baaddb730c05da43, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a9c503ddd43d7474baaddb730c05da43, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &898864127
 Prefab:
   m_ObjectHideFlags: 0
@@ -6683,8 +6757,8 @@ GameObject:
   - 4: {fileID: 1565756059}
   - 114: {fileID: 1565756058}
   - 114: {fileID: 1565756060}
-  - 114: {fileID: 1565756061}
   - 114: {fileID: 1565756062}
+  - 114: {fileID: 1565756061}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -6742,10 +6816,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1565756057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 860a9d440d4132c46a2187b8db92e0d8, type: 3}
+  m_Script: {fileID: 11500000, guid: c92caa37997795241be850b3b5cbf32d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tester: {fileID: 2003011388}
+  weaponBackground: {fileID: 0}
+  armorBackground: {fileID: 0}
+  materialBackground: {fileID: 0}
+  componentBackground: {fileID: 0}
+  miscBackground: {fileID: 0}
+  inventoryWindow: {fileID: 0}
+  textBox1: {fileID: 0}
+  textBox2: {fileID: 0}
+  inventoryCanvas: {fileID: 0}
+  singleLine: {fileID: 0}
+  tempLine: {fileID: 0}
+  inventoryScrollbar: {fileID: 0}
 --- !u!114 &1565756062
 MonoBehaviour:
   m_ObjectHideFlags: 0
