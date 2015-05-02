@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Inventory Camera
   - Workshop Camera
+  - Shimmer
   layers:
   - Default
   - TransparentFX

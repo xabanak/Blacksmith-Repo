@@ -173,6 +173,18 @@ public class CraftRoutine : MonoBehaviour
     //SHARPENING STAGE
 
     private GameObject file;
+    private GameObject swordLeft;
+    private GameObject swordRight;
+    private const int totalFilesNeeded = 12;
+    private int currentFiles;
+    private int sharpeningCycles;
+    private int sharpeningCyclesNeeded;
+    private bool spawnShimmersNeeded;
+    private bool top;
+    private bool firstCycle;
+    private bool isSharpened;
+
+    //OTHER STUFF
 
     private float bellowsPosition;
     private const float homeBellowsPosition = 6.0f;
@@ -297,6 +309,14 @@ public class CraftRoutine : MonoBehaviour
         // SHARPENING STAGE SETUP
 
         file = GameObject.Find("Crafting/File");
+        swordLeft = GameObject.Find("Sharpening/Sword Left");
+        swordRight = GameObject.Find("Sharpening/Sword Right");
+        spawnShimmersNeeded = true;
+        top = true;
+        sharpeningCycles = 0;
+        sharpeningCyclesNeeded = 0;
+        firstCycle = true;
+        isSharpened = false;
 
 
         Random.seed = (int)System.DateTime.Now.Ticks;
@@ -617,7 +637,6 @@ public class CraftRoutine : MonoBehaviour
                         } while (shineSpot == lastShine);
 
                         lastShine = shineSpot;
-                        Debug.Log("Shinespot = " + (shineSpot + 1));
 
                         destoryShimmers();
 
@@ -627,7 +646,7 @@ public class CraftRoutine : MonoBehaviour
                         swordShimmers[shineSpot] = true;
                         
 
-                        if (shineSpot < 1 || shineSpot > 12)
+                        if (shineSpot < 0 || shineSpot > 11)
                         {
                             Debug.Log("Shinespot out of range!");
                         }
@@ -654,7 +673,32 @@ public class CraftRoutine : MonoBehaviour
             // SHARPENING STAGE
             else if (currentStageAbsVal == 4)
             {
+                if (sharpeningCycles >= sharpeningCyclesNeeded)
+                {
+                    timerActive = false;
+                    isSharpened = true;
+                    setAnnouncement("Sharpening done!", 1.0f);
+                    spawnShimmersNeeded = false;
+                    nextStage();
+                }
+                else if (!timerActive && !timerSet)
+                {
+                    nextStage();
+                }
 
+                if (!isSharpened && timerActive)
+                {
+                    if (currentFiles <= 0)
+                    {
+                        resetCurrentFiles();
+                        spawnShimmersNeeded = true;
+                    }
+
+                    if (spawnShimmersNeeded)
+                    {
+                        setSharpenSide(top);
+                    }
+                }
             }
             // GRINDING STAGE
             else if (currentStageAbsVal == 5)
@@ -860,8 +904,11 @@ public class CraftRoutine : MonoBehaviour
 
     void stageSharpening()
     {
+        Debug.Log("Sharpening started");
         polishStone1.SetActive(false);
         file.SetActive(true);
+        SetSharpeningCycles(5);
+        possibleItemQuality += 5 * 5;
 
         craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, background3.transform.position.z - 10);
 
@@ -876,6 +923,7 @@ public class CraftRoutine : MonoBehaviour
 
     void stagePolishing()
     {
+        DestroyAllShimmer();
         setPolishCount(1);
         setPolishesNeeded(30);
         polishStone1.SetActive(true);
@@ -895,9 +943,6 @@ public class CraftRoutine : MonoBehaviour
 
         setAnnouncement("Polish!", 3.0f);
     }
-
-
-
 
     public void hammerHitOnAnvil()
     {
@@ -1041,7 +1086,6 @@ public class CraftRoutine : MonoBehaviour
             {
                 Destroy(GameObject.Find("Shimmer " + (i + 1) + "(Clone)"));
                 swordShimmers[i] = false;
-                Debug.Log("Shimmer " + (i + 1) + " destroyed");
             }
         }
     }
@@ -1055,7 +1099,6 @@ public class CraftRoutine : MonoBehaviour
             itemQuality += 5;
             resetShimmerCycle();
             setPolishesNeeded(polishesNeeded - 1);
-            Debug.Log("Quality is: " + itemQuality);
         }
     }
 
@@ -1073,5 +1116,77 @@ public class CraftRoutine : MonoBehaviour
     public void setPolishesNeeded (int polishes)
     {
         polishesNeeded = polishes;
+    }
+
+    public void updateFileStage()
+    {
+        currentFiles--;
+    }
+
+    public void resetCurrentFiles()
+    {
+        currentFiles = totalFilesNeeded;
+    }
+
+    public void setSharpenSide(bool right)
+    {
+        GameObject tempObj;
+
+        if (!isSharpened)
+        {
+            if (right)
+            {
+                top = false;
+                spawnShimmersNeeded = false;
+                for (int i = 1; i <= 12; i++)
+                {
+                    tempObj = Instantiate(GameObject.Find("Sharpening/Sword Right/Shimmer " + i)) as GameObject;
+                    tempObj.SetActive(true);
+                }
+
+                if (!firstCycle)
+                {
+                    sharpeningCycles++;
+                }
+
+                if (firstCycle)
+                {
+                    firstCycle = false;
+                    sharpeningCycles = 0;
+                }
+            }
+
+            else
+            {
+                top = true;
+                spawnShimmersNeeded = false;
+
+                for (int i = 13; i <= 24; i++)
+                {
+                    tempObj = Instantiate(GameObject.Find("Sharpening/Sword Left/Shimmer " + i)) as GameObject;
+                    tempObj.SetActive(true);
+                }
+            }
+        }
+    }
+
+    public void SetSharpeningCycles(int cycles)
+    {
+        sharpeningCyclesNeeded = cycles;
+    }
+
+    private void UpdateSharpenQuality()
+    {
+        itemQuality += 5;
+    }
+
+    private void DestroyAllShimmer()
+    {
+        for (int i = 1; i < 25; i++)
+        {
+            Destroy(GameObject.Find("Shimmer " + i + "(Clone)"));
+        }
+
+        Debug.Log("Destroy all called");
     }
 }
