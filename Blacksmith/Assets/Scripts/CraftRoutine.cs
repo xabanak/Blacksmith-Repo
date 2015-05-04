@@ -415,13 +415,13 @@ public class CraftRoutine : MonoBehaviour
 
                 if (bellowsPosition >= 2.0f && bellowsPosition < 4.0f)
                 {
-                    Debug.Log("First Bellows Pump");
+                    //Debug.Log("First Bellows Pump");
                     bellowsPump();
                     bellowsChange();
                 }
                 else if (bellowsPosition >= 4.0f)
                 {
-                    Debug.Log("Two pumps at once");
+                    //Debug.Log("Two pumps at once");
                     bellowsPump();
                     bellowsChange();
                     bellowsPump();
@@ -438,7 +438,7 @@ public class CraftRoutine : MonoBehaviour
                 }
                 else if (bellowsPosition >= 4.0f)
                 {
-                    Debug.Log("Second Bellows Pump");
+                    //Debug.Log("Second Bellows Pump");
                     bellowsPump();
                     bellowsChange();
                 }
