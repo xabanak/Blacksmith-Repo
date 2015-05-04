@@ -406,6 +406,7 @@ public class CraftRoutine : MonoBehaviour
         Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
         switchScene("workshop front");
         CreateItem();
+        CreateItem();
 	}
 
     void Update()

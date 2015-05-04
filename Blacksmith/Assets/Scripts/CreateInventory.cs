@@ -423,9 +423,10 @@ public class CreateInventory : MonoBehaviour {
     // Calls all updates to update the current on hand inventory.
     public void BuildInventory()
     {
+        ClearInventory();
         UpdateWeaponList();
-        //UpdateArmorList();
-        //UpdateMaterialList();
+        UpdateArmorList();
+        UpdateMaterialList();
         UpdateComponentList();
         //UpdateMiscList();
 
@@ -434,7 +435,9 @@ public class CreateInventory : MonoBehaviour {
 
     // Creates the list displaying all the weapons in inventory.
     public void UpdateWeaponList()
-    {    
+    {
+        int tempInt = 17 - swords.GetCurrentSize();
+        Debug.Log("Size: " + swords.GetCurrentSize());
         for (int i = 0; i < swords.GetCurrentSize(); i++)
         {
             tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, inventoryCanvas.transform.position.z - 1), Quaternion.identity) as GameObject;
@@ -443,6 +446,16 @@ public class CreateInventory : MonoBehaviour {
             tempText1.transform.SetParent(tempLine.transform);
             tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             tempText1.text = swords.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
+        }
+
+        if (tempInt > 0)
+        {
+            for (int i = swords.GetCurrentSize(); i < 17; i++)
+            {
+                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, inventoryCanvas.transform.position.z - 1), Quaternion.identity) as GameObject;
+                tempLine.transform.SetParent(weaponBackground.transform);
+                Debug.Log("Line space " + i);
+            }
         }
     }
 
