@@ -388,6 +388,7 @@ public class CreateInventory : MonoBehaviour {
     {
         for (int i = 0; i < 5; i++)
         {
+            fuelQty[i] = UnityEngine.Random.Range(1, 9);
             oreQty[i] = UnityEngine.Random.Range(1, 9);
             ingotQty[i] = UnityEngine.Random.Range(1, 9);
             skinQty[i] = UnityEngine.Random.Range(1, 9);
@@ -423,8 +424,8 @@ public class CreateInventory : MonoBehaviour {
     public void BuildInventory()
     {
         UpdateWeaponList();
-        UpdateArmorList();
-        UpdateMaterialList();
+        //UpdateArmorList();
+        //UpdateMaterialList();
         UpdateComponentList();
         //UpdateMiscList();
 
@@ -436,9 +437,9 @@ public class CreateInventory : MonoBehaviour {
     {    
         for (int i = 0; i < swords.GetCurrentSize(); i++)
         {
-            tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
+            tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, inventoryCanvas.transform.position.z - 1), Quaternion.identity) as GameObject;
             tempLine.transform.SetParent(weaponBackground.transform);
-            tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
+            tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, inventoryCanvas.transform.position.z - 1), Quaternion.identity) as Text;
             tempText1.transform.SetParent(tempLine.transform);
             tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             tempText1.text = swords.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
@@ -924,6 +925,8 @@ public class CreateInventory : MonoBehaviour {
                 Debug.Log("Item type was not found.");
                 break;
         }
+
+        BuildInventory();
     }
 
     private void DisableInventoryWindows()

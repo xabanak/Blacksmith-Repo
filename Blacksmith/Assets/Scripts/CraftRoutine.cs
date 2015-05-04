@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CraftRoutine : MonoBehaviour 
 {
-    //private GameObject testObj;
+    private GameObject testObj;
     //sprites to load various background difficulties into the hammer and heat bars
     public Sprite heatDiff1;
 	public Sprite heatDiff2;
@@ -272,8 +272,10 @@ public class CraftRoutine : MonoBehaviour
 
 	void Start () 
 	{
+        //inventoryController = GameObject.Find("Inventory/InventoryController");
         soundController = this.GetComponent<SoundController>();
-        createInventory = this.GetComponent<CreateInventory>();
+        createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
+        //createInventory = this.GetComponent<CreateInventory>();
 
         heatSliderBackground = GameObject.Find("/Canvas/Heat Gauge/Background").GetComponent<Image>();
         hammerSliderBackground = GameObject.Find("Canvas/Hammer Gauge/Background").GetComponent<Image>();
@@ -402,6 +404,7 @@ public class CraftRoutine : MonoBehaviour
 	{
         resetCrafting();
         Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
+        switchScene("workshop front");
         CreateItem();
 	}
 
@@ -1036,13 +1039,13 @@ public class CraftRoutine : MonoBehaviour
         switch(scene)
         {
             case "workshop front":
-                craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, - 10);
+                craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, -10);
                 break;
             case "workshop back":
-                craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, - 10);
+                craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, -10);
                 break;
             case "workbench":
-                craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, - 10);
+                craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, -10);
                 break;
             default:
                 Debug.Log("Scene not found");
@@ -1213,6 +1216,6 @@ public class CraftRoutine : MonoBehaviour
     {
         GameObject testObj = Instantiate(GameObject.Find("Equipment/Test Sword")) as GameObject;
         testObj.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 5);
-        createInventory.AddNewItem(GameObject.Find("Test Sword(clone)"));
+        createInventory.AddNewItem(testObj);
     }
 }
