@@ -38,25 +38,27 @@ public class GameController : MonoBehaviour {
 
     void InventoryToggle()
     {
-        if (!craftRoutine.isCrafting() && Input.GetKeyDown(KeyCode.I) && workshop && !inventory.activeSelf)
+        if (!craftRoutine.isCrafting() && Input.GetKeyDown(KeyCode.I) && workshop && !inventoryCanvas.GetComponent<Canvas>().enabled)
         {
             //Debug.Log("Inventory Enabled");
             inventoryCanvas.worldCamera = workCamera;
-            inventory.SetActive(true);
+            inventoryCanvas.GetComponent<Canvas>().enabled = true;
+            //inventory.SetActive(true);
             ToggleTools();
         }
-        else if (Input.GetKeyDown(KeyCode.I) && inventory.activeSelf)
+        else if (Input.GetKeyDown(KeyCode.I) && inventoryCanvas.enabled)
         {
             //Debug.Log("Inventory Disabled");
             inventoryCanvas.worldCamera = inventoryCamera;
-            inventory.SetActive(false);
+            inventoryCanvas.GetComponent<Canvas>().enabled = false;
+            //inventory.SetActive(false);
             ToggleTools();
         }
-        else if (Input.GetKeyDown(KeyCode.I) && town && !inventory.activeSelf)
+        else if (Input.GetKeyDown(KeyCode.I) && town && !inventoryCanvas.GetComponent<Canvas>().enabled)
         {
             inventoryCanvas.worldCamera = townCamera;
         }
-        else if (Input.GetKeyDown(KeyCode.I) && inventory.activeSelf)
+        else if (Input.GetKeyDown(KeyCode.I) && !inventoryCanvas.GetComponent<Canvas>().enabled)
         {
             inventoryCanvas.worldCamera = inventoryCamera;
         }
