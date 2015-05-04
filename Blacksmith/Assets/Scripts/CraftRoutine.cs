@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CraftRoutine : MonoBehaviour 
 {
-    private GameObject testObj;
+    //private GameObject testObj;
     //sprites to load various background difficulties into the hammer and heat bars
     public Sprite heatDiff1;
 	public Sprite heatDiff2;
@@ -36,7 +36,7 @@ public class CraftRoutine : MonoBehaviour
     public GameObject background1;
     public GameObject background2;
     public GameObject background3;
-    private bool workshopFront = true;
+    //private bool workshopFront = true;
 
 	public GameObject heatSliderObject;
 	public GameObject hammerSliderObject;
@@ -349,6 +349,8 @@ public class CraftRoutine : MonoBehaviour
 	void nextStage()
 	{
         Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
+
+
 		currentStage++;
 		if (currentStage == totalStages)
 		{
@@ -398,10 +400,9 @@ public class CraftRoutine : MonoBehaviour
 
 	void endCrafting()
 	{
-        currentStage = -1;
-
+        resetCrafting();
         Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
-        //CreateItem();
+        CreateItem();
 	}
 
     void Update()
@@ -554,8 +555,6 @@ public class CraftRoutine : MonoBehaviour
                 }
                 if (heated && cooled)
                 {
-                    Debug.Log("Quality is: " + itemQuality);
-                    craftingComponent.GetComponent<ComponentBehavior>().removeFromBarrel();
                     nextStage();
                 }
             }
@@ -601,8 +600,6 @@ public class CraftRoutine : MonoBehaviour
                 }
                 if (heated && cooled)
                 {
-                    Debug.Log("Quality is: " + itemQuality);
-                    craftingComponent.GetComponent<ComponentBehavior>().removeFromBarrel();
                     nextStage();
                 }
 //                 if (!componentInBarrel)
@@ -800,6 +797,11 @@ public class CraftRoutine : MonoBehaviour
     }
     void resetBetweenStages()
     {
+        if (componentInBarrel)
+        {
+            toggleComponentInBarrel();
+        }
+
         bellowsPosition = homeBellowsPosition;
         barrelSlider.value = 0.0f;
 
@@ -1004,6 +1006,7 @@ public class CraftRoutine : MonoBehaviour
         {
             barrelSliderObject.SetActive(false);
             craftingComponent.SetActive(true);
+            craftingComponent.GetComponent<ComponentBehavior>().removeFromBarrel();
         }
         else if (!componentInBarrel)
         {
@@ -1033,13 +1036,13 @@ public class CraftRoutine : MonoBehaviour
         switch(scene)
         {
             case "workshop front":
-                craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, background1.transform.position.z - 10);
+                craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, - 10);
                 break;
             case "workshop back":
-                craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, background2.transform.position.z - 10);
+                craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, - 10);
                 break;
             case "workbench":
-                craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, background3.transform.position.z - 10);
+                craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, - 10);
                 break;
             default:
                 Debug.Log("Scene not found");
@@ -1208,8 +1211,8 @@ public class CraftRoutine : MonoBehaviour
 
     private void CreateItem()
     {
-        testObj = Instantiate(GameObject.Find("Equipment/Test Sword")) as GameObject;
+        GameObject testObj = Instantiate(GameObject.Find("Equipment/Test Sword")) as GameObject;
         testObj.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 5);
-        createInventory.AddNewItem(testObj);
+        createInventory.AddNewItem(GameObject.Find("Test Sword(clone)"));
     }
 }
