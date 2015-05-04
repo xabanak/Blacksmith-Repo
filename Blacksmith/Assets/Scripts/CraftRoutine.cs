@@ -1039,19 +1039,12 @@ public class CraftRoutine : MonoBehaviour
         switch(scene)
         {
             case "workshop front":
-<<<<<<< HEAD
                 craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, - 10);
                 craftingComponent.GetComponent<ComponentBehavior>().switchRoom(true);
                 break;
             case "workshop back":
                 craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, - 10);
                 craftingComponent.GetComponent<ComponentBehavior>().switchRoom(false);
-=======
-                craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, -10);
-                break;
-            case "workshop back":
-                craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, -10);
->>>>>>> origin/master
                 break;
             case "workbench":
                 craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, -10);
