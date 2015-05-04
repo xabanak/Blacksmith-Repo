@@ -42,27 +42,27 @@ public class FileBehavior : MonoBehaviour {
 
             if (distance < pointDistance)
             {
-                Debug.Log("Full point, distance: " + distance);
+                //Debug.Log("Full point, distance: " + distance);
                 craftingController.updateFileStage(1.0f);
             }
             else if (distance >= pointDistance && distance < halfPointDistance)
             {
-                Debug.Log("Half point, distance: " + distance);
+                //Debug.Log("Half point, distance: " + distance);
                 craftingController.updateFileStage(0.5f);
             }
             else if (distance >= halfPointDistance && distance < quarterPointDistance)
             {
-                Debug.Log("Quarter point, distance: " + distance);
+                //Debug.Log("Quarter point, distance: " + distance);
                 craftingController.updateFileStage(0.25f);
             }
             else if (distance > quarterPointDistance)
             {
-                Debug.Log("No point, distance: " + distance);
+               // Debug.Log("No point, distance: " + distance);
                 craftingController.updateFileStage(0.0f);
             }
             else
             {
-                Debug.Log("Error!?!@");
+               Debug.Log("Error!?!@");
             }
 
             fileSet++;

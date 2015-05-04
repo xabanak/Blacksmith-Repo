@@ -364,7 +364,7 @@ public class CraftRoutine : MonoBehaviour
 
         stage.text = "Stage: " + (currentStage+1) + "/" + totalStages;
 		currentStageAbsVal = (timeMultiplier.getStage(itemType, currentStage));
-        Debug.Log("Current stage abs val is:" + currentStageAbsVal);
+        //Debug.Log("Current stage abs val is:" + currentStageAbsVal);
 		
 		switch(currentStageAbsVal)
 		{
@@ -1037,9 +1037,11 @@ public class CraftRoutine : MonoBehaviour
         {
             case "workshop front":
                 craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, - 10);
+                craftingComponent.GetComponent<ComponentBehavior>().switchRoom(true);
                 break;
             case "workshop back":
                 craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, - 10);
+                craftingComponent.GetComponent<ComponentBehavior>().switchRoom(false);
                 break;
             case "workbench":
                 craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, - 10);

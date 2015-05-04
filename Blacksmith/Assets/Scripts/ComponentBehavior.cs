@@ -168,16 +168,45 @@ public class ComponentBehavior : MonoBehaviour {
         transform.position = curPosition;
     }
 
-    public void switchRoom()
+    public void switchRoom(bool room)
     {
-        inRoom1 = !inRoom1;
-        if (inRoom1)
+        if (inRoom1 == room)
         {
-            transform.position = room1Position.transform.position;
+            return;
         }
         else
         {
-            transform.position = room2Position.transform.position;
+            if (room)
+            {
+                inRoom1 = true;
+                transform.position = room1Position.transform.position;
+            }
+            else
+            {
+                inRoom1 = false;
+                transform.position = room2Position.transform.position;
+            }
+
+            if (inBarrel)
+            {
+                craftController.toggleComponentInBarrel();
+                inBarrel = false;
+            }
+            else if (onForge)
+            {
+                craftController.toggleComponentOnForge();
+                onForge = false;
+            }
+            else if (onAnvil)
+            {
+                craftController.toggleComponentOnAnvil();
+                onAnvil = false;
+            }
+            else if (onGrinder)
+            {
+                craftController.toggleComponentOnGrinder();
+                onGrinder = false;
+            }
         }
     }
 }
