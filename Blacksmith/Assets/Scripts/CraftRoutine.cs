@@ -818,6 +818,7 @@ public class CraftRoutine : MonoBehaviour
 
     void stageShaping()
     {
+        switchScene("workshop front");
         soundController.PlayForgeAmbient();
         useAnvil = true;
         useForge = true;
@@ -839,6 +840,7 @@ public class CraftRoutine : MonoBehaviour
 
     void stageHardening()
     {
+        switchScene("workshop front");
         useForge = true;
         useBarrel = true;
 
@@ -864,7 +866,7 @@ public class CraftRoutine : MonoBehaviour
 
     void stageTempering()
     {
-        switchRoom();
+        switchScene("workshop front");
 
         bellowsSliderObject.SetActive(true);
         useForge = true;
@@ -889,7 +891,7 @@ public class CraftRoutine : MonoBehaviour
 
     void stageGrinding()
     {
-        switchRoom();
+        switchScene("workshop back");
 
         useGrinder = true;
 
@@ -908,13 +910,11 @@ public class CraftRoutine : MonoBehaviour
 
     void stageSharpening()
     {
-        Debug.Log("Sharpening started");
+        switchScene("workbench");
         polishStone1.SetActive(false);
         file.SetActive(true);
         SetSharpeningCycles(5);
         possibleItemQuality += 5 * 5;
-
-        craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, background3.transform.position.z - 10);
 
         timerSliderObject.SetActive(true);
 
@@ -928,12 +928,12 @@ public class CraftRoutine : MonoBehaviour
     void stagePolishing()
     {
         DestroyAllShimmer();
+        switchScene("workbench");
         setPolishCount(1);
         setPolishesNeeded(30);
         polishStone1.SetActive(true);
         file.SetActive(false);
 
-        craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, background3.transform.position.z - 10);
 
         usePolisher = true;
 
@@ -1025,18 +1025,22 @@ public class CraftRoutine : MonoBehaviour
         return true;
     }
 
-    public void switchRoom()
+    public void switchScene(string scene)
     {
-        craftingComponent.GetComponent<ComponentBehavior>().switchRoom();
-        if (workshopFront == true)
+        switch(scene)
         {
-            craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, background2.transform.position.z - 10);
-            workshopFront = false;
-        }
-        else if (workshopFront == false)
-        {
-            craftingCamera.transform.position = new Vector3(background1.transform.position.x, background2.transform.position.y, background2.transform.position.z - 10);
-            workshopFront = true;
+            case "workshop front":
+                craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, background1.transform.position.z - 10);
+                break;
+            case "workshop back":
+                craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, background2.transform.position.z - 10);
+                break;
+            case "workbench":
+                craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, background3.transform.position.z - 10);
+                break;
+            default:
+                Debug.Log("Scene not found");
+                break;
         }
     }
 
