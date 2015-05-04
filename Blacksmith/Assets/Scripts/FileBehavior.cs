@@ -3,10 +3,15 @@ using System.Collections;
 
 public class FileBehavior : MonoBehaviour {
 
+    public double pointDistance;
+    public double halfPointDistance;
+    public double quarterPointDistance;
+
     private CraftRoutine craftingController;
     private Vector3 screenPoint;
     private Vector3 startLocation;
     private int fileSet;
+    private Vector3 origin;
 
     // Use this for initialization
     void Start()
@@ -24,10 +29,42 @@ public class FileBehavior : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D fileSpot)
     {
+        origin = transform.position;
+
         if (fileSpot.gameObject.name == "Shimmer " + fileSet + "(Clone)")
         {
             Destroy(fileSpot.gameObject);
-            craftingController.updateFileStage();
+
+            double distance = Vector3.Distance(fileSpot.gameObject.transform.position, origin);
+
+            distance -= 4.3f;
+            distance *= 100;
+
+            if (distance < pointDistance)
+            {
+                Debug.Log("Full point, distance: " + distance);
+                craftingController.updateFileStage(1.0f);
+            }
+            else if (distance >= pointDistance && distance < halfPointDistance)
+            {
+                Debug.Log("Half point, distance: " + distance);
+                craftingController.updateFileStage(0.5f);
+            }
+            else if (distance >= halfPointDistance && distance < quarterPointDistance)
+            {
+                Debug.Log("Quarter point, distance: " + distance);
+                craftingController.updateFileStage(0.25f);
+            }
+            else if (distance > quarterPointDistance)
+            {
+                Debug.Log("No point, distance: " + distance);
+                craftingController.updateFileStage(0.0f);
+            }
+            else
+            {
+                Debug.Log("Error!?!@");
+            }
+
             fileSet++;
             
             if (fileSet > 24)

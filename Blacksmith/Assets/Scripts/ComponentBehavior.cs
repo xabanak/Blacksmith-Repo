@@ -151,6 +151,7 @@ public class ComponentBehavior : MonoBehaviour {
 
     public void removeFromBarrel()
     {
+        inBarrel = false;
         craftController.toggleComponentInBarrel();
         transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
     }

@@ -176,6 +176,7 @@ public class CraftRoutine : MonoBehaviour
     private GameObject file;
     private GameObject swordLeft;
     private GameObject swordRight;
+    private float sharpenCycleQuality;
     private const int totalFilesNeeded = 12;
     private int currentFiles;
     private int sharpeningCycles;
@@ -318,6 +319,7 @@ public class CraftRoutine : MonoBehaviour
         top = true;
         sharpeningCycles = 0;
         sharpeningCyclesNeeded = 0;
+        sharpenCycleQuality = 0;
         firstCycle = true;
         isSharpened = false;
 
@@ -346,6 +348,7 @@ public class CraftRoutine : MonoBehaviour
 
 	void nextStage()
 	{
+        Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
 		currentStage++;
 		if (currentStage == totalStages)
 		{
@@ -396,7 +399,8 @@ public class CraftRoutine : MonoBehaviour
 	void endCrafting()
 	{
         currentStage = -1;
-        Debug.Log("lol endcrafting");
+
+        Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
         //CreateItem();
 	}
 
@@ -914,7 +918,6 @@ public class CraftRoutine : MonoBehaviour
         polishStone1.SetActive(false);
         file.SetActive(true);
         SetSharpeningCycles(5);
-        possibleItemQuality += 5 * 5;
 
         timerSliderObject.SetActive(true);
 
@@ -1104,7 +1107,7 @@ public class CraftRoutine : MonoBehaviour
 
         if (polishCount <= 0)
         {
-            itemQuality += 5;
+            itemQuality += 1;
             resetShimmerCycle();
             setPolishesNeeded(polishesNeeded - 1);
         }
@@ -1126,8 +1129,9 @@ public class CraftRoutine : MonoBehaviour
         polishesNeeded = polishes;
     }
 
-    public void updateFileStage()
+    public void updateFileStage(float point)
     {
+        sharpenCycleQuality += point;
         currentFiles--;
     }
 
@@ -1155,6 +1159,7 @@ public class CraftRoutine : MonoBehaviour
                 if (!firstCycle)
                 {
                     sharpeningCycles++;
+                    UpdateSharpenQuality();
                 }
 
                 if (firstCycle)
@@ -1185,7 +1190,10 @@ public class CraftRoutine : MonoBehaviour
 
     private void UpdateSharpenQuality()
     {
-        itemQuality += 5;
+        sharpenCycleQuality /= 24;
+        itemQuality += 5 * sharpenCycleQuality;
+        sharpenCycleQuality = 0;
+        possibleItemQuality += 5;
     }
 
     private void DestroyAllShimmer()
