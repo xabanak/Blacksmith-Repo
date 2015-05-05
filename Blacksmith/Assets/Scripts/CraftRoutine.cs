@@ -194,6 +194,16 @@ public class CraftRoutine : MonoBehaviour
 
     private SoundController soundController;
 
+    //CRAFT STARTUP STUFF
+
+    private GameObject startButton;
+    private GameObject itemTypeButton;
+    private GameObject materialTypeButton;
+    private GameObject[] itemTypeButtons;
+    private GameObject[] materialTypeButtons;
+    private const int itemTypes = 9;
+    private const int materialTypes = 10;
+
 
     void setTimer(float time)
     {
@@ -272,10 +282,39 @@ public class CraftRoutine : MonoBehaviour
 
 	void Start () 
 	{
-        //inventoryController = GameObject.Find("Inventory/InventoryController");
+        // Start Crafting Setup
+        //private GameObject startButton;
+        //private GameObject itemTypeButtons[];
+        //private GameObject materialTypeButtons[];
+        startButton = GameObject.Find("Canvas/Crafting Startup/Start Crafting");
+        itemTypeButton = GameObject.Find("Canvas/Crafting Startup/Item Type Button");
+        materialTypeButton = GameObject.Find("Canvas/Crafting Startup/Material Type Button");
+        itemTypeButtons = new GameObject[itemTypes];
+        materialTypeButtons = new GameObject[materialTypes];
+        itemTypeButtons[0] = GameObject.Find("Canvas/Crafting Startup/Types/Sword Button");
+        itemTypeButtons[1] = GameObject.Find("Canvas/Crafting Startup/Types/Shield Button");
+        itemTypeButtons[2] = GameObject.Find("Canvas/Crafting Startup/Types/Breastplate Button");
+        itemTypeButtons[3] = GameObject.Find("Canvas/Crafting Startup/Types/Greaves Button");
+        itemTypeButtons[4] = GameObject.Find("Canvas/Crafting Startup/Types/Helm Button");
+        itemTypeButtons[5] = GameObject.Find("Canvas/Crafting Startup/Types/Gloves Button");
+        itemTypeButtons[6] = GameObject.Find("Canvas/Crafting Startup/Types/Boots Button");
+        itemTypeButtons[7] = GameObject.Find("Canvas/Crafting Startup/Types/Bracers Button");
+        itemTypeButtons[8] = GameObject.Find("Canvas/Crafting Startup/Types/Pauldrons Button");
+        materialTypeButtons[0] = GameObject.Find("Canvas/Crafting Startup/Materials/Tin Button");
+        materialTypeButtons[1] = GameObject.Find("Canvas/Crafting Startup/Materials/Copper Button");
+        materialTypeButtons[2] = GameObject.Find("Canvas/Crafting Startup/Materials/Bronze Button");
+        materialTypeButtons[3] = GameObject.Find("Canvas/Crafting Startup/Materials/Brass Button");
+        materialTypeButtons[4] = GameObject.Find("Canvas/Crafting Startup/Materials/Iron Button");
+        materialTypeButtons[5] = GameObject.Find("Canvas/Crafting Startup/Materials/Blackened Iron Button");
+        materialTypeButtons[6] = GameObject.Find("Canvas/Crafting Startup/Materials/Steel Button");
+        materialTypeButtons[7] = GameObject.Find("Canvas/Crafting Startup/Materials/Steel Alloy L1 Button");
+        materialTypeButtons[8] = GameObject.Find("Canvas/Crafting Startup/Materials/Steel Alloy L2 Button");
+        materialTypeButtons[9] = GameObject.Find("Canvas/Crafting Startup/Materials/Titanium Button");
+
+        
+
         soundController = this.GetComponent<SoundController>();
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
-        //createInventory = this.GetComponent<CreateInventory>();
 
         heatSliderBackground = GameObject.Find("/Canvas/Heat Gauge/Background").GetComponent<Image>();
         hammerSliderBackground = GameObject.Find("Canvas/Hammer Gauge/Background").GetComponent<Image>();
@@ -1222,5 +1261,11 @@ public class CraftRoutine : MonoBehaviour
         GameObject testObj = Instantiate(GameObject.Find("Equipment/Test Sword")) as GameObject;
         testObj.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 5);
         createInventory.AddNewItem(testObj);
+    }
+
+    public void ShowItemMaterialButtons()
+    {
+        itemTypeButton.SetActive(true);
+        materialTypeButton.SetActive(true);
     }
 }
