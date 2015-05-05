@@ -56,14 +56,14 @@ public class StageTimeMatrix : MonoBehaviour
 
     enum ItemBaseLevels
     {
-        Bracers,
-        Greaves = 0,
-        Helm,
-        Gloves,
+        Bracers = 0,
+        Pauldrons = 0,
+        Helm = 1,
+        Gloves = 1,
         Boots = 1,
-        Breastplate,
-        Greaves,
-        Sword,
+        Breastplate = 2,
+        Greaves = 2,
+        Sword = 2,
         Shield = 2
     }
 	void Start () 
@@ -206,20 +206,20 @@ public class StageTimeMatrix : MonoBehaviour
                     {
                         continue;
                     }
-                    if (j == numMats)
+                    if (j == numItemLevels)
                     {
                         i++;
                         j = 0;
                     }
-                    if (i < numItemLevels)
+                    if (i < numMats)
                     {
-                        if (j < numMats)
+                        if (j < numItemLevels)
                         {
                             basePowerLevel[i, j] = Convert.ToInt32(tempString);
                             j++;
                         }
                     }
-                    else if (i == numItemLevels)
+                    else if (i == numMats)
                     {
                         break;
                     }

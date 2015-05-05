@@ -1064,6 +1064,11 @@ public class CraftRoutine : MonoBehaviour
         componentOnGrinder = !componentOnGrinder;
     }
 
+    public bool isComponentInbarrel()
+    {
+        return componentInBarrel;
+    }
+
     public bool isCrafting()
     {
         if (currentStage == -1)
@@ -1256,11 +1261,39 @@ public class CraftRoutine : MonoBehaviour
 
     private void CreateItem()
     {
+        GameObject tempObj = Instantiate(GameObject.Find("Equipment/Test Sword")) as GameObject;
+        double powerLevel = timeMultiplier.getBasePowerLevel(itemType, materialType);
+        double qualityPercentage = itemQuality / possibleItemQuality;
+        if (qualityPercentage > 0.99f)
+        {
+            tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Ultimate", (int)(powerLevel * 2.0f));
+        }
+        else if (qualityPercentage > 0.95f && qualityPercentage <= 0.99f)
+        {
+            tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Exceptional", (int)(powerLevel * 1.6f));
+        }
+        else if(qualityPercentage > 0.80f && qualityPercentage <= 0.95f)
+        {
+            tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Good", (int)(powerLevel * 1.4f));
+        }
+        else if(qualityPercentage > 0.60f && qualityPercentage <= 0.80f)
+        {
+             tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Average", (int)(powerLevel * 1.2f));
+        }
+        else if(qualityPercentage > 0.40f && qualityPercentage <= 0.60f)
+        {
+             tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Crude", (int)(powerLevel));
+        }
+        else if (qualityPercentage <= 0.40f)
+        {
 
+        }
+        else
+        {
+            Debug.Log("Item generated does not exist, weird?");
+        }
 
-        GameObject testObj = Instantiate(GameObject.Find("Equipment/Test Sword")) as GameObject;
-        testObj.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 5);
-        createInventory.AddNewItem(testObj);
+        createInventory.AddNewItem(tempObj);
     }
 
     public void ShowItemMaterialButtons()
