@@ -199,6 +199,8 @@ public class CraftRoutine : MonoBehaviour
     private GameObject startButton;
     private GameObject itemTypeButton;
     private GameObject materialTypeButton;
+    private GameObject types;
+    private GameObject materials;
     private GameObject[] itemTypeButtons;
     private GameObject[] materialTypeButtons;
     private const int itemTypes = 9;
@@ -289,6 +291,8 @@ public class CraftRoutine : MonoBehaviour
         startButton = GameObject.Find("Canvas/Crafting Startup/Start Crafting");
         itemTypeButton = GameObject.Find("Canvas/Crafting Startup/Item Type Button");
         materialTypeButton = GameObject.Find("Canvas/Crafting Startup/Material Type Button");
+        types = GameObject.Find("Canvas/Crafting Startup/Types");
+        materials = GameObject.Find("Canvas/Crafting Startup/Materials");
         itemTypeButtons = new GameObject[itemTypes];
         materialTypeButtons = new GameObject[materialTypes];
         itemTypeButtons[0] = GameObject.Find("Canvas/Crafting Startup/Types/Sword Button");
@@ -1301,5 +1305,15 @@ public class CraftRoutine : MonoBehaviour
     {
         itemTypeButton.SetActive(true);
         materialTypeButton.SetActive(true);
+    }
+
+    public void SelectItemType()
+    {
+        types.SetActive(true);
+    }
+
+    public void SelectMaterialType()
+    {
+        materials.SetActive(true);
     }
 }
