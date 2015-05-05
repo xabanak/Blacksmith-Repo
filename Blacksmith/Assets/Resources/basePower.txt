@@ -1,0 +1,45 @@
+E
+*This file contains the time multipliers for each item type and material type
+*Lines beginning with a * will be ignored upon loading. Do not modify the first line.
+*Make sure there are no trailing empty lines at the end.
+*
+**Tin
+5
+7
+8
+**Copper
+7
+9
+11
+**Bronze
+9
+12
+15
+**Brass
+12
+16
+21
+**Iron
+16
+22
+29
+**BlackenedIron
+22
+30
+40
+**Steel
+30
+42
+56
+**SteelAlloyL1
+42
+58
+78
+**SteelAlloyL2
+58
+81
+109
+**Titanium
+104
+145
+196

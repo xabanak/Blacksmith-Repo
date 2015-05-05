@@ -8,12 +8,15 @@ public class StageTimeMatrix : MonoBehaviour
     const int numItems = 9; // Total number of item types
     const int numMats = 10; // Total number of material types
     const int numStages = 6; // Total number of different crafting stages
+    const int numItemLevels = 3; // total number of different strengths of items in one tier
     const string dir = "Assets/Resources/";
 
     int [] stageCount; // Number of total stages to craft each type of item
     int [,] stageListing; // Listing per item type of which number stage is what crafting stage
     int[] stageTimes; // Base time for each stage
     double[,] stageTimeMult; // Multiplier based on item type and material for the total stage time
+    int[,] basePowerLevel; //Base power level for each item/material type combination
+    
     public int testInt;
        enum Item // Listing of items
     {
@@ -50,16 +53,31 @@ public class StageTimeMatrix : MonoBehaviour
         Sharpening,
         Grinding
     }
+
+    enum ItemBaseLevels
+    {
+        Bracers,
+        Greaves = 0,
+        Helm,
+        Gloves,
+        Boots = 1,
+        Breastplate,
+        Greaves,
+        Sword,
+        Shield = 2
+    }
 	void Start () 
     {
         stageCount = new int[numItems];
         stageListing = new int[numItems, numStages]; 
         stageTimes = new int[numStages];
         stageTimeMult = new double[numItems, numMats];
+        basePowerLevel = new int[numMats, numItemLevels];
         readDataFile(dir + "stageTime.txt");
         readDataFile(dir + "stageCount.txt");
         readDataFile(dir + "stageListing.txt");
         readDataFile(dir + "stageTimeMult.txt");
+        readDataFile(dir + "basePower.txt");
 
         /*for(int i = 0; i < numItems; i++)
         {
@@ -180,6 +198,34 @@ public class StageTimeMatrix : MonoBehaviour
                 }
                 break;
 
+            case 'E':
+                while (!inputStream.EndOfStream)
+                {
+                    string tempString = inputStream.ReadLine();
+                    if (tempString[0] == '*')
+                    {
+                        continue;
+                    }
+                    if (j == numMats)
+                    {
+                        i++;
+                        j = 0;
+                    }
+                    if (i < numItemLevels)
+                    {
+                        if (j < numMats)
+                        {
+                            basePowerLevel[i, j] = Convert.ToInt32(tempString);
+                            j++;
+                        }
+                    }
+                    else if (i == numItemLevels)
+                    {
+                        break;
+                    }
+                }
+                break;
+
             default:
                 Debug.Log("Failed to load correct data file. " + filePath + " did not load.");
                 break;
@@ -219,5 +265,13 @@ public class StageTimeMatrix : MonoBehaviour
     public double getStageTime(int stage)
     {
         return stageTimes[stage];
+    }
+
+    public int getBasePowerLevel(string item, string material)
+    {
+        int itemBaseLevel = (int)Enum.Parse(typeof(ItemBaseLevels), item);
+        int matValue = (int)Enum.Parse(typeof(Material), material);
+
+        return basePowerLevel[matValue, itemBaseLevel];
     }
 }

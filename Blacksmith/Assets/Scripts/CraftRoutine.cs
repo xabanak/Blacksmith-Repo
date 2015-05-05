@@ -1217,6 +1217,8 @@ public class CraftRoutine : MonoBehaviour
 
     private void CreateItem()
     {
+
+
         GameObject testObj = Instantiate(GameObject.Find("Equipment/Test Sword")) as GameObject;
         testObj.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 5);
         createInventory.AddNewItem(testObj);
