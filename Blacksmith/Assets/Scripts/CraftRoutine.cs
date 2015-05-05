@@ -1287,6 +1287,7 @@ public class CraftRoutine : MonoBehaviour
         else if (qualityPercentage <= 0.40f)
         {
             setAnnouncement("You failes.", 5.0f);
+            return;
         }
         else
         {
