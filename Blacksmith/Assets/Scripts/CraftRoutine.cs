@@ -407,6 +407,7 @@ public class CraftRoutine : MonoBehaviour
         Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
         switchScene("workshop front");
         CreateItem();
+        Destroy(craftingComponent);
     }
 
     void resetCrafting()
