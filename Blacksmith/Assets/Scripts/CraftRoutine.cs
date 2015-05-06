@@ -1328,6 +1328,16 @@ public class CraftRoutine : MonoBehaviour
             materials.SetActive(!materials.activeSelf);
         }
     }
+     
+    public void SetMaterialsButton(Sprite image)
+    {
+        materialTypeButton.GetComponent<Image>().sprite = image;
+    }
+
+    public void SetMaterial(string material)
+    {
+        materialType = material;
+    }
 
 
 
