@@ -1315,12 +1315,18 @@ public class CraftRoutine : MonoBehaviour
 
     public void SelectItemType()
     {
-        types.SetActive(true);
+        if (!materials.activeSelf)
+        {
+            types.SetActive(!types.activeSelf);
+        }
     }
 
     public void SelectMaterialType()
     {
-        materials.SetActive(true);
+        if (!types.activeSelf)
+        {
+            materials.SetActive(!materials.activeSelf);
+        }
     }
 
 
