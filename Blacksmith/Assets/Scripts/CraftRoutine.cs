@@ -210,84 +210,8 @@ public class CraftRoutine : MonoBehaviour
     private bool materialSet;
     private bool itemSet;
 
-
-    void setTimer(float time)
+    void Start()
     {
-        timerTimer = 0.0f;
-        timerEndTime = time;
-        timerSlider.maxValue = timerEndTime;
-        timerSet = true;
-        //timerActive = true;
-    }
-
-    void startTimer()
-    {
-        timerSet = false;
-        timerActive = true;
-        Debug.Log("startTimer set timerActive true");
-    }
-
-    void resetTimer()
-    {
-        timerTimer = 0.0f;
-        timerEndTime = 0.0f;
-        timerSet = false;
-        timerActive = false;
-        Debug.Log("resettimer set timerActive false");
-    }
-
-    void setAnnouncement(string announcement, float time)
-    {
-        popUpText.enabled = true;
-        popUpText.text = announcement;
-        annEndTime = time;
-        annTimer = 0.0f;
-        annActive = true;
-    }
-
-    void resetAnnouncement()
-    {
-        popUpText.text = "";
-        annEndTime = 0.0f;
-        annTimer = 0.0f;
-        annActive = false;
-        popUpText.enabled = false;
-    }
-
-    void resetCrafting()
-    {
-        currentStage = -1;
-
-        componentOnAnvil = false;
-        componentOnForge = false;
-        componentInBarrel = false;
-        componentOnGrinder = false;
-
-        resetBetweenStages();
-
-        grinded = false;
-        rotateRight = false;
-        grindCycle = false;
-        playerRotation = 0;
-
-        stage.enabled = false;
-        popUpText.enabled = false;
-        resetTimer();
-        resetAnnouncement();
-        resetSliders();
-    }
-
-    void resetSliders()
-    {
-        heatSlider.value = 0.0f;
-        hammerSlider.value = 0.0f;
-        timerSlider.value = 0.0f;
-
-        furnaceSlider.value = 0.0f; //REALLY need to figure out what scripting is going to manage the furnace and pass information into this object to manage the display slider
-    }
-
-	void Start () 
-	{
         // Start Crafting Setup
         //private GameObject startButton;
         //private GameObject itemTypeButtons[];
@@ -321,7 +245,7 @@ public class CraftRoutine : MonoBehaviour
         materialSet = false;
         itemSet = false;
 
-        
+
 
         soundController = this.GetComponent<SoundController>();
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
@@ -335,9 +259,9 @@ public class CraftRoutine : MonoBehaviour
         coolingBarrel = GameObject.Find("Crafting/Barrel");
         hammer = GameObject.Find("Crafting/Hammer");
 
-		heatSlider = heatSliderObject.GetComponent<Slider> ();
-		hammerSlider = hammerSliderObject.GetComponent<Slider> ();
-		timerSlider = timerSliderObject.GetComponent<Slider> ();
+        heatSlider = heatSliderObject.GetComponent<Slider>();
+        hammerSlider = hammerSliderObject.GetComponent<Slider>();
+        timerSlider = timerSliderObject.GetComponent<Slider>();
         furnaceSlider = furnaceSliderObject.GetComponent<Slider>();
         barrelSlider = barrelSliderObject.GetComponent<Slider>();
         bellowsSlider = GameObject.Find("Canvas/Bellows Slider").GetComponent<Slider>();
@@ -349,6 +273,130 @@ public class CraftRoutine : MonoBehaviour
         sharpeningLevel = 1;
         polishingLevel = 1;
         barrelLevel = 1;
+
+        Random.seed = (int)System.DateTime.Now.Ticks;
+
+        resetCrafting();
+    }
+
+    void resetSliders()
+    {
+        heatSlider.value = 0.0f;
+        hammerSlider.value = 0.0f;
+        timerSlider.value = 0.0f;
+        furnaceSlider.value = 0.0f; //REALLY need to figure out what scripting is going to manage the furnace and pass information into this object to manage the display slider
+    }
+
+//***********************************************************************************************************************
+//******************************************** TIMER AND ANNOUNCEMENT METHODS
+//***********************************************************************************************************************
+    
+    void setTimer(float time)
+    {
+        timerTimer = 0.0f;
+        timerEndTime = time;
+        timerSlider.maxValue = timerEndTime;
+        timerSet = true;
+    }
+
+    void startTimer()
+    {
+        timerSet = false;
+        timerActive = true;
+        Debug.Log("startTimer set timerActive true");
+    }
+
+    void timerManager()
+    {
+        timerTimer += Time.deltaTime;
+        timerSlider.value = timerTimer;
+        if (timerTimer >= timerEndTime)
+        {
+            timerActive = false;
+        }
+    }
+
+    void resetTimer()
+    {
+        timerTimer = 0.0f;
+        timerEndTime = 0.0f;
+        timerSet = false;
+        timerActive = false;
+    }
+
+    void setAnnouncement(string announcement, float time)
+    {
+        popUpText.enabled = true;
+        popUpText.text = announcement;
+        annEndTime = time;
+        annTimer = 0.0f;
+        annActive = true;
+    }
+
+    void annManager()
+    {
+        annTimer += Time.deltaTime;
+        if (annTimer >= annEndTime)
+        {
+            resetAnnouncement();
+        }
+    }
+
+    void resetAnnouncement()
+    {
+        popUpText.text = "";
+        annEndTime = 0.0f;
+        annTimer = 0.0f;
+        annActive = false;
+        popUpText.enabled = false;
+    }
+
+//************************************************************************************************************
+//******************************************* CRAFTING MANAGEMENT METHODS
+//************************************************************************************************************
+
+    public void StartCrafting()
+    {
+        if (itemSet && materialSet && currentStage == -1)
+        {
+            startButton.SetActive(false);
+            materialTypeButton.SetActive(false);
+            itemTypeButton.SetActive(false);
+            itemSet = false;
+            materialSet = false;
+            stage.enabled = true;
+
+            totalStages = timeMultiplier.getStageCount(itemType);
+
+            instantiateComponent();
+
+            nextStage();
+        }
+    }
+
+    void endCrafting()
+    {
+        resetCrafting();
+        Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
+        switchScene("workshop front");
+        CreateItem();
+    }
+
+    void resetCrafting()
+    {
+        currentStage = -1;
+
+        componentOnAnvil = false;
+        componentOnForge = false;
+        componentInBarrel = false;
+        componentOnGrinder = false;
+
+        resetBetweenStages();
+
+        grinded = false;
+        rotateRight = false;
+        grindCycle = false;
+        playerRotation = 0;
 
         // POLISHING STAGE SETUP
 
@@ -374,34 +422,11 @@ public class CraftRoutine : MonoBehaviour
         firstCycle = true;
         isSharpened = false;
 
-
-        Random.seed = (int)System.DateTime.Now.Ticks;
-
-        resetCrafting();
-    }
-
-    /*public void testCrafting()
-    {
-        startCrafting("Sword", "Tin");
-    }*/
-
-    public void StartCrafting()
-    {
-        if (itemSet && materialSet && currentStage == -1)
-        {
-            startButton.SetActive(false);
-            materialTypeButton.SetActive(false);
-            itemTypeButton.SetActive(false);
-            itemSet = false;
-            materialSet = false;
-            stage.enabled = true;
-
-            totalStages = timeMultiplier.getStageCount(itemType);
-
-            instantiateComponent();
-
-            nextStage();
-        }
+        stage.enabled = false;
+        popUpText.enabled = false;
+        resetTimer();
+        resetAnnouncement();
+        resetSliders();
     }
 
 	void nextStage()
@@ -427,27 +452,27 @@ public class CraftRoutine : MonoBehaviour
 		switch(currentStageAbsVal)
 		{
 			case 0:
-				stageShaping();
+				stageShapingSetup();
 				break;
 			
 			case 1:
-				stageHardening();
+                stageHardeningSetup();
 				break;
 			
 			case 2:
-				stageTempering();
+                stageTemperingSetup();
 				break;
 				
 			case 3:
-				stagePolishing();
+                stagePolishingSetup();
 				break;
 				
 			case 4:
-				stageSharpening();
+                stageSharpeningSetup();
 				break;
 				
 			case 5:
-				stageGrinding();
+                stageGrindingSetup();
 				break;
 				
 			default:
@@ -456,405 +481,6 @@ public class CraftRoutine : MonoBehaviour
 		}
 	}
 
-	void endCrafting()
-	{
-        resetCrafting();
-        Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
-        switchScene("workshop front");
-        CreateItem();
-        CreateItem();
-	}
-
-    void Update()
-    {
-        if (bellowsSliderObject.activeSelf)
-        {
-            if (bellowsPosition < 2.0f)
-            {
-                bellowsPosition = bellowsSlider.value;
-
-                if (bellowsPosition >= 2.0f && bellowsPosition < 4.0f)
-                {
-                    //Debug.Log("First Bellows Pump");
-                    bellowsPump();
-                    bellowsChange();
-                }
-                else if (bellowsPosition >= 4.0f)
-                {
-                    //Debug.Log("Two pumps at once");
-                    bellowsPump();
-                    bellowsChange();
-                    bellowsPump();
-                    bellowsChange();
-                }
-            }
-            else if (bellowsPosition >= 2.0f && bellowsPosition < 4.0f)
-            {
-                bellowsPosition = bellowsSlider.value;
-
-                if (bellowsPosition < 2.0f)
-                {
-                    bellowsChange();
-                }
-                else if (bellowsPosition >= 4.0f)
-                {
-                    //Debug.Log("Second Bellows Pump");
-                    bellowsPump();
-                    bellowsChange();
-                }
-            }
-            else
-            {
-                bellowsPosition = bellowsSlider.value;
-                if (bellowsPosition < 4.0f)
-                {
-                    bellowsChange();
-                }
-            }
-        }
-        if (barrelSliderObject.activeSelf)
-        {
-            if (barrelSlider.value > 80.0f)
-            {
-                heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
-            }
-        }
-        if (timerActive)
-        {
-            timerTimer += Time.deltaTime;
-            timerSlider.value = timerTimer;
-            if (timerTimer >= timerEndTime)
-            {
-                timerActive = false;
-            }
-        }
-        if (annActive)
-        {
-            annTimer += Time.deltaTime;
-            if (annTimer >= annEndTime)
-            {
-                resetAnnouncement();
-            }
-        }
-
-        if (currentStage != -1)
-        {
-            if (currentStageAbsVal == 0)
-            {
-                if (!componentInBarrel)
-                {
-                    heatSlider.value -= (Time.deltaTime * heatSliderChange);
-                }
-                hammerSlider.value -= (Time.deltaTime * hammerSliderChange);
-                if (timerSet && !timerActive && heatSlider.value > heatToStart && hammerSlider.value > hammerToStart)
-                {
-                    startTimer();
-                    timeQuality = timeSync;
-                }
-                if (timerActive)
-                {
-                    if (timeQuality <= 0)
-                    {
-                        timeQuality = timeSync;
-                        if (heatSlider.value > 25.0f && heatSlider.value < 75.0f)
-                        {
-                            itemQuality += 0.5f;
-                        }
-                        if (hammerSlider.value > 25.0f && hammerSlider.value < 75.0f)
-                        {
-                            itemQuality += 0.5f;
-                        }
-                    }
-
-                    timeQuality -= Time.deltaTime;
-                }
-                if (!timerActive && !timerSet)
-                {
-                    nextStage();
-                }
-            }
-            // SHAPING STAGE
-            else if (currentStageAbsVal == 1)
-            {
-                if (!heated || !cooled)
-                {
-                    if (!componentInBarrel)
-                    {
-                        heatSlider.value -= (Time.deltaTime * heatSliderChange);
-                    }
-                    else
-                    {
-                        if (barrelSlider.value > 80.0f)
-                        {
-                            heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
-                        }
-                        else
-                        {
-                            heatSlider.value -= (Time.deltaTime * heatSliderChange);
-                        }
-                    }
-                    if (!timerActive)
-                    {
-                        timeQuality -= Time.deltaTime;
-                        if (timeQuality <= 0)
-                        {
-                            timeQuality = timeSync;
-
-                            itemQuality -= 1.0f;
-                        }
-                    }
-                }
-                if (heatSlider.value > 99.0f)
-                {
-                    heated = true;
-                    setAnnouncement("Quench!", 3.0f);
-                }
-                if (heatSlider.value < 1.0f && heated)
-                {
-                    cooled = true;
-                }
-                if (heated && cooled)
-                {
-                    nextStage();
-                }
-            }
-            // TEMPERING STAGE
-            else if (currentStageAbsVal == 2)
-            {
-                if (!heated || !cooled)
-                {
-                    if (!componentInBarrel)
-                    {
-                        heatSlider.value -= (Time.deltaTime * heatSliderChange);
-                    }
-                    else
-                    {
-                        if (barrelSlider.value > 80.0f)
-                        {
-                            heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
-                        }
-                        else
-                        {
-                            heatSlider.value -= (Time.deltaTime * heatSliderChange);
-                        }
-                    }
-                    if (!timerActive)
-                    {
-                        timeQuality -= Time.deltaTime;
-                        if (timeQuality <= 0)
-                        {
-                            timeQuality = timeSync;
-
-                            itemQuality -= 1.0f;
-                        }
-                    }
-                }
-                if (heatSlider.value > 70.0f)
-                {
-                    heated = true;
-                    setAnnouncement("Quench!", 3.0f);
-                }
-                if (heatSlider.value < 1.0f && heated)
-                {
-                    cooled = true;
-                }
-                if (heated && cooled)
-                {
-                    nextStage();
-                }
-//                 if (!componentInBarrel)
-//                 {
-//                     heatSlider.value -= (Time.deltaTime * heatSliderChange);
-//                 }
-//                 else
-//                 {
-//                     if (barrelSlider.value > 80.0f)
-//                     {
-//                         heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
-//                     }
-//                     else
-//                     {
-//                         heatSlider.value -= (Time.deltaTime * heatSliderChange);
-//                     }
-//                 }
-            }
-            // POLISHING STAGE
-            else if (currentStageAbsVal == 3)
-            {
-                // polishing
-
-                if (timerSet)
-                {
-                    startTimer();
-                    polishTimer = 0;
-                    resetShimmers();
-                }
-
-                if (timerActive && polishesNeeded > 0)
-                {
-                    polishTimer -= Time.deltaTime;
-
-                    if (polishTimer <= 0)
-                    {
-                        do
-                        {
-                            shineSpot = Random.Range(0, 11);
-                        } while (shineSpot == lastShine);
-
-                        lastShine = shineSpot;
-
-                        destoryShimmers();
-
-                        GameObject tempObj = Instantiate(swordShines[shineSpot]) as GameObject;
-                        tempObj.SetActive(true);
-
-                        swordShimmers[shineSpot] = true;
-                        
-
-                        if (shineSpot < 0 || shineSpot > 11)
-                        {
-                            Debug.Log("Shinespot out of range!");
-                        }
-
-                        polishTimer = basePolishTime;
-                    }
-                }
-
-                if (!timerActive && !timerSet)
-                {
-                    setAnnouncement("Polish Done", 3.0f);
-                    destoryShimmers();
-                    nextStage();
-                }
-                else if (polishesNeeded == 0)
-                {
-                    setAnnouncement("Polish Done", 3.0f);
-                    timerActive = false;
-                    destoryShimmers();
-                    nextStage();
-                }
-
-            }
-            // SHARPENING STAGE
-            else if (currentStageAbsVal == 4)
-            {
-                if (sharpeningCycles >= sharpeningCyclesNeeded)
-                {
-                    timerActive = false;
-                    isSharpened = true;
-                    setAnnouncement("Sharpening done!", 1.0f);
-                    spawnShimmersNeeded = false;
-                    nextStage();
-                }
-                else if (!timerActive && !timerSet)
-                {
-                    nextStage();
-                }
-
-                if (!isSharpened && timerActive)
-                {
-                    if (currentFiles <= 0)
-                    {
-                        resetCurrentFiles();
-                        spawnShimmersNeeded = true;
-                    }
-
-                    if (spawnShimmersNeeded)
-                    {
-                        setSharpenSide(top);
-                    }
-                }
-            }
-            // GRINDING STAGE
-            else if (currentStageAbsVal == 5)
-            {
-                if (componentOnGrinder && timerSet)
-                {
-                    startTimer();
-                    timeQuality = timeSync;
-                }
-
-                if (timerActive)
-                {
-                    // The first section is automated and creates imbalance on the component
-                    if (grindCycle == false)
-                    {
-                        grindTime = Random.Range(2.0f, 5.0f);
-                        grindCycle = true;
-                        rotateRight = !rotateRight;
-                    }
-
-                    grindTime -= Time.deltaTime;
-                    step = speed * Time.deltaTime;
-
-                    if (rotateRight)
-                    {
-                        grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
-                        grinderGauge.GetComponent<Slider>().value += step;
-                    }
-                    else
-                    {
-                        grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, step);
-                        grinderGauge.GetComponent<Slider>().value -= step;
-                    }
-
-                    if (grindTime <= 0.0f)
-                    {
-                        grindCycle = false;
-                    }
-
-                    // In this section the player controls the balance of the grinding process
-                    counterStep = speed * 2 * Time.deltaTime;
-
-                    if (Input.GetKeyDown(KeyCode.W))
-                    {
-                        playerRotation = 0;
-                    }
-                    else if (Input.GetKeyDown(KeyCode.D))
-                    {
-                        playerRotation = 1;
-                    }
-                    else if (Input.GetKeyDown(KeyCode.A))
-                    {
-                        playerRotation = 2;
-                    }
-
-                    if (playerRotation == 1)
-                    {
-                        grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, counterStep);
-                        grinderGauge.GetComponent<Slider>().value += counterStep;
-                    }
-                    else if (playerRotation == 2)
-                    {
-                        grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, counterStep);
-                        grinderGauge.GetComponent<Slider>().value -= counterStep;
-                    }
-
-                    if (timeQuality <= 0)
-                    {
-                        timeQuality = timeSync;
-                        if (grinderGauge.GetComponent<Slider>().value > 25 && grinderGauge.GetComponent<Slider>().value < 35)
-                        {
-                            itemQuality += 1;
-                        }
-                        else if (grinderGauge.GetComponent<Slider>().value > 20 && grinderGauge.GetComponent<Slider>().value < 40)
-                        {
-                            itemQuality += 0.5f;
-                        }
-                    }
-
-                    timeQuality -= Time.deltaTime;
-                }
-
-
-                if (!timerActive && !timerSet)
-                {
-                    setAnnouncement("Grinding Done", 1.0f);
-                    nextStage();
-                }
-            }
-        }
-    }
     void resetBetweenStages()
     {
         if (componentInBarrel)
@@ -882,7 +508,64 @@ public class CraftRoutine : MonoBehaviour
         resetTimer();
     }
 
-    void stageShaping()
+    void Update()
+    {
+        if (bellowsSliderObject.activeSelf)
+        {
+            bellowsManager();
+        }
+        if (barrelSliderObject.activeSelf)
+        {
+            barrelManager();
+        }
+        if (timerActive)
+        {
+            timerManager();
+        }
+        if (annActive)
+        {
+            annManager();
+        }
+
+        if (currentStage != -1)
+        {
+            // SHAPING STAGE
+            if (currentStageAbsVal == 0)
+            {
+                stageShapingManager();
+            }
+            // HARDENING STAGE
+            else if (currentStageAbsVal == 1)
+            {
+                stageHardeningManager();
+            }
+            // TEMPERING STAGE
+            else if (currentStageAbsVal == 2)
+            {
+                stageTemperingManager();
+            }
+            // POLISHING STAGE
+            else if (currentStageAbsVal == 3)
+            {
+                stagePolishingManager();
+            }
+            // SHARPENING STAGE
+            else if (currentStageAbsVal == 4)
+            {
+                stageSharpeningManager();
+            }
+            // GRINDING STAGE
+            else if (currentStageAbsVal == 5)
+            {
+                stageGrindingManager();
+            }
+        }
+    }
+
+//********************************************************************************************************
+//************************************** STAGE SETUP AND MANAGEMENT FUNCTIONS
+//********************************************************************************************************
+    void stageShapingSetup()
     {
         switchScene("workshop front");
         soundController.PlayForgeAmbient();
@@ -903,8 +586,42 @@ public class CraftRoutine : MonoBehaviour
         possibleItemQuality += timerEndTime;
     }
 
+    void stageShapingManager()
+    {
+        if (!componentInBarrel)
+        {
+            heatSlider.value -= (Time.deltaTime * heatSliderChange);
+        }
+        hammerSlider.value -= (Time.deltaTime * hammerSliderChange);
+        if (timerSet && !timerActive && heatSlider.value > heatToStart && hammerSlider.value > hammerToStart)
+        {
+            startTimer();
+            timeQuality = timeSync;
+        }
+        if (timerActive)
+        {
+            if (timeQuality <= 0)
+            {
+                timeQuality = timeSync;
+                if (heatSlider.value > 25.0f && heatSlider.value < 75.0f)
+                {
+                    itemQuality += 0.5f;
+                }
+                if (hammerSlider.value > 25.0f && hammerSlider.value < 75.0f)
+                {
+                    itemQuality += 0.5f;
+                }
+            }
 
-    void stageHardening()
+            timeQuality -= Time.deltaTime;
+        }
+        if (!timerActive && !timerSet)
+        {
+            nextStage();
+        }
+    }
+
+    void stageHardeningSetup()
     {
         switchScene("workshop front");
         useForge = true;
@@ -930,7 +647,52 @@ public class CraftRoutine : MonoBehaviour
         setAnnouncement("Heat!", 3.0f);
     }
 
-    void stageTempering()
+    void stageHardeningManager()
+    {
+        if (!heated || !cooled)
+        {
+            if (!componentInBarrel)
+            {
+                heatSlider.value -= (Time.deltaTime * heatSliderChange);
+            }
+            else
+            {
+                if (barrelSlider.value > 80.0f)
+                {
+                    heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
+                }
+                else
+                {
+                    heatSlider.value -= (Time.deltaTime * heatSliderChange);
+                }
+            }
+            if (!timerActive)
+            {
+                timeQuality -= Time.deltaTime;
+                if (timeQuality <= 0)
+                {
+                    timeQuality = timeSync;
+
+                    itemQuality -= 1.0f;
+                }
+            }
+        }
+        if (heatSlider.value > 99.0f)
+        {
+            heated = true;
+            setAnnouncement("Quench!", 3.0f);
+        }
+        if (heatSlider.value < 1.0f && heated)
+        {
+            cooled = true;
+        }
+        if (heated && cooled)
+        {
+            nextStage();
+        }
+    }
+
+    void stageTemperingSetup()
     {
         switchScene("workshop front");
 
@@ -955,42 +717,52 @@ public class CraftRoutine : MonoBehaviour
         setAnnouncement("Heat!", 3.0f);
     }
 
-    void stageGrinding()
+    void stageTemperingManager()
     {
-        switchScene("workshop back");
+         if (!heated || !cooled)
+         {
+             if (!componentInBarrel)
+             {
+                 heatSlider.value -= (Time.deltaTime * heatSliderChange);
+             }
+             else
+             {
+                 if (barrelSlider.value > 80.0f)
+                 {
+                     heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
+                 }
+                 else
+                 {
+                     heatSlider.value -= (Time.deltaTime * heatSliderChange);
+                 }
+             }
+             if (!timerActive)
+             {
+                 timeQuality -= Time.deltaTime;
+                 if (timeQuality <= 0)
+                 {
+                     timeQuality = timeSync;
 
-        useGrinder = true;
-
-        grinderGauge.SetActive(true);
-        timerSliderObject.SetActive(true);
-        grinderGauge.GetComponent<Slider>().value = grinderGauge.GetComponent<Slider>().maxValue / 2;
-
-        grinded = false;
-        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
-        timerSliderObject.GetComponent<Slider>().value = 0;
-
-        possibleItemQuality += timerEndTime;
-
-        setAnnouncement("Grind!", 3.0f);
+                     itemQuality -= 1.0f;
+                 }
+             }
+         }
+         if (heatSlider.value > 70.0f)
+         {
+             heated = true;
+             setAnnouncement("Quench!", 3.0f);
+         }
+         if (heatSlider.value < 1.0f && heated)
+         {
+             cooled = true;
+         }
+         if (heated && cooled)
+         {
+             nextStage();
+         }
     }
 
-    void stageSharpening()
-    {
-        switchScene("workbench");
-        polishStone1.SetActive(false);
-        file.SetActive(true);
-        SetSharpeningCycles(5);
-
-        timerSliderObject.SetActive(true);
-
-        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
-        timerSliderObject.GetComponent<Slider>().value = 0;
-        setAnnouncement("Sharpen!", 3.0f);
-
-        startTimer();
-    }
-
-    void stagePolishing()
+    void stagePolishingSetup()
     {
         DestroyAllShimmer();
         switchScene("workbench");
@@ -1013,6 +785,215 @@ public class CraftRoutine : MonoBehaviour
         setAnnouncement("Polish!", 3.0f);
     }
 
+    void stagePolishingManager()
+    {
+        if (timerSet)
+        {
+            startTimer();
+            polishTimer = 0;
+            resetShimmers();
+        }
+
+        if (timerActive && polishesNeeded > 0)
+        {
+            polishTimer -= Time.deltaTime;
+
+            if (polishTimer <= 0)
+            {
+                do
+                {
+                    shineSpot = Random.Range(0, 11);
+                } while (shineSpot == lastShine);
+
+                lastShine = shineSpot;
+
+                destoryShimmers();
+
+                GameObject tempObj = Instantiate(swordShines[shineSpot]) as GameObject;
+                tempObj.SetActive(true);
+
+                swordShimmers[shineSpot] = true;
+
+
+                if (shineSpot < 0 || shineSpot > 11)
+                {
+                    Debug.Log("Shinespot out of range!");
+                }
+
+                polishTimer = basePolishTime;
+            }
+        }
+
+        if (!timerActive && !timerSet)
+        {
+            setAnnouncement("Polish Done", 3.0f);
+            destoryShimmers();
+            nextStage();
+        }
+        else if (polishesNeeded == 0)
+        {
+            setAnnouncement("Polish Done", 3.0f);
+            timerActive = false;
+            destoryShimmers();
+            nextStage();
+        }
+    }
+
+    void stageSharpeningSetup()
+    {
+        switchScene("workbench");
+        polishStone1.SetActive(false);
+        file.SetActive(true);
+        SetSharpeningCycles(5);
+
+        timerSliderObject.SetActive(true);
+
+        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        timerSliderObject.GetComponent<Slider>().value = 0;
+        setAnnouncement("Sharpen!", 3.0f);
+
+        startTimer();
+    }
+
+    void stageSharpeningManager()
+    {
+        if (sharpeningCycles >= sharpeningCyclesNeeded)
+        {
+            timerActive = false;
+            isSharpened = true;
+            setAnnouncement("Sharpening done!", 1.0f);
+            spawnShimmersNeeded = false;
+            nextStage();
+        }
+        else if (!timerActive && !timerSet)
+        {
+            nextStage();
+        }
+
+        if (!isSharpened && timerActive)
+        {
+            if (currentFiles <= 0)
+            {
+                resetCurrentFiles();
+                spawnShimmersNeeded = true;
+            }
+
+            if (spawnShimmersNeeded)
+            {
+                setSharpenSide(top);
+            }
+        }
+    }
+
+    void stageGrindingSetup()
+    {
+        switchScene("workshop back");
+
+        useGrinder = true;
+
+        grinderGauge.SetActive(true);
+        timerSliderObject.SetActive(true);
+        grinderGauge.GetComponent<Slider>().value = grinderGauge.GetComponent<Slider>().maxValue / 2;
+
+        grinded = false;
+        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        timerSliderObject.GetComponent<Slider>().value = 0;
+
+        possibleItemQuality += timerEndTime;
+
+        setAnnouncement("Grind!", 3.0f);
+    }
+
+    void stageGrindingManager()
+    {
+        if (componentOnGrinder && timerSet)
+        {
+            startTimer();
+            timeQuality = timeSync;
+        }
+
+        if (timerActive)
+        {
+            // The first section is automated and creates imbalance on the component
+            if (grindCycle == false)
+            {
+                grindTime = Random.Range(2.0f, 5.0f);
+                grindCycle = true;
+                rotateRight = !rotateRight;
+            }
+
+            grindTime -= Time.deltaTime;
+            step = speed * Time.deltaTime;
+
+            if (rotateRight)
+            {
+                grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
+                grinderGauge.GetComponent<Slider>().value += step;
+            }
+            else
+            {
+                grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, step);
+                grinderGauge.GetComponent<Slider>().value -= step;
+            }
+
+            if (grindTime <= 0.0f)
+            {
+                grindCycle = false;
+            }
+
+            // In this section the player controls the balance of the grinding process
+            counterStep = speed * 2 * Time.deltaTime;
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                playerRotation = 0;
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                playerRotation = 1;
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                playerRotation = 2;
+            }
+
+            if (playerRotation == 1)
+            {
+                grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, counterStep);
+                grinderGauge.GetComponent<Slider>().value += counterStep;
+            }
+            else if (playerRotation == 2)
+            {
+                grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, counterStep);
+                grinderGauge.GetComponent<Slider>().value -= counterStep;
+            }
+
+            if (timeQuality <= 0)
+            {
+                timeQuality = timeSync;
+                if (grinderGauge.GetComponent<Slider>().value > 25 && grinderGauge.GetComponent<Slider>().value < 35)
+                {
+                    itemQuality += 1;
+                }
+                else if (grinderGauge.GetComponent<Slider>().value > 20 && grinderGauge.GetComponent<Slider>().value < 40)
+                {
+                    itemQuality += 0.5f;
+                }
+            }
+
+            timeQuality -= Time.deltaTime;
+        }
+        if (!timerActive && !timerSet)
+        {
+            setAnnouncement("Grinding Done", 1.0f);
+            nextStage();
+        }
+    }
+
+//*************************************************************************************************************************
+//******************************************* CRAFTING TOOL MANAGEMENT FUNCTIONS
+//*************************************************************************************************************************
+
     public void hammerHitOnAnvil()
     {
         if (currentStageAbsVal == 0)
@@ -1021,6 +1002,52 @@ public class CraftRoutine : MonoBehaviour
             {
                 soundController.PlayHammerHit();
                 hammerSlider.value += hammerHitIncrease;
+            }
+        }
+    }
+
+    private void bellowsManager()
+    {
+        if (bellowsPosition < 2.0f)
+        {
+            bellowsPosition = bellowsSlider.value;
+
+            if (bellowsPosition >= 2.0f && bellowsPosition < 4.0f)
+            {
+                //Debug.Log("First Bellows Pump");
+                bellowsPump();
+                bellowsChange();
+            }
+            else if (bellowsPosition >= 4.0f)
+            {
+                //Debug.Log("Two pumps at once");
+                bellowsPump();
+                bellowsChange();
+                bellowsPump();
+                bellowsChange();
+            }
+        }
+        else if (bellowsPosition >= 2.0f && bellowsPosition < 4.0f)
+        {
+            bellowsPosition = bellowsSlider.value;
+
+            if (bellowsPosition < 2.0f)
+            {
+                bellowsChange();
+            }
+            else if (bellowsPosition >= 4.0f)
+            {
+                //Debug.Log("Second Bellows Pump");
+                bellowsPump();
+                bellowsChange();
+            }
+        }
+        else
+        {
+            bellowsPosition = bellowsSlider.value;
+            if (bellowsPosition < 4.0f)
+            {
+                bellowsChange();
             }
         }
     }
@@ -1076,6 +1103,14 @@ public class CraftRoutine : MonoBehaviour
         componentInBarrel = !componentInBarrel;
     }
 
+    private void barrelManager()
+    {
+        if (barrelSlider.value > 80.0f)
+        {
+            heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
+        }
+    }
+
     public void toggleComponentOnGrinder()
     {
         componentOnGrinder = !componentOnGrinder;
@@ -1117,7 +1152,9 @@ public class CraftRoutine : MonoBehaviour
         }
     }
 
-    //PUBLIC METHODS TO FIND IF THE COMPONENT IS ALLOWED TO INTERACT WITH A CERTAIN CRAFTING TOOL
+//************************************************************************************************************************
+//************************************* ALLOWABLE COMPONENT INTERACTION GETTERS
+//************************************************************************************************************************
 
     public bool canUseAnvil()
     {
@@ -1148,6 +1185,10 @@ public class CraftRoutine : MonoBehaviour
     {
         return useSharpener;
     }
+
+//******************************************************************************************************************
+//******************************************* POLISHING STAGE HELPER METHODS
+//******************************************************************************************************************
 
     private void resetShimmers()
     {
@@ -1198,6 +1239,10 @@ public class CraftRoutine : MonoBehaviour
     {
         polishesNeeded = polishes;
     }
+
+//****************************************************************************************************************************
+//******************************************* SHARPENING STAGE HELPER METHODS
+//****************************************************************************************************************************
 
     public void updateFileStage(float point)
     {
@@ -1276,43 +1321,9 @@ public class CraftRoutine : MonoBehaviour
         Debug.Log("Destroy all called");
     }
 
-    private void CreateItem()
-    {
-        GameObject tempObj = Instantiate(GameObject.Find("Equipment/Test Sword")) as GameObject;
-        double powerLevel = timeMultiplier.getBasePowerLevel(itemType, materialType);
-        double qualityPercentage = itemQuality / possibleItemQuality;
-        if (qualityPercentage > 0.99f)
-        {
-            tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Ultimate", (int)(powerLevel * 2.0f));
-        }
-        else if (qualityPercentage > 0.95f && qualityPercentage <= 0.99f)
-        {
-            tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Exceptional", (int)(powerLevel * 1.6f));
-        }
-        else if(qualityPercentage > 0.80f && qualityPercentage <= 0.95f)
-        {
-            tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Good", (int)(powerLevel * 1.4f));
-        }
-        else if(qualityPercentage > 0.60f && qualityPercentage <= 0.80f)
-        {
-             tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Average", (int)(powerLevel * 1.2f));
-        }
-        else if(qualityPercentage > 0.40f && qualityPercentage <= 0.60f)
-        {
-             tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Crude", (int)(powerLevel));
-        }
-        else if (qualityPercentage <= 0.40f)
-        {
-            setAnnouncement("You failes.", 5.0f);
-            return;
-        }
-        else
-        {
-            Debug.Log("Item generated does not exist, weird?");
-        }
-
-        createInventory.AddNewItem(tempObj);
-    }
+//**********************************************************************************************************************
+//********************************** INTERFACE BUTTON MANAGEMENT 
+//**********************************************************************************************************************
 
     public void ShowItemMaterialButtons()
     {
@@ -1372,8 +1383,9 @@ public class CraftRoutine : MonoBehaviour
         itemType = item;
     }
 
-
-//REFERENCES TO IMAGES FOR INSTANTIATING THE CRAFTING COMPONENT
+//*****************************************************************************************************************************
+//************************************************* INSTANTIATION METHODS (COMPONENT AND FINAL ITEM)
+//*****************************************************************************************************************************
 
     public Sprite sword;
     public void instantiateComponent()
@@ -1391,5 +1403,43 @@ public class CraftRoutine : MonoBehaviour
         }
 
         
+    }
+
+    private void CreateItem()
+    {
+        GameObject tempObj = Instantiate(GameObject.Find("Equipment/Test Sword")) as GameObject;
+        double powerLevel = timeMultiplier.getBasePowerLevel(itemType, materialType);
+        double qualityPercentage = itemQuality / possibleItemQuality;
+        if (qualityPercentage > 0.99f)
+        {
+            tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Ultimate", (int)(powerLevel * 2.0f));
+        }
+        else if (qualityPercentage > 0.95f && qualityPercentage <= 0.99f)
+        {
+            tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Exceptional", (int)(powerLevel * 1.6f));
+        }
+        else if (qualityPercentage > 0.80f && qualityPercentage <= 0.95f)
+        {
+            tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Good", (int)(powerLevel * 1.4f));
+        }
+        else if (qualityPercentage > 0.60f && qualityPercentage <= 0.80f)
+        {
+            tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Average", (int)(powerLevel * 1.2f));
+        }
+        else if (qualityPercentage > 0.40f && qualityPercentage <= 0.60f)
+        {
+            tempObj.GetComponent<ItemScript>().SetItemStats(materialType, itemType, "Crude", (int)(powerLevel));
+        }
+        else if (qualityPercentage <= 0.40f)
+        {
+            setAnnouncement("You failes.", 5.0f);
+            return;
+        }
+        else
+        {
+            Debug.Log("Item generated does not exist, weird?");
+        }
+
+        createInventory.AddNewItem(tempObj);
     }
 }
