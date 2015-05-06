@@ -28,15 +28,14 @@ public class ComponentBehavior : MonoBehaviour
     private bool inBarrel;
     private bool onGrinder;
 
-    bool inRoom1;
+    private bool inRoom1;
 
     private bool mouseDrag;
 
 	// Use this for initialization
-    void Start()
+    void Awake()
     {
         inRoom1 = true;
-        //resetPoint = gameObject.transform.position;
         room1Position = GameObject.Find("Crafting/Room1Position");
         room2Position = GameObject.Find("Crafting/Room2Position");
         anvil = GameObject.Find("Crafting/Anvil");
@@ -91,10 +90,6 @@ public class ComponentBehavior : MonoBehaviour
             onGrinder = false;
         }
     }
-	// Update is called once per frame
-	void Update () 
-    {
-	}
 
     void OnMouseDown()
     {
@@ -221,7 +216,4 @@ public class ComponentBehavior : MonoBehaviour
             }
         }
     }
-
-
-
 }

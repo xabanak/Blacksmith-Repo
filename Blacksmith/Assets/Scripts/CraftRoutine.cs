@@ -369,7 +369,7 @@ public class CraftRoutine : MonoBehaviour
             totalStages = timeMultiplier.getStageCount(itemType);
 
             instantiateComponent();
-
+            Debug.Log(craftingComponent.name);
             nextStage();
         }
     }
@@ -433,7 +433,6 @@ public class CraftRoutine : MonoBehaviour
 	{
         Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
 
-
 		currentStage++;
 		if (currentStage == totalStages)
 		{
@@ -447,7 +446,7 @@ public class CraftRoutine : MonoBehaviour
 
         stage.text = "Stage: " + (currentStage+1) + "/" + totalStages;
 		currentStageAbsVal = (timeMultiplier.getStage(itemType, currentStage));
-        //Debug.Log("Current stage abs val is:" + currentStageAbsVal);
+        Debug.Log("Current stage abs val is:" + currentStageAbsVal);
 		
 		switch(currentStageAbsVal)
 		{
@@ -1388,6 +1387,7 @@ public class CraftRoutine : MonoBehaviour
 //*****************************************************************************************************************************
 
     public Sprite sword;
+
     public void instantiateComponent()
     {
         craftingComponent = Instantiate(componentPrefab);
@@ -1401,8 +1401,6 @@ public class CraftRoutine : MonoBehaviour
                 craftingComponent.GetComponent<ComponentBehavior>().setImage(sword);
                 break;
         }
-
-        
     }
 
     private void CreateItem()

@@ -255,10 +255,10 @@ public class StageTimeMatrix : MonoBehaviour
             return -1;
         }
 
-        Debug.Log("Getting stage for " + item + "for stage " + stage);
+        Debug.Log("Getting stage " + stage + " for " + item);
         int itemValue = (int)Enum.Parse(typeof(Item), item);
 
-        Debug.Log("Stage listing is" + stageListing[itemValue, stage]);
+        Debug.Log("Stage value is" + stageListing[itemValue, stage]);
         return stageListing[itemValue, stage];
     }
 
