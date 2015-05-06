@@ -4,6 +4,7 @@ using System.Collections;
 public class GameController : MonoBehaviour {
 
     private CraftRoutine craftRoutine;
+    private CreateInventory createInventory;
 
     private GameObject hammer;
     private GameObject component;
@@ -25,6 +26,7 @@ public class GameController : MonoBehaviour {
 	void Start () 
     {
         craftRoutine = GameObject.Find("CraftingController").GetComponent<CraftRoutine>();
+        createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         hammer = GameObject.Find("Crafting/Hammer");
         component = GameObject.Find("Crafting/Component");
         SetScene("workshop");
