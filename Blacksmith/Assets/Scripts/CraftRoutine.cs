@@ -1316,4 +1316,9 @@ public class CraftRoutine : MonoBehaviour
     {
         materials.SetActive(true);
     }
+
+    public void instantiateComponent(string item, string material)
+    {
+
+    }
 }
