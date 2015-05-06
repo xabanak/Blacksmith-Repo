@@ -207,6 +207,8 @@ public class CraftRoutine : MonoBehaviour
     private GameObject[] materialTypeButtons;
     private const int itemTypes = 9;
     private const int materialTypes = 10;
+    private bool materialSet;
+    private bool itemSet;
 
 
     void setTimer(float time)
@@ -316,6 +318,8 @@ public class CraftRoutine : MonoBehaviour
         materialTypeButtons[7] = GameObject.Find("Canvas/Crafting Startup/Materials/Steel Alloy L1 Button");
         materialTypeButtons[8] = GameObject.Find("Canvas/Crafting Startup/Materials/Steel Alloy L2 Button");
         materialTypeButtons[9] = GameObject.Find("Canvas/Crafting Startup/Materials/Titanium Button");
+        materialSet = false;
+        itemSet = false;
 
         
 
@@ -381,12 +385,15 @@ public class CraftRoutine : MonoBehaviour
         startCrafting("Sword", "Tin");
     }*/
 
-    public void startCrafting(string item, string material)
+    public void StartCrafting()
     {
-        if (currentStage == -1)
+        if (itemSet && materialSet && currentStage == -1)
         {
-            itemType = item;
-            materialType = material;
+            startButton.SetActive(false);
+            materialTypeButton.SetActive(false);
+            itemTypeButton.SetActive(false);
+            itemSet = false;
+            materialSet = false;
             stage.enabled = true;
 
             totalStages = timeMultiplier.getStageCount(itemType);
@@ -1332,6 +1339,14 @@ public class CraftRoutine : MonoBehaviour
     public void SetMaterialButton(Sprite image)
     {
         materialTypeButton.GetComponent<Image>().sprite = image;
+        SelectMaterialType();
+        materialTypeButton.GetComponentInChildren<Text>().text = "";
+        materialSet = true;
+        if (itemSet)
+        {
+            startButton.GetComponentInChildren<Text>().text = "Ready";
+            startButton.GetComponent<Image>().color = new Vector4(0, 255, 0, 255);
+        }
     }
 
     public void SetMaterial(string material)
@@ -1342,6 +1357,14 @@ public class CraftRoutine : MonoBehaviour
     public void SetItemButton(Sprite image)
     {
         itemTypeButton.GetComponent<Image>().sprite = image;
+        SelectItemType();
+        itemTypeButton.GetComponentInChildren<Text>().text = "";
+        itemSet = true;
+        if (materialSet)
+        {
+            startButton.GetComponentInChildren<Text>().text = "Ready";
+            startButton.GetComponent<Image>().color = new Vector4(0, 255, 0, 255);
+        }
     }
 
     public void SetItem(string item)
