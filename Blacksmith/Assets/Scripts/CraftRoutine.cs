@@ -386,6 +386,7 @@ public class CraftRoutine : MonoBehaviour
     {
         if (itemSet && materialSet && currentStage == -1)
         {
+            soundController.PlayCraftingMusic();
             startButton.SetActive(false);
             materialTypeButton.SetActive(false);
             itemTypeButton.SetActive(false);
@@ -403,6 +404,7 @@ public class CraftRoutine : MonoBehaviour
 
     void endCrafting()
     {
+        soundController.StopAllCrafingNoise();
         resetCrafting();
         Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
         switchScene("workshop front");
