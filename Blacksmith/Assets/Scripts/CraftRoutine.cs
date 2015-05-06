@@ -4,6 +4,8 @@ using System.Collections;
 
 public class CraftRoutine : MonoBehaviour 
 {
+    public GameObject componentPrefab;
+
     private GameObject testObj;
     //sprites to load various background difficulties into the hammer and heat bars
     public Sprite heatDiff1;
@@ -53,7 +55,7 @@ public class CraftRoutine : MonoBehaviour
 
     private GameObject forge;
     private GameObject bellows;
-    public GameObject craftingComponent; //eventually the game will programmatically instantiate the GameObject that you will use during the current crafting session, for now we will assign it a test object
+    private GameObject craftingComponent; //eventually the game will programmatically instantiate the GameObject that you will use during the current crafting session, for now we will assign it a test object
     private GameObject coolingBarrel;
     private GameObject hammer;
     private GameObject anvil;
@@ -374,21 +376,25 @@ public class CraftRoutine : MonoBehaviour
         resetCrafting();
     }
 
-    public void testCrafting()
+    /*public void testCrafting()
     {
         startCrafting("Sword", "Tin");
-    }
+    }*/
 
     public void startCrafting(string item, string material)
     {
-        itemType = item;
-        materialType = material;
-        stage.enabled = true;
-        
+        if (currentStage == -1)
+        {
+            itemType = item;
+            materialType = material;
+            stage.enabled = true;
 
-        totalStages = timeMultiplier.getStageCount(itemType);
+            totalStages = timeMultiplier.getStageCount(itemType);
 
-        nextStage();
+            instantiateComponent();
+
+            nextStage();
+        }
     }
 
 	void nextStage()
@@ -1317,8 +1323,25 @@ public class CraftRoutine : MonoBehaviour
         materials.SetActive(true);
     }
 
-    public void instantiateComponent(string item, string material)
-    {
 
+
+//REFERENCES TO IMAGES FOR INSTANTIATING THE CRAFTING COMPONENT
+
+    public Sprite sword;
+    public void instantiateComponent()
+    {
+        craftingComponent = Instantiate(componentPrefab);
+
+        switch(itemType)
+        {
+            case "Sword":
+                craftingComponent.GetComponent<ComponentBehavior>().setImage(sword);
+                break;
+            default:
+                craftingComponent.GetComponent<ComponentBehavior>().setImage(sword);
+                break;
+        }
+
+        
     }
 }

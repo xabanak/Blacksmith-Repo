@@ -2,42 +2,54 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ComponentBehavior : MonoBehaviour {
+public class ComponentBehavior : MonoBehaviour 
+{
 
     private GameObject room1Position;
     private GameObject room2Position;
 
     private Vector3 screenPoint;
     private Vector3 offset;
-    private Vector3 resetPoint;
+    //private Vector3 resetPoint;
 
     public Vector3 anvilOffset;
     public Vector3 forgeOffset;
     public Vector3 barrelOffset;
     public Vector3 grinderOffset;
 
-    public GameObject anvil;
-    public GameObject forge;
-    public GameObject barrel;
-    public GameObject grinder;
-    public CraftRoutine craftController;
+    private GameObject anvil;
+    private GameObject forge;
+    private GameObject barrel;
+    private GameObject grinder;
+    private CraftRoutine craftController;
 
-    public bool onAnvil;
-    public bool onForge;
-    public bool inBarrel;
-    public bool onGrinder;
+    private bool onAnvil;
+    private bool onForge;
+    private bool inBarrel;
+    private bool onGrinder;
 
     bool inRoom1;
 
-    public bool mouseDrag;
+    private bool mouseDrag;
 
 	// Use this for initialization
     void Start()
     {
         inRoom1 = true;
-        resetPoint = gameObject.transform.position;
+        //resetPoint = gameObject.transform.position;
         room1Position = GameObject.Find("Crafting/Room1Position");
         room2Position = GameObject.Find("Crafting/Room2Position");
+        anvil = GameObject.Find("Crafting/Anvil");
+        forge = GameObject.Find("Crafting/Forge");
+        barrel = GameObject.Find("Crafting/Barrel");
+        grinder = GameObject.Find("Crafting/Grinder");
+        craftController = GameObject.Find("Crafting/CraftingController").GetComponent<CraftRoutine>();
+        transform.position = room1Position.transform.position;
+    }
+
+    public void setImage(Sprite image)
+    {
+        GetComponent<SpriteRenderer>().sprite = image;
     }
 	
     void OnTriggerEnter2D(Collider2D myCollider)
@@ -156,7 +168,7 @@ public class ComponentBehavior : MonoBehaviour {
             inBarrel = false;
             //craftController.toggleComponentInBarrel();
             transform.localEulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
-            transform.position = resetPoint;
+            transform.position = room1Position.transform.position;
         }
     }
 
