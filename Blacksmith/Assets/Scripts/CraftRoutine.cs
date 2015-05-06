@@ -209,13 +209,12 @@ public class CraftRoutine : MonoBehaviour
     private const int materialTypes = 10;
     private bool materialSet;
     private bool itemSet;
+    private bool[] knownMaterials;
+    private bool[] knownItems;
 
     void Start()
     {
         // Start Crafting Setup
-        //private GameObject startButton;
-        //private GameObject itemTypeButtons[];
-        //private GameObject materialTypeButtons[];
         startButton = GameObject.Find("Canvas/Crafting Startup/Start Crafting");
         itemTypeButton = GameObject.Find("Canvas/Crafting Startup/Item Type Button");
         materialTypeButton = GameObject.Find("Canvas/Crafting Startup/Material Type Button");
@@ -225,26 +224,54 @@ public class CraftRoutine : MonoBehaviour
         materialTypeButtons = new GameObject[materialTypes];
         itemTypeButtons[0] = GameObject.Find("Canvas/Crafting Startup/Types/Sword Button");
         itemTypeButtons[1] = GameObject.Find("Canvas/Crafting Startup/Types/Shield Button");
+        itemTypeButtons[1].GetComponent<Button>().interactable = false;
         itemTypeButtons[2] = GameObject.Find("Canvas/Crafting Startup/Types/Breastplate Button");
+        itemTypeButtons[2].GetComponent<Button>().interactable = false;
         itemTypeButtons[3] = GameObject.Find("Canvas/Crafting Startup/Types/Greaves Button");
+        itemTypeButtons[3].GetComponent<Button>().interactable = false;
         itemTypeButtons[4] = GameObject.Find("Canvas/Crafting Startup/Types/Helm Button");
+        itemTypeButtons[4].GetComponent<Button>().interactable = false;
         itemTypeButtons[5] = GameObject.Find("Canvas/Crafting Startup/Types/Gloves Button");
+        itemTypeButtons[5].GetComponent<Button>().interactable = false;
         itemTypeButtons[6] = GameObject.Find("Canvas/Crafting Startup/Types/Boots Button");
+        itemTypeButtons[6].GetComponent<Button>().interactable = false;
         itemTypeButtons[7] = GameObject.Find("Canvas/Crafting Startup/Types/Bracers Button");
+        itemTypeButtons[7].GetComponent<Button>().interactable = false;
         itemTypeButtons[8] = GameObject.Find("Canvas/Crafting Startup/Types/Pauldrons Button");
+        itemTypeButtons[8].GetComponent<Button>().interactable = false;
         materialTypeButtons[0] = GameObject.Find("Canvas/Crafting Startup/Materials/Tin Button");
         materialTypeButtons[1] = GameObject.Find("Canvas/Crafting Startup/Materials/Copper Button");
+        materialTypeButtons[1].GetComponent<Button>().interactable = false;
         materialTypeButtons[2] = GameObject.Find("Canvas/Crafting Startup/Materials/Bronze Button");
+        materialTypeButtons[2].GetComponent<Button>().interactable = false;
         materialTypeButtons[3] = GameObject.Find("Canvas/Crafting Startup/Materials/Brass Button");
+        materialTypeButtons[3].GetComponent<Button>().interactable = false;
         materialTypeButtons[4] = GameObject.Find("Canvas/Crafting Startup/Materials/Iron Button");
+        materialTypeButtons[4].GetComponent<Button>().interactable = false;
         materialTypeButtons[5] = GameObject.Find("Canvas/Crafting Startup/Materials/Blackened Iron Button");
+        materialTypeButtons[5].GetComponent<Button>().interactable = false;
         materialTypeButtons[6] = GameObject.Find("Canvas/Crafting Startup/Materials/Steel Button");
+        materialTypeButtons[6].GetComponent<Button>().interactable = false;
         materialTypeButtons[7] = GameObject.Find("Canvas/Crafting Startup/Materials/Steel Alloy L1 Button");
+        materialTypeButtons[7].GetComponent<Button>().interactable = false;
         materialTypeButtons[8] = GameObject.Find("Canvas/Crafting Startup/Materials/Steel Alloy L2 Button");
+        materialTypeButtons[8].GetComponent<Button>().interactable = false;
         materialTypeButtons[9] = GameObject.Find("Canvas/Crafting Startup/Materials/Titanium Button");
+        materialTypeButtons[9].GetComponent<Button>().interactable = false;
         materialSet = false;
         itemSet = false;
-
+        knownMaterials = new bool[materialTypes];
+        knownMaterials[0] = true;
+        for (int i = 1; i < materialTypes; i++)
+        {
+            knownMaterials[i] = false;
+        }
+        knownItems = new bool[itemTypes];
+        knownItems[0] = true;
+        for (int i = 1; i < itemTypes; i++)
+        {
+            knownItems[i] = false;
+        }
 
 
         soundController = this.GetComponent<SoundController>();
