@@ -1329,7 +1329,7 @@ public class CraftRoutine : MonoBehaviour
         }
     }
      
-    public void SetMaterialsButton(Sprite image)
+    public void SetMaterialButton(Sprite image)
     {
         materialTypeButton.GetComponent<Image>().sprite = image;
     }
@@ -1339,6 +1339,15 @@ public class CraftRoutine : MonoBehaviour
         materialType = material;
     }
 
+    public void SetItemButton(Sprite image)
+    {
+        itemTypeButton.GetComponent<Image>().sprite = image;
+    }
+
+    public void SetItem(string item)
+    {
+        itemType = item;
+    }
 
 
 //REFERENCES TO IMAGES FOR INSTANTIATING THE CRAFTING COMPONENT
