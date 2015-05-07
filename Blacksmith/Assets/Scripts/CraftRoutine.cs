@@ -212,6 +212,15 @@ public class CraftRoutine : MonoBehaviour
     private bool[] knownMaterials;
     private bool[] knownItems;
 
+    //CRAFT RESULT STUFF
+    private GameObject craftResultBG;
+    private GameObject craftResultDesc;
+    private GameObject craftResultInfo;
+    private GameObject craftResultIcon;
+    private const int resultEndTimer = 5;
+    private float resultTimer;
+    private bool resultTimerActive;
+
     void Start()
     {
         // Start Crafting Setup
@@ -272,6 +281,12 @@ public class CraftRoutine : MonoBehaviour
         {
             knownItems[i] = false;
         }
+
+        craftResultBG = GameObject.Find("Crafting/Crafting Result/Crafting Result Background");
+        craftResultIcon = GameObject.Find("Crafting/Crafting Result/Crafting Result Icons");
+        craftResultDesc = GameObject.Find("Canvas/Crafting Result/Description");
+        craftResultInfo = GameObject.Find("Canvas/Crafting Result/Info");
+        resultTimerActive = false;
 
         soundController = this.GetComponent<SoundController>();
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
@@ -378,6 +393,15 @@ public class CraftRoutine : MonoBehaviour
         if (annTimer >= annEndTime)
         {
             resetAnnouncement();
+        }
+    }
+
+    void craftResultManager()
+    {
+        resultTimer += Time.deltaTime;
+        if (resultTimer >= resultEndTimer)
+        {
+            stopShowCraftResult();
         }
     }
 
@@ -550,6 +574,10 @@ public class CraftRoutine : MonoBehaviour
         if (annActive)
         {
             annManager();
+        }
+        if (resultTimerActive)
+        {
+            craftResultManager();
         }
 
         if (currentStage != -1)
@@ -968,7 +996,6 @@ public class CraftRoutine : MonoBehaviour
 
             // In this section the player controls the balance of the grinding process
             counterStep = speed * 2 * Time.deltaTime;
-#if UNITY_EDITOR
 
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -982,7 +1009,7 @@ public class CraftRoutine : MonoBehaviour
             {
                 playerRotation = 2;
             }
-#endif
+
             if (playerRotation == 1)
             {
                 grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, counterStep);
@@ -1465,6 +1492,36 @@ public class CraftRoutine : MonoBehaviour
             Debug.Log("Item generated does not exist, weird?");
         }
 
+        showCraftResult(tempObj);
+
         createInventory.AddNewItem(tempObj);
+
+
+        
+    }
+
+    private void showCraftResult(GameObject newObj)
+    {
+        craftResultBG.SetActive(true);
+        craftResultDesc.SetActive(true);
+        craftResultIcon.SetActive(true);
+        craftResultInfo.SetActive(true);
+        craftResultDesc.GetComponent<Text>().text = newObj.GetComponent<ItemScript>().GetItemDescription();
+        resultTimer = 0;
+        resultTimerActive = true;
+    }
+
+    private void stopShowCraftResult()
+    {
+        craftResultBG.SetActive(false);
+        craftResultDesc.SetActive(false);
+        craftResultIcon.SetActive(false);
+        craftResultInfo.SetActive(false);
+    }
+
+    private void resetResultTimer()
+    {
+        resultTimer = 10;
+        resultTimerActive = false;
     }
 }
