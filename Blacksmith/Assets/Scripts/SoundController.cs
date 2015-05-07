@@ -30,6 +30,7 @@ public class SoundController : MonoBehaviour {
         hammerHit4 = GameObject.Find("Sounds/HammerHit4").GetComponent<AudioSource>();
         hammerHit5 = GameObject.Find("Sounds/HammerHit5").GetComponent<AudioSource>();
 
+        Random.seed = (int)System.DateTime.Now.Ticks;
 	}
 	
 	// Update is called once per frame
@@ -39,7 +40,26 @@ public class SoundController : MonoBehaviour {
 
     public void PlayHammerHit()
     {
-        hammerHit.Play();
+        int hammerHit = Random.Range(1, 5);
+        
+        switch(hammerHit)
+        {
+            case 1:
+                hammerHit1.Play();
+                break;
+            case 2:
+                hammerHit2.Play();
+                break;
+            case 3:
+                hammerHit3.Play();
+                break;
+            case 4:
+                hammerHit4.Play();
+                break;
+            case 5:
+                hammerHit5.Play();
+                break;
+        }
     }
 
     public void PlayBellowsDown()
