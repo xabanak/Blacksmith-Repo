@@ -273,7 +273,6 @@ public class CraftRoutine : MonoBehaviour
             knownItems[i] = false;
         }
 
-
         soundController = this.GetComponent<SoundController>();
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
 
@@ -300,6 +299,19 @@ public class CraftRoutine : MonoBehaviour
         sharpeningLevel = 1;
         polishingLevel = 1;
         barrelLevel = 1;
+
+        swordShines = new GameObject[12];
+        swordShimmers = new bool[12];
+        polishStone1 = GameObject.Find("Crafting/Polishing Stone 1");
+
+        for (int i = 0; i < swordShines.Length; i++)
+        {
+            swordShines[i] = GameObject.Find("Shimmers/Sword/Shimmer " + (i + 1));
+        }
+
+        file = GameObject.Find("Crafting/File");
+        swordLeft = GameObject.Find("Sharpening/Sword Left");
+        swordRight = GameObject.Find("Sharpening/Sword Right");
 
         Random.seed = (int)System.DateTime.Now.Ticks;
 
@@ -427,23 +439,7 @@ public class CraftRoutine : MonoBehaviour
         rotateRight = false;
         grindCycle = false;
         playerRotation = 0;
-
-        // POLISHING STAGE SETUP
-
-        swordShines = new GameObject[12];
-        swordShimmers = new bool[12];
-        polishStone1 = GameObject.Find("Crafting/Polishing Stone 1");
-
-        for (int i = 0; i < swordShines.Length; i++)
-        {
-            swordShines[i] = GameObject.Find("Shimmers/Sword/Shimmer " + (i + 1));
-        }
-
-        // SHARPENING STAGE SETUP
-
-        file = GameObject.Find("Crafting/File");
-        swordLeft = GameObject.Find("Sharpening/Sword Left");
-        swordRight = GameObject.Find("Sharpening/Sword Right");
+       
         spawnShimmersNeeded = true;
         top = true;
         sharpeningCycles = 0;

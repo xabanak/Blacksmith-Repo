@@ -9,7 +9,7 @@ public class StageTimeMatrix : MonoBehaviour
     const int numMats = 10; // Total number of material types
     const int numStages = 6; // Total number of different crafting stages
     const int numItemLevels = 3; // total number of different strengths of items in one tier
-    const string dir = "Assets/Resources/";
+    //const string dir = "Assets/StreamingAssets/";   
 
     int [] stageCount; // Number of total stages to craft each type of item
     int [,] stageListing; // Listing per item type of which number stage is what crafting stage
@@ -73,11 +73,11 @@ public class StageTimeMatrix : MonoBehaviour
         stageTimes = new int[numStages];
         stageTimeMult = new double[numItems, numMats];
         basePowerLevel = new int[numMats, numItemLevels];
-        readDataFile(dir + "stageTime.txt");
-        readDataFile(dir + "stageCount.txt");
-        readDataFile(dir + "stageListing.txt");
-        readDataFile(dir + "stageTimeMult.txt");
-        readDataFile(dir + "basePower.txt");
+        readDataFile("stageTime.txt");
+        readDataFile("stageCount.txt");
+        readDataFile("stageListing.txt");
+        readDataFile("stageTimeMult.txt");
+        readDataFile("basePower.txt");
 
         /*for(int i = 0; i < numItems; i++)
         {
@@ -89,7 +89,7 @@ public class StageTimeMatrix : MonoBehaviour
 	}
     void readDataFile(string filePath)
     {
-        StreamReader inputStream = new StreamReader(filePath);
+        StreamReader inputStream = new StreamReader(Application.streamingAssetsPath + "/" + filePath);
 
         char fileIdentity = Convert.ToChar(inputStream.ReadLine());
 

@@ -33,6 +33,6 @@ public class ItemScript : MonoBehaviour
 
     public string GetItemDescription()
     {
-        return material + " " + item + " (" + quality + ")";
+        return quality + " " + material + " " + item;
     }
 }
