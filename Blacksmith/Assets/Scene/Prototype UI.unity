@@ -902,6 +902,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: ece985dac1dd04f44b95ccca00d01beb,
         type: 3}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
   m_IsPrefabParent: 0
@@ -1765,6 +1769,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: ece985dac1dd04f44b95ccca00d01beb,
         type: 3}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
   m_IsPrefabParent: 0
@@ -1978,9 +1986,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 488633467}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 0
+  m_MovementType: 2
   m_Elasticity: 0
   m_Inertia: 1
   m_DecelerationRate: .135000005
@@ -2178,6 +2186,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: ece985dac1dd04f44b95ccca00d01beb,
         type: 3}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
   m_IsPrefabParent: 0
@@ -2913,6 +2925,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: ece985dac1dd04f44b95ccca00d01beb,
         type: 3}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
   m_IsPrefabParent: 0
@@ -11117,6 +11133,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: ece985dac1dd04f44b95ccca00d01beb,
         type: 3}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
   m_IsPrefabParent: 0

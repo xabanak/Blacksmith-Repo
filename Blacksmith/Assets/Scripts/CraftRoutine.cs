@@ -968,6 +968,7 @@ public class CraftRoutine : MonoBehaviour
 
             // In this section the player controls the balance of the grinding process
             counterStep = speed * 2 * Time.deltaTime;
+#if UNITY_EDITOR
 
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -981,7 +982,7 @@ public class CraftRoutine : MonoBehaviour
             {
                 playerRotation = 2;
             }
-
+#endif
             if (playerRotation == 1)
             {
                 grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, counterStep);
