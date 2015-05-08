@@ -221,9 +221,17 @@ public class CraftRoutine : MonoBehaviour
     private float resultTimer;
     private bool resultTimerActive;
 
+    //TUTORIAL STUFF
+    private bool paused;
+    private bool tutorial;
+    private TutorialRoutine tutorialRoutine;
+
     void Start()
     {
         // Start Crafting Setup
+        paused = false;
+        tutorial = true;
+        tutorialRoutine = GameObject.Find("GameController").GetComponent<TutorialRoutine>();
         startButton = GameObject.Find("Canvas/Crafting Startup/Start Crafting");
         itemTypeButton = GameObject.Find("Canvas/Crafting Startup/Item Type Button");
         materialTypeButton = GameObject.Find("Canvas/Crafting Startup/Material Type Button");
@@ -331,6 +339,8 @@ public class CraftRoutine : MonoBehaviour
         Random.seed = (int)System.DateTime.Now.Ticks;
 
         resetCrafting();
+
+        tutorialRoutine.tutorialMachine(0);
     }
 
     void resetSliders()
@@ -559,58 +569,66 @@ public class CraftRoutine : MonoBehaviour
 
     void Update()
     {
-        if (bellowsSliderObject.activeSelf)
+        if (Input.GetMouseButtonDown(0) && tutorialRoutine.isTutorialDisplayed())
         {
-            bellowsManager();
-        }
-        if (barrelSliderObject.activeSelf)
-        {
-            barrelManager();
-        }
-        if (timerActive)
-        {
-            timerManager();
-        }
-        if (annActive)
-        {
-            annManager();
-        }
-        if (resultTimerActive)
-        {
-            craftResultManager();
+            tutorialRoutine.toggleTutorialActive();
         }
 
-        if (currentStage != -1)
+        if (!paused)
         {
-            // SHAPING STAGE
-            if (currentStageAbsVal == 0)
+            if (bellowsSliderObject.activeSelf)
             {
-                stageShapingManager();
+                bellowsManager();
             }
-            // HARDENING STAGE
-            else if (currentStageAbsVal == 1)
+            if (barrelSliderObject.activeSelf)
             {
-                stageHardeningManager();
+                barrelManager();
             }
-            // TEMPERING STAGE
-            else if (currentStageAbsVal == 2)
+            if (timerActive)
             {
-                stageTemperingManager();
+                timerManager();
             }
-            // POLISHING STAGE
-            else if (currentStageAbsVal == 3)
+            if (annActive)
             {
-                stagePolishingManager();
+                annManager();
             }
-            // SHARPENING STAGE
-            else if (currentStageAbsVal == 4)
+            if (resultTimerActive)
             {
-                stageSharpeningManager();
+                craftResultManager();
             }
-            // GRINDING STAGE
-            else if (currentStageAbsVal == 5)
+
+            if (currentStage != -1)
             {
-                stageGrindingManager();
+                // SHAPING STAGE
+                if (currentStageAbsVal == 0)
+                {
+                    stageShapingManager();
+                }
+                // HARDENING STAGE
+                else if (currentStageAbsVal == 1)
+                {
+                    stageHardeningManager();
+                }
+                // TEMPERING STAGE
+                else if (currentStageAbsVal == 2)
+                {
+                    stageTemperingManager();
+                }
+                // POLISHING STAGE
+                else if (currentStageAbsVal == 3)
+                {
+                    stagePolishingManager();
+                }
+                // SHARPENING STAGE
+                else if (currentStageAbsVal == 4)
+                {
+                    stageSharpeningManager();
+                }
+                // GRINDING STAGE
+                else if (currentStageAbsVal == 5)
+                {
+                    stageGrindingManager();
+                }
             }
         }
     }
@@ -1382,6 +1400,10 @@ public class CraftRoutine : MonoBehaviour
     {
         itemTypeButton.SetActive(true);
         materialTypeButton.SetActive(true);
+        if (!tutorialRoutine.tutorialComplete(1))
+        {
+            tutorialRoutine.tutorialMachine(1);
+        }
     }
 
     public void SelectItemType()
@@ -1523,5 +1545,10 @@ public class CraftRoutine : MonoBehaviour
     {
         resultTimer = 10;
         resultTimerActive = false;
+    }
+
+    public void Pause()
+    {
+        paused = !paused;
     }
 }
