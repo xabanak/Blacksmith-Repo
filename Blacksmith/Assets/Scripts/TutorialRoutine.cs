@@ -8,19 +8,42 @@ public class TutorialRoutine : MonoBehaviour {
     private CraftRoutine craftRoutine;
     private GameObject textBox;
     private GameObject text;
+    private GameObject[] pointersUpDown;
+    private GameObject[] pointersLeftRight;
     private Text message;
     private int tutorialStep;
     private bool tutorialDisplayed;
     private bool[] tutorials;
     private const int totalTutorials = 30;
+    private const int totalPointersUpDown = 10;
+    private const int totalPointersLeftRight = 10;
+    private Camera craftingCamera;
+    private Camera tutorialCamera;
+    //private Camera townCamera;
 
 	// Use this for initialization
 	void Start () 
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         craftRoutine = GameObject.Find("Crafting/CraftingController").GetComponent<CraftRoutine>();
-        textBox = GameObject.Find("Canvas/Tutorial/Image");
-        text = GameObject.Find("Canvas/Tutorial/Text");
+        textBox = GameObject.Find("Tutorial/Tutorial Canvas/Message Background");
+        textBox.SetActive(false);
+        text = GameObject.Find("Tutorial/Tutorial Canvas/Message Box");
+        text.SetActive(false);
+        craftingCamera = GameObject.Find("Crafting/Crafting Camera").GetComponent<Camera>();
+        pointersUpDown = new GameObject[totalPointersUpDown];
+        pointersLeftRight = new GameObject[totalPointersLeftRight];
+        for (int i = 0; i < totalPointersUpDown; i++)
+        {
+            pointersUpDown[i] = GameObject.Find("Tutorial/Tutorial Canvas/Pointers/PointerUpDown " + (i + 1));
+            pointersUpDown[i].SetActive(false);
+        }
+        for (int i = 0; i < totalPointersLeftRight; i++)
+        {
+            pointersLeftRight[i] = GameObject.Find("Tutorial/Tutorial Canvas/Pointers/PointerLeftRight " + (i + 1));
+            pointersLeftRight[i].SetActive(false);
+        }
+            
         message = text.GetComponent<Text>();
         tutorialStep = 0;
         tutorialDisplayed = false;
@@ -60,6 +83,7 @@ public class TutorialRoutine : MonoBehaviour {
         craftRoutine.Pause();
         showMessage();
         toggleTutorialDispalyed();
+        disablePointers();
     }
 
     public void tutorialMachine(int step)
@@ -77,6 +101,18 @@ public class TutorialRoutine : MonoBehaviour {
         }
     }
 
+    private void disablePointers()
+    {
+        for (int i = 0; i < totalPointersUpDown; i++)
+        {
+            pointersUpDown[i].SetActive(false);
+        }
+        for (int i = 0; i < totalPointersLeftRight; i++)
+        {
+            pointersLeftRight[i].SetActive(false);
+        }
+    }
+
     private void increaseTutorialStep()
     {
         tutorials[tutorialStep] = true;
@@ -87,6 +123,7 @@ public class TutorialRoutine : MonoBehaviour {
     {
         toggleTutorialActive();
         message.text = "Welcome!\nTo start crafting click the start crafting button at the top of the screen.";
+        pointersLeftRight[0].SetActive(true);
         increaseTutorialStep();
     }
 
@@ -95,6 +132,8 @@ public class TutorialRoutine : MonoBehaviour {
         toggleTutorialActive();
         message.text = "Now select the type of item you want to craft by pressing the Select Type button and ";
         message.text += "also select the material you want to use by clicking the Select Material button.";
+        pointersUpDown[0].SetActive(true);
+        pointersUpDown[1].SetActive(true);
         increaseTutorialStep();
     }
 }

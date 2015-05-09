@@ -15,8 +15,8 @@ public class PolishStoneBehavior : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+    {
 	}
 
     void OnTriggerEnter2D(Collider2D polishSpot)
@@ -26,7 +26,16 @@ public class PolishStoneBehavior : MonoBehaviour {
 
     void OnMouseDown()
     {
-        screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        if (craftingController.getCurrentStageAbsoluteValue() == 3)
+        {
+            screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        }
+        else
+        {
+            transform.position = startLocation;
+        }
+
+        
     }
 
     void OnMouseUp()

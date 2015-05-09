@@ -1551,4 +1551,9 @@ public class CraftRoutine : MonoBehaviour
     {
         paused = !paused;
     }
+
+    public int getCurrentStageAbsoluteValue()
+    {
+        return currentStageAbsVal;
+    }
 }
