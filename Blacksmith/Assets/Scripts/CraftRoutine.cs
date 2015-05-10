@@ -222,7 +222,7 @@ public class CraftRoutine : MonoBehaviour
     private bool resultTimerActive;
 
     //TUTORIAL STUFF
-    private bool paused;
+    public bool paused;
     private bool tutorial;
     private TutorialRoutine tutorialRoutine;
 
@@ -340,7 +340,7 @@ public class CraftRoutine : MonoBehaviour
 
         resetCrafting();
 
-        tutorialRoutine.tutorialMachine(0);
+        tutorialHelper(1);
     }
 
     void resetSliders()
@@ -659,6 +659,24 @@ public class CraftRoutine : MonoBehaviour
 
     void stageShapingManager()
     {
+        tutorialHelper(6);
+        if (!paused)
+        {
+            tutorialHelper(7);
+        }
+        if (!paused)
+        {
+            tutorialHelper(8);
+        }
+        if (!paused)
+        {
+            tutorialHelper(9);
+        }
+        if (!paused)
+        {
+            tutorialHelper(10);
+        }
+
         if (!componentInBarrel)
         {
             heatSlider.value -= (Time.deltaTime * heatSliderChange);
@@ -1400,10 +1418,8 @@ public class CraftRoutine : MonoBehaviour
     {
         itemTypeButton.SetActive(true);
         materialTypeButton.SetActive(true);
-        if (!tutorialRoutine.tutorialComplete(1))
-        {
-            tutorialRoutine.tutorialMachine(1);
-        }
+
+        tutorialHelper(2);
     }
 
     public void SelectItemType()
@@ -1412,6 +1428,8 @@ public class CraftRoutine : MonoBehaviour
         {
             types.SetActive(!types.activeSelf);
         }
+
+        tutorialHelper(3);
     }
 
     public void SelectMaterialType()
@@ -1420,6 +1438,8 @@ public class CraftRoutine : MonoBehaviour
         {
             materials.SetActive(!materials.activeSelf);
         }
+
+        tutorialHelper(4);
     }
      
     public void SetMaterialButton(Sprite image)
@@ -1432,6 +1452,8 @@ public class CraftRoutine : MonoBehaviour
         {
             startButton.GetComponentInChildren<Text>().text = "Ready";
             startButton.GetComponent<Image>().color = new Vector4(0, 255, 0, 255);
+
+            tutorialHelper(5);
         }
     }
 
@@ -1450,6 +1472,8 @@ public class CraftRoutine : MonoBehaviour
         {
             startButton.GetComponentInChildren<Text>().text = "Ready";
             startButton.GetComponent<Image>().color = new Vector4(0, 255, 0, 255);
+
+            tutorialHelper(5);
         }
     }
 
@@ -1555,5 +1579,13 @@ public class CraftRoutine : MonoBehaviour
     public int getCurrentStageAbsoluteValue()
     {
         return currentStageAbsVal;
+    }
+
+    private void tutorialHelper(int step)
+    {
+        if (!tutorialRoutine.tutorialComplete(step))
+        {
+            tutorialRoutine.tutorialMachine(step);
+        }
     }
 }

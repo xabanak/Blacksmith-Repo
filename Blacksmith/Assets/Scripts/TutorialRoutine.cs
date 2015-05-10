@@ -45,7 +45,7 @@ public class TutorialRoutine : MonoBehaviour {
         }
             
         message = text.GetComponent<Text>();
-        tutorialStep = 0;
+        tutorialStep = 1;
         tutorialDisplayed = false;
         tutorials = new bool[totalTutorials];
         for (int i = 0; i < totalTutorials; i++)
@@ -90,13 +90,44 @@ public class TutorialRoutine : MonoBehaviour {
     {
         switch(step)
         {
-            case 0:
+            case 1:
                 startCrafting();
                 break;
-            case 1:
+            case 2:
                 selectItemAndMaterialTypes();
                 break;
+            case 3:
+                selectItemType();
+                break;
+            case 4:
+                selectMaterialtype();
+                break;
+            case 5:
+                initiateCrafting();
+                break;
+            case 6:
+                shapingStage1();
+                break;
+            case 7:
+                shapingStage2();
+                break;
+            case 8:
+                shapingStage3();
+                break;
+            case 9:
+                shapingStage4();
+                break;
+            case 10:
+                shapingStage5();
+                break;
+            case 11:
+                shapingStage6();
+                break;
+            case 12:
+                shapingStage7();
+                break;
             default:
+                Debug.Log("Tutorial stage not found!");
                 break;
         }
     }
@@ -118,22 +149,102 @@ public class TutorialRoutine : MonoBehaviour {
         tutorials[tutorialStep] = true;
         tutorialStep++;
     }
-    // Step 0: Used to tell the player how to start crafting.
+
+    // Step 1: Used to tell the player how to start crafting.
     void startCrafting()
     {
         toggleTutorialActive();
-        message.text = "Welcome!\nTo start crafting click the start crafting button at the top of the screen.";
+        message.text = "Welcome to Blacksmith!\nTo start crafting click the craft button at the top of the screen.";
         pointersLeftRight[0].SetActive(true);
         increaseTutorialStep();
     }
 
+    // Step 2: Shows the player how to select the item type and material.
     void selectItemAndMaterialTypes()
     {
         toggleTutorialActive();
-        message.text = "Now select the type of item you want to craft by pressing the Select Type button and ";
-        message.text += "also select the material you want to use by clicking the Select Material button.";
+        message.text = "Now select the type of item you want to craft and the material you want to use by clicking ";
+        message.text += "the Type and Material buttons.";
         pointersUpDown[0].SetActive(true);
         pointersUpDown[1].SetActive(true);
+        increaseTutorialStep();
+    }
+
+    // Step 3: Shows the player how to select the sword icon from item types.
+    void selectItemType()
+    {
+        toggleTutorialActive();
+        message.text = "Now select the sword icon. For now this is the only item type you can craft.";
+        pointersLeftRight[1].SetActive(true);
+        increaseTutorialStep();
+    }
+
+    // Step 4: Shows the player how to select the tin ingot from the material types.
+    void selectMaterialtype()
+    {
+        toggleTutorialActive();
+        message.text = "Now select the tin ingot material. For now this is the only type of material you can craft with.";
+        pointersLeftRight[2].SetActive(true);
+        increaseTutorialStep();
+    }
+
+    // Step 5: Shows the player how to initial crafting.
+    void initiateCrafting()
+    {
+        toggleTutorialActive();
+        message.text = "You are now ready to start crafting. Click the ready button to get started.";
+        pointersLeftRight[0].SetActive(true);
+        increaseTutorialStep();
+    }
+
+    void shapingStage1()
+    {
+        toggleTutorialActive();
+        message.text = "This is the shaping stage.\nTo start the timer you need to reach the \"sweet spot\" for both the the heat gauge and hammer gauge.";
+        increaseTutorialStep();
+    }
+
+    void shapingStage2()
+    {
+        toggleTutorialActive();
+        message.text = "This is the heat gauge.\nYou want to keep the metal hot so that it can be wokred with the hammer.";
+        pointersLeftRight[3].SetActive(true);
+        increaseTutorialStep();
+    }
+
+    void shapingStage3()
+    {
+        toggleTutorialActive();
+        message.text = "This is the hammer gauge.\nYou want to maintain the right amount of hammer hits, or the item will become mishapen.";
+        pointersLeftRight[4].SetActive(true);
+        increaseTutorialStep();
+    }
+
+    void shapingStage4()
+    {
+        toggleTutorialActive();
+        message.text = "This is the component you are currently shaping into a finished sword blade.";
+        increaseTutorialStep();
+    }
+
+    void shapingStage5()
+    {
+        toggleTutorialActive();
+        message.text = "Now first you want to heat the component to the right temperature. Drag and drop the component into the forge found here.";
+        increaseTutorialStep();
+    }
+
+    void shapingStage6()
+    {
+        toggleTutorialActive();
+        message.text = "Now that the component is in the forge you must pump the bellows to heat the forge and increase the temperature of the component.";
+        increaseTutorialStep();
+    }
+
+    void shapingStage7()
+    {
+        toggleTutorialActive();
+        message.text = "Click on the top handle of the bellows. While still holding down the left mouse button drag the bellows to close and open them again to heat the forge";
         increaseTutorialStep();
     }
 }
