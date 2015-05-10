@@ -659,6 +659,7 @@ public class CraftRoutine : MonoBehaviour
 
     void stageShapingManager()
     {
+        //Tutorial steps
         tutorialHelper(6);
         if (!paused)
         {
@@ -676,6 +677,11 @@ public class CraftRoutine : MonoBehaviour
         {
             tutorialHelper(10);
         }
+        if (heatSlider.value >= 70)
+        {
+            tutorialHelper(12);
+        }
+        //End tutorial steps
 
         if (!componentInBarrel)
         {
@@ -686,6 +692,7 @@ public class CraftRoutine : MonoBehaviour
         {
             startTimer();
             timeQuality = timeSync;
+            tutorialHelper(14);
         }
         if (timerActive)
         {
@@ -1169,11 +1176,21 @@ public class CraftRoutine : MonoBehaviour
     public void toggleComponentOnForge()
     {
         componentOnForge = !componentOnForge;
+
+        if (!paused)
+        {
+            tutorialHelper(11);
+        }
     }
 
     public void toggleComponentOnAnvil()
     {
         componentOnAnvil = !componentOnAnvil;
+
+        if (!paused)
+        {
+            tutorialHelper(13);
+        }
     }
 
     public void toggleComponentInBarrel()

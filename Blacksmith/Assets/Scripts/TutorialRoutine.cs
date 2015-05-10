@@ -6,10 +6,13 @@ public class TutorialRoutine : MonoBehaviour {
 
     private GameController gameController;
     private CraftRoutine craftRoutine;
+    private Transform textBoxTransform;
+    private Transform textTransform;
     private GameObject textBox;
     private GameObject text;
     private GameObject[] pointersUpDown;
     private GameObject[] pointersLeftRight;
+    private GameObject[] shimmers;
     private Text message;
     private int tutorialStep;
     private bool tutorialDisplayed;
@@ -17,12 +20,12 @@ public class TutorialRoutine : MonoBehaviour {
     private const int totalTutorials = 30;
     private const int totalPointersUpDown = 10;
     private const int totalPointersLeftRight = 10;
+    private const int totalShimmers = 5;
     private Camera craftingCamera;
     private Camera tutorialCamera;
     //private Camera townCamera;
 
-	// Use this for initialization
-	void Start () 
+    void Awake()
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         craftRoutine = GameObject.Find("Crafting/CraftingController").GetComponent<CraftRoutine>();
@@ -30,9 +33,12 @@ public class TutorialRoutine : MonoBehaviour {
         textBox.SetActive(false);
         text = GameObject.Find("Tutorial/Tutorial Canvas/Message Box");
         text.SetActive(false);
+        textBoxTransform = textBox.transform;
+        textTransform = text.transform;
         craftingCamera = GameObject.Find("Crafting/Crafting Camera").GetComponent<Camera>();
         pointersUpDown = new GameObject[totalPointersUpDown];
         pointersLeftRight = new GameObject[totalPointersLeftRight];
+        shimmers = new GameObject[totalShimmers];
         for (int i = 0; i < totalPointersUpDown; i++)
         {
             pointersUpDown[i] = GameObject.Find("Tutorial/Tutorial Canvas/Pointers/PointerUpDown " + (i + 1));
@@ -43,7 +49,10 @@ public class TutorialRoutine : MonoBehaviour {
             pointersLeftRight[i] = GameObject.Find("Tutorial/Tutorial Canvas/Pointers/PointerLeftRight " + (i + 1));
             pointersLeftRight[i].SetActive(false);
         }
-            
+        shimmers[0] = GameObject.Find("Tutorial/Shimmers/Component Shimmer");
+        shimmers[1] = GameObject.Find("Tutorial/Shimmers/Bellows Shimmer");
+        shimmers[2] = GameObject.Find("Tutorial/Shimmers/Hammer Shimmer");
+
         message = text.GetComponent<Text>();
         tutorialStep = 1;
         tutorialDisplayed = false;
@@ -52,6 +61,11 @@ public class TutorialRoutine : MonoBehaviour {
         {
             tutorials[i] = false;
         }
+    }
+
+	// Use this for initialization
+	void Start () 
+    {
 
 	}
 
@@ -84,6 +98,8 @@ public class TutorialRoutine : MonoBehaviour {
         showMessage();
         toggleTutorialDispalyed();
         disablePointers();
+        disableShimmers();
+        resetTextBox();
     }
 
     public void tutorialMachine(int step)
@@ -126,6 +142,12 @@ public class TutorialRoutine : MonoBehaviour {
             case 12:
                 shapingStage7();
                 break;
+            case 13:
+                shapingStage8();
+                break;
+            case 14:
+                shapingStage9();
+                break;
             default:
                 Debug.Log("Tutorial stage not found!");
                 break;
@@ -142,6 +164,20 @@ public class TutorialRoutine : MonoBehaviour {
         {
             pointersLeftRight[i].SetActive(false);
         }
+    }
+
+    private void disableShimmers()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            shimmers[i].SetActive(false);
+        }
+    }
+
+    private void resetTextBox()
+    {
+        text.transform.position = textTransform.position;
+        textBox.transform.position = textBoxTransform.position;
     }
 
     private void increaseTutorialStep()
@@ -197,13 +233,16 @@ public class TutorialRoutine : MonoBehaviour {
         increaseTutorialStep();
     }
 
+    // Step 6: Intro to the shaping stage.
     void shapingStage1()
     {
         toggleTutorialActive();
-        message.text = "This is the shaping stage.\nTo start the timer you need to reach the \"sweet spot\" for both the the heat gauge and hammer gauge.";
+        message.text = "This is the stage indicator.\nYour first stage for crafting a sword is shaping. To start the timer you need to reach the \"sweet spot\" for both the the heat gauge and hammer gauge.";
+        pointersLeftRight[5].SetActive(true);
         increaseTutorialStep();
     }
 
+    // Step 7: Show the heat gauge.
     void shapingStage2()
     {
         toggleTutorialActive();
@@ -212,6 +251,7 @@ public class TutorialRoutine : MonoBehaviour {
         increaseTutorialStep();
     }
 
+    // Step 8: Show the hammer gauge.
     void shapingStage3()
     {
         toggleTutorialActive();
@@ -220,31 +260,61 @@ public class TutorialRoutine : MonoBehaviour {
         increaseTutorialStep();
     }
 
+    // Step 9: Show the component.
     void shapingStage4()
     {
         toggleTutorialActive();
         message.text = "This is the component you are currently shaping into a finished sword blade.";
+        shimmers[0].SetActive(true);
+        pointersUpDown[2].SetActive(true);
         increaseTutorialStep();
     }
 
+    // Step 10: Show the forge.
     void shapingStage5()
     {
         toggleTutorialActive();
         message.text = "Now first you want to heat the component to the right temperature. Drag and drop the component into the forge found here.";
+        pointersUpDown[3].SetActive(true);
         increaseTutorialStep();
     }
 
+    // Step 11: Show the bellows.
     void shapingStage6()
     {
         toggleTutorialActive();
-        message.text = "Now that the component is in the forge you must pump the bellows to heat the forge and increase the temperature of the component.";
+        message.text = "Now that the component is in the forge click on the top handle of the bellows and drag down then up to increase the heat. ";
+        message.text += "Repeat this process to increase heat until the indicator nears the right end of the gauge.";
+        text.transform.position = new Vector3(text.transform.position.x + 5, text.transform.position.y, text.transform.position.z);
+        textBox.transform.position = new Vector3(textBox.transform.position.x + 5, textBox.transform.position.y, textBox.transform.position.z);
+        shimmers[1].SetActive(true);
         increaseTutorialStep();
     }
 
+    // Step 12: Show the player the anvil.
     void shapingStage7()
     {
         toggleTutorialActive();
-        message.text = "Click on the top handle of the bellows. While still holding down the left mouse button drag the bellows to close and open them again to heat the forge";
+        message.text = "You have now reached a good heat level. Now move the component from the forge to the anvil.";
+        text.transform.position = new Vector3(text.transform.position.x - 5, text.transform.position.y + 5, text.transform.position.z);
+        textBox.transform.position = new Vector3(textBox.transform.position.x - 5, textBox.transform.position.y + 5, textBox.transform.position.z);
+        pointersUpDown[4].SetActive(true);
+        increaseTutorialStep();
+    }
+
+    void shapingStage8()
+    {
+        toggleTutorialActive();
+        message.text = "Good. Now click and drag the hammer onto the component.\nIncrease the hammer gauge indicator until it reaches the white section.\n";
+        message.text += "In order to start the timer you must have both heat and hammer indicators in the white zone.";
+        shimmers[2].SetActive(true);
+        increaseTutorialStep();
+    }
+
+    void shapingStage9()
+    {
+        toggleTutorialActive();
+        message.text = "Great job! The timer has now started. This stage will finish when the timer runs out. To get the best quality keep both gauges in the sweet spots.";
         increaseTutorialStep();
     }
 }

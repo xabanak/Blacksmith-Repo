@@ -21,7 +21,10 @@ public class GameController : MonoBehaviour {
     private bool workshop;
     private bool town;
 
-
+    void Awake()
+    {
+        gameObject.AddComponent<TutorialRoutine>();
+    }
 	// Use this for initialization
 	void Start () 
     {
