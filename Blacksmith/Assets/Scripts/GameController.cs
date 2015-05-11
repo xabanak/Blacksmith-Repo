@@ -26,6 +26,9 @@ public class GameController : MonoBehaviour {
     private TutorialRoutine tutorialRoutine;
     private SoundController soundController;
 
+    public AudioSource invOpen;
+    public AudioSource invClosed;
+
     void Awake()
     {
         gameObject.AddComponent<TutorialRoutine>();
@@ -81,6 +84,7 @@ public class GameController : MonoBehaviour {
         if (!craftRoutine.isCrafting() && workshop && !inventoryCanvas.GetComponent<Canvas>().enabled)
         {
             //Debug.Log("Inventory Enabled");
+            invOpen.Play();
             inventoryCanvas.worldCamera = workCamera;
             inventoryCanvas.GetComponent<Canvas>().enabled = true;
             //inventory.SetActive(true);
@@ -89,6 +93,7 @@ public class GameController : MonoBehaviour {
         else if (inventoryCanvas.enabled)
         {
             //Debug.Log("Inventory Disabled");
+            invClosed.Play();
             inventoryCanvas.worldCamera = inventoryCamera;
             inventoryCanvas.GetComponent<Canvas>().enabled = false;
             //inventory.SetActive(false);

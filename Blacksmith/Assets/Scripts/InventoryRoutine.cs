@@ -4,6 +4,9 @@ using System.Collections;
 
 public class InventoryRoutine : MonoBehaviour {
 
+
+    private AudioSource invOpen;
+    private AudioSource invClose;
     private const int ARRAY_SIZE = 5;
     private int[] itemQuant;
     private string[] itemName;
@@ -88,10 +91,12 @@ public class InventoryRoutine : MonoBehaviour {
     {
         if (shouldDisplay)
         {
+            invClose.Play();
             shouldDisplay = false;
         }
         else
         {
+            invOpen.Play();
             shouldDisplay = true;
         }
     }
