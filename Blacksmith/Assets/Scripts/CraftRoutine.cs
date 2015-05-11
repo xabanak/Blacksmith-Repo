@@ -152,6 +152,8 @@ public class CraftRoutine : MonoBehaviour
     public Transform tiltedRight;
     public Transform tiltedLeft;
     public GameObject grinderGauge;
+    public GameObject grinderSparksBase;
+    public GameObject grinderSparks;
     private const int speed = 3;
     private float step;
     private float counterStep;
@@ -225,6 +227,12 @@ public class CraftRoutine : MonoBehaviour
     public bool paused;
     private bool tutorial;
     private TutorialRoutine tutorialRoutine;
+
+    void Awake()
+    {
+        //grinderSparksBase = GameObject.Find("Grinder");
+        //grinderSparks = GameObject.Find("Grinder/Sparks");
+    }
 
     void Start()
     {
@@ -1064,11 +1072,14 @@ public class CraftRoutine : MonoBehaviour
             {
                 grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
                 grinderGauge.GetComponent<Slider>().value += step;
+                Debug.Log("Grinder reference: " + grinderSparks.name);
+                grinderSparks.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
             }
             else
             {
                 grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, step);
                 grinderGauge.GetComponent<Slider>().value -= step;
+                grinderSparks.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, step);
             }
 
             if (grindTime <= 0.0f)
@@ -1096,11 +1107,13 @@ public class CraftRoutine : MonoBehaviour
             {
                 grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, counterStep);
                 grinderGauge.GetComponent<Slider>().value += counterStep;
+                grinderSparks.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, counterStep);
             }
             else if (playerRotation == 2)
             {
                 grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, counterStep);
                 grinderGauge.GetComponent<Slider>().value -= counterStep;
+                grinderSparks.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, counterStep);
             }
 
             if (timeQuality <= 0)
@@ -1266,7 +1279,7 @@ public class CraftRoutine : MonoBehaviour
     public void toggleComponentOnGrinder()
     {
         componentOnGrinder = !componentOnGrinder;
-
+        grinderSparksBase.SetActive(true);
         tutorialHelper(21);
     }
 

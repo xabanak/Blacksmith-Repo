@@ -11955,6 +11955,8 @@ MonoBehaviour:
   tiltedRight: {fileID: 22495206, guid: 7ee1e09b86acb9240aafe5a9c8e95c9e, type: 2}
   tiltedLeft: {fileID: 22457576, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
   grinderGauge: {fileID: 276864331}
+  grinderSparksBase: {fileID: 1371465923}
+  grinderSparks: {fileID: 881281047}
   swordShines: []
   paused: 0
   sword: {fileID: 21300000, guid: 66e6104dc674c0043b474ad1fc53fddd, type: 3}
@@ -12386,7 +12388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1371465924
 Transform:
   m_ObjectHideFlags: 0
