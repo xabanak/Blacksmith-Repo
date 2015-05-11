@@ -296,7 +296,7 @@ public class CraftRoutine : MonoBehaviour
         craftResultInfo = GameObject.Find("Canvas/Crafting Result/Info");
         resultTimerActive = false;
 
-        soundController = this.GetComponent<SoundController>();
+        soundController = GameObject.Find("GameController").GetComponent<SoundController>();
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
 
         heatSliderBackground = GameObject.Find("/Canvas/Heat Gauge/Background").GetComponent<Image>();
@@ -763,6 +763,7 @@ public class CraftRoutine : MonoBehaviour
                 if (barrelSlider.value > 80.0f)
                 {
                     heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
+                    soundController.playCooling();
                 }
                 else
                 {
@@ -841,6 +842,7 @@ public class CraftRoutine : MonoBehaviour
                  if (barrelSlider.value > 80.0f)
                  {
                      heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
+                     soundController.playCooling();
                  }
                  else
                  {
@@ -1190,15 +1192,17 @@ public class CraftRoutine : MonoBehaviour
         if (bellowsSlider.value >= 4.0f)
         {
             bellows.GetComponent<SpriteRenderer>().sprite = bellowsClosed;
-            soundController.PlayBellowsDown();
+            soundController.playBellowsBlow();
         }
         else if (bellowsSlider.value >= 2.0f && bellowsSlider.value < 4.0f)
         {
             bellows.GetComponent<SpriteRenderer>().sprite = bellowsMid;
+            //soundController.playBellowsBlow();
         }
         else
         {
             bellows.GetComponent<SpriteRenderer>().sprite = bellowsOpen;
+            //soundController.playBellowsBlow();
         }
     }
 

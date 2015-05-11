@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour {
     private bool town;
 
     private TutorialRoutine tutorialRoutine;
+    private SoundController soundController;
 
     void Awake()
     {
@@ -39,11 +40,22 @@ public class GameController : MonoBehaviour {
         component = GameObject.Find("Crafting/Component");
         SetScene("workshop");
         tutorialRoutine = this.GetComponent<TutorialRoutine>();
+        soundController = this.GetComponent<SoundController>();
+        //soundController.playWorkshopMusic();
     }
 	
 	// Update is called once per frame
 	void Update () 
     {
+        
+        if (workshop && !soundController.isWorkshopMusicPlaying())
+        {
+            soundController.playWorkshopMusic();
+        }
+        if (craftRoutine.isCrafting())
+        {
+            soundController.playWorkshopMusic();
+        }
         if (Input.GetKeyDown(KeyCode.I))
         {
             InventoryToggle();
