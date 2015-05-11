@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameController : MonoBehaviour {
@@ -10,6 +11,7 @@ public class GameController : MonoBehaviour {
     private GameObject component;
 
     public GameObject inventory;
+    private GameObject weaponsTab;
 
     public Camera workCamera;
     public Camera inventoryCamera;
@@ -21,9 +23,12 @@ public class GameController : MonoBehaviour {
     private bool workshop;
     private bool town;
 
+    private TutorialRoutine tutorialRoutine;
+
     void Awake()
     {
         gameObject.AddComponent<TutorialRoutine>();
+        weaponsTab = GameObject.Find("Inventory/Inventory Canvas/Inventory Window/Weapons");
     }
 	// Use this for initialization
 	void Start () 
@@ -33,6 +38,7 @@ public class GameController : MonoBehaviour {
         hammer = GameObject.Find("Crafting/Hammer");
         component = GameObject.Find("Crafting/Component");
         SetScene("workshop");
+        tutorialRoutine = this.GetComponent<TutorialRoutine>();
     }
 	
 	// Update is called once per frame
@@ -42,10 +48,24 @@ public class GameController : MonoBehaviour {
         {
             InventoryToggle();
         }
+
+        if (tutorialRoutine.tutorialComplete(34) && weaponsTab.activeSelf && !craftRoutine.isPaused())
+        {
+            tutorialHelper(35);
+        }
+        if (!craftRoutine.isPaused() && tutorialRoutine.tutorialComplete(35))
+        {
+            tutorialHelper(36);
+        }
 	}
 
     void InventoryToggle()
     {
+        if (!craftRoutine.isPaused() && tutorialRoutine.tutorialComplete(33))
+        {
+            tutorialHelper(34);
+        }
+
         if (!craftRoutine.isCrafting() && workshop && !inventoryCanvas.GetComponent<Canvas>().enabled)
         {
             //Debug.Log("Inventory Enabled");
@@ -91,5 +111,13 @@ public class GameController : MonoBehaviour {
     void ToggleTools()
     {
         hammer.SetActive(!hammer.activeSelf);
+    }
+
+    private void tutorialHelper(int step)
+    {
+        if (!tutorialRoutine.tutorialComplete(step))
+        {
+            tutorialRoutine.tutorialMachine(step);
+        }
     }
 }

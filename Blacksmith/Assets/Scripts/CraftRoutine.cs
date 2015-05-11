@@ -491,7 +491,7 @@ public class CraftRoutine : MonoBehaviour
 
 	void nextStage()
 	{
-        Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
+        //Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
 
 		currentStage++;
 		if (currentStage == totalStages)
@@ -569,6 +569,7 @@ public class CraftRoutine : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetMouseButtonDown(0) && tutorialRoutine.isTutorialDisplayed())
         {
             tutorialRoutine.toggleTutorialActive();
@@ -713,6 +714,7 @@ public class CraftRoutine : MonoBehaviour
         }
         if (!timerActive && !timerSet)
         {
+            tutorialHelper(15);
             nextStage();
         }
     }
@@ -745,6 +747,11 @@ public class CraftRoutine : MonoBehaviour
 
     void stageHardeningManager()
     {
+        if (!paused)
+        {
+            tutorialHelper(16);
+        }
+
         if (!heated || !cooled)
         {
             if (!componentInBarrel)
@@ -777,6 +784,7 @@ public class CraftRoutine : MonoBehaviour
         {
             heated = true;
             setAnnouncement("Quench!", 3.0f);
+            tutorialHelper(17);
         }
         if (heatSlider.value < 1.0f && heated)
         {
@@ -785,6 +793,7 @@ public class CraftRoutine : MonoBehaviour
         if (heated && cooled)
         {
             nextStage();
+            tutorialHelper(19);
         }
     }
 
@@ -815,6 +824,12 @@ public class CraftRoutine : MonoBehaviour
 
     void stageTemperingManager()
     {
+        tutorialHelper(23);
+        if (!paused)
+        {
+            tutorialHelper(24);
+        }
+
          if (!heated || !cooled)
          {
              if (!componentInBarrel)
@@ -847,6 +862,7 @@ public class CraftRoutine : MonoBehaviour
          {
              heated = true;
              setAnnouncement("Quench!", 3.0f);
+             tutorialHelper(25);
          }
          if (heatSlider.value < 1.0f && heated)
          {
@@ -883,6 +899,11 @@ public class CraftRoutine : MonoBehaviour
 
     void stagePolishingManager()
     {
+        tutorialHelper(29);
+        if (!paused)
+        {
+            tutorialHelper(30);
+        }
         if (timerSet)
         {
             startTimer();
@@ -953,6 +974,16 @@ public class CraftRoutine : MonoBehaviour
 
     void stageSharpeningManager()
     {
+        tutorialHelper(26);
+        if (!paused)
+        {
+            tutorialHelper(27);
+        }
+        if (file.GetComponent<FileBehavior>().getFileSet() == 24)
+        {
+            tutorialHelper(28);
+        }
+
         if (sharpeningCycles >= sharpeningCyclesNeeded)
         {
             timerActive = false;
@@ -1002,6 +1033,12 @@ public class CraftRoutine : MonoBehaviour
 
     void stageGrindingManager()
     {
+        tutorialHelper(20);
+        if (tutorialRoutine.tutorialComplete(21))
+        {
+            tutorialHelper(22);
+        }
+
         if (componentOnGrinder && timerSet)
         {
             startTimer();
@@ -1207,6 +1244,11 @@ public class CraftRoutine : MonoBehaviour
             craftingComponent.SetActive(false);
         }
         componentInBarrel = !componentInBarrel;
+
+        if (tutorialRoutine.tutorialComplete(17))
+        {
+            tutorialHelper(18);
+        }
     }
 
     private void barrelManager()
@@ -1220,6 +1262,8 @@ public class CraftRoutine : MonoBehaviour
     public void toggleComponentOnGrinder()
     {
         componentOnGrinder = !componentOnGrinder;
+
+        tutorialHelper(21);
     }
 
     public bool isComponentInbarrel()
@@ -1320,6 +1364,7 @@ public class CraftRoutine : MonoBehaviour
 
     public void polishUpdateQuality()
     {
+        tutorialHelper(31);
         polishCount--;
 
         if (polishCount <= 0)
@@ -1559,7 +1604,7 @@ public class CraftRoutine : MonoBehaviour
 
         createInventory.AddNewItem(tempObj);
 
-
+        tutorialHelper(32);
         
     }
 
@@ -1576,6 +1621,7 @@ public class CraftRoutine : MonoBehaviour
 
     private void stopShowCraftResult()
     {
+        tutorialHelper(33);
         craftResultBG.SetActive(false);
         craftResultDesc.SetActive(false);
         craftResultIcon.SetActive(false);
@@ -1593,6 +1639,11 @@ public class CraftRoutine : MonoBehaviour
         paused = !paused;
     }
 
+    public bool isPaused()
+    {
+        return paused;
+    }
+
     public int getCurrentStageAbsoluteValue()
     {
         return currentStageAbsVal;
@@ -1604,5 +1655,10 @@ public class CraftRoutine : MonoBehaviour
         {
             tutorialRoutine.tutorialMachine(step);
         }
+    }
+
+    public GameObject getComponent()
+    {
+        return craftingComponent;
     }
 }

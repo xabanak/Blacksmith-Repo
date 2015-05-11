@@ -17,7 +17,7 @@ public class TutorialRoutine : MonoBehaviour {
     private int tutorialStep;
     private bool tutorialDisplayed;
     private bool[] tutorials;
-    private const int totalTutorials = 30;
+    private const int totalTutorials = 37;
     private const int totalPointersUpDown = 10;
     private const int totalPointersLeftRight = 10;
     private const int totalShimmers = 5;
@@ -49,9 +49,11 @@ public class TutorialRoutine : MonoBehaviour {
             pointersLeftRight[i] = GameObject.Find("Tutorial/Tutorial Canvas/Pointers/PointerLeftRight " + (i + 1));
             pointersLeftRight[i].SetActive(false);
         }
-        shimmers[0] = GameObject.Find("Tutorial/Shimmers/Component Shimmer");
-        shimmers[1] = GameObject.Find("Tutorial/Shimmers/Bellows Shimmer");
-        shimmers[2] = GameObject.Find("Tutorial/Shimmers/Hammer Shimmer");
+        shimmers[0] = GameObject.Find("Tutorial/Tutorial Canvas/Shimmers/Component Shimmer");
+        shimmers[1] = GameObject.Find("Tutorial/Tutorial Canvas/Shimmers/Bellows Shimmer");
+        shimmers[2] = GameObject.Find("Tutorial/Tutorial Canvas/Shimmers/Hammer Shimmer");
+        shimmers[3] = GameObject.Find("Tutorial/Tutorial Canvas/Shimmers/Grinding Shimmer");
+        shimmers[4] = GameObject.Find("Tutorial/Tutorial Canvas/Shimmers/File Shimmer");
 
         message = text.GetComponent<Text>();
         tutorialStep = 1;
@@ -100,6 +102,13 @@ public class TutorialRoutine : MonoBehaviour {
         disablePointers();
         disableShimmers();
         resetTextBox();
+        if (craftRoutine.getComponent() != null)
+        {
+            if (!craftRoutine.getComponent().GetComponent<ComponentBehavior>().getInteractable())
+            {
+                craftRoutine.getComponent().GetComponent<ComponentBehavior>().toggleInteractable();
+            }
+        }
     }
 
     public void tutorialMachine(int step)
@@ -148,6 +157,72 @@ public class TutorialRoutine : MonoBehaviour {
             case 14:
                 shapingStage9();
                 break;
+            case 15:
+                hardeningStage1();
+                break;
+            case 16:
+                hardeningStage2();
+                break;
+            case 17:
+                hardeningStage3();
+                break;
+            case 18:
+                hardeningStage4();
+                break;
+            case 19:
+                grindingStage1();
+                break;
+            case 20:
+                grindingStage2();
+                break;
+            case 21:
+                grindingStage3();
+                break;
+            case 22:
+                grindingStage4();
+                break;
+            case 23:
+                temperingStage1();
+                break;
+            case 24:
+                temperingStage2();
+                break;
+            case 25:
+                temperingStage3();
+                break;
+            case 26:
+                sharpeningStage1();
+                break;
+            case 27:
+                sharpeningStage2();
+                break;
+            case 28:
+                sharpeningStage3();
+                break;
+            case 29:
+                polishingStage1();
+                break;
+            case 30:
+                polishingStage2();
+                break;
+            case 31:
+                polishingStage3();
+                break;
+            case 32:
+                endOfCrafting1();
+                break;
+            case 33:
+                endOfCrafting2();
+                break;
+            case 34:
+                endOfCrafting3();
+                break;
+            case 35:
+                endOfCrafting4();
+                break;
+            case 36:
+                tutorialEnd();
+                break;
             default:
                 Debug.Log("Tutorial stage not found!");
                 break;
@@ -168,7 +243,7 @@ public class TutorialRoutine : MonoBehaviour {
 
     private void disableShimmers()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < totalShimmers; i++)
         {
             shimmers[i].SetActive(false);
         }
@@ -276,6 +351,7 @@ public class TutorialRoutine : MonoBehaviour {
         toggleTutorialActive();
         message.text = "Now first you want to heat the component to the right temperature. Drag and drop the component into the forge found here.";
         pointersUpDown[3].SetActive(true);
+        craftRoutine.getComponent().GetComponent<ComponentBehavior>().toggleInteractable();
         increaseTutorialStep();
     }
 
@@ -302,6 +378,7 @@ public class TutorialRoutine : MonoBehaviour {
         increaseTutorialStep();
     }
 
+    // Step 13: Show player how to hammer.
     void shapingStage8()
     {
         toggleTutorialActive();
@@ -311,10 +388,198 @@ public class TutorialRoutine : MonoBehaviour {
         increaseTutorialStep();
     }
 
+    // Step 14: Tell player timer has started.
     void shapingStage9()
     {
         toggleTutorialActive();
         message.text = "Great job! The timer has now started. This stage will finish when the timer runs out. To get the best quality keep both gauges in the sweet spots.";
+        increaseTutorialStep();
+    }
+
+    // Step 15: Introduce the hardening stage.
+    void hardeningStage1()
+    {
+        toggleTutorialActive();
+        message.text = "The shaping stage is now complete. Next is the hardening stage. To get full quality on this stage, finish before the timer runs out.";
+        increaseTutorialStep();
+    }
+
+    // Step 16: Tell player to reach max heat.
+    void hardeningStage2()
+    {
+        toggleTutorialActive();
+        message.text = "If your component is not already on the forge move it there and increase the heat until the heat gauge is full.";
+        increaseTutorialStep();
+    }
+
+    // Step 17: Tell player to quench the component.
+    void hardeningStage3()
+    {
+        toggleTutorialActive();
+        message.text = "You have now reached the ideal heat level. Quickly drag the component into the cooling barrel.";
+        pointersUpDown[5].SetActive(true);
+        increaseTutorialStep();
+    }
+
+    // Step 18: Tell player to dip component into barrel.
+    void hardeningStage4()
+    {
+        toggleTutorialActive();
+        message.text = "Now click and drag the component into the barrel to quickly cool it.";
+        increaseTutorialStep();
+    }
+
+    // Step 19: Introduce grinding stage.
+    void grindingStage1()
+    {
+        toggleTutorialActive();
+        message.text  = "The hardening stage is now complete. Next is the grinding stage.";
+        text.transform.position = new Vector3(text.transform.position.x + 5, text.transform.position.y - 5, text.transform.position.z);
+        textBox.transform.position = new Vector3(textBox.transform.position.x + 5, textBox.transform.position.y - 5, textBox.transform.position.z);
+        increaseTutorialStep();
+    }
+
+    // Step 20: Tell player how to start grinding.
+    void grindingStage2()
+    {
+        toggleTutorialActive();
+        message.text = "Grab your component and put it onto the grinding wheel.";
+        shimmers[3].SetActive(true);
+        pointersLeftRight[6].SetActive(true);
+        increaseTutorialStep();
+    }
+
+    // Step 21: Introduce balancing.
+    void grindingStage3()
+    {
+        toggleTutorialActive();
+        message.text = "Now the grinding wheel is fired up. You need to keep the component balanced while grinding.";
+        increaseTutorialStep();
+    }
+
+    // Step 22: Tell player how to balance component and complete stage.
+    void grindingStage4()
+    {
+        toggleTutorialActive();
+        message.text = "Use the 'a' and 'd' keys to balance the component. You get the best quality by keeping it level. The stage will complete when the timer runs out.";
+        increaseTutorialStep();
+    }
+
+    // Step 23: Introduce the tempering stage.
+    void temperingStage1()
+    {
+        toggleTutorialActive();
+        message.text = "The grinding stage is now complete. Next is the tempering stage.";
+        increaseTutorialStep();
+    }
+
+    // Step 24: How to temper the blade.
+    void temperingStage2()
+    {
+        toggleTutorialActive();
+        message.text = "Move the component to the forge, then heat the it to reach green level on the heat gauge.";
+        shimmers[0].SetActive(true);
+        increaseTutorialStep();
+    }
+
+    // Step 25: How to cool the blade.
+    void temperingStage3()
+    {
+        toggleTutorialActive();
+        message.text = "That's the temperature you want. Now move the component into the cooling barrel and dip it in to quickly cool it.";
+        text.transform.position = new Vector3(text.transform.position.x - 5, text.transform.position.y + 5, text.transform.position.z);
+        textBox.transform.position = new Vector3(textBox.transform.position.x - 5, textBox.transform.position.y + 5, textBox.transform.position.z);
+        increaseTutorialStep();
+    }
+
+    // Step 26: Introduction to sharpening.
+    void sharpeningStage1()
+    {
+        toggleTutorialActive();
+        message.text = "Now that the tempering is done, it's time to move onto sharpening the blade.";
+        increaseTutorialStep();
+    }
+
+    // Step 27: How to sharpen one side of the blade.
+    void sharpeningStage2()
+    {
+        toggleTutorialActive();
+        message.text = "Grab the file and slide it across the points from right to left. To get the best quality hit each point with the center of the file shown here.";
+        shimmers[4].SetActive(true);
+        increaseTutorialStep();
+    }
+
+    // Step 28: How to finish sharpening.
+    void sharpeningStage3()
+    {
+        toggleTutorialActive();
+        message.text = "Great you have finished sharpening both sides of the blade. Repeat this process for both sides 4 more times.";
+        increaseTutorialStep();
+    }
+
+    // Step 29: Introduce the polishing stage.
+    void polishingStage1()
+    {
+        toggleTutorialActive();
+        message.text = "Now that sharpening is done it's time to finish up and polish the blade.";
+        increaseTutorialStep();
+    }
+
+    // Step 30: Tell player how to polish.
+    void polishingStage2()
+    {
+        toggleTutorialActive();
+        message.text = "Now grab the polishing stone and drag it across the point you see shining.";
+        increaseTutorialStep();
+    }
+    
+    // Step 31: Tell player how to finish polish stage.
+    void polishingStage3()
+    {
+        toggleTutorialActive();
+        message.text = "Well done. Now repeat this process until you have finished polishing or the time runs out.";
+        increaseTutorialStep();
+    }
+    
+    // Step 32: Explain crafting results.
+    void endOfCrafting1()
+    {
+        toggleTutorialActive();
+        message.text = "Congratulations you have finished crafing your first sword! Now you will see your crafting result. Your quality can range from poor, to excellent.";
+        text.transform.position = new Vector3(text.transform.position.x + 5.5f, text.transform.position.y - 5.5f, text.transform.position.z);
+        textBox.transform.position = new Vector3(textBox.transform.position.x + 5.5f, textBox.transform.position.y - 5.5f, textBox.transform.position.z);
+        increaseTutorialStep();
+    }
+
+    // Step 33: Introduce inventory.
+    void endOfCrafting2()
+    {
+        toggleTutorialActive();
+        message.text = "Now that you have crafted your first item, take a look at it in your inventory by pressing the 'i' button.";
+        increaseTutorialStep();
+    }
+
+    // Step 34: Show the weapons tab.
+    void endOfCrafting3()
+    {
+        toggleTutorialActive();
+        message.text = "Click the weapons tab to see the weapon you just crafted.";
+        increaseTutorialStep();
+    }
+
+    // Step 35: Explain all tabs.
+    void endOfCrafting4()
+    {
+        toggleTutorialActive();
+        message.text = "Now you can see the weapon you crafted. This is the only tab that will have items in it. Later on you will have items under each tab to see.";
+        increaseTutorialStep();
+    }
+
+    // Step 36: Finish demo.
+    void tutorialEnd()
+    {
+        toggleTutorialActive();
+        message.text = "This now concludes the tutorial for the demo.\nThank you for playing!\nYour feedback is greatly appreciated!";
         increaseTutorialStep();
     }
 }

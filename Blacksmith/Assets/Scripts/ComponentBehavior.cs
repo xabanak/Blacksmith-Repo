@@ -31,6 +31,7 @@ public class ComponentBehavior : MonoBehaviour
     private bool inRoom1;
 
     private bool mouseDrag;
+    private bool interactable;
 
 	// Use this for initialization
     void Awake()
@@ -44,6 +45,7 @@ public class ComponentBehavior : MonoBehaviour
         grinder = GameObject.Find("Crafting/Grinder");
         craftController = GameObject.Find("Crafting/CraftingController").GetComponent<CraftRoutine>();
         transform.position = room1Position.transform.position;
+        interactable = true;
     }
 
     public void setImage(Sprite image)
@@ -169,10 +171,23 @@ public class ComponentBehavior : MonoBehaviour
 
     void OnMouseDrag()
     {
-        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+        if (interactable)
+        {
+            Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
-        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint);
-        transform.position = curPosition;
+            Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint);
+            transform.position = curPosition;
+        }
+    }
+
+    public void toggleInteractable()
+    {
+        interactable = !interactable;
+    }
+
+    public bool getInteractable()
+    {
+        return interactable;
     }
 
     public void switchRoom(bool room)

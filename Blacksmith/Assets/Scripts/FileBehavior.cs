@@ -85,4 +85,9 @@ public class FileBehavior : MonoBehaviour {
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint);
         transform.position = curPosition;
     }
+
+    public int getFileSet()
+    {
+        return fileSet;
+    }
 }
