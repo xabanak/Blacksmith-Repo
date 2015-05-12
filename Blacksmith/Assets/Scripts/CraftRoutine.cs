@@ -155,6 +155,7 @@ public class CraftRoutine : MonoBehaviour
     public GameObject grinderSparksBase;
     public GameObject grinderSparks;
     private const int speed = 3;
+    private const float grinderSpeed = 0.05f;
     private float step;
     private float counterStep;
     private bool grindCycle;
@@ -577,7 +578,6 @@ public class CraftRoutine : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetMouseButtonDown(0) && tutorialRoutine.isTutorialDisplayed())
         {
             tutorialRoutine.toggleTutorialActive();
@@ -1072,14 +1072,24 @@ public class CraftRoutine : MonoBehaviour
             {
                 grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
                 grinderGauge.GetComponent<Slider>().value += step;
-                Debug.Log("Grinder reference: " + grinderSparks.name);
-                grinderSparks.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
+                if (grinderGauge.GetComponent<Slider>().value <= 60)
+                {
+                    grinderSparks.transform.Rotate(Vector3.up, speed * Time.deltaTime);
+                    craftingComponent.transform.position = new Vector3(craftingComponent.transform.position.x + grinderSpeed * Time.deltaTime, craftingComponent.transform.position.y, craftingComponent.transform.position.z);
+
+                }
             }
             else
             {
                 grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, step);
                 grinderGauge.GetComponent<Slider>().value -= step;
-                grinderSparks.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, step);
+                if (grinderGauge.GetComponent<Slider>().value >= 0)
+                {
+                    grinderSparks.transform.Rotate(Vector3.down, speed * Time.deltaTime);
+                    craftingComponent.transform.position = new Vector3(craftingComponent.transform.position.x - grinderSpeed * Time.deltaTime, craftingComponent.transform.position.y, craftingComponent.transform.position.z);
+
+                }
+
             }
 
             if (grindTime <= 0.0f)
@@ -1107,13 +1117,25 @@ public class CraftRoutine : MonoBehaviour
             {
                 grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, counterStep);
                 grinderGauge.GetComponent<Slider>().value += counterStep;
-                grinderSparks.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, counterStep);
+                if (grinderGauge.GetComponent<Slider>().value <= 60)
+                {
+                    grinderSparks.transform.Rotate(Vector3.up, speed * 2 * Time.deltaTime);
+                    craftingComponent.transform.position = new Vector3(craftingComponent.transform.position.x + grinderSpeed * 2 * Time.deltaTime, craftingComponent.transform.position.y, craftingComponent.transform.position.z);
+
+                }
+
             }
             else if (playerRotation == 2)
             {
                 grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, counterStep);
                 grinderGauge.GetComponent<Slider>().value -= counterStep;
-                grinderSparks.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, counterStep);
+                if (grinderGauge.GetComponent<Slider>().value >= 0)
+                {
+                    grinderSparks.transform.Rotate(Vector3.down, speed * 2 * Time.deltaTime);
+                    craftingComponent.transform.position = new Vector3(craftingComponent.transform.position.x - grinderSpeed * 2 * Time.deltaTime, craftingComponent.transform.position.y, craftingComponent.transform.position.z);
+
+                }
+
             }
 
             if (timeQuality <= 0)
