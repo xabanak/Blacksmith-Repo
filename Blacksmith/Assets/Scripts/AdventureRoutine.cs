@@ -31,7 +31,7 @@ public class AdventureRoutine : MonoBehaviour
     }
 }
 
-class Adventurer
+public class Adventurer
 {
     private string name;
     private int level;
