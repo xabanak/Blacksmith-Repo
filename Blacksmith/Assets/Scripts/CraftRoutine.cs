@@ -154,6 +154,7 @@ public class CraftRoutine : MonoBehaviour
     public GameObject grinderGauge;
     public GameObject grinderSparksBase;
     public GameObject grinderSparks;
+    public GameObject grinderGauge2;
     private const int speed = 3;
     private const float grinderSpeed = 0.05f;
     private float step;
@@ -228,7 +229,7 @@ public class CraftRoutine : MonoBehaviour
     public bool paused;
     public bool needUnPaused;
     public float pauseTimer;
-    private bool tutorial;
+    //private bool tutorial;
     private TutorialRoutine tutorialRoutine;
     public bool needSetAnnouncement;
 
@@ -244,7 +245,7 @@ public class CraftRoutine : MonoBehaviour
         paused = false;
         needUnPaused = false;
         pauseTimer = 0.0f;
-        tutorial = true;
+
         needSetAnnouncement = false;
         tutorialRoutine = GameObject.Find("GameController").GetComponent<TutorialRoutine>();
         startButton = GameObject.Find("Canvas/Crafting Startup/Start Crafting");
@@ -352,8 +353,6 @@ public class CraftRoutine : MonoBehaviour
         swordRight = GameObject.Find("Sharpening/Sword Right");
 
         resetCrafting();
-
-        tutorialHelper(1);
     }
 
     void resetSliders()
@@ -577,6 +576,7 @@ public class CraftRoutine : MonoBehaviour
         hammerSliderObject.SetActive(false);
         heatSliderObject.SetActive(false);
         grinderGauge.SetActive(false);
+        grinderGauge2.SetActive(false);
         resetTimer();
     }
 
@@ -1056,6 +1056,7 @@ public class CraftRoutine : MonoBehaviour
         useGrinder = true;
 
         grinderGauge.SetActive(true);
+        grinderGauge2.SetActive(true);
         timerSliderObject.SetActive(true);
         grinderGauge.GetComponent<Slider>().value = grinderGauge.GetComponent<Slider>().maxValue / 2;
 

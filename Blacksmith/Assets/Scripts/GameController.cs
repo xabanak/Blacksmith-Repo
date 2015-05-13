@@ -14,14 +14,19 @@ public class GameController : MonoBehaviour {
     private GameObject weaponsTab;
 
     public Camera workCamera;
+    public GameObject workCameraObj;
     public Camera inventoryCamera;
     public Camera townCamera;
+    public Camera startCamera;
+    public GameObject startCameraObj;
 
     public Canvas workshopCanvas;
     public Canvas inventoryCanvas;
 
     private bool workshop;
     private bool town;
+
+    private bool tutorial;
 
     private TutorialRoutine tutorialRoutine;
     private SoundController soundController;
@@ -33,20 +38,27 @@ public class GameController : MonoBehaviour {
     {
         gameObject.AddComponent<TutorialRoutine>();
         weaponsTab = GameObject.Find("Inventory/Inventory Canvas/Inventory Window/Weapons");
-    }
-	// Use this for initialization
-	void Start () 
-    {
+        tutorial = true;
         craftRoutine = GameObject.Find("CraftingController").GetComponent<CraftRoutine>();
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         hammer = GameObject.Find("Crafting/Hammer");
         component = GameObject.Find("Crafting/Component");
-        SetScene("workshop");
+        //SetScene("workshop");
         tutorialRoutine = this.GetComponent<TutorialRoutine>();
         soundController = this.GetComponent<SoundController>();
+<<<<<<< HEAD
         UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks;
         //soundController.playWorkshopMusic();
+=======
+        soundController.playWorkshopMusic();
     }
+	// Use this for initialization
+	void Start () 
+    {
+        //workCameraObj.SetActive(false);
+>>>>>>> origin/master
+    }
+    
 	
 	// Update is called once per frame
 	void Update () 
@@ -137,5 +149,22 @@ public class GameController : MonoBehaviour {
         {
             tutorialRoutine.tutorialMachine(step);
         }
+    }
+
+    public void disableTutorial()
+    {
+        tutorial = false;
+    }
+
+    public bool isTutorialActive()
+    {
+        return tutorial;
+    }
+
+    public void startGame()
+    {
+        startCameraObj.SetActive(false);
+        workCameraObj.SetActive(true);
+        tutorialRoutine.tutorialMachine(1);
     }
 }

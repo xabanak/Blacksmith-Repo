@@ -19,8 +19,7 @@ public class SoundController : MonoBehaviour {
     private AudioSource craftingMusic;
     private AudioSource workshopMusic;
 
-	// Use this for initialization
-	void Start () 
+    void Awake ()
     {
         // SOUNDS
         hammerHit = GameObject.Find("Sounds/HammerHit").GetComponent<AudioSource>();
@@ -39,6 +38,11 @@ public class SoundController : MonoBehaviour {
         workshopMusic = GameObject.Find("Music/WorkshopMusic").GetComponent<AudioSource>();
 
         Random.seed = (int)System.DateTime.Now.Ticks;
+    }
+	// Use this for initialization
+	void Start () 
+    {
+      
 	}
 	
 	// Update is called once per frame
