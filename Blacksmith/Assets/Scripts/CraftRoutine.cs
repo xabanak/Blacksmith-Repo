@@ -244,7 +244,7 @@ public class CraftRoutine : MonoBehaviour
         paused = false;
         needUnPaused = false;
         pauseTimer = 0.0f;
-        //tutorial = true;
+
         needSetAnnouncement = false;
         tutorialRoutine = GameObject.Find("GameController").GetComponent<TutorialRoutine>();
         startButton = GameObject.Find("Canvas/Crafting Startup/Start Crafting");
@@ -354,8 +354,6 @@ public class CraftRoutine : MonoBehaviour
         Random.seed = (int)System.DateTime.Now.Ticks;
 
         resetCrafting();
-
-        tutorialHelper(1);
     }
 
     void resetSliders()

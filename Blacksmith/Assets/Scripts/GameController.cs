@@ -14,8 +14,11 @@ public class GameController : MonoBehaviour {
     private GameObject weaponsTab;
 
     public Camera workCamera;
+    public GameObject workCameraObj;
     public Camera inventoryCamera;
     public Camera townCamera;
+    public Camera startCamera;
+    public GameObject startCameraObj;
 
     public Canvas workshopCanvas;
     public Canvas inventoryCanvas;
@@ -36,19 +39,21 @@ public class GameController : MonoBehaviour {
         gameObject.AddComponent<TutorialRoutine>();
         weaponsTab = GameObject.Find("Inventory/Inventory Canvas/Inventory Window/Weapons");
         tutorial = true;
-    }
-	// Use this for initialization
-	void Start () 
-    {
         craftRoutine = GameObject.Find("CraftingController").GetComponent<CraftRoutine>();
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         hammer = GameObject.Find("Crafting/Hammer");
         component = GameObject.Find("Crafting/Component");
-        SetScene("workshop");
+        //SetScene("workshop");
         tutorialRoutine = this.GetComponent<TutorialRoutine>();
         soundController = this.GetComponent<SoundController>();
         //soundController.playWorkshopMusic();
     }
+	// Use this for initialization
+	void Start () 
+    {
+        //workCameraObj.SetActive(false);
+    }
+    
 	
 	// Update is called once per frame
 	void Update () 
@@ -149,5 +154,12 @@ public class GameController : MonoBehaviour {
     public bool isTutorialActive()
     {
         return tutorial;
+    }
+
+    public void startGame()
+    {
+        startCameraObj.SetActive(false);
+        workCameraObj.SetActive(true);
+        tutorialRoutine.tutorialMachine(1);
     }
 }

@@ -21,8 +21,8 @@ public class TutorialRoutine : MonoBehaviour {
     private const int totalPointersUpDown = 10;
     private const int totalPointersLeftRight = 10;
     private const int totalShimmers = 5;
-    private Camera craftingCamera;
-    private Camera tutorialCamera;
+    //public Camera craftingCamera;
+    //public Camera tutorialCamera;
     //private Camera townCamera;
 
     void Awake()
@@ -35,7 +35,7 @@ public class TutorialRoutine : MonoBehaviour {
         text.SetActive(false);
         textBoxTransform = textBox.transform;
         textTransform = text.transform;
-        craftingCamera = GameObject.Find("Crafting/Crafting Camera").GetComponent<Camera>();
+        //craftingCamera = GameObject.Find("Crafting/Crafting Camera").GetComponent<Camera>();
         pointersUpDown = new GameObject[totalPointersUpDown];
         pointersLeftRight = new GameObject[totalPointersLeftRight];
         shimmers = new GameObject[totalShimmers];
