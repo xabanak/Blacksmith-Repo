@@ -24,6 +24,8 @@ public class CraftRoutine : MonoBehaviour
 	public Sprite hammerDiff2;
 	public Sprite hammerDiff3;
 
+    public Sprite hardenSliderGauge;
+
     public Sprite bellowsClosed;
     public Sprite bellowsMid;
     public Sprite bellowsOpen;
@@ -758,7 +760,7 @@ public class CraftRoutine : MonoBehaviour
         heated = false;
         cooled = false;
 
-        heatSliderBackground.sprite = heatDiff1;
+        //heatSliderBackground.sprite = heatDiff1;
 
         setTimer((float)dataScript.getStageTime(currentStageAbsVal) * (float)dataScript.getMult(itemType, materialType));
         startTimer();
