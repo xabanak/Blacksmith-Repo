@@ -14,6 +14,9 @@ public class SoundController : MonoBehaviour {
     private AudioSource hammerHit4;
     private AudioSource hammerHit5;
     private AudioSource button;
+    private AudioSource grinding1;
+    private AudioSource grinding2;
+    private AudioSource polishing;
 
     // MUSIC
     private AudioSource craftingMusic;
@@ -26,6 +29,9 @@ public class SoundController : MonoBehaviour {
         bellowsBlow = GameObject.Find("Sounds/BellowsBlow").GetComponent<AudioSource>();
         forgeAmbient = GameObject.Find("Sounds/ForgeAmbient").GetComponent<AudioSource>();
         cooling = GameObject.Find("Sounds/Cooling").GetComponent<AudioSource>();
+        grinding1 = GameObject.Find("Sounds/Grinding1").GetComponent<AudioSource>();
+        grinding2 = GameObject.Find("Sounds/Grinding2").GetComponent<AudioSource>();
+        polishing = GameObject.Find("Sounds/Polishing").GetComponent<AudioSource>();
         hammerHit1 = GameObject.Find("Sounds/HammerHit1").GetComponent<AudioSource>();
         hammerHit2 = GameObject.Find("Sounds/HammerHit2").GetComponent<AudioSource>();
         hammerHit3 = GameObject.Find("Sounds/HammerHit3").GetComponent<AudioSource>();
@@ -145,5 +151,25 @@ public class SoundController : MonoBehaviour {
     public bool isWorkshopMusicPlaying()
     {
         return workshopMusic.isPlaying;
+    }
+
+    public void playPolishing()
+    {
+        if (!polishing.isPlaying)
+        {
+            polishing.Play();
+        }
+    }
+
+    public void playGrinding()
+    {
+        if (!grinding1.isPlaying)
+        {
+            grinding1.Play();
+        }
+    }
+    public void stopGrinding()
+    {
+        grinding1.Stop();
     }
 }

@@ -68,6 +68,16 @@ public class TutorialRoutine : MonoBehaviour {
 
 	}
 
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && tutorialDisplayed)
+        {
+            toggleTutorialActive();
+        }
+    }
+
+}
+
     // Used to determine if a step of the totorial has been completed.
     public bool tutorialComplete(int tutorial)
     {
@@ -79,11 +89,6 @@ public class TutorialRoutine : MonoBehaviour {
     {
         textBox.SetActive(!textBox.activeSelf);
         text.SetActive(!text.activeSelf);
-    }
-
-    public bool isTutorialDisplayed()
-    {
-        return tutorialDisplayed;
     }
 
     public void toggleTutorialDispalyed()

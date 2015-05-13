@@ -465,11 +465,13 @@ public class CraftRoutine : MonoBehaviour
     void endCrafting()
     {
         soundController.StopAllCrafingNoise();
+        soundController.playWorkshopMusic();
         resetCrafting();
         Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
         switchScene("workshop front");
         CreateItem();
         Destroy(craftingComponent);
+
     }
 
     void resetCrafting()
@@ -584,10 +586,6 @@ public class CraftRoutine : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && tutorialRoutine.isTutorialDisplayed())
-        {
-            tutorialRoutine.toggleTutorialActive();
-        }
 
         if (pauseTimer > 0)
         {
@@ -1187,12 +1185,14 @@ public class CraftRoutine : MonoBehaviour
             {
                 setAnnouncement("The blade slipped!", 2.0f);
                 timedPause(2);
+                soundController.stopGrinding();
                 nextStage();
             }
         }
         if (!timerActive && !timerSet)
         {
             setAnnouncement("Grinding Done", 1.0f);
+            soundController.stopGrinding();
             nextStage();
         }
     }
@@ -1339,6 +1339,7 @@ public class CraftRoutine : MonoBehaviour
     {
         componentOnGrinder = !componentOnGrinder;
         grinderSparksBase.SetActive(true);
+        soundController.playGrinding();
         tutorialHelper(21);
     }
 

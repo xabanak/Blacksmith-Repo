@@ -6,11 +6,13 @@ public class PolishStoneBehavior : MonoBehaviour {
     private CraftRoutine craftingController;
     private Vector3 screenPoint;
     private Vector3 startLocation;
+    private SoundController soundController;
 
 	// Use this for initialization
 	void Start () 
     {
         craftingController = GameObject.Find("Crafting/CraftingController").GetComponent<CraftRoutine>();
+        soundController = GameObject.Find("GameController").GetComponent<SoundController>();
         startLocation = this.transform.position;
 	}
 	
@@ -22,6 +24,7 @@ public class PolishStoneBehavior : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D polishSpot)
     {
         craftingController.polishUpdateQuality();
+        soundController.playPolishing();
     }
 
     void OnMouseDown()
