@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour {
         SetScene("workshop");
         tutorialRoutine = this.GetComponent<TutorialRoutine>();
         soundController = this.GetComponent<SoundController>();
+        UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks;
         //soundController.playWorkshopMusic();
     }
 	

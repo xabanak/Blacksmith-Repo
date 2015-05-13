@@ -20,7 +20,7 @@ public class AdventureRoutine : MonoBehaviour
 	
 	}
 
-    public void addAdventurer(Adventurer newHero)
+    public void AddAdventurer(Adventurer newHero)
     {
         if (numAdventurers == 3)
         {
@@ -32,7 +32,7 @@ public class AdventureRoutine : MonoBehaviour
         numAdventurers++;
     }
 
-    public Adventurer[] getAdventurers()
+    public Adventurer[] GetAdventurers()
     {
         return adventurers;
     }
@@ -65,13 +65,13 @@ public class Adventurer
 
     public Adventurer()
     {
-        this.name = "Billy bob";
+        name = GameObject.Find("GameController").GetComponent<DataScript>().getAdventurerName();
         this.level = 1;
         powerLevel = 0;
         inventory = new GameObject[INV_OBJECTS];
-        //UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks;
 
-        oreModifier = UnityEngine.Random.Range(0, 5);
+        oreModifier = UnityEngine.Random.Range(0, 6);
+        Debug.Log("oreModifier: " + oreModifier);
         if (oreModifier == 0)
         {
             skinsModifier = 5;
@@ -79,7 +79,7 @@ public class Adventurer
         }
         else if (oreModifier == 1)
         {
-            skinsModifier = UnityEngine.Random.Range(4, 5);
+            skinsModifier = UnityEngine.Random.Range(4, 6);
             if (skinsModifier == 4)
             {
                 woodModifier = 5;
@@ -91,7 +91,7 @@ public class Adventurer
         }
         else if (oreModifier == 2)
         {
-            skinsModifier = UnityEngine.Random.Range(3, 5);
+            skinsModifier = UnityEngine.Random.Range(3, 6);
             if (skinsModifier == 3)
             {
                 woodModifier = 5;
@@ -107,7 +107,7 @@ public class Adventurer
         }
         else if (oreModifier == 3)
         {
-            skinsModifier = UnityEngine.Random.Range(2, 5);
+            skinsModifier = UnityEngine.Random.Range(2, 6);
             if (skinsModifier == 2)
             {
                 woodModifier = 5;
@@ -127,7 +127,7 @@ public class Adventurer
         }
         else if (oreModifier == 4)
         {
-            skinsModifier = UnityEngine.Random.Range(1, 5);
+            skinsModifier = UnityEngine.Random.Range(1, 6);
             if (skinsModifier == 1)
             {
                 woodModifier = 5;
@@ -151,7 +151,7 @@ public class Adventurer
         }
         else if (oreModifier == 5)
         {
-            skinsModifier = UnityEngine.Random.Range(0, 5);
+            skinsModifier = UnityEngine.Random.Range(0, 6);
             if (skinsModifier == 0)
             {
                 woodModifier = 5;
@@ -179,17 +179,19 @@ public class Adventurer
         }
     }
 
-    void equip(GameObject item)
+    public void Equip(GameObject item)
     {
         int itemType = (int)Enum.Parse(typeof(Item), item.GetComponent<ItemScript>().GetItem());
+        inventory[itemType] = item;
+        CalculatePower();
     }
 
-    string getDescription()
+    public string GetDescription()
     {
-        return name + ", Level " + level + ", Good at finding " + goodAt() + ", bad at finding " + badAt();
+        return name + ", Level " + level + ", Good at finding " + GoodAt() + ", bad at finding " + BadAt();
     }
 
-    string goodAt()
+    string GoodAt()
     {
         string temp = "";
         if (oreModifier > 3)
@@ -206,7 +208,7 @@ public class Adventurer
         }
         if (woodModifier > 3)
         {
-            if (skinsModifier > 3)
+            if (skinsModifier > 3 || oreModifier > 3)
             {
                 temp += ", ";
             }
@@ -215,7 +217,7 @@ public class Adventurer
         return temp;
     }
 
-    string badAt()
+    string BadAt()
     {
         string temp = "";
         if (oreModifier < 2)
@@ -232,12 +234,29 @@ public class Adventurer
         }
         if (woodModifier < 2)
         {
-            if (skinsModifier < 2)
+            if (skinsModifier < 2 || oreModifier < 2)
             {
                 temp += ", ";
             }
             temp += "wood";
         }
+        if (temp == "")
+        {
+            temp = "nothing";
+        }
         return temp;
+    }
+
+    void CalculatePower()
+    {
+        powerLevel = 0;
+        foreach(GameObject item in inventory)
+        {
+            if (item == null)
+            {
+                continue;
+            }
+            powerLevel += item.GetComponent<ItemScript>().GetPower();
+        }
     }
 }

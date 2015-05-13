@@ -314,9 +314,9 @@ public class DataScript : MonoBehaviour
         return basePowerLevel[matValue, itemBaseLevel];
     }
 
-    public void getAdventurerName()
+    public string getAdventurerName()
     {
-        Debug.Log(firstNames[UnityEngine.Random.Range(0, numFirstNames)] + " " + surnames[UnityEngine.Random.Range(0, numSurnames)]);
-        //return firstNames[UnityEngine.Random.Range(0, numFirstNames)] + " " + surnames[UnityEngine.Random.Range(0, numSurnames)];
+        //Debug.Log(firstNames[UnityEngine.Random.Range(0, numFirstNames)] + " " + surnames[UnityEngine.Random.Range(0, numSurnames)]);
+        return firstNames[UnityEngine.Random.Range(0, numFirstNames)] + " " + surnames[UnityEngine.Random.Range(0, numSurnames)];
     }
 }

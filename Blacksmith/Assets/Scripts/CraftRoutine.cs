@@ -351,8 +351,6 @@ public class CraftRoutine : MonoBehaviour
         swordLeft = GameObject.Find("Sharpening/Sword Left");
         swordRight = GameObject.Find("Sharpening/Sword Right");
 
-        Random.seed = (int)System.DateTime.Now.Ticks;
-
         resetCrafting();
 
         tutorialHelper(1);
