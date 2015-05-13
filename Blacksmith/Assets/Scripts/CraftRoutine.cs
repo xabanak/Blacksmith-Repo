@@ -150,6 +150,7 @@ public class CraftRoutine : MonoBehaviour
 
     //GRINDING STAGE
 
+    private bool needGrindingSound;
     private bool grinded;
     public Transform tiltedRight;
     public Transform tiltedLeft;
@@ -353,6 +354,7 @@ public class CraftRoutine : MonoBehaviour
         file = GameObject.Find("Crafting/File");
         swordLeft = GameObject.Find("Sharpening/Sword Left");
         swordRight = GameObject.Find("Sharpening/Sword Right");
+        needGrindingSound = true;
 
         resetCrafting();
     }
@@ -471,6 +473,8 @@ public class CraftRoutine : MonoBehaviour
         switchScene("workshop front");
         CreateItem();
         Destroy(craftingComponent);
+        startButton.SetActive(true);
+        needGrindingSound = true;
 
     }
 
@@ -1339,7 +1343,10 @@ public class CraftRoutine : MonoBehaviour
     {
         componentOnGrinder = !componentOnGrinder;
         grinderSparksBase.SetActive(true);
-        soundController.playGrinding();
+        if (needGrindingSound)
+        {
+            soundController.playGrinding();
+        }
         tutorialHelper(21);
     }
 
