@@ -3358,8 +3358,8 @@ RectTransform:
   m_RootOrder: 10
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 43.4000015, y: 116.800003}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: 117}
+  m_SizeDelta: {x: 400, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &287891303
 MonoBehaviour:
@@ -3381,7 +3381,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -12025,6 +12025,9 @@ MonoBehaviour:
   grinderSparks: {fileID: 881281047}
   swordShines: []
   paused: 0
+  needUnPaused: 0
+  pauseTimer: 0
+  needSetAnnouncement: 0
   sword: {fileID: 21300000, guid: 66e6104dc674c0043b474ad1fc53fddd, type: 3}
 --- !u!114 &1302979230
 MonoBehaviour:

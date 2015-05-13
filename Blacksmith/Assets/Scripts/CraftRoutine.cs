@@ -226,8 +226,11 @@ public class CraftRoutine : MonoBehaviour
 
     //TUTORIAL STUFF
     public bool paused;
+    public bool needUnPaused;
+    public float pauseTimer;
     private bool tutorial;
     private TutorialRoutine tutorialRoutine;
+    public bool needSetAnnouncement;
 
     void Awake()
     {
@@ -239,7 +242,10 @@ public class CraftRoutine : MonoBehaviour
     {
         // Start Crafting Setup
         paused = false;
+        needUnPaused = false;
+        pauseTimer = 0.0f;
         tutorial = true;
+        needSetAnnouncement = false;
         tutorialRoutine = GameObject.Find("GameController").GetComponent<TutorialRoutine>();
         startButton = GameObject.Find("Canvas/Crafting Startup/Start Crafting");
         itemTypeButton = GameObject.Find("Canvas/Crafting Startup/Item Type Button");
@@ -583,6 +589,18 @@ public class CraftRoutine : MonoBehaviour
             tutorialRoutine.toggleTutorialActive();
         }
 
+        if (pauseTimer > 0)
+        {
+            pauseTimer -= Time.deltaTime;
+        }
+
+        if (pauseTimer <= 0 && needUnPaused)
+        {
+            needUnPaused = false;
+            paused = false;
+            pauseTimer = 0.0f;
+        }
+
         if (!paused)
         {
             if (bellowsSliderObject.activeSelf)
@@ -828,12 +846,23 @@ public class CraftRoutine : MonoBehaviour
         itemQuality += timerEndTime;
         timeQuality = timeSync;
 
-        setAnnouncement("Heat!", 3.0f);
+        //setAnnouncement("Heat!", 3.0f);
+        needSetAnnouncement = true;
     }
 
     void stageTemperingManager()
     {
-        tutorialHelper(23);
+
+        if (needSetAnnouncement && !paused)
+        {
+            setAnnouncement("Heat!", 2.0f);
+            needSetAnnouncement = false;
+        }
+
+        if (!paused)
+        {
+            tutorialHelper(23);
+        }
         if (!paused)
         {
             tutorialHelper(24);
@@ -1152,6 +1181,13 @@ public class CraftRoutine : MonoBehaviour
             }
 
             timeQuality -= Time.deltaTime;
+
+            if (grinderGauge.GetComponent<Slider>().value <= 0 || grinderGauge.GetComponent<Slider>().value >= 60)
+            {
+                setAnnouncement("The blade slipped!", 2.0f);
+                timedPause(2);
+                nextStage();
+            }
         }
         if (!timerActive && !timerSet)
         {
@@ -1681,6 +1717,13 @@ public class CraftRoutine : MonoBehaviour
     public bool isPaused()
     {
         return paused;
+    }
+
+    public void timedPause(float time)
+    {
+        pauseTimer = time;
+        needUnPaused = true;
+        paused = true;
     }
 
     public int getCurrentStageAbsoluteValue()
