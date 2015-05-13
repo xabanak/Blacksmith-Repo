@@ -113,119 +113,122 @@ public class TutorialRoutine : MonoBehaviour {
 
     public void tutorialMachine(int step)
     {
-        switch(step)
+        if (gameController.isTutorialActive())
         {
-            case 1:
-                startCrafting();
-                break;
-            case 2:
-                selectItemAndMaterialTypes();
-                break;
-            case 3:
-                selectItemType();
-                break;
-            case 4:
-                selectMaterialtype();
-                break;
-            case 5:
-                initiateCrafting();
-                break;
-            case 6:
-                shapingStage1();
-                break;
-            case 7:
-                shapingStage2();
-                break;
-            case 8:
-                shapingStage3();
-                break;
-            case 9:
-                shapingStage4();
-                break;
-            case 10:
-                shapingStage5();
-                break;
-            case 11:
-                shapingStage6();
-                break;
-            case 12:
-                shapingStage7();
-                break;
-            case 13:
-                shapingStage8();
-                break;
-            case 14:
-                shapingStage9();
-                break;
-            case 15:
-                hardeningStage1();
-                break;
-            case 16:
-                hardeningStage2();
-                break;
-            case 17:
-                hardeningStage3();
-                break;
-            case 18:
-                hardeningStage4();
-                break;
-            case 19:
-                grindingStage1();
-                break;
-            case 20:
-                grindingStage2();
-                break;
-            case 21:
-                grindingStage3();
-                break;
-            case 22:
-                grindingStage4();
-                break;
-            case 23:
-                temperingStage1();
-                break;
-            case 24:
-                temperingStage2();
-                break;
-            case 25:
-                temperingStage3();
-                break;
-            case 26:
-                sharpeningStage1();
-                break;
-            case 27:
-                sharpeningStage2();
-                break;
-            case 28:
-                sharpeningStage3();
-                break;
-            case 29:
-                polishingStage1();
-                break;
-            case 30:
-                polishingStage2();
-                break;
-            case 31:
-                polishingStage3();
-                break;
-            case 32:
-                endOfCrafting1();
-                break;
-            case 33:
-                endOfCrafting2();
-                break;
-            case 34:
-                endOfCrafting3();
-                break;
-            case 35:
-                endOfCrafting4();
-                break;
-            case 36:
-                tutorialEnd();
-                break;
-            default:
-                Debug.Log("Tutorial stage not found!");
-                break;
+            switch (step)
+            {
+                case 1:
+                    startCrafting();
+                    break;
+                case 2:
+                    selectItemAndMaterialTypes();
+                    break;
+                case 3:
+                    selectItemType();
+                    break;
+                case 4:
+                    selectMaterialtype();
+                    break;
+                case 5:
+                    initiateCrafting();
+                    break;
+                case 6:
+                    shapingStage1();
+                    break;
+                case 7:
+                    shapingStage2();
+                    break;
+                case 8:
+                    shapingStage3();
+                    break;
+                case 9:
+                    shapingStage4();
+                    break;
+                case 10:
+                    shapingStage5();
+                    break;
+                case 11:
+                    shapingStage6();
+                    break;
+                case 12:
+                    shapingStage7();
+                    break;
+                case 13:
+                    shapingStage8();
+                    break;
+                case 14:
+                    shapingStage9();
+                    break;
+                case 15:
+                    hardeningStage1();
+                    break;
+                case 16:
+                    hardeningStage2();
+                    break;
+                case 17:
+                    hardeningStage3();
+                    break;
+                case 18:
+                    hardeningStage4();
+                    break;
+                case 19:
+                    grindingStage1();
+                    break;
+                case 20:
+                    grindingStage2();
+                    break;
+                case 21:
+                    grindingStage3();
+                    break;
+                case 22:
+                    grindingStage4();
+                    break;
+                case 23:
+                    temperingStage1();
+                    break;
+                case 24:
+                    temperingStage2();
+                    break;
+                case 25:
+                    temperingStage3();
+                    break;
+                case 26:
+                    sharpeningStage1();
+                    break;
+                case 27:
+                    sharpeningStage2();
+                    break;
+                case 28:
+                    sharpeningStage3();
+                    break;
+                case 29:
+                    polishingStage1();
+                    break;
+                case 30:
+                    polishingStage2();
+                    break;
+                case 31:
+                    polishingStage3();
+                    break;
+                case 32:
+                    endOfCrafting1();
+                    break;
+                case 33:
+                    endOfCrafting2();
+                    break;
+                case 34:
+                    endOfCrafting3();
+                    break;
+                case 35:
+                    endOfCrafting4();
+                    break;
+                case 36:
+                    tutorialEnd();
+                    break;
+                default:
+                    Debug.Log("Tutorial stage not found!");
+                    break;
+            }
         }
     }
 

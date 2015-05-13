@@ -228,7 +228,7 @@ public class CraftRoutine : MonoBehaviour
     public bool paused;
     public bool needUnPaused;
     public float pauseTimer;
-    private bool tutorial;
+    //private bool tutorial;
     private TutorialRoutine tutorialRoutine;
     public bool needSetAnnouncement;
 
@@ -244,7 +244,7 @@ public class CraftRoutine : MonoBehaviour
         paused = false;
         needUnPaused = false;
         pauseTimer = 0.0f;
-        tutorial = true;
+        //tutorial = true;
         needSetAnnouncement = false;
         tutorialRoutine = GameObject.Find("GameController").GetComponent<TutorialRoutine>();
         startButton = GameObject.Find("Canvas/Crafting Startup/Start Crafting");

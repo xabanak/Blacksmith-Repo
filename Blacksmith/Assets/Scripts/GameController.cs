@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour {
     private bool workshop;
     private bool town;
 
+    private bool tutorial;
+
     private TutorialRoutine tutorialRoutine;
     private SoundController soundController;
 
@@ -33,6 +35,7 @@ public class GameController : MonoBehaviour {
     {
         gameObject.AddComponent<TutorialRoutine>();
         weaponsTab = GameObject.Find("Inventory/Inventory Canvas/Inventory Window/Weapons");
+        tutorial = true;
     }
 	// Use this for initialization
 	void Start () 
@@ -136,5 +139,15 @@ public class GameController : MonoBehaviour {
         {
             tutorialRoutine.tutorialMachine(step);
         }
+    }
+
+    public void disableTutorial()
+    {
+        tutorial = false;
+    }
+
+    public bool isTutorialActive()
+    {
+        return tutorial;
     }
 }
