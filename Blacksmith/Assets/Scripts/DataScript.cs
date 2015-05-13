@@ -3,19 +3,23 @@ using System.Collections;
 using System.IO;
 using System;
 
-public class StageTimeMatrix : MonoBehaviour 
+public class DataScript : MonoBehaviour 
 {
     const int numItems = 9; // Total number of item types
     const int numMats = 10; // Total number of material types
     const int numStages = 6; // Total number of different crafting stages
     const int numItemLevels = 3; // total number of different strengths of items in one tier
-    //const string dir = "Assets/StreamingAssets/";   
+    //const string dir = "Assets/StreamingAssets/";
+    const int numSurnames = 44;
+    const int numFirstNames = 48;
 
     int [] stageCount; // Number of total stages to craft each type of item
     int [,] stageListing; // Listing per item type of which number stage is what crafting stage
     int[] stageTimes; // Base time for each stage
     double[,] stageTimeMult; // Multiplier based on item type and material for the total stage time
     int[,] basePowerLevel; //Base power level for each item/material type combination
+    string[] firstNames;
+    string[] surnames;
     
     public int testInt;
        enum Item // Listing of items
@@ -73,11 +77,14 @@ public class StageTimeMatrix : MonoBehaviour
         stageTimes = new int[numStages];
         stageTimeMult = new double[numItems, numMats];
         basePowerLevel = new int[numMats, numItemLevels];
-        readDataFile("stageTime.txt");
-        readDataFile("stageCount.txt");
-        readDataFile("stageListing.txt");
-        readDataFile("stageTimeMult.txt");
-        readDataFile("basePower.txt");
+        firstNames = new string[numFirstNames];
+        surnames = new string[numSurnames];
+        readDataFile("stageTime.dat");
+        readDataFile("stageCount.dat");
+        readDataFile("stageListing.dat");
+        readDataFile("stageTimeMult.dat");
+        readDataFile("basePower.dat");
+        readDataFile("adventurerNames.dat");
 
         /*for(int i = 0; i < numItems; i++)
         {
@@ -95,6 +102,8 @@ public class StageTimeMatrix : MonoBehaviour
 
         int i = 0;
         int j = 0;
+
+        bool firstNamesRead = false;
 
         switch(fileIdentity)
         {
@@ -226,6 +235,36 @@ public class StageTimeMatrix : MonoBehaviour
                 }
                 break;
 
+            case 'F':
+                while (!inputStream.EndOfStream)
+                {
+                    string tempString = inputStream.ReadLine();
+                    if (tempString[0] == '*')
+                    {
+                        continue;
+                    }
+                    if (i == numFirstNames && !firstNamesRead)
+                    {
+                        i = 0;
+                        firstNamesRead = true;
+                    }
+                    if (i == numSurnames && firstNamesRead)
+                    {
+                        break;
+                    }
+                    if (!firstNamesRead)
+                    {
+                        firstNames[i] = tempString;
+                        i++;
+                    }
+                    else
+                    {
+                        surnames[i] = tempString;
+                        i++;
+                    }
+                }
+                break;
+
             default:
                 Debug.Log("Failed to load correct data file. " + filePath + " did not load.");
                 break;
@@ -273,5 +312,11 @@ public class StageTimeMatrix : MonoBehaviour
         int matValue = (int)Enum.Parse(typeof(Material), material);
 
         return basePowerLevel[matValue, itemBaseLevel];
+    }
+
+    public void getAdventurerName()
+    {
+        Debug.Log(firstNames[UnityEngine.Random.Range(0, numFirstNames)] + " " + surnames[UnityEngine.Random.Range(0, numSurnames)]);
+        //return firstNames[UnityEngine.Random.Range(0, numFirstNames)] + " " + surnames[UnityEngine.Random.Range(0, numSurnames)];
     }
 }

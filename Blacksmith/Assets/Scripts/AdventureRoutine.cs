@@ -69,7 +69,7 @@ public class Adventurer
         this.level = 1;
         powerLevel = 0;
         inventory = new GameObject[INV_OBJECTS];
-        UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks;
+        //UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks;
 
         oreModifier = UnityEngine.Random.Range(0, 5);
         if (oreModifier == 0)

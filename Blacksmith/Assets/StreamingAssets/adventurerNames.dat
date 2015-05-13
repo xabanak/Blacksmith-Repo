@@ -1,0 +1,103 @@
+F
+*This file contains the first names and surnames for adventurers for name generation
+*Lines beginning with a * will be ignored upon loading. Do not modify the first line.
+*Make sure there are no trailing empty lines at the end.
+*
+**First names (48)
+Garth
+Richard
+William
+Stryder
+Vincent
+Hagar
+Merek
+Carac
+Ulric
+Tybalt
+Borin
+Sadon
+Teroowin
+Rowan
+Forthwind
+Althalos
+Fendrel
+Brom
+Hadrian
+Crewe
+Walter
+Sir John Fenwick
+Sir Clifton
+Francis
+Simon
+Geoffrey
+Leofrick
+Charles
+Benedict
+Bartholomew
+Quinn
+Favian
+Destrian
+Lord Falk
+Berinon
+Gorvenal
+Arthur
+Letholdus
+Gavin
+Jarin
+Cassius
+Josef
+Doran
+Asher
+Zane
+Dain
+Edmund
+Earl
+*
+*
+*
+*
+**Last names (44)
+the Horrible
+the Wicked
+McDougle
+Cartwright
+the Bald
+the Bandit
+De Bolbec
+of Wallington
+Cromwell
+the Drunkard
+the Drunk
+Drake
+de Montfort
+of Wykeham
+Writingham
+de Mowbray
+Chaucer
+of Gaunt
+of Orange
+Cornwallis
+deGrey
+Rowntree
+Chaucer
+of Aragon
+of Cleves
+of Guise
+the Bold
+of Denvorn
+Binnety
+the Monk
+Strayts
+of Bristol
+Cheeseman
+Brickenden
+Kilner
+Mason
+Ward
+the Coward
+the Sly
+the Valiant
+the Brave
+the Barbararian
+the Executioner
+of Earl

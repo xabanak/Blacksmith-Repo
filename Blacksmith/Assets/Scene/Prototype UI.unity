@@ -12012,7 +12012,7 @@ MonoBehaviour:
   furnaceSliderObject: {fileID: 285304052}
   barrelSliderObject: {fileID: 1731491678}
   bellowsSliderObject: {fileID: 1307932982}
-  timeMultiplier: {fileID: 1565756060}
+  dataScript: {fileID: 1565756060}
   stage: {fileID: 1847773638}
   popUpText: {fileID: 287891303}
   results: {fileID: 405393747}
