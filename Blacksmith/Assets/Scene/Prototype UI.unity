@@ -12655,6 +12655,7 @@ MonoBehaviour:
   grinderGauge: {fileID: 276864331}
   grinderSparksBase: {fileID: 1371465923}
   grinderSparks: {fileID: 881281047}
+  grinderGauge2: {fileID: 761519906}
   swordShines: []
   paused: 0
   needUnPaused: 0

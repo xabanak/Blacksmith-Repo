@@ -154,6 +154,7 @@ public class CraftRoutine : MonoBehaviour
     public GameObject grinderGauge;
     public GameObject grinderSparksBase;
     public GameObject grinderSparks;
+    public GameObject grinderGauge2;
     private const int speed = 3;
     private const float grinderSpeed = 0.05f;
     private float step;
@@ -577,6 +578,7 @@ public class CraftRoutine : MonoBehaviour
         hammerSliderObject.SetActive(false);
         heatSliderObject.SetActive(false);
         grinderGauge.SetActive(false);
+        grinderGauge2.SetActive(false);
         resetTimer();
     }
 
@@ -1056,6 +1058,7 @@ public class CraftRoutine : MonoBehaviour
         useGrinder = true;
 
         grinderGauge.SetActive(true);
+        grinderGauge2.SetActive(true);
         timerSliderObject.SetActive(true);
         grinderGauge.GetComponent<Slider>().value = grinderGauge.GetComponent<Slider>().maxValue / 2;
 

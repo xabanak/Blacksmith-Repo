@@ -10,6 +10,7 @@ public class TutorialRoutine : MonoBehaviour {
     private Transform textTransform;
     private GameObject textBox;
     private GameObject text;
+    private GameObject component;
     private GameObject[] pointersUpDown;
     private GameObject[] pointersLeftRight;
     private GameObject[] shimmers;
@@ -21,9 +22,6 @@ public class TutorialRoutine : MonoBehaviour {
     private const int totalPointersUpDown = 10;
     private const int totalPointersLeftRight = 10;
     private const int totalShimmers = 5;
-    //public Camera craftingCamera;
-    //public Camera tutorialCamera;
-    //private Camera townCamera;
 
     void Awake()
     {
@@ -35,7 +33,6 @@ public class TutorialRoutine : MonoBehaviour {
         text.SetActive(false);
         textBoxTransform = textBox.transform;
         textTransform = text.transform;
-        //craftingCamera = GameObject.Find("Crafting/Crafting Camera").GetComponent<Camera>();
         pointersUpDown = new GameObject[totalPointersUpDown];
         pointersLeftRight = new GameObject[totalPointersLeftRight];
         shimmers = new GameObject[totalShimmers];
@@ -317,6 +314,9 @@ public class TutorialRoutine : MonoBehaviour {
         toggleTutorialActive();
         message.text = "This is the stage indicator.\nYour first stage for crafting a sword is shaping. To start the timer you need to reach the \"sweet spot\" for both the the heat gauge and hammer gauge.";
         pointersLeftRight[5].SetActive(true);
+        component = GameObject.Find("Component(Clone)");
+        component.SetActive(false);
+        craftRoutine.getComponent().GetComponent<ComponentBehavior>().toggleInteractable();
         increaseTutorialStep();
     }
 
@@ -345,6 +345,7 @@ public class TutorialRoutine : MonoBehaviour {
         message.text = "This is the component you are currently shaping into a finished sword blade.";
         shimmers[0].SetActive(true);
         pointersUpDown[2].SetActive(true);
+        component.SetActive(true);
         increaseTutorialStep();
     }
 

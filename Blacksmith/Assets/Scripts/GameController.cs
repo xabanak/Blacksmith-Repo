@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour {
         //SetScene("workshop");
         tutorialRoutine = this.GetComponent<TutorialRoutine>();
         soundController = this.GetComponent<SoundController>();
-        //soundController.playWorkshopMusic();
+        soundController.playWorkshopMusic();
     }
 	// Use this for initialization
 	void Start () 
