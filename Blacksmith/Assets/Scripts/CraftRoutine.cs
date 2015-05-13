@@ -63,7 +63,7 @@ public class CraftRoutine : MonoBehaviour
     private Image heatSliderBackground;
     private Image hammerSliderBackground;
 
-    public StageTimeMatrix timeMultiplier;
+    public DataScript dataScript;
 
     public Text stage;
     public Text popUpText;
@@ -455,7 +455,7 @@ public class CraftRoutine : MonoBehaviour
             materialSet = false;
             stage.enabled = true;
 
-            totalStages = timeMultiplier.getStageCount(itemType);
+            totalStages = dataScript.getStageCount(itemType);
 
             instantiateComponent();
             Debug.Log(craftingComponent.name);
@@ -520,7 +520,7 @@ public class CraftRoutine : MonoBehaviour
         }
 
         stage.text = "Stage: " + (currentStage+1) + "/" + totalStages;
-		currentStageAbsVal = (timeMultiplier.getStage(itemType, currentStage));
+		currentStageAbsVal = (dataScript.getStage(itemType, currentStage));
         Debug.Log("Current stage abs val is:" + currentStageAbsVal);
 		
 		switch(currentStageAbsVal)
@@ -679,7 +679,7 @@ public class CraftRoutine : MonoBehaviour
         hammerSliderBackground.sprite = hammerDiff1;
         heatSliderBackground.sprite = heatDiff1;
 
-        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        setTimer((float)dataScript.getStageTime(currentStageAbsVal) * (float)dataScript.getMult(itemType, materialType));
 
         possibleItemQuality += timerEndTime;
     }
@@ -762,7 +762,7 @@ public class CraftRoutine : MonoBehaviour
 
         heatSliderBackground.sprite = heatDiff1;
 
-        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        setTimer((float)dataScript.getStageTime(currentStageAbsVal) * (float)dataScript.getMult(itemType, materialType));
         startTimer();
         possibleItemQuality += timerEndTime;
         itemQuality += timerEndTime;
@@ -839,7 +839,7 @@ public class CraftRoutine : MonoBehaviour
         heated = false;
         cooled = false;
 
-        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        setTimer((float)dataScript.getStageTime(currentStageAbsVal) * (float)dataScript.getMult(itemType, materialType));
         startTimer();
 
         possibleItemQuality += timerEndTime;
@@ -927,7 +927,7 @@ public class CraftRoutine : MonoBehaviour
 
         timerSliderObject.SetActive(true);
 
-        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        setTimer((float)dataScript.getStageTime(currentStageAbsVal) * (float)dataScript.getMult(itemType, materialType));
 
         timerSliderObject.GetComponent<Slider>().value = 0;
 
@@ -1004,7 +1004,7 @@ public class CraftRoutine : MonoBehaviour
 
         timerSliderObject.SetActive(true);
 
-        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        setTimer((float)dataScript.getStageTime(currentStageAbsVal) * (float)dataScript.getMult(itemType, materialType));
         timerSliderObject.GetComponent<Slider>().value = 0;
         setAnnouncement("Sharpen!", 3.0f);
 
@@ -1062,7 +1062,7 @@ public class CraftRoutine : MonoBehaviour
         grinderGauge.GetComponent<Slider>().value = grinderGauge.GetComponent<Slider>().maxValue / 2;
 
         grinded = false;
-        setTimer((float)timeMultiplier.getStageTime(currentStageAbsVal) * (float)timeMultiplier.getMult(itemType, materialType));
+        setTimer((float)dataScript.getStageTime(currentStageAbsVal) * (float)dataScript.getMult(itemType, materialType));
         timerSliderObject.GetComponent<Slider>().value = 0;
 
         possibleItemQuality += timerEndTime;
@@ -1643,7 +1643,7 @@ public class CraftRoutine : MonoBehaviour
     private void CreateItem()
     {
         GameObject tempObj = Instantiate(GameObject.Find("Equipment/Test Sword")) as GameObject;
-        double powerLevel = timeMultiplier.getBasePowerLevel(itemType, materialType);
+        double powerLevel = dataScript.getBasePowerLevel(itemType, materialType);
         double qualityPercentage = itemQuality / possibleItemQuality;
         if (qualityPercentage > 0.99f)
         {
