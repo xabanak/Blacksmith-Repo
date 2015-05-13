@@ -259,4 +259,19 @@ public class Adventurer
             powerLevel += item.GetComponent<ItemScript>().GetPower();
         }
     }
+
+    public int getOreLevel()
+    {
+        return oreModifier;
+    }
+
+    public int getSkinsLevel()
+    {
+        return skinsModifier;
+    }
+
+    public int getWoodLevel()
+    {
+        return woodModifier;
+    }
 }

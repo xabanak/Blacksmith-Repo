@@ -46,17 +46,13 @@ public class GameController : MonoBehaviour {
         //SetScene("workshop");
         tutorialRoutine = this.GetComponent<TutorialRoutine>();
         soundController = this.GetComponent<SoundController>();
-<<<<<<< HEAD
         UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks;
-        //soundController.playWorkshopMusic();
-=======
         soundController.playWorkshopMusic();
     }
 	// Use this for initialization
 	void Start () 
     {
         //workCameraObj.SetActive(false);
->>>>>>> origin/master
     }
     
 	
