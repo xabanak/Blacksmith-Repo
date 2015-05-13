@@ -76,12 +76,15 @@ public class TutorialRoutine : MonoBehaviour {
         }
     }
 
-}
-
     // Used to determine if a step of the totorial has been completed.
     public bool tutorialComplete(int tutorial)
     {
         return tutorials[tutorial];
+    }
+
+    void toggleTutorialDisplayed()
+    {
+        tutorialDisplayed = !tutorialDisplayed;
     }
 
     // Used to enable or disable the text window.
@@ -91,16 +94,11 @@ public class TutorialRoutine : MonoBehaviour {
         text.SetActive(!text.activeSelf);
     }
 
-    public void toggleTutorialDispalyed()
-    {
-        tutorialDisplayed = !tutorialDisplayed;
-    }
-
-    public void toggleTutorialActive()
+    void toggleTutorialActive()
     {
         craftRoutine.Pause();
         showMessage();
-        toggleTutorialDispalyed();
+        toggleTutorialDisplayed();
         disablePointers();
         disableShimmers();
         resetTextBox();
