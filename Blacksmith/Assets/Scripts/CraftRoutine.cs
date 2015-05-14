@@ -471,6 +471,10 @@ public class CraftRoutine : MonoBehaviour
         switchScene("workshop front");
         CreateItem();
         Destroy(craftingComponent);
+        SetItemButton();
+        SetMaterialButton();
+        startButton.GetComponentInChildren<Text>().text = "Craft";
+        startButton.GetComponent<Image>().color = new Vector4(255, 255, 255, 255);
 
     }
 
@@ -1596,6 +1600,12 @@ public class CraftRoutine : MonoBehaviour
         }
     }
 
+    void SetMaterialButton()
+    {
+        materialTypeButton.GetComponent<Image>().sprite = startButton.GetComponent<Image>().sprite;
+        materialTypeButton.GetComponentInChildren<Text>().text = "Material";
+    }
+
     public void SetMaterial(string material)
     {
         materialType = material;
@@ -1614,6 +1624,12 @@ public class CraftRoutine : MonoBehaviour
 
             tutorialHelper(5);
         }
+    }
+
+    void SetItemButton()
+    {
+        itemTypeButton.GetComponent<Image>().sprite = startButton.GetComponent<Image>().sprite;
+        itemTypeButton.GetComponentInChildren<Text>().text = "Item";
     }
 
     public void SetItem(string item)
