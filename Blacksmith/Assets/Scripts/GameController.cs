@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour {
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         hammer = GameObject.Find("Crafting/Hammer");
         component = GameObject.Find("Crafting/Component");
-        //SetScene("workshop");
+        SetScene("workshop");
         tutorialRoutine = this.GetComponent<TutorialRoutine>();
         soundController = this.GetComponent<SoundController>();
         UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks;
