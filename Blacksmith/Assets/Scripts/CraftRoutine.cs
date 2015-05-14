@@ -471,10 +471,14 @@ public class CraftRoutine : MonoBehaviour
         switchScene("workshop front");
         CreateItem();
         Destroy(craftingComponent);
+<<<<<<< HEAD
         SetItemButton();
         SetMaterialButton();
         startButton.GetComponentInChildren<Text>().text = "Craft";
         startButton.GetComponent<Image>().color = new Vector4(255, 255, 255, 255);
+=======
+        startButton.SetActive(true);
+>>>>>>> origin/master
 
     }
 
@@ -1189,14 +1193,12 @@ public class CraftRoutine : MonoBehaviour
             {
                 setAnnouncement("The blade slipped!", 2.0f);
                 timedPause(2);
-                soundController.stopGrinding();
                 nextStage();
             }
         }
         if (!timerActive && !timerSet)
         {
             setAnnouncement("Grinding Done", 1.0f);
-            soundController.stopGrinding();
             nextStage();
         }
     }

@@ -12,9 +12,11 @@ public class FileBehavior : MonoBehaviour {
     private Vector3 startLocation;
     private int fileSet;
     private Vector3 origin;
+    private SoundController soundController;
 
     void Start()
     {
+        soundController = GameObject.Find("GameController").GetComponent<SoundController>();
         craftingController = GameObject.Find("Crafting/CraftingController").GetComponent<CraftRoutine>();
         startLocation = this.transform.position;
         fileSet = 1;
@@ -23,6 +25,7 @@ public class FileBehavior : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D fileSpot)
     {
         origin = transform.position;
+        soundController.playSharpening();
 
         if (fileSpot.gameObject.name == "Shimmer " + fileSet + "(Clone)")
         {
