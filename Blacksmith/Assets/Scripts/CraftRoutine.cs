@@ -471,15 +471,9 @@ public class CraftRoutine : MonoBehaviour
         switchScene("workshop front");
         CreateItem();
         Destroy(craftingComponent);
-<<<<<<< HEAD
-        SetItemButton();
-        SetMaterialButton();
+        startButton.SetActive(true);
         startButton.GetComponentInChildren<Text>().text = "Craft";
         startButton.GetComponent<Image>().color = new Vector4(255, 255, 255, 255);
-=======
-        startButton.SetActive(true);
->>>>>>> origin/master
-
     }
 
     void resetCrafting()
@@ -1563,6 +1557,8 @@ public class CraftRoutine : MonoBehaviour
     {
         itemTypeButton.SetActive(true);
         materialTypeButton.SetActive(true);
+        SetItemButton();
+        SetMaterialButton();
 
         tutorialHelper(2);
     }
