@@ -15,7 +15,7 @@ public class SoundController : MonoBehaviour {
     private AudioSource hammerHit5;
     private AudioSource button;
     private AudioSource grinding1;
-    private AudioSource grinding2;
+    //private AudioSource grinding2;
     private AudioSource polishing;
     private AudioSource sharpening;
 
@@ -31,7 +31,7 @@ public class SoundController : MonoBehaviour {
         forgeAmbient = GameObject.Find("Sounds/ForgeAmbient").GetComponent<AudioSource>();
         cooling = GameObject.Find("Sounds/Cooling").GetComponent<AudioSource>();
         grinding1 = GameObject.Find("Sounds/Grinding1").GetComponent<AudioSource>();
-        grinding2 = GameObject.Find("Sounds/Grinding2").GetComponent<AudioSource>();
+        //grinding2 = GameObject.Find("Sounds/Grinding2").GetComponent<AudioSource>();
         polishing = GameObject.Find("Sounds/Polishing").GetComponent<AudioSource>();
         sharpening = GameObject.Find("Sounds/Sharpening").GetComponent<AudioSource>();
         hammerHit1 = GameObject.Find("Sounds/HammerHit1").GetComponent<AudioSource>();

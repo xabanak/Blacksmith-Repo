@@ -36,6 +36,7 @@ public class ComponentBehavior : MonoBehaviour
 	// Use this for initialization
     void Awake()
     {
+        mouseDrag = false;
         inRoom1 = true;
         room1Position = GameObject.Find("Crafting/Room1Position");
         room2Position = GameObject.Find("Crafting/Room2Position");
