@@ -3,13 +3,18 @@ using System.Collections;
 
 public class BuildingsBehavior : MonoBehaviour {
 
-    private string name;
+   // private string name;
     private TownBehavior townBehavior;
+
+    public GameObject tavern;
+    public GameObject emporium;
+    public GameObject market;
+    public GameObject travel;
 
 	// Use this for initialization
 	void Start () 
     {
-        name = gameObject.name;
+        //name = gameObject.name;
         townBehavior = GameObject.Find("GameController").GetComponent<TownBehavior>();
 	}
 	
@@ -18,9 +23,11 @@ public class BuildingsBehavior : MonoBehaviour {
 	
 	}
 
-    void OnMouseDown()
+    public void openWindow(string window)
     {
-        switch(name)
+        toggleBuildings();
+
+        switch(window)
         {
             case "Tavern":
                 townBehavior.toggleTavernWindow();
@@ -30,5 +37,13 @@ public class BuildingsBehavior : MonoBehaviour {
             default:
                 break;
         }
+    }
+
+    public void toggleBuildings()
+    {
+        tavern.SetActive(!tavern.activeSelf);
+        emporium.SetActive(!emporium.activeSelf);
+        market.SetActive(!market.activeSelf);
+        travel.SetActive(!travel.activeSelf);
     }
 }

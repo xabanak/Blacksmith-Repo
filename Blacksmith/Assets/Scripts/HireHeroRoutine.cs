@@ -5,30 +5,35 @@ using UnityEngine.UI;
 public class HireHeroRoutine : MonoBehaviour {
 
     private TownBehavior townBehavior;
-    private string hero;
+    private string window;
+    public GameObject confirmationWindow;
 
 	// Use this for initialization
 	void Start () 
     {
         townBehavior = GameObject.Find("GameController").GetComponent<TownBehavior>();
-        hero = gameObject.name;
+        window = gameObject.name;
 	}
 
     void OnMouseDown()
     {
-        switch(hero)
+        if (!confirmationWindow.activeSelf)
         {
-            case "Top Window":
-                townBehavior.hireAdventurer(1);
-                break;
-            case "Middle Window":
-                townBehavior.hireAdventurer(2);
-                break;
-            case "Bottom Window":
-                townBehavior.hireAdventurer(3);
-                break;
-            default:
-                break;
+            Debug.Log("Window " + window);
+            switch (window)
+            {
+                case "Top Window":
+                    townBehavior.confirmHero(1);
+                    break;
+                case "Middle Window":
+                    townBehavior.confirmHero(2);
+                    break;
+                case "Bottom Window":
+                    townBehavior.confirmHero(3);
+                    break;
+                default:
+                    break;
+            }
 
         }
     }
