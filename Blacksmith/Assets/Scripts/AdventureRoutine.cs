@@ -17,29 +17,83 @@ public class AdventureRoutine : MonoBehaviour
 
 	void Update () 
     {
-	
-	}
+        if (adventurers[0].getAdventuringState())
+        {
+            updateAdventure(0);
+        }
+        if (adventurers[1].getAdventuringState())
+        {
+            updateAdventure(1);
+        }
+        if (adventurers[2].getAdventuringState())
+        {
+            updateAdventure(2);
+        }
+    }
+
+    private void updateAdventure(int adventurerIterator)
+    {
+
+    }
 
     public void addAdventurer(Adventurer newHero)
     {
-        if (numAdventurers == 3)
+        if (numAdventurers < 3)
         {
-            return; 
+            adventurers[numAdventurers] = newHero;
+
+            numAdventurers++;
         }
-
-        adventurers[numAdventurers] = newHero;
-
-        numAdventurers++;
     }
+
+    /*private void removeAdventurer(Adventurer hero)
+    {
+        for (int i = 0; i < NUM_ADVENTURERS; i++)
+        {
+            if (adventurers[i] == hero)
+
+        }
+    }*/
 
     public Adventurer[] getAdventurers()
     {
         return adventurers;
     }
+
+    bool canHireAdventurer()
+    {
+        if (numAdventurers < NUM_ADVENTURERS)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    bool sendOnAdventure(Adventurer adventurer, string adventureZone)
+    {
+        if (adventurer.sendOnAdventure())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    enum adventureZones
+    {
+        Plains,
+        Caves,
+        Forest,
+        Swamp
+    }
 }
 
 public class Adventurer
 {
+    bool isHome;
+    bool isReturned;
     private string name;
     private int level;
     private int powerLevel;
@@ -68,6 +122,8 @@ public class Adventurer
         name = GameObject.Find("GameController").GetComponent<DataScript>().getAdventurerName();
         this.level = 1;
         powerLevel = 0;
+        isHome = true;
+        isReturned = false;
         inventory = new GameObject[INV_OBJECTS];
 
         oreModifier = UnityEngine.Random.Range(0, 6);
@@ -252,11 +308,10 @@ public class Adventurer
         powerLevel = 0;
         foreach(GameObject item in inventory)
         {
-            if (item == null)
+            if (item != null)
             {
-                continue;
+                powerLevel += item.GetComponent<ItemScript>().GetPower();
             }
-            powerLevel += item.GetComponent<ItemScript>().GetPower();
         }
     }
 
@@ -273,5 +328,46 @@ public class Adventurer
     public int getWoodLevel()
     {
         return woodModifier;
+    }
+
+    public void levelUp()
+    {
+        level++;
+    }
+
+    public int getLevel()
+    {
+        return level;
+    }
+
+    public bool sendOnAdventure()
+    {
+        if (isHome && !isReturned)
+        {
+            isHome = false;
+            return true;
+        }
+        return false;
+    }
+
+    public bool collectFromAdventure()
+    {
+        if (isReturned)
+        {
+            isReturned = false;
+            return true;
+        }
+        return false;
+    }
+
+    public bool getAdventuringState()//True: currently on an adventure, false: currently home
+    {
+        
+        return !isHome;
+    }
+
+    public bool getReturnedState()//True: currently returned from adventure, false: currently not returned from adventure
+    {
+        return isReturned;
     }
 }
