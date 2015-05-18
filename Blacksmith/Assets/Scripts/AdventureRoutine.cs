@@ -46,7 +46,6 @@ public class AdventureRoutine : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
     /*private void removeAdventurer(Adventurer hero)
     {
         for (int i = 0; i < NUM_ADVENTURERS; i++)
@@ -55,14 +54,7 @@ public class AdventureRoutine : MonoBehaviour
 
         }
     }*/
-=======
-            adventurers[numAdventurers] = newHero;
-
-            numAdventurers++;
-
         //Debug.Log("numAdventurers = " + numAdventurers);
-    }
->>>>>>> origin/master
 
     public Adventurer[] getAdventurers()
     {
