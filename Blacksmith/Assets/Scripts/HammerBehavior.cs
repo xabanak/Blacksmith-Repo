@@ -60,8 +60,8 @@ public class HammerBehavior : MonoBehaviour
         //Debug.Log("UnitVector is: <" + unitVector.x + ", " + unitVector.y + ">");
         if (myCollider.gameObject.name == "Anvil")
         {
-            //Debug.Log("Entered Anvil collider");
-            if (magnitude > 0.75f)
+            Debug.Log("Entered Anvil collider");
+            if (magnitude > 0.4f)
             {
                 //Debug.Log("Passed magnitude test");
                 if (unitVector.x > Mathf.Cos(4.189f) && unitVector.x < Mathf.Cos(5.236f))
@@ -77,6 +77,13 @@ public class HammerBehavior : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D myCollider)
+    {
+        if (myCollider.gameObject.name == "Anvil")
+        {
+            Debug.Log("Currently in 2d trigger");
+        }
+    }
     void OnMouseDown()
     {
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
