@@ -20,7 +20,7 @@ public class AdventureRoutine : MonoBehaviour
 	
 	}
 
-    public void AddAdventurer(Adventurer newHero)
+    public void addAdventurer(Adventurer newHero)
     {
         if (numAdventurers == 3)
         {
@@ -32,7 +32,7 @@ public class AdventureRoutine : MonoBehaviour
         numAdventurers++;
     }
 
-    public Adventurer[] GetAdventurers()
+    public Adventurer[] getAdventurers()
     {
         return adventurers;
     }
@@ -71,7 +71,7 @@ public class Adventurer
         inventory = new GameObject[INV_OBJECTS];
 
         oreModifier = UnityEngine.Random.Range(0, 6);
-        Debug.Log("oreModifier: " + oreModifier);
+        //Debug.Log("oreModifier: " + oreModifier);
         if (oreModifier == 0)
         {
             skinsModifier = 5;
@@ -179,19 +179,19 @@ public class Adventurer
         }
     }
 
-    public void Equip(GameObject item)
+    public void equip(GameObject item)
     {
         int itemType = (int)Enum.Parse(typeof(Item), item.GetComponent<ItemScript>().GetItem());
         inventory[itemType] = item;
-        CalculatePower();
+        calculatePower();
     }
 
-    public string GetDescription()
+    public string getDescription()
     {
-        return name + ", Level " + level + ", Good at finding " + GoodAt() + ", bad at finding " + BadAt();
+        return name + ", Level " + level + "\nGood at finding " + goodAt() + "\nBad at finding " + badAt();
     }
 
-    string GoodAt()
+    string goodAt()
     {
         string temp = "";
         if (oreModifier > 3)
@@ -202,7 +202,7 @@ public class Adventurer
         {
             if (oreModifier > 3)
             {
-                temp += ", ";
+                temp += " and ";
             }
             temp += "skins";
         }
@@ -210,14 +210,14 @@ public class Adventurer
         {
             if (skinsModifier > 3 || oreModifier > 3)
             {
-                temp += ", ";
+                temp += " and ";
             }
             temp += "wood";
         }
         return temp;
     }
 
-    string BadAt()
+    string badAt()
     {
         string temp = "";
         if (oreModifier < 2)
@@ -228,7 +228,7 @@ public class Adventurer
         {
             if (oreModifier < 2)
             {
-                temp += ", ";
+                temp += " and ";
             }
             temp += "skins";
         }
@@ -236,7 +236,7 @@ public class Adventurer
         {
             if (skinsModifier < 2 || oreModifier < 2)
             {
-                temp += ", ";
+                temp += " and ";
             }
             temp += "wood";
         }
@@ -247,7 +247,7 @@ public class Adventurer
         return temp;
     }
 
-    void CalculatePower()
+    void calculatePower()
     {
         powerLevel = 0;
         foreach(GameObject item in inventory)
