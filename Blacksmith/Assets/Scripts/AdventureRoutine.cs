@@ -27,9 +27,11 @@ public class AdventureRoutine : MonoBehaviour
             return; 
         }
 
-        adventurers[numAdventurers] = newHero;
+            adventurers[numAdventurers] = newHero;
 
-        numAdventurers++;
+            numAdventurers++;
+
+        //Debug.Log("numAdventurers = " + numAdventurers);
     }
 
     public Adventurer[] getAdventurers()
@@ -186,6 +188,10 @@ public class Adventurer
         calculatePower();
     }
 
+    public string getName()
+    {
+        return name;
+    }
     public string getDescription()
     {
         return name + ", Level " + level + "\nGood at finding " + goodAt() + "\nBad at finding " + badAt();
