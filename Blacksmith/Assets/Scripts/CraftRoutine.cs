@@ -1201,14 +1201,15 @@ public class CraftRoutine : MonoBehaviour
 //******************************************* CRAFTING TOOL MANAGEMENT FUNCTIONS
 //*************************************************************************************************************************
 
-    public void hammerHitOnAnvil()
+    public void hammerHitOnAnvil(float magnitude)
     {
         if (currentStageAbsVal == 0)
         {
             if (componentOnAnvil)
             {
                 soundController.PlayHammerHit();
-                hammerSlider.value += hammerHitIncrease;
+                Debug.Log(magnitude);
+                hammerSlider.value += hammerHitIncrease * magnitude;
             }
         }
     }

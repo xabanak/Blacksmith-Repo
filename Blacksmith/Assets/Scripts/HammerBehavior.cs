@@ -17,6 +17,8 @@ public class HammerBehavior : MonoBehaviour
     public bool snapBack;
     private bool hasHit;
     private bool isDragged;
+    Vector2 currentVelocity;
+    Vector2 currentPosition;
 
     // Use this for initialization
     void Start()
@@ -24,12 +26,15 @@ public class HammerBehavior : MonoBehaviour
         hammerLevel = 1;
         resetPoint = gameObject.transform.position;
         isDragged = false;
-        hasHit = false;
+        //hasHit = false;
         craftingController = GameObject.Find("Crafting/CraftingController");
     }
 
     void Update()
     {
+        Vector2 tempPosition = transform.position;
+        currentVelocity = (tempPosition - currentPosition);
+        //Debug.Log(currentVelocity);
         if (isDragged)
         {
             Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
@@ -37,23 +42,39 @@ public class HammerBehavior : MonoBehaviour
             Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint);
             transform.position = curPosition + offset;
         }
-        if (hasHit)
+        currentPosition = tempPosition;
+        /*if (hasHit)
         {
             transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z - angleChange);
             isDragged = false;
             transform.position = resetPoint;
-        }
+        }*/
 
     }
 
     void OnTriggerEnter2D(Collider2D myCollider)
     {
+        float magnitude = Mathf.Sqrt((currentVelocity.x * currentVelocity.x) + (currentVelocity.y * currentVelocity.y));
+        //Debug.Log("Magnitude is:" + magnitude);
+        Vector2 unitVector = new Vector2((currentVelocity.x / magnitude), currentVelocity.y / magnitude);
+        //Debug.Log("UnitVector is: <" + unitVector.x + ", " + unitVector.y + ">");
         if (myCollider.gameObject.name == "Anvil")
         {
-            hasHit = true;
-            craftController.hammerHitOnAnvil();
+            //Debug.Log("Entered Anvil collider");
+            if (magnitude > 0.75f)
+            {
+                //Debug.Log("Passed magnitude test");
+                if (unitVector.x > Mathf.Cos(4.189f) && unitVector.x < Mathf.Cos(5.236f))
+                {
+                    //Debug.Log("Passed x angle test");
+                    if (unitVector.y < Mathf.Sin(4.189f))
+                    {
+                        //Debug.Log("Passed y angle text");
+                        craftController.hammerHitOnAnvil(magnitude);
+                    }
+                }
+            }
         }
-
     }
 
     void OnMouseDown()
@@ -67,16 +88,13 @@ public class HammerBehavior : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (hasHit)
+        /*if (hasHit)
         {
             hasHit = false; ;
-        }
-        else
-        {
-            transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z - angleChange);
-            isDragged = false;
-            transform.position = resetPoint;
-        }
+        }*/
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z - angleChange);
+        isDragged = false;
+        transform.position = resetPoint;
     }
 
     void incrementHammerLevel()
