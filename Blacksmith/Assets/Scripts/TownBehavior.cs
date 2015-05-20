@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class TownBehavior : MonoBehaviour {
 
+    public GameObject travelHeroOne;
+    public GameObject travelHeroTwo;
+    public GameObject travelHeroThree;
     public GameObject confirmationBox;
     public Text confirmationBoxText;
     private AdventureRoutine adventureRoutine;
@@ -68,7 +71,6 @@ public class TownBehavior : MonoBehaviour {
     {
         confirmationBox.SetActive(false);
         toggleTavernWindow();
-        buildingsBehavior.toggleBuildings();
 
         switch(heroSelection)
         {
@@ -148,14 +150,81 @@ public class TownBehavior : MonoBehaviour {
     {
         switch (from)
         {
-            case "Tavern":
+            case "Travel":
                 travelCanvas.worldCamera = travelCamera;
                 travelCanvas.gameObject.SetActive(false);
-                Debug.Log("returning to town");
+                buildingsBehavior.toggleBuildings();
+                toggleTravelInfo(false);
+                travelHeroOne.GetComponent<Image>().color = Color.white;
+                travelHeroTwo.GetComponent<Image>().color = Color.white;
+                travelHeroThree.GetComponent<Image>().color = Color.white;
+                break;
+            case "Tavern":
+                tavernCanvas.worldCamera = tavernCamera;
+                tavernCanvas.gameObject.SetActive(false);
+                buildingsBehavior.toggleBuildings();
                 break;
             default:
                 Debug.Log("Returning from not found!");
                 break;
         }
+    }
+
+    public void toggleTravelWindow()
+    {
+        if (!travelCanvas.gameObject.activeSelf)
+        {
+            travelCanvas.gameObject.SetActive(true);
+            travelCanvas.worldCamera = townCamera;
+        }
+        else
+        {
+            travelCanvas.gameObject.SetActive(false);
+            travelCanvas.worldCamera = travelCamera;
+        }
+    }
+
+    public void travelHeroSelection(string button)
+    {
+        switch(button)
+        {
+            case "Hero 1":
+                travelHeroOne.GetComponent<Image>().color = Color.white;
+                travelHeroTwo.GetComponent<Image>().color = fadeAlpha(travelHeroTwo.GetComponent<Image>().color);
+                travelHeroThree.GetComponent<Image>().color = fadeAlpha(travelHeroThree.GetComponent<Image>().color);
+                break;
+            case "Hero 2":
+                travelHeroTwo.GetComponent<Image>().color = Color.white;
+                travelHeroOne.GetComponent<Image>().color = fadeAlpha(travelHeroOne.GetComponent<Image>().color);
+                travelHeroThree.GetComponent<Image>().color = fadeAlpha(travelHeroThree.GetComponent<Image>().color);
+                break;
+            case "Hero 3":
+                travelHeroThree.GetComponent<Image>().color = Color.white;
+                travelHeroOne.GetComponent<Image>().color = fadeAlpha(travelHeroOne.GetComponent<Image>().color);
+                travelHeroTwo.GetComponent<Image>().color = fadeAlpha(travelHeroTwo.GetComponent<Image>().color);
+                break;
+            default:
+                Debug.Log("Invalid hero selection");
+                break;
+        }
+
+        if ((button == "Hero 1" || button == "Hero 2" || button == "Hero 3") && !travelCanvas.transform.GetChild(0).gameObject.activeSelf)
+        {
+            toggleTravelInfo(true);
+        }
+    }
+
+    private Color fadeAlpha(Color mute)
+    {
+        mute.a = 0.5f;
+        return mute;
+    }
+
+    private void toggleTravelInfo(bool set)
+    {
+        for (int i = 0; i < 10; i++)
+            {
+                travelCanvas.transform.GetChild(i).gameObject.SetActive(set);
+            }
     }
 }

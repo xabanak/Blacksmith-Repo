@@ -34,6 +34,9 @@ public class BuildingsBehavior : MonoBehaviour {
                 townBehavior.getAdventurerSet();
                 townBehavior.setTavernWindow();
                 break;
+            case "Travel":
+                townBehavior.toggleTravelWindow();
+                break;
             default:
                 break;
         }
