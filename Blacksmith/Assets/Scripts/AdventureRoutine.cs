@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 
@@ -9,6 +10,10 @@ public class AdventureRoutine : MonoBehaviour
     private int numAdventurers;
     public GameController gameController;
 
+    public Text heroIndicator1;
+    public Text heroIndicator2;
+    public Text heroIndicator3;
+
 	void Start () 
     {
 	    adventurers = new Adventurer[NUM_ADVENTURERS];
@@ -16,22 +21,31 @@ public class AdventureRoutine : MonoBehaviour
 	}
 
 	void Update () 
-    {/*
-        if (adventurers[0].getAdventuringState())
+    {
+        if (adventurers[0] != null)
         {
-            updateAdventure(0);
+            if (adventurers[0].getAdventuringState())
+            {
+                updateAdventure(adventurers[0]);
+            }
         }
-        if (adventurers[1].getAdventuringState())
+        if (adventurers[1] != null)
         {
-            updateAdventure(1);
+            if (adventurers[1].getAdventuringState())
+            {
+                updateAdventure(adventurers[1]);
+            }
         }
-        if (adventurers[2].getAdventuringState())
+        if (adventurers[2] != null)
         {
-            updateAdventure(2);
-        }*/
+            if (adventurers[2].getAdventuringState())
+            {
+                updateAdventure(adventurers[2]);
+            }
+        }
     }
 
-    private void updateAdventure(int adventurerIterator)
+    private void updateAdventure(Adventurer adventurer)
     {
 
     }
@@ -54,7 +68,6 @@ public class AdventureRoutine : MonoBehaviour
 
         }
     }*/
-        //Debug.Log("numAdventurers = " + numAdventurers);
 
     public Adventurer[] getAdventurers()
     {
@@ -73,7 +86,7 @@ public class AdventureRoutine : MonoBehaviour
         }
     }
 
-    bool sendOnAdventure(Adventurer adventurer, string adventureZone)
+    public bool sendOnAdventure(Adventurer adventurer, string adventureZone)
     {
         if (adventurer.sendOnAdventure())
         {
@@ -81,20 +94,12 @@ public class AdventureRoutine : MonoBehaviour
         }
         return false;
     }
-
-    enum adventureZones
-    {
-        Plains,
-        Caves,
-        Forest,
-        Swamp
-    }
 }
 
 public class Adventurer
 {
-    bool isHome;
-    bool isReturned;
+    bool isHome; // Tracks if the adventurer is home and not waiting to interact with the adventurer
+    bool isReturned; // Tracks if the adventurer has returned from an adventure but has not been interacted by the player yet
     private string name;
     private int level;
     private int powerLevel;
@@ -116,6 +121,14 @@ public class Adventurer
         Boots,
         Greaves,
         Pauldrons
+    }
+
+    enum adventureZones
+    {
+        Plains,
+        Caves,
+        Forest,
+        Swamp
     }
 
     public Adventurer()
