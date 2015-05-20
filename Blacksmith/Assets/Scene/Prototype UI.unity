@@ -17898,8 +17898,8 @@ GameObject:
   - 114: {fileID: 1565756060}
   - 114: {fileID: 1565756062}
   - 114: {fileID: 1565756061}
-  - 114: {fileID: 1565756058}
   - 114: {fileID: 1565756063}
+  - 114: {fileID: 1565756058}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -21444,7 +21444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1808428892
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22209,7 +22209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1873077083
 RectTransform:
   m_ObjectHideFlags: 0

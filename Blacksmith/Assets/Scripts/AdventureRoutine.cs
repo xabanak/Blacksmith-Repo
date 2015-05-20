@@ -16,7 +16,7 @@ public class AdventureRoutine : MonoBehaviour
 	}
 
 	void Update () 
-    {
+    {/*
         if (adventurers[0].getAdventuringState())
         {
             updateAdventure(0);
@@ -28,7 +28,7 @@ public class AdventureRoutine : MonoBehaviour
         if (adventurers[2].getAdventuringState())
         {
             updateAdventure(2);
-        }
+        }*/
     }
 
     private void updateAdventure(int adventurerIterator)
@@ -367,7 +367,6 @@ public class Adventurer
 
     public bool getAdventuringState()//True: currently on an adventure, false: currently home
     {
-        
         return !isHome;
     }
 
