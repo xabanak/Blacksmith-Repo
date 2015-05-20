@@ -265,7 +265,7 @@ public class Adventurer
         return name + ", Level " + level + "\nGood at finding " + goodAt() + "\nBad at finding " + badAt();
     }
 
-    string goodAt()
+    public string goodAt()
     {
         string temp = "";
         if (oreModifier > 3)
@@ -291,7 +291,7 @@ public class Adventurer
         return temp;
     }
 
-    string badAt()
+    public string badAt()
     {
         string temp = "";
         if (oreModifier < 2)

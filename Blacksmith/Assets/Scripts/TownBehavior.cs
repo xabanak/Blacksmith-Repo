@@ -16,8 +16,10 @@ public class TownBehavior : MonoBehaviour {
     public Text textThree;
     public Camera townCamera;
     public Camera tavernCamera;
+    public Camera travelCamera;
     public Canvas townCanvas;
     public Canvas tavernCanvas;
+    public Canvas travelCanvas;
     private bool newHeroes;
     private int heroSelection;
     
@@ -142,5 +144,18 @@ public class TownBehavior : MonoBehaviour {
         heroSelection = 0;
     }
 
-    
+    public void returnToTown(string from)
+    {
+        switch (from)
+        {
+            case "Tavern":
+                travelCanvas.worldCamera = travelCamera;
+                travelCanvas.gameObject.SetActive(false);
+                Debug.Log("returning to town");
+                break;
+            default:
+                Debug.Log("Returning from not found!");
+                break;
+        }
+    }
 }
