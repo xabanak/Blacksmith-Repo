@@ -14,6 +14,12 @@ public class AdventureRoutine : MonoBehaviour
     public Text heroIndicator2;
     public Text heroIndicator3;
 
+    float timer1;
+    float timer2;
+    float timer3;
+
+    const float baseTimer = 60.0f;
+
 	void Start () 
     {
 	    adventurers = new Adventurer[NUM_ADVENTURERS];

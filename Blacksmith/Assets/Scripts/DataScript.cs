@@ -12,6 +12,10 @@ public class DataScript : MonoBehaviour
     //const string dir = "Assets/StreamingAssets/";
     const int numSurnames = 44;
     const int numFirstNames = 48;
+    const int numLevels = 25;
+    const int numLevelOptions = 5;
+    const int itemTypes = 3;
+    const int lootOptions = 8;
 
     int [] stageCount; // Number of total stages to craft each type of item
     int [,] stageListing; // Listing per item type of which number stage is what crafting stage
@@ -20,6 +24,10 @@ public class DataScript : MonoBehaviour
     int[,] basePowerLevel; //Base power level for each item/material type combination
     string[] firstNames;
     string[] surnames;
+    double[] adventureTimeMultiplier;
+    double[] adventureLevelMultiplier;
+    LootEntry[,,] lootTables;
+
     
     public int testInt;
        enum Item // Listing of items
@@ -79,12 +87,18 @@ public class DataScript : MonoBehaviour
         basePowerLevel = new int[numMats, numItemLevels];
         firstNames = new string[numFirstNames];
         surnames = new string[numSurnames];
+        adventureTimeMultiplier = new double[numLevels];
+        adventureLevelMultiplier = new double[numLevelOptions];
+        lootTables = new LootEntry[numLevels, itemTypes, lootOptions];
         readDataFile("stageTime.dat");
         readDataFile("stageCount.dat");
         readDataFile("stageListing.dat");
         readDataFile("stageTimeMult.dat");
         readDataFile("basePower.dat");
         readDataFile("adventurerNames.dat");
+        readDataFile("adventureTimeMultiplier.dat");
+        readDataFile("adventureLevelMultiplier.dat");
+        readDataFile("lootTables.dat");
 
         /*for(int i = 0; i < numItems; i++)
         {
@@ -102,12 +116,13 @@ public class DataScript : MonoBehaviour
 
         int i = 0;
         int j = 0;
+        int m = 0;
 
         bool firstNamesRead = false;
 
         switch(fileIdentity)
         {
-            case 'A':
+            case 'A': // Stage Time data input
                 while (!inputStream.EndOfStream)
                 {
                     string tempString = inputStream.ReadLine();
@@ -127,7 +142,7 @@ public class DataScript : MonoBehaviour
                 }
                 break;
                 
-            case 'B':
+            case 'B': // Stage Count data input
                 while (!inputStream.EndOfStream)
                 {
                     string tempString = inputStream.ReadLine();
@@ -147,7 +162,7 @@ public class DataScript : MonoBehaviour
                 }
                 break;
 
-            case 'C':
+            case 'C': // Stage Listing data input
                 while (!inputStream.EndOfStream)
                 {
                     string tempString = inputStream.ReadLine();
@@ -179,7 +194,7 @@ public class DataScript : MonoBehaviour
                 }
                 break;
 
-            case 'D':
+            case 'D': // Stage Time Multiplier data input
                 while (!inputStream.EndOfStream)
                 {
                     string tempString = inputStream.ReadLine();
@@ -207,7 +222,7 @@ public class DataScript : MonoBehaviour
                 }
                 break;
 
-            case 'E':
+            case 'E': // Item Power Level data input
                 while (!inputStream.EndOfStream)
                 {
                     string tempString = inputStream.ReadLine();
@@ -235,7 +250,7 @@ public class DataScript : MonoBehaviour
                 }
                 break;
 
-            case 'F':
+            case 'F': // Adventurer Names data input
                 while (!inputStream.EndOfStream)
                 {
                     string tempString = inputStream.ReadLine();
@@ -261,6 +276,66 @@ public class DataScript : MonoBehaviour
                     {
                         surnames[i] = tempString;
                         i++;
+                    }
+                }
+                break;
+
+            case 'G': //Adventure Time Multiplier data input
+                while (!inputStream.EndOfStream)
+                {
+                    string tempString = inputStream.ReadLine();
+                    if (tempString[0] == '*')
+                    {
+                        continue;
+                    }
+                    if (i == numLevels)
+                    {
+                        break;
+                    }
+                    adventureTimeMultiplier[i] = Convert.ToDouble(tempString);
+                    i++;
+                }
+                break;
+
+            case 'H':
+                while (!inputStream.EndOfStream)
+                {
+                    string tempString = inputStream.ReadLine();
+                    if (tempString[0] == '*')
+                    {
+                        continue;
+                    }
+                    if (i == numLevelOptions)
+                    {
+                        break;
+                    }
+                    adventureLevelMultiplier[i] = Convert.ToDouble(tempString);
+                    i++;
+                }
+                break;
+
+            case 'I':
+                while (!inputStream.EndOfStream)
+                {
+                    string tempString = inputStream.ReadLine();
+                    if (tempString[0] == '*')
+                    {
+                        continue;
+                    }
+                    if (tempString == "skip")
+                    {
+                        i++;
+                        m = 0;
+                    }
+                    else if (tempString == "next")
+                    {
+                        j++;
+                        m = 0;
+                    }
+                    else
+                    {
+                        lootTables[i, j, m] = new LootEntry(tempString, Convert.ToDouble(inputStream.ReadLine()));
+                        m++;
                     }
                 }
                 break;
@@ -318,5 +393,26 @@ public class DataScript : MonoBehaviour
     {
         //Debug.Log(firstNames[UnityEngine.Random.Range(0, numFirstNames)] + " " + surnames[UnityEngine.Random.Range(0, numSurnames)]);
         return firstNames[UnityEngine.Random.Range(0, numFirstNames)] + " " + surnames[UnityEngine.Random.Range(0, numSurnames)];
+    }
+}
+
+public class LootEntry
+{
+    string item;
+    double weight;
+
+    public LootEntry(string item, double weight)
+    {
+        this.item = item;
+        this.weight = weight;
+    }
+
+    public string getItem()
+    {
+        return item;
+    }
+    public double getWeight()
+    {
+        return weight;
     }
 }

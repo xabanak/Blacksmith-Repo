@@ -1,0 +1,55 @@
+G
+*This file contains the time multipliers for each adventuring level
+*Lines beginning with a * will be ignored upon loading. Do not modify the first line.
+*Make sure there are no trailing empty lines at the end.
+*
+**Level 1
+1.0
+**Level 2
+1.33
+**Level 3
+1.66
+**Level 4
+2.0
+**Level 5
+2.33
+**Level 6
+2.66
+**Level 7
+3.0
+**Level 8
+3.33
+**Level 9
+3.66
+**Level 10
+4.0
+**Level 11
+4.33
+**Level 12
+4.66
+**Level 13
+5.0
+**Level 14
+5.33
+**Level 15
+5.66
+**Level 16
+6.0
+**Level 17
+6.33
+**Level 18
+6.66
+**Level 19
+7.0
+**Level 20
+8.0
+**Level 21
+8.66
+**Level 22
+9.33
+**Level 23
+10.0
+**Level 24
+11.0
+**Level 24
+12.0

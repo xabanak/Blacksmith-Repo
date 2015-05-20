@@ -1,0 +1,17 @@
+H
+*This file contains the time multipliers for the selected difficulty level of the adventure (measured by the difference in levels from the selected adventurer
+*Lines beginning with a * will be ignored upon loading. Do not modify the first line.
+*Make sure there are no trailing empty lines at the end.
+*
+**Equal Level
+1.0
+**Minus 1 level
+0.95
+**minus 2 levels
+0.90
+**minus 3 levels
+0.85
+**minus 4 levels
+0.80
+**minus 5 levels
+0.75
