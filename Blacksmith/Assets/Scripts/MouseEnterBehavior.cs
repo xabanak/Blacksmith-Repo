@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class MouseEnterBehavior : MonoBehaviour {
-
+public class MouseEnterBehavior : MonoBehaviour
+{
     public GameObject mouseOver;
     public Text mouseOverText;
     private GameObject popUp;
     public Camera townCamera;
+    private Adventurer[] adventurers;
+    private AdventureRoutine adventureRoutine;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+    {
+        adventureRoutine = GameObject.Find("GameController").GetComponent<AdventureRoutine>();
+        adventurers = adventureRoutine.getAdventurers();
 	}
 	
 	// Update is called once per frame
@@ -24,7 +29,7 @@ public class MouseEnterBehavior : MonoBehaviour {
         }
 	}
 
-    void OnMouseEnter()
+    public void OnMouseEnter(string button)
     {
         switch(gameObject.name)
         {
@@ -44,21 +49,53 @@ public class MouseEnterBehavior : MonoBehaviour {
                 popUp = Instantiate(mouseOver, (townCamera.ScreenToWorldPoint(Input.mousePosition)), Quaternion.identity) as GameObject;
                 popUp.transform.GetChild(0).GetComponent<Text>().text = "The creatures of the swamp are known to have some of the toughest skins.";
                 break;
+        }
+
+        switch (button)
+        {
+            case "Hero 1":
+                if (adventurers[0] != null)
+                {
+                    popUp = Instantiate(mouseOver, (townCamera.ScreenToWorldPoint(Input.mousePosition)), Quaternion.identity) as GameObject;
+                    popUp.transform.GetChild(0).GetComponent<Text>().text = "Good at: " + adventurers[0].goodAt() + "\nBad at: " + adventurers[0].badAt();
+                    Debug.Log("Hero 1");
+                }
+                break;
+            case "Hero 2":
+                if (adventurers[1] != null)
+                {
+                    popUp = Instantiate(mouseOver, (townCamera.ScreenToWorldPoint(Input.mousePosition)), Quaternion.identity) as GameObject;
+                    popUp.transform.GetChild(0).GetComponent<Text>().text = "Good at: " + adventurers[1].goodAt() + "\nBad at: " + adventurers[1].badAt();
+                    Debug.Log("Hero 2");
+                }
+                break;
+            case "Hero 3":
+                if (adventurers[2] != null)
+                {
+                    popUp = Instantiate(mouseOver, (townCamera.ScreenToWorldPoint(Input.mousePosition)), Quaternion.identity) as GameObject;
+                    popUp.transform.GetChild(0).GetComponent<Text>().text = "Good at: " + adventurers[2].goodAt() + "\nBad at: " + adventurers[2].badAt();
+                    Debug.Log("Hero 3");
+                }
+                break;
             default:
-                Debug.Log("Zone not found");
                 break;
         }
 
-        popUp.SetActive(true);
-        popUp.transform.SetParent(gameObject.transform);
-        popUp.transform.localScale = new Vector3(1, 1, 1);
+        if (adventurers[0] != null && adventurers[1] != null && adventurers[2] != null)
+        {
+            popUp.SetActive(true);
+            popUp.transform.SetParent(gameObject.transform);
+            popUp.transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 
-    void OnMouseExit()
+    public void OnMouseExit()
     {
-        if (gameObject.name == "Plains" || gameObject.name == "Caves" || gameObject.name == "Forest" || gameObject.name == "Swamp")
+        if (popUp != null)
+        //if (gameObject.name == "Plains" || gameObject.name == "Caves" || gameObject.name == "Forest" || gameObject.name == "Swamp")
         {
             Destroy(popUp);
         }
     }
+
 }
