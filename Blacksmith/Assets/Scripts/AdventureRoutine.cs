@@ -6,23 +6,28 @@ using System;
 public class AdventureRoutine : MonoBehaviour 
 {
     private Adventurer[] adventurers;
+    private string[] adventureZone;
+    private int[] adventureDecriment;
     const int NUM_ADVENTURERS = 3;
     private int numAdventurers;
     public GameController gameController;
+    private DataScript dataScript;
 
     public Text heroIndicator1;
     public Text heroIndicator2;
     public Text heroIndicator3;
 
-    float timer1;
-    float timer2;
-    float timer3;
+    double[] adventureTimers;
 
-    const float baseTimer = 60.0f;
+    const double baseTimer = 60.0f;
 
 	void Start () 
     {
+        dataScript = gameController.GetComponent<DataScript>();
 	    adventurers = new Adventurer[NUM_ADVENTURERS];
+        adventureZone = new string[NUM_ADVENTURERS];
+        adventureDecriment = new int[NUM_ADVENTURERS];
+        adventureTimers = new double[numAdventurers];
         adventurers[0] = null;
         adventurers[1] = null; 
         adventurers[2] = null;
@@ -35,28 +40,32 @@ public class AdventureRoutine : MonoBehaviour
         {
             if (adventurers[0].getAdventuringState())
             {
-                updateAdventure(adventurers[0]);
+                updateAdventure(0);
             }
         }
         if (adventurers[1] != null)
         {
             if (adventurers[1].getAdventuringState())
             {
-                updateAdventure(adventurers[1]);
+                updateAdventure(1);
             }
         }
         if (adventurers[2] != null)
         {
             if (adventurers[2].getAdventuringState())
             {
-                updateAdventure(adventurers[2]);
+                updateAdventure(2);
             }
         }
     }
 
-    private void updateAdventure(Adventurer adventurer)
+    private void updateAdventure(int adventureIter)
     {
-
+        adventureTimers[adventureIter] -= Time.deltaTime;
+        if (adventureTimers[adventureIter] <= 0)
+        {
+            endAdventure(adventureIter);
+        }
     }
 
     public void addAdventurer(Adventurer newHero)
@@ -69,14 +78,16 @@ public class AdventureRoutine : MonoBehaviour
         }
     }
 
-    /*private void removeAdventurer(Adventurer hero)
+    private void removeAdventurer(Adventurer hero)
     {
         for (int i = 0; i < NUM_ADVENTURERS; i++)
         {
             if (adventurers[i] == hero)
-
+            {
+                adventurers[i] = null;
+            }
         }
-    }*/
+    }
 
     public Adventurer[] getAdventurers()
     {
@@ -95,13 +106,39 @@ public class AdventureRoutine : MonoBehaviour
         }
     }
 
-    public bool sendOnAdventure(Adventurer adventurer, string adventureZone)
+    public bool sendOnAdventure(Adventurer adventurer, string adventureZone, int levelDecrimentor)
     {
+        int adventurerIter;
+        if (adventurers[0] == adventurer)
+        {
+            adventurerIter = 0;
+        }
+        else if(adventurers[1] == adventurer)
+        {
+            adventurerIter = 1;
+        }
+        else if(adventurers[2] == adventurer)
+        {
+            adventurerIter = 2;
+        }
+        else
+        {
+            adventurerIter = -1;
+        }
+
         if (adventurer.sendOnAdventure())
         {
+            this.adventureZone[adventurerIter] = adventureZone;
+            adventureDecriment[adventurerIter] = levelDecrimentor;
+            adventureTimers[adventurerIter] = baseTimer * dataScript.getAdvTimeMult(adventurers[adventurerIter].getLevel(), adventureDecriment[adventurerIter]);
             return true;
         }
         return false;
+    }
+
+    public void endAdventure(int adventureIter)
+    {
+
     }
 }
 

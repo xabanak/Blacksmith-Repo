@@ -386,6 +386,11 @@ public class DataScript : MonoBehaviour
         //Debug.Log(firstNames[UnityEngine.Random.Range(0, numFirstNames)] + " " + surnames[UnityEngine.Random.Range(0, numSurnames)]);
         return firstNames[UnityEngine.Random.Range(0, numFirstNames)] + " " + surnames[UnityEngine.Random.Range(0, numSurnames)];
     }
+
+    public double getAdvTimeMult(int level, int levelDecrementer)
+    {
+        return adventureTimeMultiplier[level] * adventureLevelMultiplier[levelDecrementer];
+    }
 }
 
 public class LootEntry
