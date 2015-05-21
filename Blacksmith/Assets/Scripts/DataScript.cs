@@ -99,14 +99,6 @@ public class DataScript : MonoBehaviour
         readDataFile("adventureTimeMultiplier.dat");
         readDataFile("adventureLevelMultiplier.dat");
         readDataFile("lootTables.dat");
-
-        /*for(int i = 0; i < numItems; i++)
-        {
-            for (int j = 0; j < numStages; j++)
-            {
-                Debug.Log(stageListing[i, j]);
-            }
-        }*/
 	}
     void readDataFile(string filePath)
     {
@@ -322,12 +314,12 @@ public class DataScript : MonoBehaviour
                     {
                         continue;
                     }
-                    if (tempString == "skip")
+                    if (tempString == "next level")
                     {
                         i++;
                         m = 0;
                     }
-                    else if (tempString == "next")
+                    else if (tempString == "next item")
                     {
                         j++;
                         m = 0;

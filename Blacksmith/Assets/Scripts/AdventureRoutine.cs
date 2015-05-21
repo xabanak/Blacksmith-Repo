@@ -23,6 +23,9 @@ public class AdventureRoutine : MonoBehaviour
 	void Start () 
     {
 	    adventurers = new Adventurer[NUM_ADVENTURERS];
+        adventurers[0] = null;
+        adventurers[1] = null; 
+        adventurers[2] = null;
         numAdventurers = 0;
 	}
 
@@ -113,6 +116,7 @@ public class Adventurer
     private int skinsModifier;
     private int woodModifier;
     private GameObject[] inventory;
+    private Sprite portrait;
 
     private const int INV_OBJECTS = 9;
 
@@ -329,7 +333,7 @@ public class Adventurer
 
     void calculatePower()
     {
-        powerLevel = 0;
+        powerLevel = level;
         foreach(GameObject item in inventory)
         {
             if (item != null)
