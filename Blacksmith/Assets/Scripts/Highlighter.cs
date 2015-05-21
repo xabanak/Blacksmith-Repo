@@ -8,12 +8,14 @@ public class Highlighter : MonoBehaviour
     void OnMouseEnter()
     {
         //objColor = Color.blue;
-        GetComponent<Image>().color = Color.gray;
+        if (GetComponent<Image>().color == Color.black)
+            GetComponent<Image>().color = Color.gray;
     }
 
     void OnMouseExit()
     {
         //objColor = Color.black;
-        GetComponent<Image>().color = Color.black;
+        if (GetComponent<Image>().color == Color.gray)
+            GetComponent<Image>().color = Color.black;
     }
 }

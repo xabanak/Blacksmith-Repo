@@ -29,22 +29,18 @@ public class MouseEnterBehavior : MonoBehaviour {
         switch(gameObject.name)
         {
             case "Plains":
-                Debug.Log("Plains");
                 popUp = Instantiate(mouseOver, (townCamera.ScreenToWorldPoint(Input.mousePosition)), Quaternion.identity) as GameObject;
                 popUp.transform.GetChild(0).GetComponent<Text>().text = "A plains are known for their general abundance of materials.";
                 break;
             case "Caves":
-                Debug.Log("Caves");
                 popUp = Instantiate(mouseOver, (townCamera.ScreenToWorldPoint(Input.mousePosition)), Quaternion.identity) as GameObject;
                 popUp.transform.GetChild(0).GetComponent<Text>().text = "The caves are well known to be rich with minerals blacksmiths' need.";
                 break;
             case "Forest":
-                Debug.Log("Forest");
                 popUp = Instantiate(mouseOver, (townCamera.ScreenToWorldPoint(Input.mousePosition)), Quaternion.identity) as GameObject;
                 popUp.transform.GetChild(0).GetComponent<Text>().text = "The forest is dense and lush with a wide variety of tree species.";
                 break;
             case "Swamp":
-                Debug.Log("Swamp");
                 popUp = Instantiate(mouseOver, (townCamera.ScreenToWorldPoint(Input.mousePosition)), Quaternion.identity) as GameObject;
                 popUp.transform.GetChild(0).GetComponent<Text>().text = "The creatures of the swamp are known to have some of the toughest skins.";
                 break;

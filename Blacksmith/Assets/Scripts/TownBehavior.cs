@@ -25,6 +25,7 @@ public class TownBehavior : MonoBehaviour {
     public Canvas travelCanvas;
     private bool newHeroes;
     private int heroSelection;
+    private int activeTravelHero;
     
 
     public Text testText;
@@ -71,6 +72,7 @@ public class TownBehavior : MonoBehaviour {
     {
         confirmationBox.SetActive(false);
         toggleTavernWindow();
+        buildingsBehavior.toggleBuildings();
 
         switch(heroSelection)
         {
@@ -121,7 +123,6 @@ public class TownBehavior : MonoBehaviour {
     public void confirmHero(int hero)
     {
         heroSelection = hero;
-        Debug.Log(hero + ", " + heroSelection);
         confirmationBox.SetActive(true);
         switch (heroSelection)
         {
@@ -186,22 +187,33 @@ public class TownBehavior : MonoBehaviour {
 
     public void travelHeroSelection(string button)
     {
+        Adventurer[] tempAdventurers;
+        tempAdventurers = adventureRoutine.getAdventurers();
+
         switch(button)
         {
             case "Hero 1":
-                travelHeroOne.GetComponent<Image>().color = Color.white;
-                travelHeroTwo.GetComponent<Image>().color = fadeAlpha(travelHeroTwo.GetComponent<Image>().color);
-                travelHeroThree.GetComponent<Image>().color = fadeAlpha(travelHeroThree.GetComponent<Image>().color);
+                if (tempAdventurers[0] != null)
+                {
+                    travelHeroOne.GetComponent<Image>().color = Color.white;
+                    travelHeroTwo.GetComponent<Image>().color = fadeAlpha(travelHeroTwo.GetComponent<Image>().color);
+                    travelHeroThree.GetComponent<Image>().color = fadeAlpha(travelHeroThree.GetComponent<Image>().color);
+                    activeTravelHero = 1;
+                }
                 break;
             case "Hero 2":
+                if (tempAdventurers[1] != null)
                 travelHeroTwo.GetComponent<Image>().color = Color.white;
                 travelHeroOne.GetComponent<Image>().color = fadeAlpha(travelHeroOne.GetComponent<Image>().color);
                 travelHeroThree.GetComponent<Image>().color = fadeAlpha(travelHeroThree.GetComponent<Image>().color);
+                activeTravelHero = 2;
                 break;
             case "Hero 3":
+                if (tempAdventurers[2] != null)
                 travelHeroThree.GetComponent<Image>().color = Color.white;
                 travelHeroOne.GetComponent<Image>().color = fadeAlpha(travelHeroOne.GetComponent<Image>().color);
                 travelHeroTwo.GetComponent<Image>().color = fadeAlpha(travelHeroTwo.GetComponent<Image>().color);
+                activeTravelHero = 3;
                 break;
             default:
                 Debug.Log("Invalid hero selection");

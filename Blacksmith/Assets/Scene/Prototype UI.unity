@@ -3051,6 +3051,7 @@ GameObject:
   - 114: {fileID: 224826168}
   - 114: {fileID: 224826167}
   - 114: {fileID: 224826172}
+  - 114: {fileID: 224826173}
   m_Layer: 0
   m_Name: Plains
   m_TagString: Untagged
@@ -3154,6 +3155,21 @@ MonoBehaviour:
   mouseOver: {fileID: 1118307562}
   mouseOverText: {fileID: 1806586277}
   townCamera: {fileID: 1316506711}
+--- !u!114 &224826173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 224826165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b605449720bd348abcc8c942498f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plains: {fileID: 224826165}
+  caves: {fileID: 1848148423}
+  forest: {fileID: 489705472}
+  swamp: {fileID: 1341327150}
 --- !u!1 &233561307
 GameObject:
   m_ObjectHideFlags: 0
@@ -6450,6 +6466,7 @@ GameObject:
   - 114: {fileID: 489705475}
   - 114: {fileID: 489705474}
   - 114: {fileID: 489705479}
+  - 114: {fileID: 489705480}
   m_Layer: 0
   m_Name: Forest
   m_TagString: Untagged
@@ -6553,6 +6570,21 @@ MonoBehaviour:
   mouseOver: {fileID: 1118307562}
   mouseOverText: {fileID: 1806586277}
   townCamera: {fileID: 1316506711}
+--- !u!114 &489705480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 489705472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b605449720bd348abcc8c942498f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plains: {fileID: 224826165}
+  caves: {fileID: 1848148423}
+  forest: {fileID: 489705472}
+  swamp: {fileID: 1341327150}
 --- !u!1 &498288839
 GameObject:
   m_ObjectHideFlags: 0
@@ -16146,6 +16178,7 @@ GameObject:
   - 114: {fileID: 1341327153}
   - 114: {fileID: 1341327152}
   - 114: {fileID: 1341327157}
+  - 114: {fileID: 1341327158}
   m_Layer: 0
   m_Name: Swamp
   m_TagString: Untagged
@@ -16249,6 +16282,21 @@ MonoBehaviour:
   mouseOver: {fileID: 1118307562}
   mouseOverText: {fileID: 1806586277}
   townCamera: {fileID: 1316506711}
+--- !u!114 &1341327158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1341327150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b605449720bd348abcc8c942498f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plains: {fileID: 224826165}
+  caves: {fileID: 1848148423}
+  forest: {fileID: 489705472}
+  swamp: {fileID: 1341327150}
 --- !u!1 &1347951334
 GameObject:
   m_ObjectHideFlags: 0
@@ -18850,9 +18898,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 1565756062}
-  heroIndicator1: {fileID: 0}
-  heroIndicator2: {fileID: 0}
-  heroIndicator3: {fileID: 0}
+  heroIndicator1: {fileID: 713411792}
+  heroIndicator2: {fileID: 362748523}
+  heroIndicator3: {fileID: 475072947}
 --- !u!4 &1565756059
 Transform:
   m_ObjectHideFlags: 0
@@ -22871,6 +22919,7 @@ GameObject:
   - 114: {fileID: 1848148426}
   - 114: {fileID: 1848148425}
   - 114: {fileID: 1848148430}
+  - 114: {fileID: 1848148431}
   m_Layer: 0
   m_Name: Caves
   m_TagString: Untagged
@@ -22974,6 +23023,21 @@ MonoBehaviour:
   mouseOver: {fileID: 1118307562}
   mouseOverText: {fileID: 1806586277}
   townCamera: {fileID: 1316506711}
+--- !u!114 &1848148431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1848148423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b605449720bd348abcc8c942498f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plains: {fileID: 224826165}
+  caves: {fileID: 1848148423}
+  forest: {fileID: 489705472}
+  swamp: {fileID: 1341327150}
 --- !u!1 &1854673870
 GameObject:
   m_ObjectHideFlags: 0
