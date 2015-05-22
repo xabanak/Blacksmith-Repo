@@ -307,6 +307,7 @@ public class Adventurer
     {
         return name;
     }
+
     public string getDescription()
     {
         return name + ", Level " + level + "\nGood at finding " + goodAt() + "\nBad at finding " + badAt();

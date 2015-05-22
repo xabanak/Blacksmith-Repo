@@ -13,6 +13,7 @@ public class TownBehavior : MonoBehaviour {
     private Adventurer adventurerOne;
     private Adventurer adventurerTwo;
     private Adventurer adventurerThree;
+    private Adventurer[] adventurers;
     private BuildingsBehavior buildingsBehavior;
     public Text textOne;
     public Text textTwo;
@@ -25,7 +26,7 @@ public class TownBehavior : MonoBehaviour {
     public Canvas travelCanvas;
     private bool newHeroes;
     private int heroSelection;
-    private int activeTravelHero;
+    public int activeTravelHero;
     
 
     public Text testText;
@@ -40,6 +41,7 @@ public class TownBehavior : MonoBehaviour {
     {
         adventureRoutine = GameObject.Find("GameController").GetComponent<AdventureRoutine>();
         buildingsBehavior = GameObject.Find("Town/Buildings").GetComponent<BuildingsBehavior>();
+        adventurers = adventureRoutine.getAdventurers();
         newHeroes = true;
         heroSelection = 0;
 	}
@@ -196,8 +198,10 @@ public class TownBehavior : MonoBehaviour {
                 if (tempAdventurers[0] != null)
                 {
                     travelHeroOne.GetComponent<Image>().color = Color.white;
-                    travelHeroTwo.GetComponent<Image>().color = fadeAlpha(travelHeroTwo.GetComponent<Image>().color);
-                    travelHeroThree.GetComponent<Image>().color = fadeAlpha(travelHeroThree.GetComponent<Image>().color);
+                    if (travelHeroTwo.GetComponent<Button>().IsInteractable())
+                        travelHeroTwo.GetComponent<Image>().color = fadeAlpha(travelHeroTwo.GetComponent<Image>().color);
+                    if (travelHeroThree.GetComponent<Button>().IsInteractable())
+                        travelHeroThree.GetComponent<Image>().color = fadeAlpha(travelHeroThree.GetComponent<Image>().color);
                     activeTravelHero = 1;
                 }
                 break;
@@ -205,8 +209,10 @@ public class TownBehavior : MonoBehaviour {
                 if (tempAdventurers[1] != null)
                 {
                     travelHeroTwo.GetComponent<Image>().color = Color.white;
-                    travelHeroOne.GetComponent<Image>().color = fadeAlpha(travelHeroOne.GetComponent<Image>().color);
-                    travelHeroThree.GetComponent<Image>().color = fadeAlpha(travelHeroThree.GetComponent<Image>().color);
+                    if (travelHeroOne.GetComponent<Button>().IsInteractable())
+                        travelHeroOne.GetComponent<Image>().color = fadeAlpha(travelHeroOne.GetComponent<Image>().color);
+                    if (travelHeroThree.GetComponent<Button>().IsInteractable())
+                        travelHeroThree.GetComponent<Image>().color = fadeAlpha(travelHeroThree.GetComponent<Image>().color);
                     activeTravelHero = 2;
                 }
                 break;
@@ -214,8 +220,10 @@ public class TownBehavior : MonoBehaviour {
                 if (tempAdventurers[2] != null)
                 {
                     travelHeroThree.GetComponent<Image>().color = Color.white;
-                    travelHeroOne.GetComponent<Image>().color = fadeAlpha(travelHeroOne.GetComponent<Image>().color);
-                    travelHeroTwo.GetComponent<Image>().color = fadeAlpha(travelHeroTwo.GetComponent<Image>().color);
+                    if (travelHeroOne.GetComponent<Button>().IsInteractable())
+                        travelHeroOne.GetComponent<Image>().color = fadeAlpha(travelHeroOne.GetComponent<Image>().color);
+                    if (travelHeroTwo.GetComponent<Button>().IsInteractable())
+                        travelHeroTwo.GetComponent<Image>().color = fadeAlpha(travelHeroTwo.GetComponent<Image>().color);
                     activeTravelHero = 3;
                 }
                 break;
@@ -224,7 +232,7 @@ public class TownBehavior : MonoBehaviour {
                 break;
         }
 
-        if ((button == "Hero 1" || button == "Hero 2" || button == "Hero 3") && !travelCanvas.transform.GetChild(0).gameObject.activeSelf && (tempAdventurers[0] != null && tempAdventurers[1] != null && tempAdventurers[2] != null))
+        if ((button == "Hero 1" || button == "Hero 2" || button == "Hero 3") && !travelCanvas.transform.GetChild(0).gameObject.activeSelf/* && (tempAdventurers[0] != null && tempAdventurers[1] != null && tempAdventurers[2] != null)*/)
         {
             toggleTravelInfo(true);
         }
@@ -246,29 +254,29 @@ public class TownBehavior : MonoBehaviour {
    
     public void setTravelHeroButtons()
     {
-        if (adventurerOne != null)
+        if (adventurers[0] != null)
         {
             travelHeroOne.GetComponent<Button>().interactable = true;
         }
-        else if (adventurerOne == null)
+        else if (adventurers[0] == null)
         {
             travelHeroOne.GetComponent<Button>().interactable = false;
         }
         
-        if (adventurerTwo != null)
+        if (adventurers[1] != null)
         {
             travelHeroTwo.GetComponent<Button>().interactable = true;
         }
-        else if (adventurerTwo == null)
+        else if (adventurers[1] == null)
         {
             travelHeroTwo.GetComponent<Button>().interactable = false;
         }
 
-        if (adventurerThree != null)
+        if (adventurers[2] != null)
         {
             travelHeroThree.GetComponent<Button>().interactable = true;
         }
-        else if (adventurerThree == null)
+        else if (adventurers[2] == null)
         {
             travelHeroThree.GetComponent<Button>().interactable = false;
         }

@@ -19,7 +19,6 @@ public class HireHeroRoutine : MonoBehaviour {
     {
         if (!confirmationWindow.activeSelf)
         {
-            Debug.Log("Window " + window);
             switch (window)
             {
                 case "Top Window":

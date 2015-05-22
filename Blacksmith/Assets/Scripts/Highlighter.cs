@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Highlighter : MonoBehaviour 
 {
+    private GameObject confirmationWindow;
 
     void OnMouseEnter()
     {

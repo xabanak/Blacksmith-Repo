@@ -29,9 +29,9 @@ public class MouseEnterBehavior : MonoBehaviour
         }
 	}
 
-    public void OnMouseEnter(string button)
+    public void OnMouseEnter()
     {
-        switch(gameObject.name)
+        switch (gameObject.name)
         {
             case "Plains":
                 popUp = Instantiate(mouseOver, (townCamera.ScreenToWorldPoint(Input.mousePosition)), Quaternion.identity) as GameObject;
@@ -51,6 +51,12 @@ public class MouseEnterBehavior : MonoBehaviour
                 break;
         }
 
+        popUp.SetActive(true);
+        popUp.transform.SetParent(gameObject.transform);
+        popUp.transform.localScale = new Vector3(1, 1, 1);
+    }
+    public void OnMouseEnter(string button)
+    {
         switch (button)
         {
             case "Hero 1":
@@ -58,7 +64,9 @@ public class MouseEnterBehavior : MonoBehaviour
                 {
                     popUp = Instantiate(mouseOver, (townCamera.ScreenToWorldPoint(Input.mousePosition)), Quaternion.identity) as GameObject;
                     popUp.transform.GetChild(0).GetComponent<Text>().text = "Good at: " + adventurers[0].goodAt() + "\nBad at: " + adventurers[0].badAt();
-                    Debug.Log("Hero 1");
+                    popUp.SetActive(true);
+                    popUp.transform.SetParent(gameObject.transform);
+                    popUp.transform.localScale = new Vector3(1, 1, 1);
                 }
                 break;
             case "Hero 2":
@@ -66,7 +74,9 @@ public class MouseEnterBehavior : MonoBehaviour
                 {
                     popUp = Instantiate(mouseOver, (townCamera.ScreenToWorldPoint(Input.mousePosition)), Quaternion.identity) as GameObject;
                     popUp.transform.GetChild(0).GetComponent<Text>().text = "Good at: " + adventurers[1].goodAt() + "\nBad at: " + adventurers[1].badAt();
-                    Debug.Log("Hero 2");
+                    popUp.SetActive(true);
+                    popUp.transform.SetParent(gameObject.transform);
+                    popUp.transform.localScale = new Vector3(1, 1, 1);
                 }
                 break;
             case "Hero 3":
@@ -74,18 +84,13 @@ public class MouseEnterBehavior : MonoBehaviour
                 {
                     popUp = Instantiate(mouseOver, (townCamera.ScreenToWorldPoint(Input.mousePosition)), Quaternion.identity) as GameObject;
                     popUp.transform.GetChild(0).GetComponent<Text>().text = "Good at: " + adventurers[2].goodAt() + "\nBad at: " + adventurers[2].badAt();
-                    Debug.Log("Hero 3");
+                    popUp.SetActive(true);
+                    popUp.transform.SetParent(gameObject.transform);
+                    popUp.transform.localScale = new Vector3(1, 1, 1);
                 }
                 break;
             default:
                 break;
-        }
-
-        if (adventurers[0] != null && adventurers[1] != null && adventurers[2] != null)
-        {
-            popUp.SetActive(true);
-            popUp.transform.SetParent(gameObject.transform);
-            popUp.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
