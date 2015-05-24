@@ -232,7 +232,7 @@ public class TownBehavior : MonoBehaviour {
                 break;
         }
 
-        if ((button == "Hero 1" || button == "Hero 2" || button == "Hero 3") && !travelCanvas.transform.GetChild(0).gameObject.activeSelf/* && (tempAdventurers[0] != null && tempAdventurers[1] != null && tempAdventurers[2] != null)*/)
+        if ((button == "Hero 1" || button == "Hero 2" || button == "Hero 3") && !travelCanvas.transform.GetChild(0).gameObject.activeSelf)
         {
             toggleTravelInfo(true);
         }
