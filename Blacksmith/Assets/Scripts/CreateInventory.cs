@@ -40,61 +40,61 @@ public class CreateInventory : MonoBehaviour {
     private int[] gold;
 
     // Material declarations
-    private int[] fuelQty;
-    private string[] fuelName;
+    public int[] fuelQty;
+    public string[] fuelName;
     private const int fuelSize = 5;
 
-    private int[] oreQty;
-    private string[] oreName;
+    public int[] oreQty;
+    public string[] oreName;
     private const int oreSize = 10;
 
-    private int[] ingotQty;
-    private string[] ingotName;
+    public int[] ingotQty;
+    public string[] ingotName;
     private const int ingotSize = 10;
 
-    private int[] skinQty;
-    private string[] skinName;
+    public int[] skinQty;
+    public string[] skinName;
     private const int skinSize = 10;
 
-    private int[] leatherQty;
-    private string[] leatherName;
+    public int[] leatherQty;
+    public string[] leatherName;
     private const int leatherSize = 10;
 
-    private int[] gemQty;
-    private string[] gemName;
+    public int[] gemQty;
+    public string[] gemName;
     private const int gemSize = 10;
 
-    private int[] gemstoneQty;
-    private string[] gemstoneName;
+    public int[] gemstoneQty;
+    public string[] gemstoneName;
     private const int gemstoneSize = 10;
 
-    private int[] woodQty;
-    private string[] woodName;
+    public int[] woodQty;
+    public string[] woodName;
     private const int woodSize = 10;
 
-    private int[] lumberQty;
-    private string[] lumberName;
+    public int[] lumberQty;
+    public string[] lumberName;
     private const int lumberSize = 10;
 
     // Component declarations
-    private int[] leatherStrapQty;
-    private string[] leatherStrapName; 
+    public int[] leatherStrapQty;
+    public string[] leatherStrapName;
     private const int leatherStrapSize = 5;
 
-    private int[] leatherPaddingQty;
-    private string[] leatherPaddingName;
+    public int[] leatherPaddingQty;
+    public string[] leatherPaddingName;
     private const int leatherPaddingSize = 5;
 
-    private int[] hiltQty;
-    private string[] hiltName;
+    public int[] hiltQty;
+    public string[] hiltName;
     private const int hiltSize = 5;
 
-    private int[] sheathQty;
-    private string[] sheathName;
+    public int[] sheathQty;
+    public string[] sheathName;
     private const int sheathSize = 5;
 
-    private int[] handleQty;
-    private string[] handleName;
+    public int[] handleQty;
+    public string[] handleName;
     private const int handleSize = 5;
 
     // Weapon & shield declarations
@@ -971,6 +971,44 @@ public class CreateInventory : MonoBehaviour {
         foreach (Transform child in componentBackground.transform)
         {
             GameObject.Destroy(child.gameObject);
+        }
+    }
+
+    public int getConstantSize(string item)
+    {
+        switch(item)
+        {
+            case "fuel":
+                return fuelSize;
+            case "ore":
+                return oreSize;
+            case "ingot":
+                return ingotSize;
+            case "skin":
+                return skinSize;
+            case "leather":
+                return leatherSize;
+            case "gem":
+                return gemSize;
+            case "gemstone":
+                return gemstoneSize;
+            case "wood":
+                return woodSize;
+            case "lumber":
+                return lumberSize;
+            case "leather strap":
+                return leatherStrapSize;
+            case "leather padding":
+                return leatherPaddingSize;
+            case "hilt":
+                return hiltSize;
+            case "sheath":
+                return sheathSize;
+            case "handle":
+                return handleSize;
+            default:
+                Debug.Log("Item type " + item + " not found");
+                return 0;
         }
     }
 }
