@@ -19,8 +19,6 @@ public class MarketRoutine : MonoBehaviour {
     private string currentPurchaseItem;
     private int currentPurchasePrice;
     
-    
-
     // TIER ONE MERCHANT ITEMS
     private string[] tierOneNames;
     private int[] tierOneCosts;
@@ -77,7 +75,7 @@ public class MarketRoutine : MonoBehaviour {
         currentPurchaseItem = item;
     }
 
-    public string getCurrentPurhcaseItem()
+    public string getCurrentPurchaseItem()
     {
         return currentPurchaseItem;
     }
@@ -95,6 +93,7 @@ public class MarketRoutine : MonoBehaviour {
 
     public void setMarketWindow()
     {
+        clearMarket();
         buildBuyList();
         buildSellList();
         updateGold();
@@ -103,7 +102,7 @@ public class MarketRoutine : MonoBehaviour {
     public void buildBuyList()
     {
         int totalItems = 0;
-        totalItems = 8;
+        totalItems += totalTierOneItems;
 
         for (int i = 0; i < totalItems; i++)
         {
@@ -236,7 +235,7 @@ public class MarketRoutine : MonoBehaviour {
 
         for (int i = 0; i < createInventory.getConstantSize("lumber"); i++)
         {
-            if (createInventory.oreQty[i] > 0)
+            if (createInventory.lumberQty[i] > 0)
             {
                 tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
                 tempObj.transform.SetParent(sellBackground.transform);
@@ -314,8 +313,8 @@ public class MarketRoutine : MonoBehaviour {
 
         for (int i = totalItems; i < 19; i++)
         {
-            tempObj = Instantiate(itemLine, buyBackground.transform.position, Quaternion.identity) as GameObject;
-            tempObj.transform.SetParent(buyBackground.transform);
+            tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
+            tempObj.transform.SetParent(sellBackground.transform);
             tempObj.transform.localScale = new Vector3(1, 1, 1);
             tempObj.transform.GetChild(0).GetComponent<Text>().text = "";
             tempObj.transform.GetChild(1).GetComponent<Text>().text = "";
@@ -349,5 +348,18 @@ public class MarketRoutine : MonoBehaviour {
     public void updateGold()
     {
         goldText.text = gameController.getGold() + " gold";
+    }
+
+    private void clearMarket()
+    {
+        foreach(Transform child in buyBackground.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach(Transform child in sellBackground.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

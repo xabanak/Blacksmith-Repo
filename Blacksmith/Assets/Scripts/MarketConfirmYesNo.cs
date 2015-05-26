@@ -7,12 +7,14 @@ public class MarketConfirmYesNo : MonoBehaviour {
     private MarketRoutine marketRoutine;
     private GameObject confirmationBox;
     private GameController gameController;
+    private CreateInventory createInventory;
 
 	void Start () 
     {
         marketRoutine = GameObject.Find("GameController").GetComponent<MarketRoutine>();
         confirmationBox = GameObject.Find("Town/Market Canvas/Market Confirmation");
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         confirmationBox.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => selectYes());
         confirmationBox.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => selectNo());
 
@@ -20,9 +22,18 @@ public class MarketConfirmYesNo : MonoBehaviour {
 
     public void selectYes()
     {
-        Debug.Log("You have purchased " + marketRoutine.getCurrentPurhcaseItem() + " for " + marketRoutine.getCurrentPurchasePrice() + " gold");
-        gameController.decGold(marketRoutine.getCurrentPurchasePrice());
-        marketRoutine.updateGold();
+        if (gameController.decGold(marketRoutine.getCurrentPurchasePrice()))
+        {
+            Debug.Log("You have purchased " + marketRoutine.getCurrentPurchaseItem() + " for " + marketRoutine.getCurrentPurchasePrice() + " gold");
+            marketRoutine.updateGold();
+            createInventory.addItem(marketRoutine.getCurrentPurchaseItem(), 1);
+            marketRoutine.setMarketWindow();
+        }
+        else
+        {
+            Debug.Log("Insufficient gold to purchase");
+        }
+
         confirmationBox.SetActive(false);
     }
 

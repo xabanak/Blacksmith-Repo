@@ -167,9 +167,16 @@ public class GameController : MonoBehaviour {
         tutorialRoutine.tutorialMachine(1);
     }
 
-    public void decGold(int change)
+    public bool decGold(int change)
     {
-        gold -= change;
+        if (gold >= change)
+        {
+            gold -= change;
+            return true;
+        }
+
+        return false;
+
     }
 
     public void incGold(int change)
