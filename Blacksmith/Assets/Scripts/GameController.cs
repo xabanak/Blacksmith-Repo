@@ -34,6 +34,8 @@ public class GameController : MonoBehaviour {
     public AudioSource invOpen;
     public AudioSource invClosed;
 
+    private int gold;
+
     void Awake()
     {
         gameObject.AddComponent<TutorialRoutine>();
@@ -48,6 +50,7 @@ public class GameController : MonoBehaviour {
         soundController = this.GetComponent<SoundController>();
         UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks;
         soundController.playWorkshopMusic();
+        gold = 1000;
     }
 	// Use this for initialization
 	void Start () 
@@ -162,5 +165,20 @@ public class GameController : MonoBehaviour {
         startCameraObj.SetActive(false);
         workCameraObj.SetActive(true);
         tutorialRoutine.tutorialMachine(1);
+    }
+
+    public void decGold(int change)
+    {
+        gold -= change;
+    }
+
+    public void incGold(int change)
+    {
+        gold += change;
+    }
+
+    public int getGold()
+    {
+        return gold;
     }
 }

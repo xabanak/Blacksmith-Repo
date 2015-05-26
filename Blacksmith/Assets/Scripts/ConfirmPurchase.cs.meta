@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3050f4c9b1b4cb044beb529d797dba02
+timeCreated: 1432599308
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - confirmationBox: {fileID: 132698, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
+  - confirmationText: {fileID: 11485114, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

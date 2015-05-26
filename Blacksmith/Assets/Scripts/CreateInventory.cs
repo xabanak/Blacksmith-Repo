@@ -41,59 +41,73 @@ public class CreateInventory : MonoBehaviour {
 
     // Material declarations
     public int[] fuelQty;
+    public int[] fuelCost;
     public string[] fuelName;
     private const int fuelSize = 5;
 
     public int[] oreQty;
+    public int[] oreCost;
     public string[] oreName;
     private const int oreSize = 10;
 
     public int[] ingotQty;
+    public int[] ingotCost;
     public string[] ingotName;
     private const int ingotSize = 10;
 
     public int[] skinQty;
+    public int[] skinCost;
     public string[] skinName;
     private const int skinSize = 10;
 
     public int[] leatherQty;
+    public int[] leatherCost;
     public string[] leatherName;
     private const int leatherSize = 10;
 
     public int[] gemQty;
+    public int[] gemCost;
     public string[] gemName;
     private const int gemSize = 10;
 
     public int[] gemstoneQty;
+    public int[] gemstoneCost;
     public string[] gemstoneName;
     private const int gemstoneSize = 10;
 
     public int[] woodQty;
+    public int[] woodCost;
     public string[] woodName;
     private const int woodSize = 10;
 
     public int[] lumberQty;
+    public int[] lumberCost;
     public string[] lumberName;
     private const int lumberSize = 10;
 
     // Component declarations
     public int[] leatherStrapQty;
+    public int[] leatherStrapCost;
     public string[] leatherStrapName;
     private const int leatherStrapSize = 5;
 
     public int[] leatherPaddingQty;
+    public int[] leatherPaddingCost;
     public string[] leatherPaddingName;
     private const int leatherPaddingSize = 5;
 
     public int[] hiltQty;
+    public int[] hiltCost;
     public string[] hiltName;
     private const int hiltSize = 5;
 
     public int[] sheathQty;
+    public int[] sheathCost;
     public string[] sheathName;
     private const int sheathSize = 5;
 
     public int[] handleQty;
+    public int[] handleCost;
     public string[] handleName;
     private const int handleSize = 5;
 
@@ -118,12 +132,19 @@ public class CreateInventory : MonoBehaviour {
         // Define material types: fuel, ore, ingot, skin, leather, gem, gemstone, wood, lumber
         // Define fuel types
         fuelQty = new int[fuelSize];
+        fuelCost = new int[fuelSize];
         fuelName = new string[fuelSize];
 
         for (int i = 0; i < fuelSize; i++)
         {
             fuelQty[i] = 0;
         }
+
+        fuelCost[0] = 1;
+        fuelCost[1] = 5;
+        fuelCost[2] = 20;
+        fuelCost[3] = 50;
+        fuelCost[4] = 100;
 
         fuelName[0] = "Basic Fuel";
         fuelName[1] = "Standard Fuel";
@@ -134,6 +155,7 @@ public class CreateInventory : MonoBehaviour {
 
         // Define ore types
         oreQty = new int[oreSize];
+        oreCost = new int[oreSize];
         oreName = new string[oreSize];
 
         for (int i = 0; i < oreSize; i++)
@@ -141,20 +163,32 @@ public class CreateInventory : MonoBehaviour {
             oreQty[i] = 0;
         }
 
+        oreCost[0] = 50;
+        oreCost[1] = 100;
+        oreCost[2] = 200;
+        oreCost[3] = 300;
+        oreCost[4] = 400;
+        oreCost[5] = 500;
+        oreCost[6] = 600;
+        oreCost[7] = 700;
+        oreCost[8] = 800;
+        oreCost[9] = 900;
+
         oreName[0] = "Tin Ore";
         oreName[1] = "Copper Ore";
         oreName[2] = "Zinc Ore";
-        oreName[3] = "Black Ore";
-        oreName[4] = "Unknown Ore 5";
-        oreName[5] = "Unknown Ore 6";
-        oreName[6] = "Unknown Ore 7";
-        oreName[7] = "Unknown Ore 8";
-        oreName[8] = "Unknown Ore 9";
-        oreName[9] = "Unknown Ore 10";
+        oreName[3] = "Iron Ore";
+        oreName[4] = "Black Ore";
+        oreName[5] = "Nickel Ore";
+        oreName[6] = "Carbon Ore";
+        oreName[7] = "Manganese Ore";
+        oreName[8] = "Chromium Ore";
+        oreName[9] = "Dragon Ore";
         // End Define ore types
 
         // Define ingot types
         ingotQty = new int[ingotSize];
+        ingotCost = new int[ingotSize];
         ingotName = new string[ingotSize];
 
         for (int i = 0; i < ingotSize; i++)
@@ -162,20 +196,33 @@ public class CreateInventory : MonoBehaviour {
             ingotQty[i] = 0;
         }
 
+        ingotCost[0] = 100;
+        ingotCost[1] = 200;
+        ingotCost[2] = 300;
+        ingotCost[3] = 400;
+        ingotCost[4] = 500;
+        ingotCost[5] = 600;
+        ingotCost[6] = 700;
+        ingotCost[7] = 800;
+        ingotCost[8] = 900;
+        ingotCost[9] = 1000;
+        
+
         ingotName[0] = "Tin Ingot";
         ingotName[1] = "Copper Ingot";
         ingotName[2] = "Bronze Ingot";
         ingotName[3] = "Brass Ingot";
         ingotName[4] = "Iron Ingot";
-        ingotName[5] = "BlackenedIron Ingot";
+        ingotName[5] = "Blackened Iron Ingot";
         ingotName[6] = "Steel Ingot";
-        ingotName[7] = "SteelAlloyL1 Ingot";
-        ingotName[8] = "SteelAlloyL2 Ingot";
+        ingotName[7] = "Low Grade Steel Alloy Ingot";
+        ingotName[8] = "High Grade Steel Alloy Ingot";
         ingotName[9] = "Titanium Ingot";
         // End Define ingot types
 
         // Define skin types
         skinQty = new int[skinSize];
+        skinCost = new int[skinSize];
         skinName = new string[skinSize];
 
         for (int i = 0; i < skinSize; i++)
@@ -183,20 +230,33 @@ public class CreateInventory : MonoBehaviour {
             skinQty[i] = 0;
         }
 
+        skinCost[0] = 50;
+        skinCost[1] = 100;
+        skinCost[2] = 150;
+        skinCost[3] = 200;
+        skinCost[4] = 250;
+        skinCost[5] = 300;
+        skinCost[6] = 350;
+        skinCost[7] = 400;
+        skinCost[8] = 450;
+        skinCost[9] = 500;
+
+
         skinName[0] = "Sheep Skin";
-        skinName[1] = "Buffalo Skin";
-        skinName[2] = "Unknown Skin 3";
-        skinName[3] = "Unknown Skin 4";
-        skinName[4] = "Unknown Skin 5";
-        skinName[5] = "Unknown Skin 6";
-        skinName[6] = "Unknown Skin 7";
-        skinName[7] = "Unknown Skin 8";
-        skinName[8] = "Unknown Skin 9";
-        skinName[9] = "Unknown Skin 10";
+        skinName[1] = "Goat Skin";
+        skinName[2] = "Buffalo Skin";
+        skinName[3] = "Dodo Skin";
+        skinName[4] = "Serpent Skin";
+        skinName[5] = "Wolf Skin";
+        skinName[6] = "Ogre Skin";
+        skinName[7] = "Troll Skin";
+        skinName[8] = "Wyvern Skin";
+        skinName[9] = "Dragon Skin";
         // End Define skin types
 
         // Define leather types
         leatherQty = new int[leatherSize];
+        leatherCost = new int[leatherSize];
         leatherName = new string[leatherSize];
 
         for (int i = 0; i < leatherSize; i++)
@@ -204,20 +264,32 @@ public class CreateInventory : MonoBehaviour {
             leatherQty[i] = 0;
         }
 
-        leatherName[0] = "Unknown Leather 1";
-        leatherName[1] = "Unknown Leather 2";
-        leatherName[2] = "Unknown Leather 3";
-        leatherName[3] = "Unknown Leather 4";
-        leatherName[4] = "Unknown Leather 5";
-        leatherName[5] = "Unknown Leather 6";
-        leatherName[6] = "Unknown Leather 7";
-        leatherName[7] = "Unknown Leather 8";
-        leatherName[8] = "Unknown Leather 9";
-        leatherName[9] = "Unknown Leather 10";
+        leatherCost[0] = 100;
+        leatherCost[1] = 200;
+        leatherCost[2] = 300;
+        leatherCost[3] = 400;
+        leatherCost[4] = 500;
+        leatherCost[5] = 600;
+        leatherCost[6] = 700;
+        leatherCost[7] = 800;
+        leatherCost[8] = 900;
+        leatherCost[9] = 1000;
+
+        leatherName[0] = "Sheep Leather";
+        leatherName[1] = "Goat Leather";
+        leatherName[2] = "Buffalo Leather";
+        leatherName[3] = "Dodo Leather";
+        leatherName[4] = "Serpent Leather";
+        leatherName[5] = "Wolf Leather";
+        leatherName[6] = "Ogre Leather";
+        leatherName[7] = "Troll Leather";
+        leatherName[8] = "Wyvern Leather";
+        leatherName[9] = "Dragon Leather";
         // End Define leather types
 
         // Define gem types
         gemQty = new int[gemSize];
+        gemCost = new int[gemSize];
         gemName = new string[gemSize];
 
         for (int i = 0; i < gemSize; i++)
@@ -225,20 +297,32 @@ public class CreateInventory : MonoBehaviour {
             gemQty[i] = 0;
         }
 
-        gemName[0] = "Unknown Gem 1";
-        gemName[1] = "Unknown Gem 2";
-        gemName[2] = "Unknown Gem 3";
-        gemName[3] = "Unknown Gem 4";
-        gemName[4] = "Unknown Gem 5";
-        gemName[5] = "Unknown Gem 6";
-        gemName[6] = "Unknown Gem 7";
-        gemName[7] = "Unknown Gem 8";
-        gemName[8] = "Unknown Gem 9";
-        gemName[9] = "Unknown Gem 10";
+        gemCost[0] = 200;
+        gemCost[1] = 400;
+        gemCost[2] = 600;
+        gemCost[3] = 800;
+        gemCost[4] = 1000;
+        gemCost[5] = 1200;
+        gemCost[6] = 1400;
+        gemCost[7] = 1600;
+        gemCost[8] = 1800;
+        gemCost[9] = 2000;
+
+        gemName[0] = "Rough Malachite";
+        gemName[1] = "Rough Lapis Lazuli";
+        gemName[2] = "Rough Turquoise";
+        gemName[3] = "Rough Coral";
+        gemName[4] = "Rough Agate";
+        gemName[5] = "Rough Jasper";
+        gemName[6] = "Rough Opal";
+        gemName[7] = "Rough Ruby";
+        gemName[8] = "Rough Pearl";
+        gemName[9] = "Rough Moonstone";
         // End Define gem types
 
         // Define gemstone types
         gemstoneQty = new int[gemstoneSize];
+        gemstoneCost = new int[gemstoneSize];
         gemstoneName = new string[gemstoneSize];
 
         for (int i = 0; i < gemstoneSize; i++)
@@ -246,20 +330,32 @@ public class CreateInventory : MonoBehaviour {
             gemstoneQty[i] = 0;
         }
 
-        gemstoneName[0] = "Unknown Gemstone 1";
-        gemstoneName[1] = "Unknown Gemstone 2";
-        gemstoneName[2] = "Unknown Gemstone 3";
-        gemstoneName[3] = "Unknown Gemstone 4";
-        gemstoneName[4] = "Unknown Gemstone 5";
-        gemstoneName[5] = "Unknown Gemstone 6";
-        gemstoneName[6] = "Unknown Gemstone 7";
-        gemstoneName[7] = "Unknown Gemstone 8";
-        gemstoneName[8] = "Unknown Gemstone 9";
-        gemstoneName[9] = "Unknown Gemstone 10";
+        gemstoneCost[0] = 400;
+        gemstoneCost[1] = 800;
+        gemstoneCost[2] = 1200;
+        gemstoneCost[3] = 1600;
+        gemstoneCost[4] = 2000;
+        gemstoneCost[5] = 2400;
+        gemstoneCost[6] = 2800;
+        gemstoneCost[7] = 3200;
+        gemstoneCost[8] = 3600;
+        gemstoneCost[9] = 4000;
+
+        gemstoneName[0] = "Polished Malchite";
+        gemstoneName[1] = "Polished Lapis Lazuli";
+        gemstoneName[2] = "Polished Turquoise";
+        gemstoneName[3] = "Polished Coral";
+        gemstoneName[4] = "Polished Agate";
+        gemstoneName[5] = "Polished Jasper";
+        gemstoneName[6] = "Polished Opal";
+        gemstoneName[7] = "Polished Ruby";
+        gemstoneName[8] = "Polished Pearl";
+        gemstoneName[9] = "Polished Moonstone";
         // End Define gemstone types
 
         // Define wood types
         woodQty = new int[woodSize];
+        woodCost = new int[woodSize];
         woodName = new string[woodSize];
 
         for (int i = 0; i < woodSize; i++)
@@ -267,20 +363,32 @@ public class CreateInventory : MonoBehaviour {
             woodQty[i] = 0;
         }
 
-        woodName[0] = "Unknown Wood 1";
-        woodName[1] = "Unknown Wood 2";
-        woodName[2] = "Unknown Wood 3";
-        woodName[3] = "Unknown Wood 4";
-        woodName[4] = "Unknown Wood 5";
-        woodName[5] = "Unknown Wood 6";
-        woodName[6] = "Unknown Wood 7";
-        woodName[7] = "Unknown Wood 8";
-        woodName[8] = "Unknown Wood 9";
-        woodName[9] = "Unknown Wood 10";
+        woodCost[0] = 50;
+        woodCost[1] = 100;
+        woodCost[2] = 200;
+        woodCost[3] = 300;
+        woodCost[4] = 400;
+        woodCost[5] = 500;
+        woodCost[6] = 600;
+        woodCost[7] = 700;
+        woodCost[8] = 800;
+        woodCost[9] = 900;
+
+        woodName[0] = "Raw Elm";
+        woodName[1] = "Raw Alder";
+        woodName[2] = "Raw Maple";
+        woodName[3] = "Raw Sandlewood";
+        woodName[4] = "Raw Ash";
+        woodName[5] = "Raw Fir";
+        woodName[6] = "Raw Cedar";
+        woodName[7] = "Raw Ironwood";
+        woodName[8] = "Raw Rosewood";
+        woodName[9] = "Raw Ebony";
         // End Define wood types
 
         // Define lumber types
         lumberQty = new int[lumberSize];
+        lumberCost = new int[lumberSize];
         lumberName = new string[lumberSize];
 
         for (int i = 0; i < lumberSize; i++)
@@ -288,22 +396,34 @@ public class CreateInventory : MonoBehaviour {
             lumberQty[i] = 0;
         }
 
-        lumberName[0] = "Unknown Lumber 1";
-        lumberName[1] = "Unknown Lumber 2";
-        lumberName[2] = "Unknown Lumber 3";
-        lumberName[3] = "Unknown Lumber 4";
-        lumberName[4] = "Unknown Lumber 5";
-        lumberName[5] = "Unknown Lumber 6";
-        lumberName[6] = "Unknown Lumber 7";
-        lumberName[7] = "Unknown Lumber 8";
-        lumberName[8] = "Unknown Lumber 9";
-        lumberName[9] = "Unknown Lumber 10";
+        lumberCost[0] = 100;
+        lumberCost[1] = 200;
+        lumberCost[2] = 300;
+        lumberCost[3] = 400;
+        lumberCost[4] = 500;
+        lumberCost[5] = 600;
+        lumberCost[6] = 700;
+        lumberCost[7] = 800;
+        lumberCost[8] = 900;
+        lumberCost[9] = 1000;
+
+        lumberName[0] = "Elm Lumber";
+        lumberName[1] = "Alder Lumber";
+        lumberName[2] = "Maple Lumber";
+        lumberName[3] = "Sandalwood Lumber";
+        lumberName[4] = "Ash Lumber";
+        lumberName[5] = "Fir Lumber";
+        lumberName[6] = "Cedar Lumber";
+        lumberName[7] = "Ironwood Lumber";
+        lumberName[8] = "Rosewood Lumber";
+        lumberName[9] = "Ebony Lumber";
         // End Define lumber types
         // End Define material types
 
         // Define component types: leatherStrap, leatherPadding, hilt, sheath, handle
         // Define leatherStrap types
         leatherStrapQty = new int[leatherStrapSize];
+        leatherStrapCost = new int[leatherStrapSize];
         leatherStrapName = new string[leatherStrapSize];
 
         for (int i = 0; i < leatherStrapSize; i++)
@@ -311,14 +431,21 @@ public class CreateInventory : MonoBehaviour {
             leatherStrapQty[i] = 0;
         }
 
-        leatherStrapName[0] = "Unknown LeatherStrap 1";
-        leatherStrapName[1] = "Unknown LeatherStrap 2";
-        leatherStrapName[2] = "Unknown LeatherStrap 3";
-        leatherStrapName[3] = "Unknown LeatherStrap 4";
-        leatherStrapName[4] = "Unknown LeatherStrap 5";
+        leatherStrapCost[0] = 25;
+        leatherStrapCost[1] = 50;
+        leatherStrapCost[2] = 100;
+        leatherStrapCost[3] = 150;
+        leatherStrapCost[4] = 200;
+
+        leatherStrapName[0] = "Basic Leather Strap";
+        leatherStrapName[1] = "Standard Leather Strap";
+        leatherStrapName[2] = "Good Leather Strap";
+        leatherStrapName[3] = "Excellent Leather Strap";
+        leatherStrapName[4] = "Expert Leather Strap";
 
         // Define leatherPadding types
         leatherPaddingQty = new int[leatherPaddingSize];
+        leatherPaddingCost = new int[leatherPaddingSize];
         leatherPaddingName = new string[leatherPaddingSize];
 
         for (int i = 0; i < leatherPaddingSize; i++)
@@ -326,15 +453,22 @@ public class CreateInventory : MonoBehaviour {
             leatherPaddingQty[i] = 0;
         }
 
-        leatherPaddingName[0] = "Unknown LeatherPadding 1";
-        leatherPaddingName[1] = "Unknown LeatherPadding 2";
-        leatherPaddingName[2] = "Unknown LeatherPadding 3";
-        leatherPaddingName[3] = "Unknown LeatherPadding 4";
-        leatherPaddingName[4] = "Unknown LeatherPadding 5";
+        leatherPaddingCost[0] = 25;
+        leatherPaddingCost[1] = 50;
+        leatherPaddingCost[2] = 100;
+        leatherPaddingCost[3] = 150;
+        leatherPaddingCost[4] = 200;
+
+        leatherPaddingName[0] = "Basic Leather Padding";
+        leatherPaddingName[1] = "Standard Leather Padding";
+        leatherPaddingName[2] = "Good Leather Padding";
+        leatherPaddingName[3] = "Excellent Leather Padding";
+        leatherPaddingName[4] = "Expert Leather Padding";
         // End Define leatherPadding types
 
         // Define hilt types
         hiltQty = new int[hiltSize];
+        hiltCost = new int[hiltSize];
         hiltName = new string[hiltSize];
 
         for (int i = 0; i < hiltSize; i++)
@@ -342,15 +476,22 @@ public class CreateInventory : MonoBehaviour {
             hiltQty[i] = 0;
         }
 
-        hiltName[0] = "Unknown Hilt 1";
-        hiltName[1] = "Unknown Hilt 2";
-        hiltName[2] = "Unknown Hilt 3";
-        hiltName[3] = "Unknown Hilt 4";
-        hiltName[4] = "Unknown Hilt 5";
+        hiltCost[0] = 50;
+        hiltCost[1] = 100;
+        hiltCost[2] = 150;
+        hiltCost[3] = 250;
+        hiltCost[4] = 500;
+
+        hiltName[0] = "Basic Hilt";
+        hiltName[1] = "Standard Hilt";
+        hiltName[2] = "Good Hilt";
+        hiltName[3] = "Excellent Hilt";
+        hiltName[4] = "Expert Hilt";
         // End Define hilt types
 
         // Define sheath types
         sheathQty = new int[sheathSize];
+        sheathCost = new int[sheathSize];
         sheathName = new string[sheathSize];
 
         for (int i = 0; i < sheathSize; i++)
@@ -358,15 +499,22 @@ public class CreateInventory : MonoBehaviour {
             sheathQty[i] = 0;
         }
 
-        sheathName[0] = "Unknown Sheath 1";
-        sheathName[1] = "Unknown Sheath 2";
-        sheathName[2] = "Unknown Sheath 3";
-        sheathName[3] = "Unknown Sheath 4";
-        sheathName[4] = "Unknown Sheath 5";
+        sheathCost[0] = 25;
+        sheathCost[1] = 50;
+        sheathCost[2] = 75;
+        sheathCost[3] = 100;
+        sheathCost[4] = 200;
+
+        sheathName[0] = "Basic Sheath";
+        sheathName[1] = "Standard Sheath";
+        sheathName[2] = "Good Sheath";
+        sheathName[3] = "Excellent Sheath";
+        sheathName[4] = "Expert Sheath";
         // End Define sheath types
 
         // Define handle types
         handleQty = new int[handleSize];
+        handleCost = new int[handleSize];
         handleName = new string[handleSize];
 
         for (int i = 0; i < handleSize; i++)
@@ -374,11 +522,17 @@ public class CreateInventory : MonoBehaviour {
             handleQty[i] = 0;
         }
 
-        handleName[0] = "Unknown Handle 1";
-        handleName[1] = "Unknown Handle 2";
-        handleName[2] = "Unknown Handle 3";
-        handleName[3] = "Unknown Handle 4";
-        handleName[4] = "Unknown Handle 5";
+        handleCost[0] = 30;
+        handleCost[1] = 60;
+        handleCost[2] = 90;
+        handleCost[3] = 120;
+        handleCost[4] = 250;
+
+        handleName[0] = "Basic Handle";
+        handleName[1] = "Standard Handle";
+        handleName[2] = "Good Handle";
+        handleName[3] = "Excellent Handle";
+        handleName[4] = "Expert Handle";
         // End Define handle types
 
         SetQuantitiesTestMethod();

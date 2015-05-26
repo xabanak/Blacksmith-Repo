@@ -7,6 +7,8 @@ TagManager:
   - Inventory Camera
   - Workshop Camera
   - Shimmer
+  - Market
+  - Market Confirmation
   layers:
   - Default
   - TransparentFX

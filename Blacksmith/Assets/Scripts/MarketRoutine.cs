@@ -5,6 +5,7 @@ using System.Collections;
 public class MarketRoutine : MonoBehaviour {
 
     public Canvas marketCanvas;
+    public Text goldText;
     public Scrollbar marketScrollbar;
     public GameObject itemLine;
     public GameObject buyBackground;
@@ -12,7 +13,11 @@ public class MarketRoutine : MonoBehaviour {
     public GameObject marketWindow;
     private GameObject tempObj;
     private CreateInventory createInventory;
+    private GameController gameController;
     private int tier;
+    private bool confirm;
+    private string currentPurchaseItem;
+    private int currentPurchasePrice;
     
     
 
@@ -32,39 +37,67 @@ public class MarketRoutine : MonoBehaviour {
 	void Start () 
     {
         tier = 1;
+        confirm = false;
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
         tierOneNames = new string[totalTierOneItems];
         tierOneCosts = new int[totalTierOneItems];
-        tierOneNames[0] = "Tin Ore";
-        tierOneNames[1] = "Basic Wood";
-        tierOneNames[2] = "Basic Skin";
-        tierOneNames[3] = "Basic Leather Strap";
-        tierOneNames[4] = "Basic Leather Padding";
-        tierOneNames[5] = "Basic Leather Sheath";
-        tierOneNames[6] = "Basic Hilt";
-        tierOneNames[7] = "Basic Handle";
-        tierOneCosts[0] = 50;
-        tierOneCosts[1] = 25;
-        tierOneCosts[2] = 20;
-        tierOneCosts[3] = 3;
-        tierOneCosts[4] = 3;
-        tierOneCosts[5] = 5;
-        tierOneCosts[6] = 5;
-        tierOneCosts[7] = 2;
+        tierOneNames[0] = createInventory.oreName[0];
+        tierOneNames[1] = createInventory.woodName[0];
+        tierOneNames[2] = createInventory.skinName[0];
+        tierOneNames[3] = createInventory.leatherStrapName[0];
+        tierOneNames[4] = createInventory.leatherPaddingName[0];
+        tierOneNames[5] = createInventory.sheathName[0];
+        tierOneNames[6] = createInventory.hiltName[0];
+        tierOneNames[7] = createInventory.handleName[0];
+        tierOneCosts[0] = createInventory.oreCost[0];
+        tierOneCosts[1] = createInventory.woodCost[0];
+        tierOneCosts[2] = createInventory.skinCost[0];
+        tierOneCosts[3] = createInventory.leatherStrapCost[0];
+        tierOneCosts[4] = createInventory.leatherPaddingCost[0];
+        tierOneCosts[5] = createInventory.sheathCost[0];
+        tierOneCosts[6] = createInventory.hiltCost[0];
+        tierOneCosts[7] = createInventory.handleCost[0];
 
 	}
 	
-	void Update () 
+    public bool getConfirm()
     {
+        return confirm;
+    }
 
-	}
+    public void setConfirm()
+    {
+        confirm = !confirm;
+    }
+
+    public void setCurrentPurchaseItem(string item)
+    {
+        currentPurchaseItem = item;
+    }
+
+    public string getCurrentPurhcaseItem()
+    {
+        return currentPurchaseItem;
+    }
+
+    public void setCurrentPurchasePrice(int price)
+    {
+        currentPurchasePrice = price;
+    }
+
+    public int getCurrentPurchasePrice()
+    {
+        return currentPurchasePrice;
+    }
 
 
     public void setMarketWindow()
     {
         buildBuyList();
         buildSellList();
+        updateGold();
     }
 
     public void buildBuyList()
@@ -77,6 +110,8 @@ public class MarketRoutine : MonoBehaviour {
             tempObj = Instantiate(itemLine, buyBackground.transform.position, Quaternion.identity) as GameObject;
             tempObj.transform.SetParent(buyBackground.transform);
             tempObj.transform.localScale = new Vector3(1, 1, 1);
+            tempObj.name = tierOneNames[i];
+            tempObj.AddComponent<ConfirmPurchase>();
             tempObj.transform.GetChild(0).GetComponent<Text>().text = tierOneNames[i];
             tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + tierOneCosts[i] + " gold";
         }
@@ -309,5 +344,10 @@ public class MarketRoutine : MonoBehaviour {
         marketWindow.GetComponent<ScrollRect>().verticalScrollbar.value = 0.0f;
         Canvas.ForceUpdateCanvases();
         marketWindow.GetComponent<ScrollRect>().verticalScrollbar.value = 1f;
+    }
+
+    public void updateGold()
+    {
+        goldText.text = gameController.getGold() + " gold";
     }
 }
