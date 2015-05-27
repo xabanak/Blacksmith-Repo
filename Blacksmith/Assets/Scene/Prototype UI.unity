@@ -911,7 +911,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 22488546, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1057,6 +1057,26 @@ Prefab:
     - target: {fileID: 11479630, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
       propertyPath: m_Color.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1565756064}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: toggleBuy
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
@@ -9591,7 +9611,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 22488546, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
       propertyPath: m_LocalPosition.x
@@ -9737,6 +9757,26 @@ Prefab:
     - target: {fileID: 11479630, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
       propertyPath: m_Color.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1565756064}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: toggleSell
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464674, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad548ca8df1ccc346a679d47f0f8e611, type: 2}
@@ -19622,7 +19662,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3932066}
   m_Direction: 3
   m_Value: 1
-  m_Size: 1
+  m_Size: .999998569
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

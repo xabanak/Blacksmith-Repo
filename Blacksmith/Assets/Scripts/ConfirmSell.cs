@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ConfirmPurchase : MonoBehaviour {
+public class ConfirmSell : MonoBehaviour {
 
     private int itemCost;
     private string itemName;
@@ -13,8 +13,8 @@ public class ConfirmPurchase : MonoBehaviour {
     public Text confirmationText;
 
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start()
     {
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         marketRoutine = GameObject.Find("GameController").GetComponent<MarketRoutine>();
@@ -23,20 +23,11 @@ public class ConfirmPurchase : MonoBehaviour {
         confirmationBox = GameObject.Find("Town/Market Canvas/Market Confirmation");
         confirmationText = confirmationBox.transform.GetChild(0).GetComponent<Text>();
 
-	}
-
-    int getItemCost()
-    {
-        return itemCost;
     }
 
-    string getItemName()
+    public void OnMouseDown()
     {
-        return itemName;
-    }
-    void OnMouseDown()
-    {
-        switch(itemName)
+        switch(name)
         {
             case "Tin Ore":
                 itemCost = createInventory.oreCost[0];
@@ -234,15 +225,13 @@ public class ConfirmPurchase : MonoBehaviour {
                 itemCost = createInventory.handleCost[4];
                 break;
             default:
-                Debug.Log("Merchant item not found");
+                Debug.Log("Sell item not found");
                 break;
         }
 
-        //Debug.Log(itemName + " cost: " + itemCost);
-        marketRoutine.setCurrentPurchaseItem(itemName);
-        marketRoutine.setCurrentPurchasePrice(itemCost);
+        marketRoutine.setCurrentSellItem(itemName);
+        marketRoutine.setCurrentSellPrice(itemCost);
         confirmationBox.SetActive(true);
-        confirmationText.text = "You want to purchase " + itemName + " for " + itemCost + " gold?";
+        confirmationText.text = "You want to sell your " + itemName + " for " + itemCost + "?";
     }
-
 }

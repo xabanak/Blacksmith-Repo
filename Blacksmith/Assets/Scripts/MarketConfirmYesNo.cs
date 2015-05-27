@@ -15,12 +15,19 @@ public class MarketConfirmYesNo : MonoBehaviour {
         confirmationBox = GameObject.Find("Town/Market Canvas/Market Confirmation");
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
-        confirmationBox.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => selectYes());
+        if (marketRoutine.getBuy())
+        {
+            confirmationBox.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => selectYesBuy());
+        }
+        else if(marketRoutine.getSell())
+        {
+            confirmationBox.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => selectYesSell());
+        }
         confirmationBox.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => selectNo());
 
 	}
 
-    public void selectYes()
+    public void selectYesBuy()
     {
         if (gameController.decGold(marketRoutine.getCurrentPurchasePrice()))
         {
@@ -35,6 +42,15 @@ public class MarketConfirmYesNo : MonoBehaviour {
         }
 
         confirmationBox.SetActive(false);
+    }
+
+    public void selectYesSell()
+    {
+        gameController.incGold(marketRoutine.getCurrentSellPrice());
+        Debug.Log("You have sold " + marketRoutine.getCurrentSellItem() + " for " + marketRoutine.getCurrentSellPrice() + " gold");
+        marketRoutine.updateGold();
+        createInventory.removeItem(marketRoutine.getCurrentSellItem(), 1);
+        marketRoutine.setMarketWindow();
     }
 
     public void selectNo()

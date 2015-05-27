@@ -1373,6 +1373,213 @@ public class CreateInventory : MonoBehaviour
 
         Debug.Log("Added " + itemName + " of quantity: " + quantity + " to inventory");
     }
+
+    public void removeItem(string itemName, int quantity)
+    {
+        switch (itemName)
+        {
+            case "Tin Ore":
+                oreQty[0] -= quantity;
+                break;
+            case "Copper Ore":
+                oreQty[1] -= quantity;
+                break;
+            case "Zinc Ore":
+                oreQty[2] -= quantity;
+                break;
+            case "Iron Ore":
+                oreQty[3] -= quantity;
+                break;
+            case "Black Ore":
+                oreQty[4] -= quantity;
+                break;
+            case "Nickel Ore":
+                oreQty[5] -= quantity;
+                break;
+            case "Carbon Ore":
+                oreQty[6] -= quantity;
+                break;
+            case "Manganese Ore":
+                oreQty[7] -= quantity;
+                break;
+            case "Chromium Ore":
+                oreQty[8] -= quantity;
+                break;
+            case "Dragon Ore":
+                oreQty[9] -= quantity;
+                break;
+            case "Sheep Skin":
+                skinQty[0] -= quantity;
+                break;
+            case "Goat Skin":
+                skinQty[1] -= quantity;
+                break;
+            case "Buffalo Skin":
+                skinQty[2] -= quantity;
+                break;
+            case "Dodo Skin":
+                skinQty[3] -= quantity;
+                break;
+            case "Serpent Skin":
+                skinQty[4] -= quantity;
+                break;
+            case "Wolf Skin":
+                skinQty[5] -= quantity;
+                break;
+            case "Ogre Skin":
+                skinQty[6] -= quantity;
+                break;
+            case "Troll Skin":
+                skinQty[7] -= quantity;
+                break;
+            case "Wyvern Skin":
+                skinQty[8] -= quantity;
+                break;
+            case "Dragon Skin":
+                skinQty[9] -= quantity;
+                break;
+            case "Rough Malachite":
+                gemQty[0] -= quantity;
+                break;
+            case "Rough Lapis Lazuli":
+                gemQty[1] -= quantity;
+                break;
+            case "Rough Turquoise":
+                gemQty[2] -= quantity;
+                break;
+            case "Rough Coral":
+                gemQty[3] -= quantity;
+                break;
+            case "Rough Agate":
+                gemQty[4] -= quantity;
+                break;
+            case "Rough Jasper":
+                gemQty[5] -= quantity;
+                break;
+            case "Rough Opal":
+                gemQty[6] -= quantity;
+                break;
+            case "Rough Ruby":
+                gemQty[7] -= quantity;
+                break;
+            case "Rough Pearl":
+                gemQty[8] -= quantity;
+                break;
+            case "Rough Moonstone":
+                gemQty[9] -= quantity;
+                break;
+            case "Raw Elm":
+                woodQty[0] -= quantity;
+                break;
+            case "Raw Alder":
+                woodQty[1] -= quantity;
+                break;
+            case "Raw Maple":
+                woodQty[2] -= quantity;
+                break;
+            case "Raw Sandlewood":
+                woodQty[3] -= quantity;
+                break;
+            case "Raw Ash":
+                woodQty[4] -= quantity;
+                break;
+            case "Raw Fir":
+                woodQty[5] -= quantity;
+                break;
+            case "Raw Cedar":
+                woodQty[6] -= quantity;
+                break;
+            case "Raw Ironwood":
+                woodQty[7] -= quantity;
+                break;
+            case "Raw Rosewood":
+                woodQty[8] -= quantity;
+                break;
+            case "Raw Ebony":
+                woodQty[9] -= quantity;
+                break;
+            case "Basic Leather Strap":
+                leatherStrapQty[0] -= quantity;
+                break;
+            case "Standard Leather Strap":
+                leatherStrapQty[1] -= quantity;
+                break;
+            case "Good Leather Strap":
+                leatherStrapQty[2] -= quantity;
+                break;
+            case "Excellent Leather Strap":
+                leatherStrapQty[3] -= quantity;
+                break;
+            case "Expert Leather Strap":
+                leatherStrapQty[4] -= quantity;
+                break;
+            case "Basic Leather Padding":
+                leatherPaddingQty[0] -= quantity;
+                break;
+            case "Standard Leather Padding":
+                leatherPaddingQty[1] -= quantity;
+                break;
+            case "Good Leather Padding":
+                leatherPaddingQty[2] -= quantity;
+                break;
+            case "Excellent Leather Padding":
+                leatherPaddingQty[3] -= quantity;
+                break;
+            case "Expert Leather Padding":
+                leatherPaddingQty[4] -= quantity;
+                break;
+            case "Basic Hilt":
+                hiltQty[0] -= quantity;
+                break;
+            case "Standard Hilt":
+                hiltQty[1] -= quantity;
+                break;
+            case "Good Hilt":
+                hiltQty[2] -= quantity;
+                break;
+            case "Excellent Hilt":
+                hiltQty[3] -= quantity;
+                break;
+            case "Expert Hilt":
+                hiltQty[4] -= quantity;
+                break;
+            case "Basic Sheath":
+                sheathQty[0] -= quantity;
+                break;
+            case "Standard Sheath":
+                sheathQty[1] -= quantity;
+                break;
+            case "Good Sheath":
+                sheathQty[2] -= quantity;
+                break;
+            case "Excellent Sheath":
+                sheathQty[3] -= quantity;
+                break;
+            case "Expert Sheath":
+                sheathQty[4] -= quantity;
+                break;
+            case "Basic Handle":
+                handleQty[0] -= quantity;
+                break;
+            case "Standard Handle":
+                handleQty[1] -= quantity;
+                break;
+            case "Good Handle":
+                handleQty[2] -= quantity;
+                break;
+            case "Excellent Handle":
+                handleQty[3] -= quantity;
+                break;
+            case "Expert Handle":
+                handleQty[4] -= quantity;
+                break;
+            default:
+                Debug.Log("Merchant item not found");
+                break;
+        }
+
+        Debug.Log("Added " + itemName + " of quantity: " + quantity + " to inventory");
+    }
 }
 
 public class SortedInventory

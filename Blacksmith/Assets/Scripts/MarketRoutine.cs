@@ -18,6 +18,10 @@ public class MarketRoutine : MonoBehaviour {
     private bool confirm;
     private string currentPurchaseItem;
     private int currentPurchasePrice;
+    private string currentSellItem;
+    private int currentSellPrice;
+    private bool sell;
+    private bool buy;
     
     // TIER ONE MERCHANT ITEMS
     private string[] tierOneNames;
@@ -36,6 +40,8 @@ public class MarketRoutine : MonoBehaviour {
     {
         tier = 1;
         confirm = false;
+        sell = false;
+        buy = false;
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
@@ -90,6 +96,47 @@ public class MarketRoutine : MonoBehaviour {
         return currentPurchasePrice;
     }
 
+    public void setCurrentSellItem(string item)
+    {
+        currentSellItem = item;
+    }
+
+    public string getCurrentSellItem()
+    {
+        return currentSellItem;
+    }
+
+    public void setCurrentSellPrice(int price)
+    {
+        currentSellPrice = price;
+    }
+
+    public int getCurrentSellPrice()
+    {
+        return currentSellPrice;
+    }
+
+    public void toggleSell()
+    {
+        sell = !sell;
+        buy = false;
+    }
+
+    public bool getSell()
+    {
+        return sell;
+    }
+
+    public void toggleBuy()
+    {
+        buy = !buy;
+        sell = false;
+    }
+
+    public bool getBuy()
+    {
+        return buy;
+    }
 
     public void setMarketWindow()
     {
@@ -133,11 +180,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.fuelQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.fuelName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.fuelQty[i];
+                addSellLine(i, createInventory.fuelName[i], createInventory.fuelQty[i]);
                 totalItems++;
             }
         }
@@ -146,11 +189,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.oreQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.oreName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.oreQty[i];
+                addSellLine(i, createInventory.oreName[i], createInventory.oreQty[i]);
                 totalItems++;
             }
         }
@@ -159,11 +198,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.ingotQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.ingotName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.ingotQty[i];
+                addSellLine(i, createInventory.ingotName[i], createInventory.ingotQty[i]);
                 totalItems++;
             }
         }
@@ -172,11 +207,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.skinQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.skinName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.skinQty[i];
+                addSellLine(i, createInventory.skinName[i], createInventory.skinQty[i]);
                 totalItems++;
             }
         }
@@ -185,11 +216,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.leatherQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.leatherName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.leatherQty[i];
+                addSellLine(i, createInventory.leatherName[i], createInventory.leatherQty[i]);
                 totalItems++;
             }
         }
@@ -198,11 +225,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.gemQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.gemName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.gemQty[i];
+                addSellLine(i, createInventory.gemName[i], createInventory.gemQty[i]);
                 totalItems++;
             }
         }
@@ -211,11 +234,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.gemstoneQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.gemstoneName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.gemstoneQty[i];
+                addSellLine(i, createInventory.gemstoneName[i], createInventory.gemstoneQty[i]);
                 totalItems++;
             }
         }
@@ -224,11 +243,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.woodQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.woodName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.woodQty[i];
+                addSellLine(i, createInventory.woodName[i], createInventory.woodQty[i]);
                 totalItems++;
             }
         }
@@ -237,11 +252,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.lumberQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.lumberName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.lumberQty[i];
+                addSellLine(i, createInventory.lumberName[i], createInventory.lumberQty[i]);
                 totalItems++;
             }
         }
@@ -250,11 +261,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.leatherStrapQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.leatherStrapName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.leatherStrapQty[i];
+                addSellLine(i, createInventory.leatherStrapName[i], createInventory.leatherStrapQty[i]);
                 totalItems++;
             }
         }
@@ -263,11 +270,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.leatherPaddingQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.leatherPaddingName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.leatherPaddingQty[i];
+                addSellLine(i, createInventory.leatherPaddingName[i], createInventory.leatherPaddingQty[i]);
                 totalItems++;
             }
         }
@@ -276,11 +279,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.hiltQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.hiltName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.hiltQty[i];
+                addSellLine(i, createInventory.hiltName[i], createInventory.hiltQty[i]);
                 totalItems++;
             }
         }
@@ -289,11 +288,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.sheathQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.sheathName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.sheathQty[i];
+                addSellLine(i, createInventory.sheathName[i], createInventory.sheathQty[i]);
                 totalItems++;
             }
         }
@@ -302,11 +297,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.handleQty[i] > 0)
             {
-                tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
-                tempObj.transform.SetParent(sellBackground.transform);
-                tempObj.transform.localScale = new Vector3(1, 1, 1);
-                tempObj.transform.GetChild(0).GetComponent<Text>().text = createInventory.handleName[i];
-                tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + createInventory.handleQty[i];
+                addSellLine(i, createInventory.handleName[i], createInventory.handleQty[i]);
                 totalItems++;
             }
         }
@@ -361,5 +352,16 @@ public class MarketRoutine : MonoBehaviour {
         {
             Destroy(child.gameObject);
         }
+    }
+
+    private void addSellLine(int index, string item, int qty)
+    {
+        tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
+        tempObj.transform.SetParent(sellBackground.transform);
+        tempObj.transform.localScale = new Vector3(1, 1, 1);
+        tempObj.name = item;
+        tempObj.AddComponent<ConfirmSell>();
+        tempObj.transform.GetChild(0).GetComponent<Text>().text = item;
+        tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + qty;
     }
 }
