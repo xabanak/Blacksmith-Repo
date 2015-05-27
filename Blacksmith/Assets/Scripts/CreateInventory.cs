@@ -1044,7 +1044,7 @@ public class CreateInventory : MonoBehaviour
     }
 
     // Take an item object and add it to the on hand inventory.
-    public void AddNewItem(GameObject newItem)
+    public void addCraftedItem(GameObject newItem)
     {
         // Item types: sword, shield, breastplate, helm, bracers, gauntlets, boots, greaves, pauldrons.
 
@@ -1095,6 +1095,19 @@ public class CreateInventory : MonoBehaviour
         }
 
         BuildInventory();
+    }
+
+    public void deleteCraftedItem(GameObject item)
+    {
+        switch (item.GetComponent<ItemScript>().GetItem())
+        {
+            case "sword":
+                swords.RemoveItem(item);
+                break;
+            default:
+                break;
+
+        }
     }
 
     private void DisableInventoryWindows()
@@ -1579,6 +1592,16 @@ public class CreateInventory : MonoBehaviour
         }
 
         Debug.Log("Added " + itemName + " of quantity: " + quantity + " to inventory");
+    }
+
+    public SortedInventory getItemType(string type)
+    {
+        if (type == "sword")
+        {
+            return swords;
+        }
+
+        return null;
     }
 }
 

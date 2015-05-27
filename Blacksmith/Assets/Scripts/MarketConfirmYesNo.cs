@@ -52,7 +52,14 @@ public class MarketConfirmYesNo : MonoBehaviour {
         gameController.incGold(marketRoutine.getCurrentSellPrice());
         Debug.Log("You have sold " + marketRoutine.getCurrentSellItem() + " for " + marketRoutine.getCurrentSellPrice() + " gold");
         marketRoutine.updateGold();
-        createInventory.removeItem(marketRoutine.getCurrentSellItem(), 1);
+        if (marketRoutine.getCurrentSellCraftedItem() != null)
+        {
+            createInventory.deleteCraftedItem(marketRoutine.getCurrentSellCraftedItem());
+        }
+        else
+        {
+            createInventory.removeItem(marketRoutine.getCurrentSellItem(), 1);
+        }
         marketRoutine.setMarketWindow();
 
         confirmationBox.SetActive(false);

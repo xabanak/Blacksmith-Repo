@@ -1694,7 +1694,7 @@ public class CraftRoutine : MonoBehaviour
 
         showCraftResult(tempObj);
 
-        createInventory.AddNewItem(tempObj);
+        createInventory.addCraftedItem(tempObj);
 
         tutorialHelper(32);
         

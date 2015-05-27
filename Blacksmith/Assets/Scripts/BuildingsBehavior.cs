@@ -38,6 +38,9 @@ public class BuildingsBehavior : MonoBehaviour {
                 townBehavior.toggleTravelWindow();
                 townBehavior.setTravelHeroButtons();
                 break;
+            case "Market":
+                townBehavior.toggleMarketWindow();
+                break;
             default:
                 break;
         }

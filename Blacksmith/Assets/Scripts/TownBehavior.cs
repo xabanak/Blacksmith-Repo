@@ -15,15 +15,18 @@ public class TownBehavior : MonoBehaviour {
     private Adventurer adventurerThree;
     private Adventurer[] adventurers;
     private BuildingsBehavior buildingsBehavior;
+    private MarketRoutine marketRoutine;
     public Text textOne;
     public Text textTwo;
     public Text textThree;
     public Camera townCamera;
     public Camera tavernCamera;
     public Camera travelCamera;
+    public Camera marketCamera;
     public Canvas townCanvas;
     public Canvas tavernCanvas;
     public Canvas travelCanvas;
+    public Canvas marketCanvas;
     private bool newHeroes;
     private int heroSelection;
     public int activeTravelHero;
@@ -41,6 +44,7 @@ public class TownBehavior : MonoBehaviour {
     {
         adventureRoutine = GameObject.Find("GameController").GetComponent<AdventureRoutine>();
         buildingsBehavior = GameObject.Find("Town/Buildings").GetComponent<BuildingsBehavior>();
+        marketRoutine = GetComponent<MarketRoutine>();
         adventurers = adventureRoutine.getAdventurers();
         newHeroes = true;
         heroSelection = 0;
@@ -167,6 +171,11 @@ public class TownBehavior : MonoBehaviour {
                 tavernCanvas.gameObject.SetActive(false);
                 buildingsBehavior.toggleBuildings();
                 break;
+            case "Market":
+                marketCanvas.worldCamera = marketCamera;
+                marketCanvas.gameObject.SetActive(false);
+                buildingsBehavior.toggleBuildings();
+                break;
             default:
                 Debug.Log("Returning from not found!");
                 break;
@@ -279,6 +288,22 @@ public class TownBehavior : MonoBehaviour {
         else if (adventurers[2] == null)
         {
             travelHeroThree.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    public void toggleMarketWindow()
+    {
+        if (!marketCanvas.gameObject.activeSelf)
+        {
+            marketCanvas.gameObject.SetActive(true);
+            marketCanvas.worldCamera = townCamera;
+            marketRoutine.setMarketWindow();
+            
+        }
+        else
+        {
+            marketCanvas.gameObject.SetActive(false);
+            marketCanvas.worldCamera = marketCamera;
         }
     }
 }

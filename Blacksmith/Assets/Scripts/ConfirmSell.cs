@@ -223,7 +223,9 @@ public class ConfirmSell : MonoBehaviour {
                 itemCost = createInventory.handleCost[4];
                 break;
             default:
-                Debug.Log("Sell item not found");
+                itemCost = GetComponent<SellItem>().getCraftedItem().GetComponent<ItemScript>().GetPower();
+                marketRoutine.setCurrentSellCraftedItem(GetComponent<SellItem>().getCraftedItem());
+                Debug.Log("Not a basic item");
                 break;
         }
 

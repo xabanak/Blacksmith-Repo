@@ -20,8 +20,11 @@ public class MarketRoutine : MonoBehaviour {
     private int currentPurchasePrice;
     private string currentSellItem;
     private int currentSellPrice;
+    private GameObject currentSellCraftedItem;
     private bool sell;
     private bool buy;
+
+    public GameObject testSword;
     
     // TIER ONE MERCHANT ITEMS
     private string[] tierOneNames;
@@ -116,6 +119,21 @@ public class MarketRoutine : MonoBehaviour {
         return currentSellPrice;
     }
 
+    public void setCurrentSellCraftedItem(GameObject craftedItem)
+    {
+        currentSellCraftedItem = craftedItem;
+    }
+
+    public void clearCurrentSellCraftedItem()
+    {
+        currentSellCraftedItem = null;
+    }
+
+    public GameObject getCurrentSellCraftedItem()
+    {
+        return currentSellCraftedItem;
+    }
+
     public void toggleSell()
     {
         sell = !sell;
@@ -176,11 +194,23 @@ public class MarketRoutine : MonoBehaviour {
     {
         int totalItems = 0;
 
+        // TEST METHOD
+        Instantiate(testSword);
+        testSword.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 11);
+        createInventory.addCraftedItem(testSword);
+
+        // ADD IN WEAPON GAME OBJECTS
+        for (int i = 0; i < createInventory.getItemType("sword").GetCurrentSize(); i++)
+        {
+            addSellLine(createInventory.getItemType("sword").GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0);
+            totalItems++;
+        }
+
         for (int i = 0; i < createInventory.getConstantSize("fuel"); i++)
         {
             if (createInventory.fuelQty[i] > 0)
             {
-                addSellLine(i, createInventory.fuelName[i], createInventory.fuelQty[i]);
+                addSellLine(createInventory.fuelName[i], createInventory.fuelQty[i]);
                 totalItems++;
             }
         }
@@ -189,7 +219,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.oreQty[i] > 0)
             {
-                addSellLine(i, createInventory.oreName[i], createInventory.oreQty[i]);
+                addSellLine(createInventory.oreName[i], createInventory.oreQty[i]);
                 totalItems++;
             }
         }
@@ -198,7 +228,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.ingotQty[i] > 0)
             {
-                addSellLine(i, createInventory.ingotName[i], createInventory.ingotQty[i]);
+                addSellLine(createInventory.ingotName[i], createInventory.ingotQty[i]);
                 totalItems++;
             }
         }
@@ -207,7 +237,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.skinQty[i] > 0)
             {
-                addSellLine(i, createInventory.skinName[i], createInventory.skinQty[i]);
+                addSellLine(createInventory.skinName[i], createInventory.skinQty[i]);
                 totalItems++;
             }
         }
@@ -216,7 +246,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.leatherQty[i] > 0)
             {
-                addSellLine(i, createInventory.leatherName[i], createInventory.leatherQty[i]);
+                addSellLine(createInventory.leatherName[i], createInventory.leatherQty[i]);
                 totalItems++;
             }
         }
@@ -225,7 +255,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.gemQty[i] > 0)
             {
-                addSellLine(i, createInventory.gemName[i], createInventory.gemQty[i]);
+                addSellLine(createInventory.gemName[i], createInventory.gemQty[i]);
                 totalItems++;
             }
         }
@@ -234,7 +264,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.gemstoneQty[i] > 0)
             {
-                addSellLine(i, createInventory.gemstoneName[i], createInventory.gemstoneQty[i]);
+                addSellLine(createInventory.gemstoneName[i], createInventory.gemstoneQty[i]);
                 totalItems++;
             }
         }
@@ -243,7 +273,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.woodQty[i] > 0)
             {
-                addSellLine(i, createInventory.woodName[i], createInventory.woodQty[i]);
+                addSellLine(createInventory.woodName[i], createInventory.woodQty[i]);
                 totalItems++;
             }
         }
@@ -252,7 +282,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.lumberQty[i] > 0)
             {
-                addSellLine(i, createInventory.lumberName[i], createInventory.lumberQty[i]);
+                addSellLine(createInventory.lumberName[i], createInventory.lumberQty[i]);
                 totalItems++;
             }
         }
@@ -261,7 +291,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.leatherStrapQty[i] > 0)
             {
-                addSellLine(i, createInventory.leatherStrapName[i], createInventory.leatherStrapQty[i]);
+                addSellLine(createInventory.leatherStrapName[i], createInventory.leatherStrapQty[i]);
                 totalItems++;
             }
         }
@@ -270,7 +300,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.leatherPaddingQty[i] > 0)
             {
-                addSellLine(i, createInventory.leatherPaddingName[i], createInventory.leatherPaddingQty[i]);
+                addSellLine(createInventory.leatherPaddingName[i], createInventory.leatherPaddingQty[i]);
                 totalItems++;
             }
         }
@@ -279,7 +309,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.hiltQty[i] > 0)
             {
-                addSellLine(i, createInventory.hiltName[i], createInventory.hiltQty[i]);
+                addSellLine(createInventory.hiltName[i], createInventory.hiltQty[i]);
                 totalItems++;
             }
         }
@@ -288,7 +318,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.sheathQty[i] > 0)
             {
-                addSellLine(i, createInventory.sheathName[i], createInventory.sheathQty[i]);
+                addSellLine(createInventory.sheathName[i], createInventory.sheathQty[i]);
                 totalItems++;
             }
         }
@@ -297,7 +327,7 @@ public class MarketRoutine : MonoBehaviour {
         {
             if (createInventory.handleQty[i] > 0)
             {
-                addSellLine(i, createInventory.handleName[i], createInventory.handleQty[i]);
+                addSellLine(createInventory.handleName[i], createInventory.handleQty[i]);
                 totalItems++;
             }
         }
@@ -307,7 +337,14 @@ public class MarketRoutine : MonoBehaviour {
             tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
             tempObj.transform.SetParent(sellBackground.transform);
             tempObj.transform.localScale = new Vector3(1, 1, 1);
-            tempObj.transform.GetChild(0).GetComponent<Text>().text = "";
+            if (i == 0)
+            {
+                tempObj.transform.GetChild(0).GetComponent<Text>().text = "You current have no items.";
+            }
+            else
+            {
+                tempObj.transform.GetChild(0).GetComponent<Text>().text = "";
+            }
             tempObj.transform.GetChild(1).GetComponent<Text>().text = "";
         }
     }
@@ -354,7 +391,7 @@ public class MarketRoutine : MonoBehaviour {
         }
     }
 
-    private void addSellLine(int index, string item, int qty)
+    private void addSellLine(string item, int qty)
     {
         tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
         tempObj.transform.SetParent(sellBackground.transform);
@@ -362,6 +399,18 @@ public class MarketRoutine : MonoBehaviour {
         tempObj.name = item;
         tempObj.AddComponent<ConfirmSell>();
         tempObj.transform.GetChild(0).GetComponent<Text>().text = item;
+        //string tempStr = (qty > 0) ? "" + qty : "";
         tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + qty;
+    }
+
+    private void addSellLine(string item, int qty, GameObject type)
+    {
+        tempObj = Instantiate(itemLine, sellBackground.transform.position, Quaternion.identity) as GameObject;
+        tempObj.transform.SetParent(sellBackground.transform);
+        tempObj.transform.localScale = new Vector3(1, 1, 1);
+        tempObj.name = item;
+        tempObj.AddComponent<ConfirmSell>();
+        tempObj.AddComponent<SellItem>();
+        tempObj.transform.GetChild(0).GetComponent<Text>().text = item;
     }
 }
