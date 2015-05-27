@@ -20,9 +20,7 @@ public class ConfirmPurchase : MonoBehaviour {
         marketRoutine = GameObject.Find("GameController").GetComponent<MarketRoutine>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         itemName = gameObject.name;
-        confirmationBox = GameObject.Find("Town/Market Canvas/Market Confirmation");
-        confirmationText = confirmationBox.transform.GetChild(0).GetComponent<Text>();
-
+        confirmationBox = GameObject.Find("Town/Market Canvas/Market Confirmation Buy");
 	}
 
     int getItemCost()
@@ -242,6 +240,10 @@ public class ConfirmPurchase : MonoBehaviour {
         marketRoutine.setCurrentPurchaseItem(itemName);
         marketRoutine.setCurrentPurchasePrice(itemCost);
         confirmationBox.SetActive(true);
+        if (confirmationText == null)
+        {
+            confirmationText = confirmationBox.transform.GetChild(0).GetComponent<Text>();
+        }
         confirmationText.text = "You want to purchase " + itemName + " for " + itemCost + " gold?";
     }
 

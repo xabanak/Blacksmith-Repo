@@ -5,24 +5,27 @@ using System.Collections;
 public class MarketConfirmYesNo : MonoBehaviour {
 
     private MarketRoutine marketRoutine;
-    private GameObject confirmationBox;
+    public GameObject confirmationBox;
     private GameController gameController;
     private CreateInventory createInventory;
 
 	void Start () 
     {
         marketRoutine = GameObject.Find("GameController").GetComponent<MarketRoutine>();
-        confirmationBox = GameObject.Find("Town/Market Canvas/Market Confirmation");
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
-        if (marketRoutine.getBuy())
+
+        confirmationBox = this.gameObject;
+
+        if (name == "Market Confirmation Buy")
         {
             confirmationBox.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => selectYesBuy());
         }
-        else if(marketRoutine.getSell())
+        else if (name == "Market Confirmation Sell")
         {
             confirmationBox.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => selectYesSell());
         }
+
         confirmationBox.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => selectNo());
 
 	}
@@ -51,6 +54,8 @@ public class MarketConfirmYesNo : MonoBehaviour {
         marketRoutine.updateGold();
         createInventory.removeItem(marketRoutine.getCurrentSellItem(), 1);
         marketRoutine.setMarketWindow();
+
+        confirmationBox.SetActive(false);
     }
 
     public void selectNo()

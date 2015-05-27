@@ -20,9 +20,7 @@ public class ConfirmSell : MonoBehaviour {
         marketRoutine = GameObject.Find("GameController").GetComponent<MarketRoutine>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         itemName = gameObject.name;
-        confirmationBox = GameObject.Find("Town/Market Canvas/Market Confirmation");
-        confirmationText = confirmationBox.transform.GetChild(0).GetComponent<Text>();
-
+        confirmationBox = GameObject.Find("Town/Market Canvas/Market Confirmation Sell");
     }
 
     public void OnMouseDown()
@@ -229,9 +227,14 @@ public class ConfirmSell : MonoBehaviour {
                 break;
         }
 
+        itemCost = (int)(itemCost * 0.2f);
         marketRoutine.setCurrentSellItem(itemName);
         marketRoutine.setCurrentSellPrice(itemCost);
         confirmationBox.SetActive(true);
+        if (confirmationText == null)
+        {
+            confirmationText = confirmationBox.transform.GetChild(0).GetComponent<Text>();
+        }
         confirmationText.text = "You want to sell your " + itemName + " for " + itemCost + "?";
     }
 }
