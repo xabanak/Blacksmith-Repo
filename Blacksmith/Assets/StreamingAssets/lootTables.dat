@@ -1,5 +1,5 @@
-G
-*This file contains the time multipliers for each adventuring level
+I
+*This file contains the loot tables for each adventuring level
 *Lines beginning with a * will be ignored upon loading. Do not modify the first line.
 *Make sure there are no trailing empty lines at the end.
 *
@@ -9,109 +9,117 @@ Tin
 50
 Nothing
 50
+next item
 **Wood
 Elm
 50
 Nothing
 50
+next item
 **Skins
 Leather
 50
 Nothing
 50
+next item
 *******Level 2
 **Ore
-**Leather
+Tin
+35
+Copper
+35
+Nothing
+30
+next item
+**Wood
+Elm
+50
+Nothing
+50
+next item
 **Skins
+Leather
+50
+Nothing
+50
+next item
 *******Level 3
 **Ore
-**Leather
+Copper
+50
+Nothing
+50
+next item
+**Wood
+Elm
+50
+Nothing
+50
+next item
 **Skins
+Leather
+50
+Nothing
+50
+next item
 *******Level 4
 **Ore
-**Leather
+Copper
+40
+Zinc
+40
+Nothing
+20
+next item
+**Wood
+Elm
+50
+Nothing
+50
+next item
 **Skins
+Leather
+50
+Nothing
+50
+next item
 *******Level 5
 **Ore
-**Leather
+Copper
+45
+Zinc
+45
+Nothing
+10
+next item
+**Wood
+Elm
+50
+Nothing
+50
+next item
 **Skins
+Leather
+50
+Nothing
+50
+next item
 *******Level 6
 **Ore
-**Leather
+Copper
+50
+Zinc
+50
+next item
+**Wood
+Elm
+50
+Nothing
+50
+next item
 **Skins
-*******Level 7
-**Ore
-**Leather
-**Skins
-*******Level 8
-**Ore
-**Leather
-**Skins
-*******Level 9
-**Ore
-**Leather
-**Skins
-*******Level 10
-**Ore
-**Leather
-**Skins
-*******Level 11
-**Ore
-**Leather
-**Skins
-*******Level 12
-**Ore
-**Leather
-**Skins
-*******Level 13
-**Ore
-**Leather
-**Skins
-*******Level 14
-**Ore
-**Leather
-**Skins
-*******Level 15
-**Ore
-**Leather
-**Skins
-*******Level 16
-**Ore
-**Leather
-**Skins
-*******Level 17
-**Ore
-**Leather
-**Skins
-*******Level 18
-**Ore
-**Leather
-**Skins
-*******Level 19
-**Ore
-**Leather
-**Skins
-*******Level 20
-**Ore
-**Leather
-**Skins
-*******Level 21
-**Ore
-**Leather
-**Skins
-*******Level 22
-**Ore
-**Leather
-**Skins
-*******Level 23
-**Ore
-**Leather
-**Skins
-*******Level 24
-**Ore
-**Leather
-**Skins
-*******Level 25
-**Ore
-**Leather
-**Skins
+Leather
+50
+Nothing
+50
+next item

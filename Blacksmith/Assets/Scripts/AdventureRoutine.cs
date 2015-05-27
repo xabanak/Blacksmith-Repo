@@ -128,6 +128,7 @@ public class AdventureRoutine : MonoBehaviour
 
         if (adventurer.sendOnAdventure())
         {
+            adventureTimers[adventurerIter] = dataScript.getAdvTimeMult(adventurer.getLevel(), levelDecrimentor);
             this.adventureZone[adventurerIter] = adventureZone;
             adventureDecriment[adventurerIter] = levelDecrimentor;
             adventureTimers[adventurerIter] = baseTimer * dataScript.getAdvTimeMult(adventurers[adventurerIter].getLevel(), adventureDecriment[adventurerIter]);
@@ -136,9 +137,24 @@ public class AdventureRoutine : MonoBehaviour
         return false;
     }
 
-    public void endAdventure(int adventureIter)
+    public void endAdventure(int adventurerIter)
     {
+        int level = adventurers[adventurerIter].getLevel();
+        int chanceToSucceedInt;
+        double chanceToSucceedDbl = ((5.0f * Convert.ToDouble(level)) + adventurers[adventurerIter].getPowerLevel()) / (15.0f * Convert.ToDouble(level));
+        
+        if (chanceToSucceedDbl >= 1.0f)
+        {
+            return;
+        }
 
+        chanceToSucceedDbl *= 10.0f;
+        chanceToSucceedInt = Convert.ToInt32(chanceToSucceedDbl);
+
+        if (UnityEngine.Random.Range(0, 100) >= chanceToSucceedInt)
+        {
+            removeAdventurer(adventurers[adventurerIter]);
+        }
     }
 }
 
@@ -399,11 +415,17 @@ public class Adventurer
     public void levelUp()
     {
         level++;
+        calculatePower();
     }
 
     public int getLevel()
     {
         return level;
+    }
+
+    public int getPowerLevel()
+    {
+        return powerLevel;
     }
 
     public bool sendOnAdventure()
@@ -424,6 +446,12 @@ public class Adventurer
             return true;
         }
         return false;
+    }
+
+    public void returnFromAdventure()
+    {
+        isHome = true;
+        isReturned = true;
     }
 
     public bool getAdventuringState()//True: currently on an adventure, false: currently home

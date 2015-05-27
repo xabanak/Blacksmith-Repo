@@ -1,5 +1,5 @@
 E
-*This file contains the time multipliers for each item type and material type
+*This file contains the base power levels for each material type
 *Lines beginning with a * will be ignored upon loading. Do not modify the first line.
 *Make sure there are no trailing empty lines at the end.
 *

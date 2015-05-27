@@ -536,7 +536,7 @@ public class CreateInventory : MonoBehaviour
         handleName[4] = "Expert Handle";
         // End Define handle types
 
-        //SetQuantitiesTestMethod();
+        SetQuantitiesTestMethod();
 	}
 
     void SetQuantitiesTestMethod()

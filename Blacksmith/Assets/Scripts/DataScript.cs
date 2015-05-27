@@ -12,7 +12,7 @@ public class DataScript : MonoBehaviour
     //const string dir = "Assets/StreamingAssets/";
     const int numSurnames = 44;
     const int numFirstNames = 48;
-    const int numLevels = 25;
+    const int numLevels = 6;
     const int numLevelOptions = 5;
     const int itemTypes = 3;
     const int lootOptions = 8;
@@ -54,6 +54,13 @@ public class DataScript : MonoBehaviour
         SteelAlloyL1,
         SteelAlloyL2,
         Titanium
+    }
+
+    enum ItemType
+    {
+        Ore,
+        Wood,
+        Skin
     }
 
     enum Stage // Listing of stages, currently unused Enum
@@ -314,21 +321,31 @@ public class DataScript : MonoBehaviour
                     {
                         continue;
                     }
-                    if (tempString == "next level")
+                    if (i == numLevels)
+                    {
+                        break;
+                    }
+                    else if(j == itemTypes)
                     {
                         i++;
+                        j = 0;
+                        m = 0;
+                    }
+                    else if (m == lootOptions)
+                    {
+                        j++;
                         m = 0;
                     }
                     else if (tempString == "next item")
                     {
                         j++;
                         m = 0;
+                        continue;
                     }
-                    else
-                    {
-                        lootTables[i, j, m] = new LootEntry(tempString, Convert.ToDouble(inputStream.ReadLine()));
-                        m++;
-                    }
+
+                    lootTables[i, j, m] = new LootEntry(tempString, Convert.ToDouble(inputStream.ReadLine()));
+                    Debug.Log("LootEntry: Item: " + lootTables[i, j, m].getItem() + " \n Weight: " + lootTables[i, j, m].getWeight());
+                    m++;
                 }
                 break;
 
