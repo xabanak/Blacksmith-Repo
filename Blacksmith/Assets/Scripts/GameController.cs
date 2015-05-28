@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour {
     public Camera townCamera;
     public Camera startCamera;
     public GameObject startCameraObj;
+    public GameObject escapeMenu;
 
     public Canvas workshopCanvas;
     public Canvas inventoryCanvas;
@@ -83,6 +84,11 @@ public class GameController : MonoBehaviour {
         if (!craftRoutine.isPaused() && tutorialRoutine.tutorialComplete(35))
         {
             tutorialHelper(36);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            escapeMenu.SetActive(!escapeMenu.activeSelf);
         }
 	}
 
@@ -187,5 +193,10 @@ public class GameController : MonoBehaviour {
     public int getGold()
     {
         return gold;
+    }
+
+    public void exitGame()
+    {
+        Application.Quit();
     }
 }

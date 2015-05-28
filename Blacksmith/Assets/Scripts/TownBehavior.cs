@@ -54,11 +54,6 @@ public class TownBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-	    if (tavernCanvas.gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape))
-        {
-            tavernCanvas.gameObject.SetActive(false);
-            tavernCanvas.worldCamera = tavernCamera;
-        }
 	}
 
     public void toggleTavernWindow()

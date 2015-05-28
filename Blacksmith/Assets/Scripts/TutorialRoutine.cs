@@ -111,6 +111,14 @@ public class TutorialRoutine : MonoBehaviour {
         }
     }
 
+    IEnumerator WaitAndDisable(float waitTime)
+    {
+        Debug.Log("Started wait and disable");
+        yield return new WaitForSeconds(waitTime);
+        showMessage();
+        Debug.Log("Finished wait and disable.");
+    }
+
     public void tutorialMachine(int step)
     {
         if (gameController.isTutorialActive())
@@ -545,6 +553,8 @@ public class TutorialRoutine : MonoBehaviour {
     {
         toggleTutorialActive();
         message.text = "Well done. Now repeat this process until you have finished polishing or the time runs out.";
+        craftRoutine.Pause();
+        StartCoroutine(WaitAndDisable(2.0f));
         increaseTutorialStep();
     }
     

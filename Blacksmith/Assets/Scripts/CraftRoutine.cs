@@ -36,6 +36,14 @@ public class CraftRoutine : MonoBehaviour
 	public float furnaceSliderChange;
 	public float quenchingSliderChange;
 
+    public Button townButton;
+    public Button rearButton;
+    public Button frontButton;
+    public Button workshopButton;
+
+    public Canvas overlayCanvas;
+
+    public GameObject townCamera;
     public GameObject craftingCamera;
     public GameObject background1;
     public GameObject background2;
@@ -450,6 +458,8 @@ public class CraftRoutine : MonoBehaviour
             startButton.SetActive(false);
             materialTypeButton.SetActive(false);
             itemTypeButton.SetActive(false);
+            townButton.gameObject.SetActive(false);
+            rearButton.gameObject.SetActive(false);
             itemSet = false;
             materialSet = false;
             stage.enabled = true;
@@ -474,6 +484,8 @@ public class CraftRoutine : MonoBehaviour
         startButton.SetActive(true);
         startButton.GetComponentInChildren<Text>().text = "Craft";
         startButton.GetComponent<Image>().color = new Vector4(255, 255, 255, 255);
+        townButton.gameObject.SetActive(true);
+        rearButton.gameObject.SetActive(true);
     }
 
     void resetCrafting()
@@ -1373,6 +1385,31 @@ public class CraftRoutine : MonoBehaviour
                 break;
             case "workbench":
                 craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, -10);
+                break;
+            case "town":
+                craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, -10);
+                craftingCamera.SetActive(false);
+                townCamera.SetActive(true);
+                workshopButton.gameObject.SetActive(true);
+                overlayCanvas.worldCamera = townCamera.GetComponent<Camera>();
+                break;
+            case "rear":
+                craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, -10);
+                townButton.gameObject.SetActive(false);
+                rearButton.gameObject.SetActive(false);
+                frontButton.gameObject.SetActive(true);
+                break;
+            case "front":
+                craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, -10);
+                townButton.gameObject.SetActive(true);
+                rearButton.gameObject.SetActive(true);
+                frontButton.gameObject.SetActive(false);
+                break;
+            case "workshop":
+                townCamera.SetActive(false);
+                craftingCamera.SetActive(true);
+                workshopButton.gameObject.SetActive(false);
+                overlayCanvas.worldCamera = craftingCamera.GetComponent<Camera>();
                 break;
             default:
                 Debug.Log("Scene not found");
