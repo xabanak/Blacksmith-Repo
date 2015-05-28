@@ -27,7 +27,7 @@ public class AdventureRoutine : MonoBehaviour
 	    adventurers = new Adventurer[NUM_ADVENTURERS];
         adventureZone = new string[NUM_ADVENTURERS];
         adventureDecriment = new int[NUM_ADVENTURERS];
-        adventureTimers = new double[numAdventurers];
+        adventureTimers = new double[NUM_ADVENTURERS];
         adventurers[0] = null;
         adventurers[1] = null; 
         adventurers[2] = null;
@@ -62,6 +62,7 @@ public class AdventureRoutine : MonoBehaviour
     private void updateAdventure(int adventureIter)
     {
         adventureTimers[adventureIter] -= Time.deltaTime;
+        Debug.Log(adventureTimers[adventureIter]);
         if (adventureTimers[adventureIter] <= 0)
         {
             endAdventure(adventureIter);
@@ -108,6 +109,7 @@ public class AdventureRoutine : MonoBehaviour
 
     public bool sendOnAdventure(Adventurer adventurer, string adventureZone, int levelDecrimentor)
     {
+        Debug.Log("Send on adventure called");
         int adventurerIter;
         if (adventurers[0] == adventurer)
         {
@@ -128,7 +130,7 @@ public class AdventureRoutine : MonoBehaviour
 
         if (adventurer.sendOnAdventure(adventureZone))
         {
-            adventureTimers[adventurerIter] = dataScript.getAdvTimeMult(adventurer.getLevel(), levelDecrimentor);
+            //adventureTimers[adventurerIter] = dataScript.getAdvTimeMult(adventurer.getLevel(), levelDecrimentor);
             this.adventureZone[adventurerIter] = adventureZone;
             adventureDecriment[adventurerIter] = levelDecrimentor;
             adventureTimers[adventurerIter] = baseTimer * dataScript.getAdvTimeMult(adventurers[adventurerIter].getLevel(), adventureDecriment[adventurerIter]);
@@ -442,6 +444,7 @@ public class Adventurer
 
     public bool sendOnAdventure(string adventureZone)
     {
+        Debug.Log(isHome + " " + isReturned);
         if (isHome && !isReturned)
         {
             this.adventureZone = (adventureZones)Enum.Parse(typeof(adventureZones), adventureZone);

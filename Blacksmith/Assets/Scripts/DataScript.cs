@@ -406,7 +406,8 @@ public class DataScript : MonoBehaviour
 
     public double getAdvTimeMult(int level, int levelDecrementer)
     {
-        return adventureTimeMultiplier[level] * adventureLevelMultiplier[levelDecrementer];
+        Debug.Log(adventureTimeMultiplier[level - 1] + " " + adventureLevelMultiplier[levelDecrementer]);
+        return adventureTimeMultiplier[level - 1] * adventureLevelMultiplier[levelDecrementer];
     }
 
     public LootEntry getLootItem(int level, int itemType, int position)

@@ -75,7 +75,7 @@ public class TownBehavior : MonoBehaviour {
         }
     }
 
-    public void hireAdventurer ()
+    public void hireAdventurer()
     {
         confirmationBox.SetActive(false);
         toggleTavernWindow();
@@ -102,6 +102,7 @@ public class TownBehavior : MonoBehaviour {
                 Debug.Log("No adventurer found");
                 break;
         }
+        adventurers = adventureRoutine.getAdventurers();
     }
 
     public void getAdventurerSet()
@@ -199,13 +200,13 @@ public class TownBehavior : MonoBehaviour {
 
     public void travelHeroSelection(string button)
     {
-        Adventurer[] tempAdventurers;
-        tempAdventurers = adventureRoutine.getAdventurers();
+        //Adventurer[] tempAdventurers;
+        //tempAdventurers = adventureRoutine.getAdventurers();
 
         switch(button)
         {
             case "Hero 1":
-                if (tempAdventurers[0] != null)
+                if (adventurers[0] != null)
                 {
                     travelHeroOne.GetComponent<Image>().color = Color.white;
                     if (travelHeroTwo.GetComponent<Button>().IsInteractable())
@@ -216,7 +217,7 @@ public class TownBehavior : MonoBehaviour {
                 }
                 break;
             case "Hero 2":
-                if (tempAdventurers[1] != null)
+                if (adventurers[1] != null)
                 {
                     travelHeroTwo.GetComponent<Image>().color = Color.white;
                     if (travelHeroOne.GetComponent<Button>().IsInteractable())
@@ -227,7 +228,7 @@ public class TownBehavior : MonoBehaviour {
                 }
                 break;
             case "Hero 3":
-                if (tempAdventurers[2] != null)
+                if (adventurers[2] != null)
                 {
                     travelHeroThree.GetComponent<Image>().color = Color.white;
                     if (travelHeroOne.GetComponent<Button>().IsInteractable())
@@ -313,15 +314,18 @@ public class TownBehavior : MonoBehaviour {
         Debug.Log("send town called");
         if (activeTravelHero == 1)
         {
-            adventureRoutine.sendOnAdventure(adventurerOne, currentTravelZone, level);
+            Debug.Log("ActiveTravelHero 1");
+            adventureRoutine.sendOnAdventure(adventurers[0], currentTravelZone, level);
         }
         else if(activeTravelHero == 2)
         {
-            adventureRoutine.sendOnAdventure(adventurerTwo, currentTravelZone, level);
+            Debug.Log("ActiveTravelHero 2");
+            adventureRoutine.sendOnAdventure(adventurers[1], currentTravelZone, level);
         }
         else if(activeTravelHero == 3)
         {
-            adventureRoutine.sendOnAdventure(adventurerThree, currentTravelZone, level);
+            Debug.Log("ActiveTravelHero 3");
+            adventureRoutine.sendOnAdventure(adventurers[2], currentTravelZone, level);
         }
     }
 
