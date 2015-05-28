@@ -21,8 +21,6 @@ public class MarketRoutine : MonoBehaviour {
     private string currentSellItem;
     private int currentSellPrice;
     private GameObject currentSellCraftedItem;
-    private bool sell;
-    private bool buy;
 
     public GameObject testSword;
     
@@ -41,10 +39,9 @@ public class MarketRoutine : MonoBehaviour {
 
 	void Start () 
     {
+
         tier = 1;
         confirm = false;
-        sell = false;
-        buy = false;
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
@@ -67,6 +64,10 @@ public class MarketRoutine : MonoBehaviour {
         tierOneCosts[6] = createInventory.hiltCost[0];
         tierOneCosts[7] = createInventory.handleCost[0];
 
+        // TEST METHOD
+        Instantiate(testSword);
+        testSword.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 11);
+        createInventory.addCraftedItem(testSword);
 	}
 	
     public bool getConfirm()
@@ -134,28 +135,6 @@ public class MarketRoutine : MonoBehaviour {
         return currentSellCraftedItem;
     }
 
-    public void toggleSell()
-    {
-        sell = !sell;
-        buy = false;
-    }
-
-    public bool getSell()
-    {
-        return sell;
-    }
-
-    public void toggleBuy()
-    {
-        buy = !buy;
-        sell = false;
-    }
-
-    public bool getBuy()
-    {
-        return buy;
-    }
-
     public void setMarketWindow()
     {
         clearMarket();
@@ -194,15 +173,10 @@ public class MarketRoutine : MonoBehaviour {
     {
         int totalItems = 0;
 
-        // TEST METHOD
-        Instantiate(testSword);
-        testSword.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 11);
-        createInventory.addCraftedItem(testSword);
-
         // ADD IN WEAPON GAME OBJECTS
         for (int i = 0; i < createInventory.getItemType("sword").GetCurrentSize(); i++)
         {
-            addSellLine(createInventory.getItemType("sword").GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0);
+            addSellLine(createInventory.getItemType("sword").GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0, createInventory.getItemType("sword").GetItem(i));
             totalItems++;
         }
 
@@ -411,6 +385,8 @@ public class MarketRoutine : MonoBehaviour {
         tempObj.name = item;
         tempObj.AddComponent<ConfirmSell>();
         tempObj.AddComponent<SellItem>();
+        tempObj.GetComponent<SellItem>().setCraftedItem(type);
         tempObj.transform.GetChild(0).GetComponent<Text>().text = item;
+        tempObj.transform.GetChild(1).GetComponent<Text>().text = "";
     }
 }

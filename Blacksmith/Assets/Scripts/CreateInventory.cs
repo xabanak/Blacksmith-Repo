@@ -536,7 +536,7 @@ public class CreateInventory : MonoBehaviour
         handleName[4] = "Expert Handle";
         // End Define handle types
 
-        SetQuantitiesTestMethod();
+        //SetQuantitiesTestMethod();
 	}
 
     void SetQuantitiesTestMethod()
@@ -592,7 +592,6 @@ public class CreateInventory : MonoBehaviour
     public void UpdateWeaponList()
     {
         int tempInt = 17 - swords.GetCurrentSize();
-        Debug.Log("Size: " + swords.GetCurrentSize());
         for (int i = 0; i < swords.GetCurrentSize(); i++)
         {
             tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, inventoryCanvas.transform.position.z - 1), Quaternion.identity) as GameObject;
@@ -609,7 +608,6 @@ public class CreateInventory : MonoBehaviour
             {
                 tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, inventoryCanvas.transform.position.z - 1), Quaternion.identity) as GameObject;
                 tempLine.transform.SetParent(weaponBackground.transform);
-                Debug.Log("Line space " + i);
             }
         }
     }
@@ -1101,7 +1099,7 @@ public class CreateInventory : MonoBehaviour
     {
         switch (item.GetComponent<ItemScript>().GetItem())
         {
-            case "sword":
+            case "Sword":
                 swords.RemoveItem(item);
                 break;
             default:

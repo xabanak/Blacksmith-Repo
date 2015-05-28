@@ -55,6 +55,7 @@ public class MarketConfirmYesNo : MonoBehaviour {
         if (marketRoutine.getCurrentSellCraftedItem() != null)
         {
             createInventory.deleteCraftedItem(marketRoutine.getCurrentSellCraftedItem());
+            Debug.Log("Sell Item");
         }
         else
         {
