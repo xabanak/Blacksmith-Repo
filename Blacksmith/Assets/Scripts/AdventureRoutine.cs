@@ -123,10 +123,10 @@ public class AdventureRoutine : MonoBehaviour
         }
         else
         {
-            adventurerIter = -1;
+            return false;
         }
 
-        if (adventurer.sendOnAdventure())
+        if (adventurer.sendOnAdventure(adventureZone))
         {
             adventureTimers[adventurerIter] = dataScript.getAdvTimeMult(adventurer.getLevel(), levelDecrimentor);
             this.adventureZone[adventurerIter] = adventureZone;
@@ -177,8 +177,11 @@ public class Adventurer
     private Sprite portrait;
     private DataScript dataScript;
     private GameObject gameController;
+    adventureZones adventureZone;
 
     private const int INV_OBJECTS = 9;
+    private const int LOOT_OPTIONS = 8;
+    private const int ITEM_TYPES = 3;
 
     enum Item // Listing of items
     {
@@ -437,10 +440,11 @@ public class Adventurer
         return powerLevel;
     }
 
-    public bool sendOnAdventure()
+    public bool sendOnAdventure(string adventureZone)
     {
         if (isHome && !isReturned)
         {
+            this.adventureZone = (adventureZones)Enum.Parse(typeof(adventureZones), adventureZone);
             isHome = false;
             return true;
         }
@@ -451,8 +455,58 @@ public class Adventurer
     {
         if (isReturned)
         {
-            LootEntry[] lootOptions = new LootEntry[8];
+            for (int i = 0; i < ITEM_TYPES; i++)
+            {
+                int totalWeight = 0;
+                int roll;
+                int totalRolls = 0;
 
+                switch(i)
+                {
+                    case 0:
+                        {
+                            totalRolls += oreModifier;
+                            break;
+                        }
+                    case 1:
+                        {
+                            totalRolls += woodModifier;
+                            break;
+                        }
+                    case 2:
+                        {
+                            totalRolls += skinsModifier;
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+                
+                switch (adventureZone)
+                {
+                    case 0:
+                        {
+
+                            break;
+                        }
+
+                }
+
+
+                LootEntry[] lootOptions = new LootEntry[LOOT_OPTIONS];
+                
+                for(int j = 0; j < LOOT_OPTIONS; j++)
+                {
+                    LootEntry currentEntry = dataScript.getLootItem((level - adventureDecriment), (int)adventureZone, j);
+                    totalWeight += currentEntry.getWeight();
+                }
+
+                roll = UnityEngine.Random.Range(0, totalWeight);
+
+
+            }
 
 
             isReturned = false;

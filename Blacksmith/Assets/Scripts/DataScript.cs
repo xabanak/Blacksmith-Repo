@@ -343,7 +343,7 @@ public class DataScript : MonoBehaviour
                         continue;
                     }
 
-                    lootTables[i, j, m] = new LootEntry(tempString, Convert.ToDouble(inputStream.ReadLine()));
+                    lootTables[i, j, m] = new LootEntry(tempString, Convert.ToInt32(inputStream.ReadLine()));
                     Debug.Log("LootEntry: Item: " + lootTables[i, j, m].getItem() + " \n Weight: " + lootTables[i, j, m].getWeight());
                     m++;
                 }
@@ -408,14 +408,23 @@ public class DataScript : MonoBehaviour
     {
         return adventureTimeMultiplier[level] * adventureLevelMultiplier[levelDecrementer];
     }
+
+    public LootEntry getLootItem(int level, int itemType, int position)
+    {
+        if (lootTables[level, itemType, position] != null)
+        {
+            return lootTables[level, itemType, position];
+        }
+        else return null;
+    }
 }
 
 public class LootEntry
 {
     string item;
-    double weight;
+    int weight;
 
-    public LootEntry(string item, double weight)
+    public LootEntry(string item, int weight)
     {
         this.item = item;
         this.weight = weight;
@@ -425,7 +434,7 @@ public class LootEntry
     {
         return item;
     }
-    public double getWeight()
+    public int getWeight()
     {
         return weight;
     }
