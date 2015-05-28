@@ -137,7 +137,7 @@ public class AdventureRoutine : MonoBehaviour
         return false;
     }
 
-    public void endAdventure(int adventurerIter)
+    private void endAdventure(int adventurerIter)
     {
         int level = adventurers[adventurerIter].getLevel();
         int chanceToSucceedInt;
@@ -156,6 +156,11 @@ public class AdventureRoutine : MonoBehaviour
             removeAdventurer(adventurers[adventurerIter]);
         }
     }
+
+    public void collectFromAdventurer(Adventurer adventurer, int adventurerIter)
+    {
+        adventurer.collectFromAdventure(adventureDecriment[adventurerIter]);
+    }
 }
 
 public class Adventurer
@@ -170,6 +175,8 @@ public class Adventurer
     private int woodModifier;
     private GameObject[] inventory;
     private Sprite portrait;
+    private DataScript dataScript;
+    private GameObject gameController;
 
     private const int INV_OBJECTS = 9;
 
@@ -196,7 +203,9 @@ public class Adventurer
 
     public Adventurer()
     {
-        name = GameObject.Find("GameController").GetComponent<DataScript>().getAdventurerName();
+        gameController = GameObject.Find("GameController");
+        dataScript = gameController.GetComponent<DataScript>();
+        name = dataScript.getAdventurerName();
         this.level = 1;
         powerLevel = 0;
         isHome = true;
@@ -438,10 +447,14 @@ public class Adventurer
         return false;
     }
 
-    public bool collectFromAdventure()
+    public bool collectFromAdventure(int adventureDecriment)
     {
         if (isReturned)
         {
+            LootEntry[] lootOptions = new LootEntry[8];
+
+
+
             isReturned = false;
             return true;
         }
