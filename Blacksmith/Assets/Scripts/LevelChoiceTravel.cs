@@ -30,6 +30,8 @@ public class LevelChoiceTravel : MonoBehaviour {
         // TEST METHOD
         //for (int i = 0; i < 15; i++)
         //    adventurers[townBehavior.activeTravelHero - 1].levelUp();
+
+        townBehavior.setCurrentTravelZone(name);
         int temp = adventurers[townBehavior.activeTravelHero - 1].getLevel();
 
         if (temp == 1)

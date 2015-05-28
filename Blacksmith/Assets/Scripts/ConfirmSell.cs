@@ -223,13 +223,16 @@ public class ConfirmSell : MonoBehaviour {
                 itemCost = createInventory.handleCost[4];
                 break;
             default:
-                itemCost = GetComponent<SellItem>().getCraftedItem().GetComponent<ItemScript>().GetPower();
+                itemCost = GetComponent<SellItem>().getCraftedItem().GetComponent<ItemScript>().GetPower() * 10;
                 marketRoutine.setCurrentSellCraftedItem(GetComponent<SellItem>().getCraftedItem());
                 Debug.Log("Not a basic item");
                 break;
         }
 
-        itemCost = (int)(itemCost * 0.2f);
+        if (marketRoutine.getCurrentSellCraftedItem() == null)
+        {
+            itemCost = (int)(itemCost * 0.2f);
+        }
         marketRoutine.setCurrentSellItem(itemName);
         marketRoutine.setCurrentSellPrice(itemCost);
         confirmationBox.SetActive(true);

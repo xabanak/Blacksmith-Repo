@@ -30,6 +30,7 @@ public class TownBehavior : MonoBehaviour {
     private bool newHeroes;
     private int heroSelection;
     public int activeTravelHero;
+    private string currentTravelZone;
     
 
     public Text testText;
@@ -305,5 +306,27 @@ public class TownBehavior : MonoBehaviour {
             marketCanvas.gameObject.SetActive(false);
             marketCanvas.worldCamera = marketCamera;
         }
+    }
+
+    public void sendAdventurer(int level)
+    {
+        Debug.Log("send town called");
+        if (activeTravelHero == 1)
+        {
+            adventureRoutine.sendOnAdventure(adventurerOne, currentTravelZone, level);
+        }
+        else if(activeTravelHero == 2)
+        {
+            adventureRoutine.sendOnAdventure(adventurerTwo, currentTravelZone, level);
+        }
+        else if(activeTravelHero == 3)
+        {
+            adventureRoutine.sendOnAdventure(adventurerThree, currentTravelZone, level);
+        }
+    }
+
+    public void setCurrentTravelZone(string zone)
+    {
+        currentTravelZone = zone;
     }
 }
