@@ -94,10 +94,10 @@ public class GameController : MonoBehaviour {
 
     void InventoryToggle()
     {
-        if (!craftRoutine.isPaused() && tutorialRoutine.tutorialComplete(33))
+        /*if (tutorialRoutine.tutorialComplete(33))
         {
             tutorialHelper(34);
-        }
+        }*/
 
         if (!craftRoutine.isCrafting() && workshop && !inventoryCanvas.GetComponent<Canvas>().enabled)
         {

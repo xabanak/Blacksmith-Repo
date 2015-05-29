@@ -16,7 +16,7 @@ public class TutorialRoutine : MonoBehaviour {
     private GameObject[] shimmers;
     private Text message;
     private int tutorialStep;
-    private bool tutorialDisplayed;
+    public bool tutorialDisplayed;
     private bool[] tutorials;
     private const int totalTutorials = 37;
     private const int totalPointersUpDown = 10;
@@ -74,6 +74,12 @@ public class TutorialRoutine : MonoBehaviour {
         {
             toggleTutorialActive();
         }
+
+        if (tutorialStep == 34 && Input.GetKeyDown(KeyCode.I))
+        {
+            toggleTutorialActive();
+            tutorialMachine(34);
+        }
     }
 
     // Used to determine if a step of the totorial has been completed.
@@ -111,12 +117,15 @@ public class TutorialRoutine : MonoBehaviour {
         }
     }
 
-    IEnumerator WaitAndDisable(float waitTime)
+    public IEnumerator WaitAndDisable(float waitTime)
     {
-        Debug.Log("Started wait and disable");
+        craftRoutine.Pause();
         yield return new WaitForSeconds(waitTime);
-        showMessage();
-        Debug.Log("Finished wait and disable.");
+        if (tutorialDisplayed)
+        {
+            toggleTutorialActive();
+            craftRoutine.Pause();
+        }
     }
 
     public void tutorialMachine(int step)
@@ -286,7 +295,7 @@ public class TutorialRoutine : MonoBehaviour {
     {
         toggleTutorialActive();
         message.text = "Now select the type of item you want to craft and the material you want to use by clicking ";
-        message.text += "the Type and Material buttons.";
+        message.text += "the Item and Material buttons.";
         pointersUpDown[0].SetActive(true);
         pointersUpDown[1].SetActive(true);
         increaseTutorialStep();
@@ -335,7 +344,7 @@ public class TutorialRoutine : MonoBehaviour {
     void shapingStage2()
     {
         toggleTutorialActive();
-        message.text = "This is the heat gauge.\nYou want to keep the metal hot so that it can be wokred with the hammer.";
+        message.text = "This is the heat gauge.\nYou want to keep the metal hot so that it can be worked with the hammer.";
         pointersLeftRight[3].SetActive(true);
         increaseTutorialStep();
     }
@@ -408,6 +417,7 @@ public class TutorialRoutine : MonoBehaviour {
     {
         toggleTutorialActive();
         message.text = "Great job! The timer has now started. This stage will finish when the timer runs out. To get the best quality keep both gauges in the sweet spots.";
+        StartCoroutine(WaitAndDisable(2.0f));
         increaseTutorialStep();
     }
 
@@ -492,7 +502,7 @@ public class TutorialRoutine : MonoBehaviour {
     void temperingStage2()
     {
         toggleTutorialActive();
-        message.text = "Move the component to the forge, then heat the it to reach green level on the heat gauge.";
+        message.text = "You need to heat the component again just like during the hardening stage, only this time not quite as hot. Heat it until you reach the green on the heat gauge.";
         shimmers[0].SetActive(true);
         increaseTutorialStep();
     }
@@ -529,6 +539,7 @@ public class TutorialRoutine : MonoBehaviour {
     {
         toggleTutorialActive();
         message.text = "Great you have finished sharpening both sides of the blade. Repeat this process for both sides 4 more times.";
+        StartCoroutine(WaitAndDisable(2.0f));
         increaseTutorialStep();
     }
 
@@ -553,7 +564,6 @@ public class TutorialRoutine : MonoBehaviour {
     {
         toggleTutorialActive();
         message.text = "Well done. Now repeat this process until you have finished polishing or the time runs out.";
-        craftRoutine.Pause();
         StartCoroutine(WaitAndDisable(2.0f));
         increaseTutorialStep();
     }
