@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class TownBehavior : MonoBehaviour {
 
+    public GameObject maleHeroOne;
     public GameObject travelHeroOne;
     public GameObject travelHeroTwo;
     public GameObject travelHeroThree;
@@ -185,6 +186,19 @@ public class TownBehavior : MonoBehaviour {
         {
             travelCanvas.gameObject.SetActive(true);
             travelCanvas.worldCamera = townCamera;
+            GameObject[] tempHeroes = new GameObject[3];
+            tempHeroes[0] = travelHeroOne;
+            tempHeroes[1] = travelHeroTwo;
+            tempHeroes[2] = travelHeroThree;
+
+            for (int i = 0; i <= 2; i++)
+            {
+                if (adventurers[i] != null)
+                {
+                    tempHeroes[i].GetComponent<Image>().sprite = maleHeroOne.GetComponent<SpriteRenderer>().sprite;
+                    tempHeroes[i].transform.GetChild(0).GetComponent<Text>().text = adventurers[i].getName();
+                }
+            }
         }
         else
         {
