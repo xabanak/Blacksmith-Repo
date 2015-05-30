@@ -732,7 +732,25 @@ public class CraftRoutine : MonoBehaviour
             tutorialHelper(12);
         }
         //End tutorial steps
+        if (heatSlider.value > 25.0f)
+        {
+            forgeOne.Play();
+        }
+        if (heatSlider.value < 25.0f && forgeOne.isPlaying)
+        {
+            forgeOne.Stop();
+        }
 
+        if (heatSlider.value > 75.0f)
+        {
+            forgeTwo.Play();
+            forgeThree.Play();
+        }
+        if (heatSlider.value < 75.0f && (forgeTwo.isPlaying && forgeThree.isPlaying))
+        {
+            forgeTwo.Stop();
+            forgeThree.Stop();
+        }
         if (!componentInBarrel)
         {
             heatSlider.value -= (Time.deltaTime * heatSliderChange);
@@ -765,6 +783,7 @@ public class CraftRoutine : MonoBehaviour
         {
             tutorialHelper(15);
             nextStage();
+            barrelSteam.Stop();
         }
     }
 
@@ -1307,12 +1326,6 @@ public class CraftRoutine : MonoBehaviour
         if (componentOnForge)
         {
             heatSlider.value += bellowsHitIncrese;
-            if (!forgeOne.isPlaying && !forgeTwo.isPlaying && !forgeThree.isPlaying)
-            {
-                forgeOne.Play();
-                forgeTwo.Play();
-                forgeThree.Play();
-            }
             if (forgeBurst.isPlaying)
             {
                 forgeBurst.Stop();
