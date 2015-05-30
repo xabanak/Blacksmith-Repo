@@ -151,6 +151,16 @@ public class CraftRoutine : MonoBehaviour
     private float timerEndTime;
     private float timerTimer;
 
+    //SHAPING STAGE
+
+    public ParticleSystem forgeOne;
+    public ParticleSystem forgeTwo;
+    public ParticleSystem forgeThree;
+    public ParticleSystem forgeBurst;
+    public ParticleSystem barrelSteam;
+    public ParticleSystem barrelSplash;
+    private bool dunk;
+
     //HARDERNING STAGE
 
     private bool heated;
@@ -255,6 +265,7 @@ public class CraftRoutine : MonoBehaviour
         paused = false;
         needUnPaused = false;
         pauseTimer = 0.0f;
+        dunk = false;
 
         needSetAnnouncement = false;
         tutorialRoutine = GameObject.Find("GameController").GetComponent<TutorialRoutine>();
@@ -1296,6 +1307,18 @@ public class CraftRoutine : MonoBehaviour
         if (componentOnForge)
         {
             heatSlider.value += bellowsHitIncrese;
+            if (!forgeOne.isPlaying && !forgeTwo.isPlaying && !forgeThree.isPlaying)
+            {
+                forgeOne.Play();
+                forgeTwo.Play();
+                forgeThree.Play();
+            }
+            if (forgeBurst.isPlaying)
+            {
+                forgeBurst.Stop();
+            }
+
+            forgeBurst.Play();
         }
     }
 
@@ -1342,10 +1365,32 @@ public class CraftRoutine : MonoBehaviour
 
     private void barrelManager()
     {
+        if (barrelSlider.value < 80.0f)
+        {
+            dunk = true;
+        }
+
         if (barrelSlider.value > 80.0f)
         {
             heatSlider.value -= (Time.deltaTime * quenchingSliderChange);
+            if (!barrelSteam.isPlaying)
+            {
+                barrelSteam.Play();
+            }
+
+            if (dunk)
+            {
+                if (barrelSplash.isPlaying)
+                {
+                    barrelSplash.Stop();
+                }
+                barrelSplash.Play();
+
+                dunk = false;
+            }
         }
+
+        
     }
 
     public void toggleComponentOnGrinder()

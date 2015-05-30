@@ -20,6 +20,8 @@ public class HammerBehavior : MonoBehaviour
     Vector2 currentVelocity;
     Vector2 currentPosition;
 
+    public ParticleSystem hammerParticle;
+
     // Use this for initialization
     void Start()
     {
@@ -60,7 +62,7 @@ public class HammerBehavior : MonoBehaviour
         //Debug.Log("UnitVector is: <" + unitVector.x + ", " + unitVector.y + ">");
         if (myCollider.gameObject.name == "Anvil")
         {
-            Debug.Log("Entered Anvil collider");
+            //Debug.Log("Entered Anvil collider");
             if (magnitude > 0.4f)
             {
                 //Debug.Log("Passed magnitude test");
@@ -71,6 +73,11 @@ public class HammerBehavior : MonoBehaviour
                     {
                         //Debug.Log("Passed y angle text");
                         craftController.hammerHitOnAnvil(magnitude);
+                        if (hammerParticle.isPlaying)
+                        {
+                            hammerParticle.Stop();
+                        }
+                        hammerParticle.Play();
                     }
                 }
             }
