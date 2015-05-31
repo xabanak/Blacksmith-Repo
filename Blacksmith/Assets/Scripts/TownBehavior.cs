@@ -32,6 +32,7 @@ public class TownBehavior : MonoBehaviour {
     private int heroSelection;
     public int activeTravelHero;
     private string currentTravelZone;
+    public Button[] heroStatusButtons;
     
 
     public Text testText;

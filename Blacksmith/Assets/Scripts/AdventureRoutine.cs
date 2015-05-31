@@ -59,6 +59,11 @@ public class AdventureRoutine : MonoBehaviour
         }
     }
 
+    public int getNumAdventurers()
+    {
+        return numAdventurers;
+    }
+
     private void updateAdventure(int adventureIter)
     {
         adventureTimers[adventureIter] -= Time.deltaTime;
