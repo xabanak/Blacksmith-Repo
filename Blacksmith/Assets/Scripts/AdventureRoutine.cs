@@ -11,11 +11,10 @@ public class AdventureRoutine : MonoBehaviour
     const int NUM_ADVENTURERS = 3;
     private int numAdventurers;
     public GameController gameController;
+    public CreateInventory inventoryController;
     private DataScript dataScript;
 
-    public Text heroIndicator1;
-    public Text heroIndicator2;
-    public Text heroIndicator3;
+    public Text[] heroIndicators;
 
     double[] adventureTimers;
 
@@ -23,6 +22,10 @@ public class AdventureRoutine : MonoBehaviour
 
 	void Start () 
     {
+        heroIndicators = new Text[NUM_ADVENTURERS];
+        heroIndicators[0] = GameObject.Find("Status One").GetComponent<Text>();
+        heroIndicators[1] = GameObject.Find("Status Two").GetComponent<Text>();
+        heroIndicators[2] = GameObject.Find("Status Three").GetComponent<Text>();
         dataScript = gameController.GetComponent<DataScript>();
 	    adventurers = new Adventurer[NUM_ADVENTURERS];
         adventureZone = new string[NUM_ADVENTURERS];
@@ -31,6 +34,7 @@ public class AdventureRoutine : MonoBehaviour
         adventurers[0] = null;
         adventurers[1] = null; 
         adventurers[2] = null;
+
         numAdventurers = 0;
 	}
 
@@ -67,21 +71,36 @@ public class AdventureRoutine : MonoBehaviour
     private void updateAdventure(int adventureIter)
     {
         adventureTimers[adventureIter] -= Time.deltaTime;
-        Debug.Log(adventureTimers[adventureIter]);
+        //Debug.Log(adventureTimers[adventureIter]);
         if (adventureTimers[adventureIter] <= 0)
         {
             endAdventure(adventureIter);
+            return;
         }
+        heroIndicators[adventureIter].text = "Returns: " + (int)adventureTimers[adventureIter];
     }
 
-    public void addAdventurer(Adventurer newHero)
+    public bool addAdventurer(Adventurer newHero)
     {
-        if (numAdventurers < 3)
+        if (adventurers[0] == null)
         {
-            adventurers[numAdventurers] = newHero;
-
+            adventurers[0] = newHero;
             numAdventurers++;
+            return true;
         }
+        else if (adventurers[1] == null)
+        {
+            adventurers[1] = newHero;
+            numAdventurers++;
+            return true;
+        }
+        else if (adventurers[2] == null)
+        {
+            adventurers[2] = newHero;
+            numAdventurers++;
+            return true;
+        }
+        return false;
     }
 
     private void removeAdventurer(Adventurer hero)
@@ -155,12 +174,20 @@ public class AdventureRoutine : MonoBehaviour
             return;
         }
 
-        chanceToSucceedDbl *= 10.0f;
+        chanceToSucceedDbl *= 100.0f;
         chanceToSucceedInt = Convert.ToInt32(chanceToSucceedDbl);
+        int randomNumber = UnityEngine.Random.Range(0, 101);
+        Debug.Log("Chance To Succeed: " + chanceToSucceedInt + ", randomNumer: " + randomNumber);
 
-        if (UnityEngine.Random.Range(0, 100) >= chanceToSucceedInt)
+        heroIndicators[adventurerIter].text = "Returned.";
+
+        if (randomNumber >= chanceToSucceedInt)
         {
             removeAdventurer(adventurers[adventurerIter]);
+        }
+        else
+        {
+            adventurers[adventurerIter].returnFromAdventure();
         }
     }
 
@@ -184,7 +211,8 @@ public class Adventurer
     private Sprite portrait;
     private DataScript dataScript;
     private GameObject gameController;
-    adventureZones adventureZone;
+    private CreateInventory inventoryController;
+    AdventureZone adventureZone;
 
     private const int INV_OBJECTS = 9;
     private const int LOOT_OPTIONS = 8;
@@ -203,9 +231,9 @@ public class Adventurer
         Pauldrons
     }
 
-    enum adventureZones
+    enum AdventureZone
     {
-        Plains,
+        Plains = 0,
         Caves,
         Forest,
         Swamp
@@ -214,10 +242,11 @@ public class Adventurer
     public Adventurer()
     {
         gameController = GameObject.Find("GameController");
+        inventoryController = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         dataScript = gameController.GetComponent<DataScript>();
         name = dataScript.getAdventurerName();
         this.level = 1;
-        powerLevel = 0;
+        powerLevel = 1;
         isHome = true;
         isReturned = false;
         inventory = new GameObject[INV_OBJECTS];
@@ -452,7 +481,7 @@ public class Adventurer
         Debug.Log(isHome + " " + isReturned);
         if (isHome && !isReturned)
         {
-            this.adventureZone = (adventureZones)Enum.Parse(typeof(adventureZones), adventureZone);
+            this.adventureZone = (AdventureZone)Enum.Parse(typeof(AdventureZone), adventureZone);
             isHome = false;
             return true;
         }
@@ -494,26 +523,78 @@ public class Adventurer
                 
                 switch (adventureZone)
                 {
-                    case 0:
+                    case AdventureZone.Plains:
                         {
-
+                            totalRolls += 2;
                             break;
                         }
-
+                    case AdventureZone.Caves:
+                        {
+                            if (i == 0)
+                            {
+                                totalRolls += 4;
+                            }
+                            break;
+                        }
+                    case AdventureZone.Forest:
+                        {
+                            if (i == 1)
+                            {
+                                totalRolls += 4;
+                            }
+                            break;
+                        }
+                    case AdventureZone.Swamp:
+                        {
+                            if (i == 2)
+                            {
+                                totalRolls += 4;
+                            }
+                            break;
+                        }
                 }
 
-
                 LootEntry[] lootOptions = new LootEntry[LOOT_OPTIONS];
+
+                //Debug.Log(level + " " + adventureDecriment);
                 
                 for(int j = 0; j < LOOT_OPTIONS; j++)
                 {
-                    LootEntry currentEntry = dataScript.getLootItem((level - adventureDecriment), (int)adventureZone, j);
-                    totalWeight += currentEntry.getWeight();
+                    lootOptions[j] = dataScript.getLootItem((level - adventureDecriment - 1), i, j);
+                    if (lootOptions[j] != null)
+                    {
+                        //Debug.Log(lootOptions[j].getItem() + ", " + lootOptions[j].getWeight());
+                    }
+                    if (lootOptions[j] == null)
+                    {
+                        //Debug.Log("Null lootOption found, breaking loop");
+                        break;
+                    }
+                    totalWeight += lootOptions[j].getWeight();
                 }
 
-                roll = UnityEngine.Random.Range(0, totalWeight);
-
-
+                for (int j = 0; j < totalRolls; j++)
+                {
+                    int currentWeight = 0;
+                    roll = UnityEngine.Random.Range(0, totalWeight);
+                    //Debug.Log("Total length of LootOptions: " + LOOT_OPTIONS + ", items in LootOptions: " + lootOptions.Length);
+                    for (int k = 0; k < lootOptions.Length; k++)
+                    {
+                        if (lootOptions[k] == null)
+                        {
+                            //Debug.Log("Null lootOption found, breaking loop");
+                            break;
+                        }
+                        if (roll > lootOptions[k].getWeight())
+                        {
+                            currentWeight += lootOptions[k].getWeight();
+                            continue;
+                        }
+                        inventoryController.addItem(lootOptions[k].getItem(), 1);
+                        //Debug.Log("Added " + lootOptions[k].getItem() + " to inventory.");
+                        break;
+                    }
+                }
             }
 
 
