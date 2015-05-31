@@ -1387,10 +1387,13 @@ public class CreateInventory : MonoBehaviour
 
     public void removeItem(string itemName, int quantity)
     {
+        Debug.Log(itemName + " " + quantity);
         switch (itemName)
         {
             case "Tin Ore":
+                Debug.Log("Ore Qty: " + oreQty[0]);
                 oreQty[0] -= quantity;
+                Debug.Log("Ore Qty: " + oreQty[0]);
                 break;
             case "Copper Ore":
                 oreQty[1] -= quantity;

@@ -29237,9 +29237,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 1565756062}
-  heroIndicator1: {fileID: 0}
-  heroIndicator2: {fileID: 0}
-  heroIndicator3: {fileID: 0}
+  inventoryController: {fileID: 0}
+  heroIndicators: []
 --- !u!4 &1565756059
 Transform:
   m_ObjectHideFlags: 0

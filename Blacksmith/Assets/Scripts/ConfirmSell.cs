@@ -25,6 +25,7 @@ public class ConfirmSell : MonoBehaviour {
 
     public void OnMouseDown()
     {
+        Debug.Log(name);
         switch(name)
         {
             case "Tin Ore":
