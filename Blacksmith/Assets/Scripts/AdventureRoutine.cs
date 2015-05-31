@@ -188,6 +188,7 @@ public class AdventureRoutine : MonoBehaviour
         else
         {
             adventurers[adventurerIter].returnFromAdventure();
+            adventurers[adventurerIter].collectFromAdventure(adventureDecriment[adventurerIter]);
         }
     }
 
@@ -561,10 +562,10 @@ public class Adventurer
                 for(int j = 0; j < LOOT_OPTIONS; j++)
                 {
                     lootOptions[j] = dataScript.getLootItem((level - adventureDecriment - 1), i, j);
-                    if (lootOptions[j] != null)
+                   /* if (lootOptions[j] != null)
                     {
-                        //Debug.Log(lootOptions[j].getItem() + ", " + lootOptions[j].getWeight());
-                    }
+                        Debug.Log(lootOptions[j].getItem() + ", " + lootOptions[j].getWeight());
+                    }*/
                     if (lootOptions[j] == null)
                     {
                         //Debug.Log("Null lootOption found, breaking loop");
