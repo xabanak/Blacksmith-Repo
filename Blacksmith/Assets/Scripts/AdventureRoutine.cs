@@ -15,7 +15,11 @@ public class AdventureRoutine : MonoBehaviour
     private DataScript dataScript;
 
     public Text[] heroIndicators;
+<<<<<<< HEAD
     public Button[] heroStatus;
+=======
+    public Image[] heroPortraits;
+>>>>>>> origin/master
 
     double[] adventureTimers;
 
@@ -24,9 +28,13 @@ public class AdventureRoutine : MonoBehaviour
 	void Start () 
     {
         heroIndicators = new Text[NUM_ADVENTURERS];
+        heroPortraits = new Image[NUM_ADVENTURERS];
         heroIndicators[0] = GameObject.Find("Status One").GetComponent<Text>();
         heroIndicators[1] = GameObject.Find("Status Two").GetComponent<Text>();
         heroIndicators[2] = GameObject.Find("Status Three").GetComponent<Text>();
+        heroPortraits[0] = GameObject.Find("Portrait One").GetComponent<Image>();
+        heroPortraits[1] = GameObject.Find("Portrait Two").GetComponent<Image>();
+        heroPortraits[2] = GameObject.Find("Portrait Three").GetComponent<Image>();
         dataScript = gameController.GetComponent<DataScript>();
 	    adventurers = new Adventurer[NUM_ADVENTURERS];
         adventureZone = new string[NUM_ADVENTURERS];
@@ -86,7 +94,11 @@ public class AdventureRoutine : MonoBehaviour
         if (adventurers[0] == null)
         {
             adventurers[0] = newHero;
+<<<<<<< HEAD
             heroStatus[0].interactable = true;
+=======
+            heroPortraits[0].sprite = newHero.getPortrait();
+>>>>>>> origin/master
             numAdventurers++;
             return true;
         }
@@ -255,6 +267,8 @@ public class Adventurer
         isHome = true;
         isReturned = false;
         inventory = new GameObject[INV_OBJECTS];
+        portrait = Resources.Load("Images/First_warrior_trans") as Sprite;
+        Debug.Log(portrait);
 
         oreModifier = UnityEngine.Random.Range(0, 6);
         //Debug.Log("oreModifier: " + oreModifier);
@@ -361,6 +375,17 @@ public class Adventurer
             else if (skinsModifier == 5)
             {
                 woodModifier = 0;
+            }
+        }
+    }
+
+    ~Adventurer()
+    {
+        foreach (GameObject gameObject in inventory)
+        {
+            if (gameObject != null)
+            {
+                UnityEngine.Object.Destroy(gameObject);
             }
         }
     }
@@ -602,7 +627,7 @@ public class Adventurer
                 }
             }
 
-
+            levelUp();
             isReturned = false;
             return true;
         }
@@ -623,5 +648,20 @@ public class Adventurer
     public bool getReturnedState()//True: currently returned from adventure, false: currently not returned from adventure
     {
         return isReturned;
+    }
+
+    public bool canAdventure()
+    {
+        if (isHome && !isReturned)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public Sprite getPortrait()
+    {
+        return portrait;
     }
 }
