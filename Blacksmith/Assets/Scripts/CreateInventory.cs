@@ -1103,8 +1103,24 @@ public class CreateInventory : MonoBehaviour
                 swords.RemoveItem(item);
                 break;
             default:
+                Debug.Log("Crafted item not found on delete");
                 break;
+        }
 
+        Debug.Log("Destroying " + item.name);
+        DestroyImmediate(item);
+    }
+
+    public void removeCraftedItem(GameObject item)
+    {
+        switch (item.GetComponent<ItemScript>().GetItem())
+        {
+            case "Sword":
+                swords.RemoveItem(item);
+                break;
+            default:
+                Debug.Log("Crafted item not found on remove");
+                break;
         }
     }
 
@@ -1383,6 +1399,8 @@ public class CreateInventory : MonoBehaviour
         }
 
         Debug.Log("Added " + itemName + " of quantity: " + quantity + " to inventory");
+
+        BuildInventory();
     }
 
     public void removeItem(string itemName, int quantity)

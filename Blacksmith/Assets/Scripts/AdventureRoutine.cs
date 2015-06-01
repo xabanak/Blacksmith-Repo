@@ -15,6 +15,7 @@ public class AdventureRoutine : MonoBehaviour
     private DataScript dataScript;
 
     public Text[] heroIndicators;
+    public Button[] heroStatus;
 
     double[] adventureTimers;
 
@@ -85,18 +86,21 @@ public class AdventureRoutine : MonoBehaviour
         if (adventurers[0] == null)
         {
             adventurers[0] = newHero;
+            heroStatus[0].interactable = true;
             numAdventurers++;
             return true;
         }
         else if (adventurers[1] == null)
         {
             adventurers[1] = newHero;
+            heroStatus[1].interactable = true;
             numAdventurers++;
             return true;
         }
         else if (adventurers[2] == null)
         {
             adventurers[2] = newHero;
+            heroStatus[2].interactable = true;
             numAdventurers++;
             return true;
         }
