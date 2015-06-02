@@ -13,6 +13,8 @@ public class CreateInventory : MonoBehaviour
     public GameObject miscBackground;
     public GameObject inventoryWindow;
 
+    public GameObject itemLine;
+
     public Text textBox1;
     public Text textBox2;
 
@@ -21,7 +23,7 @@ public class CreateInventory : MonoBehaviour
 
     public Canvas inventoryCanvas;
     public GameObject singleLine;
-    public GameObject tempLine;
+    public GameObject tempObj;
 
     public Scrollbar inventoryScrollbar;
 
@@ -536,9 +538,10 @@ public class CreateInventory : MonoBehaviour
         handleName[4] = "Expert Handle";
         // End Define handle types
 
-        //SetQuantitiesTestMethod();
+        SetQuantitiesTestMethod();
 	}
 
+    // TEST METHOD FOR ADDING IN A RANDOM AMOUNT OF ITEMS.
     void SetQuantitiesTestMethod()
     {
         for (int i = 0; i < 5; i++)
@@ -564,17 +567,6 @@ public class CreateInventory : MonoBehaviour
         }
     }
 
-	// Update is called once per frame
-	void Update ()
-    {
-
-	}
-
-    public void ResetScrollbar()
-    {
-        inventoryScrollbar.value = 1;
-    }
-
     // Calls all updates to update the current on hand inventory.
     public void BuildInventory()
     {
@@ -591,24 +583,17 @@ public class CreateInventory : MonoBehaviour
     // Creates the list displaying all the weapons in inventory.
     public void UpdateWeaponList()
     {
-        int tempInt = 17 - swords.GetCurrentSize();
+        totalItems = 0;
+
         for (int i = 0; i < swords.GetCurrentSize(); i++)
         {
-            tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, inventoryCanvas.transform.position.z - 1), Quaternion.identity) as GameObject;
-            tempLine.transform.SetParent(weaponBackground.transform);
-            tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, inventoryCanvas.transform.position.z - 1), Quaternion.identity) as Text;
-            tempText1.transform.SetParent(tempLine.transform);
-            tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            tempText1.text = swords.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
+            addInventoryLine(swords.GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0, weaponBackground);
+            totalItems++;
         }
 
-        if (tempInt > 0)
+        for (int i = totalItems; i < 19; i++)
         {
-            for (int i = swords.GetCurrentSize(); i < 17; i++)
-            {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, inventoryCanvas.transform.position.z - 1), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(weaponBackground.transform);
-            }
+            addInventoryLine("", 0, weaponBackground, true);
         }
     }
 
@@ -617,88 +602,57 @@ public class CreateInventory : MonoBehaviour
     {
         for (int i = 0; i < shields.GetCurrentSize(); i++)
         {
-            tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-            tempLine.transform.SetParent(armorBackground.transform);
-            tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-            tempText1.transform.SetParent(tempLine.transform);
-            tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            tempText1.text = shields.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
+            addInventoryLine(shields.GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0, armorBackground);
+            totalItems++;
         }
 
         for (int i = 0; i < breastplates.GetCurrentSize(); i++)
         {
-            tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-            tempLine.transform.SetParent(armorBackground.transform);
-            tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-            tempText1.transform.SetParent(tempLine.transform);
-            tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            tempText1.text = breastplates.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
+            addInventoryLine(breastplates.GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0, armorBackground);
+            totalItems++;
         }
 
         for (int i = 0; i < helms.GetCurrentSize(); i++)
         {
-            tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-            tempLine.transform.SetParent(armorBackground.transform);
-            tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-            tempText1.transform.SetParent(tempLine.transform);
-            tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            tempText1.text = helms.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
+            addInventoryLine(helms.GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0, armorBackground);
+            totalItems++;
         }
 
         for (int i = 0; i < bracers.GetCurrentSize(); i++)
         {
-            tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-            tempLine.transform.SetParent(armorBackground.transform);
-            tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-            tempText1.transform.SetParent(tempLine.transform);
-            tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            tempText1.text = bracers.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
+            addInventoryLine(bracers.GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0, armorBackground);
+            totalItems++;
         }
 
         for (int i = 0; i < gauntlets.GetCurrentSize(); i++)
         {
-            tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-            tempLine.transform.SetParent(armorBackground.transform);
-            tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-            tempText1.transform.SetParent(tempLine.transform);
-            tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            tempText1.text = gauntlets.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
+            addInventoryLine(gauntlets.GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0, armorBackground);
+            totalItems++;
         }
 
         for (int i = 0; i < boots.GetCurrentSize(); i++)
         {
-            tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-            tempLine.transform.SetParent(armorBackground.transform);
-            tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-            tempText1.transform.SetParent(tempLine.transform);
-            tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            tempText1.text = boots.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
+            addInventoryLine(boots.GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0, armorBackground);
+            totalItems++;
         }
 
         for (int i = 0; i < greaves.GetCurrentSize(); i++)
         {
-            tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-            tempLine.transform.SetParent(armorBackground.transform);
-            tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-            tempText1.transform.SetParent(tempLine.transform);
-            tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            tempText1.text = greaves.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
+            addInventoryLine(greaves.GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0, armorBackground);
+            totalItems++;
         }
 
         for (int i = 0; i < pauldrons.GetCurrentSize(); i++)
         {
-            tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-            tempLine.transform.SetParent(armorBackground.transform);
-            tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-            tempText1.transform.SetParent(tempLine.transform);
-            tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            tempText1.text = pauldrons.GetItem(i).GetComponent<ItemScript>().GetItemDescription();
+            addInventoryLine(pauldrons.GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0, armorBackground);
+            totalItems++;
         }
     }
 
     // Creates a list displaying all the materials in inventory.
     public void UpdateMaterialList()
     {
+        totalItems = 0;
         // fuel, ore, ingot, skin, leather, gem, gemstone, wood, lumber
 
         // Generate fuel list
@@ -706,16 +660,8 @@ public class CreateInventory : MonoBehaviour
         {
             if (fuelQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = fuelName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + fuelQty[i];
+                addInventoryLine(fuelName[i], fuelQty[i], materialBackground, false);
+                totalItems++;
             }
         }
         
@@ -724,16 +670,8 @@ public class CreateInventory : MonoBehaviour
         {
             if (oreQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = oreName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + oreQty[i];
+                addInventoryLine(oreName[i], oreQty[i], materialBackground, false);
+                totalItems++;
             }
         }
 
@@ -742,16 +680,8 @@ public class CreateInventory : MonoBehaviour
         {
             if (ingotQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = ingotName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + ingotQty[i];
+                addInventoryLine(ingotName[i], ingotQty[i], materialBackground, false);
+                totalItems++;
             }
         }
 
@@ -760,16 +690,8 @@ public class CreateInventory : MonoBehaviour
         {
             if (skinQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = skinName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + skinQty[i];
+                addInventoryLine(skinName[i], skinQty[i], materialBackground, false);
+                totalItems++;
             }
         }
 
@@ -778,16 +700,8 @@ public class CreateInventory : MonoBehaviour
         {
             if (leatherQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = leatherName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + leatherQty[i];
+                addInventoryLine(leatherName[i], leatherQty[i], materialBackground, false);
+                totalItems++;
             }
         }
 
@@ -796,16 +710,8 @@ public class CreateInventory : MonoBehaviour
         {
             if (gemQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = gemName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + gemQty[i];
+                addInventoryLine(gemName[i], gemQty[i], materialBackground, false);
+                totalItems++;
             }
         }
         
@@ -814,16 +720,8 @@ public class CreateInventory : MonoBehaviour
         {
             if (gemstoneQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = gemstoneName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + gemstoneQty[i];
+                addInventoryLine(gemstoneName[i], gemstoneQty[i], materialBackground, false);
+                totalItems++;
             }
         }
 
@@ -832,16 +730,8 @@ public class CreateInventory : MonoBehaviour
         {
             if (woodQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = woodName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + woodQty[i];
+                addInventoryLine(woodName[i], woodQty[i], materialBackground, false);
+                totalItems++;
             }
         }
 
@@ -850,23 +740,21 @@ public class CreateInventory : MonoBehaviour
         {
             if (lumberQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(materialBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = lumberName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + lumberQty[i];
+                addInventoryLine(lumberName[i], lumberQty[i], materialBackground, false);
+                totalItems++;
             }
+        }
+
+        for (int i = totalItems; i < 19; i++)
+        {
+            addInventoryLine("", 0, materialBackground, true);
         }
     }
 
     // Creates a list displaying all the components in inventory.
     public void UpdateComponentList()
     {
+        totalItems = 0;
         // leatherStrap, leatherPadding, hilt, sheath, handle
 
         // Generate leatherStrap list
@@ -874,16 +762,8 @@ public class CreateInventory : MonoBehaviour
         {
             if (leatherStrapQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(componentBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = leatherStrapName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + leatherStrapQty[i];
+                addInventoryLine(leatherStrapName[i], leatherStrapQty[i], componentBackground, false);
+                totalItems++;
             }
         }
 
@@ -892,16 +772,8 @@ public class CreateInventory : MonoBehaviour
         {
             if (leatherPaddingQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(componentBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = leatherPaddingName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + leatherPaddingQty[i];
+                addInventoryLine(leatherPaddingName[i], leatherPaddingQty[i], componentBackground, false);
+                totalItems++;
             }
         }
 
@@ -910,16 +782,8 @@ public class CreateInventory : MonoBehaviour
         {
             if (hiltQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(componentBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = hiltName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + hiltQty[i];
+                addInventoryLine(hiltName[i], hiltQty[i], componentBackground, false);
+                totalItems++;
             }
         }
 
@@ -928,16 +792,8 @@ public class CreateInventory : MonoBehaviour
         {
             if (sheathQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(componentBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = sheathName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + sheathQty[i];
+                addInventoryLine(sheathName[i], sheathQty[i], componentBackground, false);
+                totalItems++;
             }
         }
 
@@ -946,17 +802,14 @@ public class CreateInventory : MonoBehaviour
         {
             if (handleQty[i] > 0)
             {
-                tempLine = Instantiate(singleLine, new Vector3(inventoryCanvas.transform.position.x, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as GameObject;
-                tempLine.transform.SetParent(componentBackground.transform);
-                tempText1 = Instantiate(textBox1, new Vector3(inventoryCanvas.transform.position.x - 1.0f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText1.transform.SetParent(tempLine.transform);
-                tempText1.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText1.text = handleName[i];
-                tempText2 = Instantiate(textBox2, new Vector3(inventoryCanvas.transform.position.x + 3.9f, inventoryCanvas.transform.position.y + lineStartPosition - spacer * i, 0.0f), Quaternion.identity) as Text;
-                tempText2.transform.SetParent(tempText1.transform);
-                tempText2.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                tempText2.text = "" + handleQty[i];
+                addInventoryLine(handleName[i], handleQty[i], componentBackground, false);
+                totalItems++;
             }
+        }
+
+        for (int i = totalItems; i < 19; i++)
+        {
+            addInventoryLine("", 0, materialBackground, true);
         }
     }
 
@@ -978,7 +831,7 @@ public class CreateInventory : MonoBehaviour
 
         inventoryWindow.GetComponent<ScrollRect>().content = weaponBackground.GetComponent<RectTransform>();
 
-        ResetScrollbar();
+        resetScrollbarValue();
     }
 
     // Set the armor window as the only active window
@@ -993,7 +846,7 @@ public class CreateInventory : MonoBehaviour
 
         inventoryWindow.GetComponent<ScrollRect>().content = armorBackground.GetComponent<RectTransform>();
 
-        ResetScrollbar();
+        resetScrollbarValue();
     }
 
     // Set the material window as the only active window
@@ -1008,7 +861,7 @@ public class CreateInventory : MonoBehaviour
 
         inventoryWindow.GetComponent<ScrollRect>().content = materialBackground.GetComponent<RectTransform>();
 
-        ResetScrollbar();
+        resetScrollbarValue();
     }
 
     // Set the component window as the only active window
@@ -1023,7 +876,7 @@ public class CreateInventory : MonoBehaviour
 
         inventoryWindow.GetComponent<ScrollRect>().content = componentBackground.GetComponent<RectTransform>();
 
-        ResetScrollbar();
+        resetScrollbarValue();
     }
 
     // Set the miscellaneous window as the only active window
@@ -1038,7 +891,7 @@ public class CreateInventory : MonoBehaviour
 
         inventoryWindow.GetComponent<ScrollRect>().content = miscBackground.GetComponent<RectTransform>();
 
-        ResetScrollbar();
+        resetScrollbarValue();
     }
 
     // Take an item object and add it to the on hand inventory.
@@ -1408,10 +1261,23 @@ public class CreateInventory : MonoBehaviour
         Debug.Log(itemName + " " + quantity);
         switch (itemName)
         {
+            case "Basic Fuel":
+                fuelQty[0] -= quantity;
+                break;
+            case "Standard Fuel":
+                fuelQty[1] -= quantity;
+                break;
+            case "Good Fuel":
+                fuelQty[2] -= quantity;
+                break;
+            case "Excellent Fuel":
+                fuelQty[3] -= quantity;
+                break;
+            case "Expert Fuel":
+                fuelQty[4] -= quantity;
+                break;
             case "Tin Ore":
-                Debug.Log("Ore Qty: " + oreQty[0]);
                 oreQty[0] -= quantity;
-                Debug.Log("Ore Qty: " + oreQty[0]);
                 break;
             case "Copper Ore":
                 oreQty[1] -= quantity;
@@ -1439,6 +1305,36 @@ public class CreateInventory : MonoBehaviour
                 break;
             case "Dragon Ore":
                 oreQty[9] -= quantity;
+                break;
+            case "Tin Ingot":
+                ingotQty[0] -= quantity;
+                break;
+            case "Copper Ingot":
+                ingotQty[1] -= quantity;
+                break;
+            case "Bronze Ingot":
+                ingotQty[2] -= quantity;
+                break;
+            case "Brass Ingot":
+                ingotQty[3] -= quantity;
+                break;
+            case "Iron Ingot":
+                ingotQty[4] -= quantity;
+                break;
+            case "Blackened Iron Ingot":
+                ingotQty[5] -= quantity;
+                break;
+            case "Steel Ingot":
+                ingotQty[6] -= quantity;
+                break;
+            case "Low Grade Steel Alloy Ingot":
+                ingotQty[7] -= quantity;
+                break;
+            case "High Grade Steel Alloy Ingot":
+                ingotQty[8] -= quantity;
+                break;
+            case "Titanium Ingot":
+                ingotQty[9] -= quantity;
                 break;
             case "Sheep Skin":
                 skinQty[0] -= quantity;
@@ -1470,6 +1366,36 @@ public class CreateInventory : MonoBehaviour
             case "Dragon Skin":
                 skinQty[9] -= quantity;
                 break;
+            case "Sheep Leather":
+                leatherQty[0] -= quantity;
+                break;
+            case "Goat Leather":
+                leatherQty[1] -= quantity;
+                break;
+            case "Buffalo Leather":
+                leatherQty[2] -= quantity;
+                break;
+            case "Dodo Leather":
+                leatherQty[3] -= quantity;
+                break;
+            case "Serpent Leather":
+                leatherQty[4] -= quantity;
+                break;
+            case "Wolf Leather":
+                leatherQty[5] -= quantity;
+                break;
+            case "Ogre Leather":
+                leatherQty[6] -= quantity;
+                break;
+            case "Troll Leather":
+                leatherQty[7] -= quantity;
+                break;
+            case "Wyvern Leather":
+                leatherQty[8] -= quantity;
+                break;
+            case "Dragon Leather":
+                leatherQty[9] -= quantity;
+                break;
             case "Rough Malachite":
                 gemQty[0] -= quantity;
                 break;
@@ -1500,6 +1426,36 @@ public class CreateInventory : MonoBehaviour
             case "Rough Moonstone":
                 gemQty[9] -= quantity;
                 break;
+            case "Polished Malachite":
+                gemstoneQty[0] -= quantity;
+                break;
+            case "Polished Lapis Lazuli":
+                gemstoneQty[1] -= quantity;
+                break;
+            case "Polished Turquoise":
+                gemstoneQty[2] -= quantity;
+                break;
+            case "Polished Coral":
+                gemstoneQty[3] -= quantity;
+                break;
+            case "Polished Agate":
+                gemstoneQty[4] -= quantity;
+                break;
+            case "Polished Jasper":
+                gemstoneQty[5] -= quantity;
+                break;
+            case "Polished Opal":
+                gemstoneQty[6] -= quantity;
+                break;
+            case "Polished Ruby":
+                gemstoneQty[7] -= quantity;
+                break;
+            case "Polished Pearl":
+                gemstoneQty[8] -= quantity;
+                break;
+            case "Polished Moonstone":
+                gemstoneQty[9] -= quantity;
+                break;
             case "Raw Elm":
                 woodQty[0] -= quantity;
                 break;
@@ -1529,6 +1485,36 @@ public class CreateInventory : MonoBehaviour
                 break;
             case "Raw Ebony":
                 woodQty[9] -= quantity;
+                break;
+            case "Elm Lumber":
+                lumberQty[0] -= quantity;
+                break;
+            case "Alder Lumber":
+                lumberQty[1] -= quantity;
+                break;
+            case "Maple Lumber":
+                lumberQty[2] -= quantity;
+                break;
+            case "Sandlewood Lumber":
+                lumberQty[3] -= quantity;
+                break;
+            case "Ash Lumber":
+                lumberQty[4] -= quantity;
+                break;
+            case "Fir Lumber":
+                lumberQty[5] -= quantity;
+                break;
+            case "Cedar Lumber":
+                lumberQty[6] -= quantity;
+                break;
+            case "Ironwood Lumber":
+                lumberQty[7] -= quantity;
+                break;
+            case "Rosewood Lumber":
+                lumberQty[8] -= quantity;
+                break;
+            case "Ebony Lumber":
+                lumberQty[9] -= quantity;
                 break;
             case "Basic Leather Strap":
                 leatherStrapQty[0] -= quantity;
@@ -1621,6 +1607,41 @@ public class CreateInventory : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void addInventoryLine(string item, int qty, GameObject background)
+    {
+        tempObj = Instantiate(itemLine, background.transform.position, Quaternion.identity) as GameObject;
+        tempObj.transform.SetParent(background.transform);
+        tempObj.transform.localScale = new Vector3(1, 1, 1);
+        tempObj.name = item;
+        tempObj.transform.GetChild(0).GetComponent<Text>().text = item;
+        tempObj.transform.GetChild(1).GetComponent<Text>().text = "";
+    }
+    private void addInventoryLine(string item, int qty, GameObject background, bool blank)
+    {
+        tempObj = Instantiate(itemLine, background.transform.position, Quaternion.identity) as GameObject;
+        tempObj.transform.SetParent(background.transform);
+        tempObj.transform.localScale = new Vector3(1, 1, 1);
+        tempObj.name = item;
+        if (!blank)
+        {
+            tempObj.transform.GetChild(0).GetComponent<Text>().text = item;
+            tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + qty;
+        }
+        else
+        {
+            tempObj.transform.GetChild(0).GetComponent<Text>().text = "";
+            tempObj.transform.GetChild(1).GetComponent<Text>().text = "";
+        }
+    }
+
+    public void resetScrollbarValue()
+    {
+        Canvas.ForceUpdateCanvases();
+        inventoryWindow.GetComponent<ScrollRect>().verticalScrollbar.value = 0.0f;
+        Canvas.ForceUpdateCanvases();
+        inventoryWindow.GetComponent<ScrollRect>().verticalScrollbar.value = 1f;
     }
 }
 

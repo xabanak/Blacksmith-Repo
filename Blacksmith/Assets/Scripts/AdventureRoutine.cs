@@ -15,14 +15,10 @@ public class AdventureRoutine : MonoBehaviour
     private DataScript dataScript;
 
     public Text[] heroIndicators;
-<<<<<<< HEAD
     public Button[] heroStatus;
-=======
     public Image[] heroPortraits;
->>>>>>> origin/master
 
     double[] adventureTimers;
-
     const double baseTimer = 60.0f;
 
 	void Start () 
@@ -94,11 +90,8 @@ public class AdventureRoutine : MonoBehaviour
         if (adventurers[0] == null)
         {
             adventurers[0] = newHero;
-<<<<<<< HEAD
             heroStatus[0].interactable = true;
-=======
             heroPortraits[0].sprite = newHero.getPortrait();
->>>>>>> origin/master
             numAdventurers++;
             return true;
         }

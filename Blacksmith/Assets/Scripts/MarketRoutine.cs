@@ -373,7 +373,6 @@ public class MarketRoutine : MonoBehaviour {
         tempObj.name = item;
         tempObj.AddComponent<ConfirmSell>();
         tempObj.transform.GetChild(0).GetComponent<Text>().text = item;
-        //string tempStr = (qty > 0) ? "" + qty : "";
         tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + qty;
     }
 
