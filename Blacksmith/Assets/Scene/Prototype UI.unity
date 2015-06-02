@@ -3399,7 +3399,7 @@ MonoBehaviour:
   anvil: {fileID: 1129777919}
   craftController: {fileID: 1302979229}
   snapBack: 1
-  hammerParticle: {fileID: 0}
+  hammerParticle: {fileID: 2029914389}
 --- !u!1 &203114393
 GameObject:
   m_ObjectHideFlags: 0
@@ -24338,12 +24338,12 @@ MonoBehaviour:
   results: {fileID: 0}
   itemQuality: 0
   possibleItemQuality: 0
-  forgeOne: {fileID: 0}
-  forgeTwo: {fileID: 0}
-  forgeThree: {fileID: 0}
-  forgeBurst: {fileID: 0}
-  barrelSteam: {fileID: 0}
-  barrelSplash: {fileID: 0}
+  forgeOne: {fileID: 547063440}
+  forgeTwo: {fileID: 1779857463}
+  forgeThree: {fileID: 2109306875}
+  forgeBurst: {fileID: 1447370089}
+  barrelSteam: {fileID: 1076289055}
+  barrelSplash: {fileID: 1064387492}
   tiltedRight: {fileID: 22495206, guid: 7ee1e09b86acb9240aafe5a9c8e95c9e, type: 2}
   tiltedLeft: {fileID: 22457576, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
   grinderGauge: {fileID: 276864331}
