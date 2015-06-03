@@ -14,9 +14,9 @@ public class AdventureRoutine : MonoBehaviour
     public CreateInventory inventoryController;
     private DataScript dataScript;
 
-    public Text[] heroIndicators;
-    public Button[] heroStatus;
-    public Image[] heroPortraits;
+    private Text[] heroIndicators;
+    private Button[] heroStatus;
+    private Image[] heroPortraits;
 
     double[] adventureTimers;
     const double baseTimer = 60.0f;
@@ -25,12 +25,16 @@ public class AdventureRoutine : MonoBehaviour
     {
         heroIndicators = new Text[NUM_ADVENTURERS];
         heroPortraits = new Image[NUM_ADVENTURERS];
-        heroIndicators[0] = GameObject.Find("Status One").GetComponent<Text>();
-        heroIndicators[1] = GameObject.Find("Status Two").GetComponent<Text>();
-        heroIndicators[2] = GameObject.Find("Status Three").GetComponent<Text>();
-        heroPortraits[0] = GameObject.Find("Portrait One").GetComponent<Image>();
-        heroPortraits[1] = GameObject.Find("Portrait Two").GetComponent<Image>();
-        heroPortraits[2] = GameObject.Find("Portrait Three").GetComponent<Image>();
+        heroStatus = new Button[NUM_ADVENTURERS];
+        heroIndicators[0] = GameObject.Find("Overlay Canvas/Hero Background/Status One Button/Status One").GetComponent<Text>();
+        heroIndicators[1] = GameObject.Find("Overlay Canvas/Hero Background/Status Two Button/Status Two").GetComponent<Text>();
+        heroIndicators[2] = GameObject.Find("Overlay Canvas/Hero Background/Status Three Button/Status Three").GetComponent<Text>();
+        heroStatus[0] = GameObject.Find("Overlay Canvas/Hero Background/Status One Button").GetComponent<Button>();
+        heroStatus[1] = GameObject.Find("Overlay Canvas/Hero Background/Status Two Button").GetComponent<Button>();
+        heroStatus[2] = GameObject.Find("Overlay Canvas/Hero Background/Status Three Button").GetComponent<Button>();
+        heroPortraits[0] = GameObject.Find("Overlay Canvas/Hero Background/Portrait One").GetComponent<Image>();
+        heroPortraits[1] = GameObject.Find("Overlay Canvas/Hero Background/Portrait Two").GetComponent<Image>();
+        heroPortraits[2] = GameObject.Find("Overlay Canvas/Hero Background/Portrait Three").GetComponent<Image>();
         dataScript = gameController.GetComponent<DataScript>();
 	    adventurers = new Adventurer[NUM_ADVENTURERS];
         adventureZone = new string[NUM_ADVENTURERS];
@@ -119,6 +123,8 @@ public class AdventureRoutine : MonoBehaviour
             if (adventurers[i] == hero)
             {
                 adventurers[i] = null;
+                heroStatus[i].interactable = false;
+
             }
         }
     }
