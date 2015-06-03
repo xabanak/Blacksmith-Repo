@@ -179,6 +179,7 @@ public class AdventureRoutine : MonoBehaviour
         if (adventurer.sendOnAdventure(adventureZone))
         {
             //adventureTimers[adventurerIter] = dataScript.getAdvTimeMult(adventurer.getLevel(), levelDecrimentor);
+            heroStatus[adventurerIter].interactable = false;
             this.adventureZone[adventurerIter] = adventureZone;
             adventureDecriment[adventurerIter] = levelDecrimentor;
             adventureTimers[adventurerIter] = baseTimer * dataScript.getAdvTimeMult(adventurers[adventurerIter].getLevel(), adventureDecriment[adventurerIter]);
@@ -212,12 +213,18 @@ public class AdventureRoutine : MonoBehaviour
         else
         {
             adventurers[adventurerIter].returnFromAdventure();
+            heroStatus[adventurerIter].interactable = true;
             //adventurers[adventurerIter].collectFromAdventure(adventureDecriment[adventurerIter]);
         }
     }
 
     public void collectFromAdventurer(Adventurer adventurer)
     {
+        if (adventurer == null)
+        {
+            return;
+        }
+
         int adventurerIter = 0;
         if (adventurers[0] == adventurer)
         {
@@ -231,7 +238,10 @@ public class AdventureRoutine : MonoBehaviour
         {
             adventurerIter = 2;
         }
-        adventurer.collectFromAdventure(adventureDecriment[adventurerIter]);
+        if (adventurer.collectFromAdventure(adventureDecriment[adventurerIter]))
+        {
+            heroIndicators[adventurerIter].text = "Ready to adventure";
+        }
     }
 }
 
