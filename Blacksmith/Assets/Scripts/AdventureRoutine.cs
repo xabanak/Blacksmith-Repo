@@ -212,12 +212,25 @@ public class AdventureRoutine : MonoBehaviour
         else
         {
             adventurers[adventurerIter].returnFromAdventure();
-            adventurers[adventurerIter].collectFromAdventure(adventureDecriment[adventurerIter]);
+            //adventurers[adventurerIter].collectFromAdventure(adventureDecriment[adventurerIter]);
         }
     }
 
-    public void collectFromAdventurer(Adventurer adventurer, int adventurerIter)
+    public void collectFromAdventurer(Adventurer adventurer)
     {
+        int adventurerIter = 0;
+        if (adventurers[0] == adventurer)
+        {
+            adventurerIter = 0;
+        }
+        else if (adventurers[1] == adventurer)
+        {
+            adventurerIter = 1;
+        }
+        else if (adventurers[2] == adventurer)
+        {
+            adventurerIter = 2;
+        }
         adventurer.collectFromAdventure(adventureDecriment[adventurerIter]);
     }
 }

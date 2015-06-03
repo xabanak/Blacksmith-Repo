@@ -22,6 +22,11 @@ public class SoundController : MonoBehaviour {
     // MUSIC
     private AudioSource craftingMusic;
     private AudioSource workshopMusic;
+    private AudioSource townMusic;
+    private AudioSource tavernMusic;
+    private AudioSource adventureMusic;
+    private AudioSource marketMusic;
+    private AudioSource emporiumMusic;
 
     void Awake ()
     {
@@ -44,6 +49,7 @@ public class SoundController : MonoBehaviour {
         // MUSIC
         craftingMusic = GameObject.Find("Music/CraftingMusic").GetComponent<AudioSource>();
         workshopMusic = GameObject.Find("Music/WorkshopMusic").GetComponent<AudioSource>();
+        townMusic = GameObject.Find("Music/TownMusic").GetComponent<AudioSource>();
 
         Random.seed = (int)System.DateTime.Now.Ticks;
     }
@@ -146,7 +152,19 @@ public class SoundController : MonoBehaviour {
         }
         else
         {
-            workshopMusic.Stop();
+            workshopMusic.Pause();
+        }
+    }
+
+    public void playTownMusic()
+    {
+        if (!townMusic.isPlaying)
+        {
+            townMusic.Play();
+        }
+        else
+        {
+            townMusic.Pause();
         }
     }
 
