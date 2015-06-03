@@ -188,4 +188,21 @@ public class HeroInterface : MonoBehaviour {
         return tempString;
     }
     
+    public void resetHeroWindow()
+    {
+        heroName.text = "";
+        for (int i = 0; i < totalLootLines; i++)
+        {
+            lootLines[i].text = "";
+        }
+
+        finishedAdventureWindow.SetActive(false);
+    }
+
+    public void resetBaseWindow()
+    {
+        adventurers = adventurerRoutine.getAdventurers();
+        baseWindow.SetActive(false);
+        heroName.text = "";
+    }
 }
