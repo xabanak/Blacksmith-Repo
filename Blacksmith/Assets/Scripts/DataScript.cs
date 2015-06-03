@@ -109,6 +109,7 @@ public class DataScript : MonoBehaviour
         readDataFile("adventureTimeMultiplier.dat");
         readDataFile("adventureLevelMultiplier.dat");
         readDataFile("lootTables.dat");
+        readDataFile("heroReturnScripts.dat");
 	}
     void readDataFile(string filePath)
     {
