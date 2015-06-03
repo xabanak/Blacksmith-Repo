@@ -1295,7 +1295,7 @@ Transform:
   m_GameObject: {fileID: 86947853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.38999999, y: 1.30999994, z: 1}
+  m_LocalScale: {x: .462406904, y: .464880198, z: 1}
   m_Children: []
   m_Father: {fileID: 1608782065}
   m_RootOrder: 0
@@ -1323,7 +1323,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a9832127bda89314698b360300bc0948, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5462927afd2cd546ba002d2b0ac82e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &87296621
 GameObject:
@@ -11701,7 +11701,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
+  m_SizeDelta: {x: 0, y: 60}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &614737658
 MonoBehaviour:
@@ -11821,7 +11821,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 622864346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.44000006, y: 1.44000006, z: -.100000001}
+  m_LocalPosition: {x: 7.14799976, y: 1.44000006, z: -.100000001}
   m_LocalScale: {x: .417714655, y: .417714655, z: .417714655}
   m_Children: []
   m_Father: {fileID: 1727076522}
@@ -11839,15 +11839,15 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -4.2062974, y: 3.31897736}
-      - {x: -5.14329004, y: 1.97987103}
-      - {x: -4.83536673, y: 1.88093162}
-      - {x: -5.62925625, y: -.634634674}
-      - {x: -6.45346498, y: -.509284675}
+    - - {x: -4.4108963, y: 3.34051132}
+      - {x: -5.28328705, y: 1.90449297}
+      - {x: -4.96456957, y: 1.79479575}
+      - {x: -5.75847721, y: -.613100708}
+      - {x: -6.55037594, y: -.509284675}
       - {x: -6.72829247, y: -1.04239202}
-      - {x: 2.94619679, y: -4.15904665}
-      - {x: 3.49912119, y: -3.15518713}
-      - {x: 3.49546838, y: 1.92964339}
+      - {x: 2.28936601, y: -4.11597872}
+      - {x: 4.1667304, y: -.915471315}
+      - {x: 4.14154339, y: 1.66044128}
 --- !u!212 &622864349
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14163,7 +14163,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -20}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &758966399
 GameObject:
@@ -14806,7 +14806,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 803100688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.95000005, y: 2.32999992, z: -.100000001}
+  m_LocalPosition: {x: 1.81400001, y: 2.32999992, z: -.100000001}
   m_LocalScale: {x: .417714655, y: .417714655, z: .417714655}
   m_Children: []
   m_Father: {fileID: 1727076522}
@@ -14824,14 +14824,14 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 3.0664196, y: .539614201}
-      - {x: 3.22075558, y: 1.66918898}
-      - {x: -2.48613119, y: 2.12006903}
-      - {x: -2.76156139, y: 1.14497638}
-      - {x: -2.51109886, y: .982001245}
-      - {x: -2.78462982, y: -1.74501443}
-      - {x: 2.27691364, y: -2.32195687}
-      - {x: 2.78465152, y: .521879256}
+    - - {x: 2.91565967, y: .550372005}
+      - {x: 3.01616979, y: 1.66918898}
+      - {x: -2.32462096, y: 2.12006903}
+      - {x: -2.58927512, y: 1.08035624}
+      - {x: -2.4357245, y: .971243441}
+      - {x: -2.62310123, y: -1.79884028}
+      - {x: 2.18001604, y: -2.39733505}
+      - {x: 2.70928788, y: .50034529}
 --- !u!212 &803100691
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18928,7 +18928,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1025945412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.05000019, y: 1.52999997, z: -.100000001}
+  m_LocalPosition: {x: -6.73099995, y: 1.48800004, z: -.100000001}
   m_LocalScale: {x: .417714655, y: .417714655, z: .417714655}
   m_Children: []
   m_Father: {fileID: 1727076522}
@@ -18946,13 +18946,13 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 2.2355814, y: 3.59118462}
-      - {x: -4.43200541, y: 2.3697207}
-      - {x: -4.45494604, y: -1.76379788}
-      - {x: -3.96963692, y: -2.85777497}
-      - {x: -1.83218455, y: -3.54326391}
-      - {x: 4.58610868, y: -1.13675559}
-      - {x: 3.45591283, y: 2.13852715}
+    - - {x: 2.29815578, y: 3.66627073}
+      - {x: -4.93256521, y: 2.23206043}
+      - {x: -5.20578575, y: 1.00181127}
+      - {x: -3.35645747, y: -2.69509172}
+      - {x: -1.31909513, y: -3.54326367}
+      - {x: 4.53604555, y: -1.04913998}
+      - {x: 3.56853247, y: 2.18859076}
 --- !u!212 &1025945415
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23913,8 +23913,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -2.12879443, y: .748738825}
-      - {x: -1.84344637, y: -.931367755}
+    - - {x: -1.90388632, y: .748738825}
+      - {x: -1.61852002, y: -.942600489}
       - {x: 2.32283878, y: -.874309123}
       - {x: 2.16304159, y: .782984972}
 --- !u!212 &1259690578
@@ -23950,7 +23950,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1259690576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.81999993, y: 3.56999993, z: -.100000001}
+  m_LocalPosition: {x: -2.69300008, y: 3.56999993, z: -.100000001}
   m_LocalScale: {x: .417714655, y: .417714655, z: .417714655}
   m_Children: []
   m_Father: {fileID: 1727076522}
@@ -24796,8 +24796,8 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -10.8999996, y: -71.5}
-  m_SizeDelta: {x: 20, y: 60}
+  m_AnchoredPosition: {x: -10.8999996, y: -81.4000015}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1307932984
 MonoBehaviour:
@@ -36912,7 +36912,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ecc961ddd94396d409c2d4d6856e4e2c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26a4ad515a12dd743a66f6c82dcf8171, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1896038998
 GameObject:
