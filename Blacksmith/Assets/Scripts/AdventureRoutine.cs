@@ -96,6 +96,7 @@ public class AdventureRoutine : MonoBehaviour
             adventurers[0] = newHero;
             heroStatus[0].interactable = true;
             heroPortraits[0].sprite = newHero.getPortrait();
+            heroIndicators[0].text = "Ready to adventure";
             numAdventurers++;
             return true;
         }
@@ -103,6 +104,8 @@ public class AdventureRoutine : MonoBehaviour
         {
             adventurers[1] = newHero;
             heroStatus[1].interactable = true;
+            heroPortraits[1].sprite = newHero.getPortrait();
+            heroIndicators[1].text = "Ready to adventure";
             numAdventurers++;
             return true;
         }
@@ -110,6 +113,8 @@ public class AdventureRoutine : MonoBehaviour
         {
             adventurers[2] = newHero;
             heroStatus[2].interactable = true;
+            heroPortraits[2].sprite = newHero.getPortrait();
+            heroIndicators[2].text = "Ready to adventure";
             numAdventurers++;
             return true;
         }
@@ -124,7 +129,9 @@ public class AdventureRoutine : MonoBehaviour
             {
                 adventurers[i] = null;
                 heroStatus[i].interactable = false;
-
+                heroPortraits[i].sprite = null;
+                heroIndicators[i].text = "Deceased";
+                numAdventurers--;
             }
         }
     }
@@ -266,7 +273,7 @@ public class Adventurer
         isHome = true;
         isReturned = false;
         inventory = new GameObject[INV_OBJECTS];
-        portrait = Resources.Load("Images/First_warrior_trans") as Sprite;
+        portrait = Resources.Load("Images/First_warrior_trans", typeof(Sprite)) as Sprite;
         Debug.Log(portrait);
 
         oreModifier = UnityEngine.Random.Range(0, 6);

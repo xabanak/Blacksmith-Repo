@@ -16,6 +16,7 @@ public class DataScript : MonoBehaviour
     const int numLevelOptions = 5;
     const int itemTypes = 3;
     const int lootOptions = 8;
+    const int numReturnScripts = 3;
 
     int [] stageCount; // Number of total stages to craft each type of item
     int [,] stageListing; // Listing per item type of which number stage is what crafting stage
@@ -27,6 +28,7 @@ public class DataScript : MonoBehaviour
     double[] adventureTimeMultiplier;
     double[] adventureLevelMultiplier;
     LootEntry[,,] lootTables;
+    string[] returnScripts;
 
     
     public int testInt;
@@ -97,6 +99,7 @@ public class DataScript : MonoBehaviour
         adventureTimeMultiplier = new double[numLevels];
         adventureLevelMultiplier = new double[numLevelOptions];
         lootTables = new LootEntry[numLevels, itemTypes, lootOptions];
+        returnScripts = new string[numReturnScripts];
         readDataFile("stageTime.dat");
         readDataFile("stageCount.dat");
         readDataFile("stageListing.dat");
@@ -349,6 +352,26 @@ public class DataScript : MonoBehaviour
                 }
                 break;
 
+            case 'J':
+                while (!inputStream.EndOfStream)
+                {
+                    string tempString = inputStream.ReadLine();
+                    if (tempString[0] == '*')
+                    {
+                        continue;
+                    }
+                    if (i == numReturnScripts)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        returnScripts[i] = tempString;
+                        i++;
+                    }
+                }
+                break;
+
             default:
                 Debug.Log("Failed to load correct data file. " + filePath + " did not load.");
                 break;
@@ -417,6 +440,17 @@ public class DataScript : MonoBehaviour
             return lootTables[level, itemType, position];
         }
         else return null;
+    }
+
+    public string getReturnScript(int scriptNum)
+    {
+        return returnScripts[scriptNum];
+    }
+
+    public string getRandomReturnScript()
+    {
+        int randomNum = UnityEngine.Random.Range(0, numReturnScripts);
+        return returnScripts[randomNum];
     }
 }
 
