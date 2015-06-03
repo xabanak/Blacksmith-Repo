@@ -5,6 +5,7 @@ using System;
 
 public class AdventureRoutine : MonoBehaviour 
 {
+    private HeroInterface heroInterface;
     private Adventurer[] adventurers;
     private string[] adventureZone;
     private int[] adventureDecriment;
@@ -43,6 +44,7 @@ public class AdventureRoutine : MonoBehaviour
         adventurers[0] = null;
         adventurers[1] = null; 
         adventurers[2] = null;
+        heroInterface = gameController.GetComponent<HeroInterface>();
 
         numAdventurers = 0;
 	}
@@ -234,6 +236,7 @@ public class Adventurer
     private Sprite portrait;
     private DataScript dataScript;
     private GameObject gameController;
+    private HeroInterface heroInterface;
     private CreateInventory inventoryController;
     AdventureZone adventureZone;
 
@@ -265,6 +268,7 @@ public class Adventurer
     public Adventurer()
     {
         gameController = GameObject.Find("GameController");
+        heroInterface = gameController.GetComponent<HeroInterface>();
         inventoryController = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         dataScript = gameController.GetComponent<DataScript>();
         name = dataScript.getAdventurerName();
@@ -627,6 +631,7 @@ public class Adventurer
                             continue;
                         }
                         inventoryController.addItem(lootOptions[k].getItem(), 1);
+                        heroInterface.setLootItems(lootOptions[k].getItem(), 1);
                         //Debug.Log("Added " + lootOptions[k].getItem() + " to inventory.");
                         break;
                     }

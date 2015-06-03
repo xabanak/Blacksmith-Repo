@@ -2468,27 +2468,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 129279016}
---- !u!1 &142816022 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 132698, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
-  m_PrefabInternal: {fileID: 1441134822}
 --- !u!224 &142816023 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22400906, guid: 310874e071dc78c409374d0802dedd7f,
     type: 2}
   m_PrefabInternal: {fileID: 1441134822}
---- !u!114 &142816026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 142816022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 358595fab25964248b8b7ddeead9b2a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  confirmationBox: {fileID: 0}
 --- !u!1 &144825261
 GameObject:
   m_ObjectHideFlags: 0
@@ -3817,11 +3801,11 @@ GameObject:
   - 222: {fileID: 224826171}
   - 114: {fileID: 224826170}
   - 61: {fileID: 224826169}
-  - 114: {fileID: 224826168}
   - 114: {fileID: 224826167}
   - 114: {fileID: 224826172}
   - 114: {fileID: 224826173}
   - 114: {fileID: 224826174}
+  - 114: {fileID: 224826168}
   m_Layer: 0
   m_Name: Plains
   m_TagString: Untagged
@@ -3868,7 +3852,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 224826165}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4420793e669996a4493586b7ef3d8879, type: 3}
+  m_Script: {fileID: 11500000, guid: c906538d4d278e84299369daaded83af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &224826169
@@ -4958,12 +4942,12 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Loot items found:'
+  m_Text: LOOT
 --- !u!222 &278471266
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7738,8 +7722,8 @@ RectTransform:
   - {fileID: 117863710}
   - {fileID: 142816023}
   - {fileID: 256688378}
-  - {fileID: 908694212}
   - {fileID: 1310440716}
+  - {fileID: 908694212}
   - {fileID: 351473340}
   - {fileID: 1232449253}
   - {fileID: 1871945332}
@@ -8861,11 +8845,11 @@ GameObject:
   - 222: {fileID: 489705478}
   - 114: {fileID: 489705477}
   - 61: {fileID: 489705476}
-  - 114: {fileID: 489705475}
   - 114: {fileID: 489705474}
   - 114: {fileID: 489705479}
   - 114: {fileID: 489705480}
   - 114: {fileID: 489705481}
+  - 114: {fileID: 489705475}
   m_Layer: 0
   m_Name: Forest
   m_TagString: Untagged
@@ -8912,7 +8896,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 489705472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4420793e669996a4493586b7ef3d8879, type: 3}
+  m_Script: {fileID: 11500000, guid: c906538d4d278e84299369daaded83af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &489705476
@@ -17511,27 +17495,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 908668409}
---- !u!1 &908694211 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 132698, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
-  m_PrefabInternal: {fileID: 1689424155}
 --- !u!224 &908694212 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22400906, guid: 310874e071dc78c409374d0802dedd7f,
     type: 2}
   m_PrefabInternal: {fileID: 1689424155}
---- !u!114 &908694213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 908694211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 358595fab25964248b8b7ddeead9b2a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  confirmationBox: {fileID: 0}
 --- !u!1 &910927788
 GameObject:
   m_ObjectHideFlags: 0
@@ -18188,6 +18156,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 968144531}
+--- !u!1 &970027894 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 183260, guid: ed0085041d78a8047a9b151f88db5445, type: 2}
+  m_PrefabInternal: {fileID: 2131690442}
 --- !u!1 &973375660
 GameObject:
   m_ObjectHideFlags: 0
@@ -24565,8 +24537,8 @@ GameObject:
   - 222: {fileID: 1296702096}
   - 114: {fileID: 1296702095}
   - 61: {fileID: 1296702094}
-  - 114: {fileID: 1296702093}
   - 114: {fileID: 1296702097}
+  - 114: {fileID: 1296702093}
   m_Layer: 0
   m_Name: Middle Window
   m_TagString: Untagged
@@ -24601,7 +24573,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1296702091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4420793e669996a4493586b7ef3d8879, type: 3}
+  m_Script: {fileID: 11500000, guid: c906538d4d278e84299369daaded83af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &1296702094
@@ -24947,7 +24919,7 @@ RectTransform:
   m_Children:
   - {fileID: 1252706847}
   m_Father: {fileID: 424781890}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 200}
@@ -25294,11 +25266,11 @@ GameObject:
   - 222: {fileID: 1341327156}
   - 114: {fileID: 1341327155}
   - 61: {fileID: 1341327154}
-  - 114: {fileID: 1341327153}
   - 114: {fileID: 1341327152}
   - 114: {fileID: 1341327157}
   - 114: {fileID: 1341327158}
   - 114: {fileID: 1341327159}
+  - 114: {fileID: 1341327153}
   m_Layer: 0
   m_Name: Swamp
   m_TagString: Untagged
@@ -25345,7 +25317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1341327150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4420793e669996a4493586b7ef3d8879, type: 3}
+  m_Script: {fileID: 11500000, guid: c906538d4d278e84299369daaded83af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &1341327154
@@ -26080,7 +26052,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1372171335}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1565756066}
+        m_MethodName: displayAdventureResults
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1372171335
@@ -26871,12 +26855,12 @@ Prefab:
       value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 132698, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 132698, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
       propertyPath: m_Name
       value: Market Confirmation Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 132698, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
@@ -28418,8 +28402,8 @@ GameObject:
   - 222: {fileID: 1457188664}
   - 114: {fileID: 1457188663}
   - 61: {fileID: 1457188662}
-  - 114: {fileID: 1457188661}
   - 114: {fileID: 1457188665}
+  - 114: {fileID: 1457188661}
   m_Layer: 0
   m_Name: Bottom Window
   m_TagString: Untagged
@@ -28454,7 +28438,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1457188659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4420793e669996a4493586b7ef3d8879, type: 3}
+  m_Script: {fileID: 11500000, guid: c906538d4d278e84299369daaded83af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &1457188662
@@ -29918,7 +29902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29bd13816ef47e41a52debf396eb9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maleHeroOne: {fileID: 0}
+  maleHeroOne: {fileID: 970027894}
   travelHeroOne: {fileID: 1896038998}
   travelHeroTwo: {fileID: 2106990799}
   travelHeroThree: {fileID: 732340652}
@@ -29982,9 +29966,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseWindow: {fileID: 1403005247}
+  finishedAdventureWindow: {fileID: 2054699797}
   heroStatus: {fileID: 1149571755}
   adventureStatus: {fileID: 1372171334}
   heroName: {fileID: 1574722014}
+  lootLines:
+  - {fileID: 2048461037}
+  - {fileID: 1574657872}
+  - {fileID: 398405167}
+  - {fileID: 533787493}
+  - {fileID: 601046362}
+  - {fileID: 758966401}
+  heroScript: {fileID: 1182966046}
   statusButtons:
   - {fileID: 364789516}
   - {fileID: 899892644}
@@ -30000,8 +29993,8 @@ GameObject:
   - 222: {fileID: 1567282388}
   - 114: {fileID: 1567282387}
   - 61: {fileID: 1567282386}
-  - 114: {fileID: 1567282385}
   - 114: {fileID: 1567282389}
+  - 114: {fileID: 1567282385}
   m_Layer: 0
   m_Name: Top Window
   m_TagString: Untagged
@@ -30036,7 +30029,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1567282383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4420793e669996a4493586b7ef3d8879, type: 3}
+  m_Script: {fileID: 11500000, guid: c906538d4d278e84299369daaded83af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &1567282386
@@ -32795,7 +32788,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400906, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 22400906, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -32838,12 +32831,16 @@ Prefab:
       value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 132698, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 132698, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
       propertyPath: m_Name
       value: Market Confirmation Sell
+      objectReference: {fileID: 0}
+    - target: {fileID: 132698, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
+      propertyPath: m_TagString
+      value: Sell
+      objectReference: {fileID: 0}
+    - target: {fileID: 132698, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 310874e071dc78c409374d0802dedd7f, type: 2}
@@ -36093,11 +36090,11 @@ GameObject:
   - 222: {fileID: 1848148429}
   - 114: {fileID: 1848148428}
   - 61: {fileID: 1848148427}
-  - 114: {fileID: 1848148426}
   - 114: {fileID: 1848148425}
   - 114: {fileID: 1848148430}
   - 114: {fileID: 1848148431}
   - 114: {fileID: 1848148432}
+  - 114: {fileID: 1848148426}
   m_Layer: 0
   m_Name: Caves
   m_TagString: Untagged
@@ -36144,7 +36141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1848148423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4420793e669996a4493586b7ef3d8879, type: 3}
+  m_Script: {fileID: 11500000, guid: c906538d4d278e84299369daaded83af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &1848148427

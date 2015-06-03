@@ -5,12 +5,17 @@ using System;
 
 public class HeroInterface : MonoBehaviour {
 
+    private DataScript dataScript;
     private Adventurer[] adventurers;
     private AdventureRoutine adventurerRoutine;
     public GameObject baseWindow;
+    public GameObject finishedAdventureWindow;
     public Button heroStatus;
     public Button adventureStatus;
     public Text heroName;
+    public Text[] lootLines;
+    private const int totalLootLines = 6;
+    public Text heroScript;
     public Button[] statusButtons;
     private int[] lootItems;
     private const int totalLootItems = 39;
@@ -25,6 +30,7 @@ public class HeroInterface : MonoBehaviour {
         statusButtons[2].interactable = false;
         lootItems = new int[totalLootItems];
         clearLootItems();
+        dataScript = GameObject.Find("GameController").GetComponent<DataScript>();
 	}
 	
 	// Update is called once per frame
@@ -46,6 +52,11 @@ public class HeroInterface : MonoBehaviour {
         
     }
 
+    public void setHeroScript()
+    {
+        heroScript.text = dataScript.getRandomReturnScript();
+    }
+
     public void showBaseWindow(int hero)
     {
         adventurers = adventurerRoutine.getAdventurers();
@@ -55,8 +66,46 @@ public class HeroInterface : MonoBehaviour {
 
     public void setLootItems(string item, int qty)
     {
+        item = addUnderscore(item);
+        Debug.Log("loot string" + item);
         int itemType = (int)Enum.Parse(typeof(Item), item);
+        item = removeUnderscore(item);
         lootItems[itemType] += qty;
+    }
+
+    public void setLootLines()
+    {
+        string item;
+        int counter = 0;
+
+        for (int i = 0; i < totalLootItems; i++)
+        {
+            if (lootItems[i] > 0)
+            {
+                item = (string)Enum.GetName(typeof(Item), i);
+                item = removeUnderscore(item);
+                lootLines[counter].text = item + " X " + lootItems[i];
+                counter++;
+            }
+        }
+
+        for (int i = counter; i < totalLootLines; i++)
+        {
+            lootLines[i].text = "";
+        }
+    }
+
+    public void displayAdventureResults()
+    {
+        setLootLines();
+        setHeroScript();
+        finishedAdventureWindow.SetActive(true);
+    }
+
+    public void hideAdventureResults()
+    {
+        finishedAdventureWindow.SetActive(false);
+        clearLootItems();
     }
 
     enum Item // Listing of items
@@ -110,7 +159,7 @@ public class HeroInterface : MonoBehaviour {
         {
             if (word[i] == '_')
             {
-                tempString += "_";
+                tempString += " ";
             }
             else
             {
@@ -128,7 +177,7 @@ public class HeroInterface : MonoBehaviour {
         {
             if (word[i] == ' ')
             {
-                tempString += " ";
+                tempString += "_";
             }
             else
             {
