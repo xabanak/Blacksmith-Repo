@@ -538,7 +538,7 @@ public class CreateInventory : MonoBehaviour
         handleName[4] = "Expert Handle";
         // End Define handle types
 
-        SetQuantitiesTestMethod();
+        //SetQuantitiesTestMethod();
 	}
 
     // TEST METHOD FOR ADDING IN A RANDOM AMOUNT OF ITEMS.

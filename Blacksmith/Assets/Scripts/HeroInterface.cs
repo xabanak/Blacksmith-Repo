@@ -19,10 +19,13 @@ public class HeroInterface : MonoBehaviour {
     public Button[] statusButtons;
     private int[] lootItems;
     private const int totalLootItems = 39;
+    private int currentHeroStatus;
+    private bool[] heroHasReturned;
 
 	// Use this for initialization
 	void Start () 
     {
+        currentHeroStatus = 0;
         adventurerRoutine = GameObject.Find("GameController").GetComponent<AdventureRoutine>();
         adventurers = adventurerRoutine.getAdventurers();
         statusButtons[0].interactable = false;
@@ -62,6 +65,8 @@ public class HeroInterface : MonoBehaviour {
         adventurers = adventurerRoutine.getAdventurers();
         baseWindow.SetActive(true);
         heroName.text = adventurers[hero].getName();
+        currentHeroStatus = hero;
+        Debug.Log("Hero :" + hero);
     }
 
     public void setLootItems(string item, int qty)
@@ -102,6 +107,28 @@ public class HeroInterface : MonoBehaviour {
         finishedAdventureWindow.SetActive(true);
     }
 
+    public void collectAdventurerLoot()
+    {
+        adventurers = adventurerRoutine.getAdventurers();
+
+        switch(currentHeroStatus)
+        {
+            case 0:
+                adventurerRoutine.collectFromAdventurer(adventurers[0]);
+                break;
+            case 1:
+                adventurerRoutine.collectFromAdventurer(adventurers[1]);
+                break;
+            case 2:
+                adventurerRoutine.collectFromAdventurer(adventurers[2]);
+                break;
+        }
+    }
+
+    public void setCurrentSelectedHero(int index)
+    {
+        currentHeroStatus = index;
+    }
     public void hideAdventureResults()
     {
         finishedAdventureWindow.SetActive(false);
