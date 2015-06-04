@@ -223,7 +223,12 @@ public class HeroInterface : MonoBehaviour {
             lootLines[i].text = "";
         }
 
-        finishedAdventureWindow.SetActive(false);
+        for (int i = 0; i < totalLootItems; i++)
+        {
+            lootItems[i] = 0;
+        }
+
+            finishedAdventureWindow.SetActive(false);
     }
 
     public void resetBaseWindow()
