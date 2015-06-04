@@ -1434,17 +1434,25 @@ public class CraftRoutine : MonoBehaviour
         switch(scene)
         {
             case "workshop front":
+//                 soundController.stopAllMusic();
+//                 soundController.PlayCraftingMusic();
                 craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, - 10);
                 craftingComponent.GetComponent<ComponentBehavior>().switchRoom(true);
                 break;
             case "workshop back":
+//                 soundController.stopAllMusic();
+//                 soundController.PlayCraftingMusic();
                 craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, - 10);
                 craftingComponent.GetComponent<ComponentBehavior>().switchRoom(false);
                 break;
             case "workbench":
+                soundController.stopAllMusic();
+                soundController.PlayCraftingMusic();
                 craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, -10);
                 break;
             case "town":
+                soundController.stopAllMusic();
+                soundController.playTownMusic();
                 craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, -10);
                 craftingCamera.SetActive(false);
                 townCamera.SetActive(true);
@@ -1464,6 +1472,8 @@ public class CraftRoutine : MonoBehaviour
                 frontButton.gameObject.SetActive(false);
                 break;
             case "workshop":
+                soundController.stopAllMusic();
+                soundController.playWorkshopMusic();
                 townCamera.SetActive(false);
                 craftingCamera.SetActive(true);
                 workshopButton.gameObject.SetActive(false);

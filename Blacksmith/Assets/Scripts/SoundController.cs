@@ -50,6 +50,8 @@ public class SoundController : MonoBehaviour {
         craftingMusic = GameObject.Find("Music/CraftingMusic").GetComponent<AudioSource>();
         workshopMusic = GameObject.Find("Music/WorkshopMusic").GetComponent<AudioSource>();
         townMusic = GameObject.Find("Music/TownMusic").GetComponent<AudioSource>();
+        tavernMusic = GameObject.Find("Music/TavernMusic").GetComponent<AudioSource>();
+
 
         Random.seed = (int)System.DateTime.Now.Ticks;
     }
@@ -63,6 +65,14 @@ public class SoundController : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void stopAllMusic()
+    {
+        craftingMusic.Stop();
+        workshopMusic.Stop();
+        townMusic.Pause();
+        tavernMusic.Pause();
+    }
 
     public void PlayHammerHit()
     {
@@ -165,6 +175,18 @@ public class SoundController : MonoBehaviour {
         else
         {
             townMusic.Pause();
+        }
+    }
+
+    public void playTavernMusic()
+    {
+        if (!tavernMusic.isPlaying)
+        {
+            tavernMusic.Play();
+        }
+        else
+        {
+            tavernMusic.Pause();
         }
     }
 

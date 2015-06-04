@@ -64,14 +64,14 @@ public class GameController : MonoBehaviour {
 	void Update () 
     {
         
-        if (workshop && !soundController.isWorkshopMusicPlaying())
-        {
-            soundController.playWorkshopMusic();
-        }
-        if (craftRoutine.isCrafting())
-        {
-            soundController.playWorkshopMusic();
-        }
+//         if (workshop && !soundController.isWorkshopMusicPlaying())
+//         {
+//             soundController.playWorkshopMusic();
+//         }
+//         if (craftRoutine.isCrafting())
+//         {
+//             soundController.playWorkshopMusic();
+//         }
         if (Input.GetKeyDown(KeyCode.I))
         {
             InventoryToggle();
