@@ -9,6 +9,7 @@ public class HeroInterface : MonoBehaviour {
     private Adventurer[] adventurers;
     private AdventureRoutine adventurerRoutine;
     public GameObject baseWindow;
+    public GameObject statusWindow;
     public GameObject finishedAdventureWindow;
     public Button heroStatus;
     public Button adventureStatus;
@@ -21,6 +22,14 @@ public class HeroInterface : MonoBehaviour {
     private const int totalLootItems = 39;
     private int currentHeroStatus;
     private bool[] heroHasReturned;
+    private CreateInventory createInventory;
+    public Button equipButtonTest;
+    public Button weaponButton;
+    public Button doneButton;
+    public Text nameText;
+    public Text levelText;
+    public Text powerText;
+    public Text adventurersText;
 
 	// Use this for initialization
 	void Start () 
@@ -34,6 +43,7 @@ public class HeroInterface : MonoBehaviour {
         lootItems = new int[totalLootItems];
         clearLootItems();
         dataScript = GameObject.Find("GameController").GetComponent<DataScript>();
+        createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
 	}
 	
 	// Update is called once per frame
@@ -236,5 +246,48 @@ public class HeroInterface : MonoBehaviour {
         adventurers = adventurerRoutine.getAdventurers();
         baseWindow.SetActive(false);
         heroName.text = "";
+    }
+
+    public void equipHero()
+    {
+        if (createInventory.swords.GetCurrentSize() > 0)
+        {
+            Debug.Log("Current Hero Status: " + currentHeroStatus);
+            adventurers[currentHeroStatus].equip(createInventory.swords.GetItem(0));
+            createInventory.swords.RemoveItem(createInventory.swords.GetItem(0));
+            weaponButton.GetComponent<Image>().sprite = equipButtonTest.GetComponent<Image>().sprite;
+            weaponButton.transform.GetChild(0).GetComponent<Text>().text = "";
+            setHeroInfo();
+        }
+    }
+
+    public void pullUpEquipHero()
+    {
+        equipButtonTest.gameObject.SetActive(true);
+    }
+
+    public void pullUpStatus()
+    {
+        baseWindow.SetActive(false);
+        setHeroInfo();
+        statusWindow.gameObject.SetActive(true);
+    }
+
+    private void setHeroInfo()
+    {
+        nameText.text = "Name: " + adventurers[currentHeroStatus].getName();
+        levelText.text = "Level: " + adventurers[currentHeroStatus].getLevel();
+        powerText.text = "Power: " + adventurers[currentHeroStatus].getPowerLevel();
+        adventurersText.text = "Adventurers: 0";
+    }
+
+    public void closeHeroStatus()
+    {
+        nameText.text = "";
+        levelText.text = "";
+        powerText.text = "";
+        adventurersText.text = "";
+        statusWindow.gameObject.SetActive(false);
+        equipButtonTest.gameObject.SetActive(false);
     }
 }

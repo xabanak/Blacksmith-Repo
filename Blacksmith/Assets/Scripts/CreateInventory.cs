@@ -115,7 +115,7 @@ public class CreateInventory : MonoBehaviour
     private const int handleSize = 5;
 
     // Weapon & shield declarations
-    private SortedInventory swords = new SortedInventory();
+    public SortedInventory swords = new SortedInventory();
     //private SortedInventory axes = new SortedInventory();
     //private SortedInventory maces = new SortedInventory();
     //private SortedInventory flails = new SortedInventory();

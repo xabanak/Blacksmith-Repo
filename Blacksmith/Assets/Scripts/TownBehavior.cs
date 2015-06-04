@@ -32,9 +32,9 @@ public class TownBehavior : MonoBehaviour {
     private int heroSelection;
     public int activeTravelHero;
     private string currentTravelZone;
-    public Button[] heroStatusButtons;
+    public Button[] levelButtons;
+    public GameObject[] travelSpots;
     
-
     public Text testText;
 
     void Awake ()
@@ -56,6 +56,18 @@ public class TownBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        if (adventurers[0].getAdventuringState())
+        {
+            travelHeroOne.GetComponent<Button>().interactable = false;
+        }
+        if (adventurers[1].getAdventuringState())
+        {
+            travelHeroTwo.GetComponent<Button>().interactable = false;
+        }
+        if (adventurers[2].getAdventuringState())
+        {
+            travelHeroThree.GetComponent<Button>().interactable = false;
+        }
 	}
 
     public void toggleTavernWindow()
@@ -342,5 +354,20 @@ public class TownBehavior : MonoBehaviour {
     public void setCurrentTravelZone(string zone)
     {
         currentTravelZone = zone;
+    }
+
+    public void resetTravelWindow()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            levelButtons[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            travelSpots[i].gameObject.SetActive(false);
+        }
+
+        returnToTown("Travel");
     }
 }
