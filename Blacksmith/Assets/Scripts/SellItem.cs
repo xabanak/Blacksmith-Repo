@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SellItem : MonoBehaviour {
 
-    private GameObject craftedItem;
+    public GameObject craftedItem;
 
     public void setCraftedItem(GameObject item)
     {

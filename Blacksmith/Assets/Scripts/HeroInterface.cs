@@ -30,6 +30,11 @@ public class HeroInterface : MonoBehaviour {
     public Text levelText;
     public Text powerText;
     public Text adventurersText;
+    public GameObject equipmentLine;
+    public GameObject equipmentBackground;
+    public GameObject equipmentWindow;
+    public GameObject equipmentBorder;
+    public Sprite swordImage;
 
 	// Use this for initialization
 	void Start () 
@@ -248,17 +253,15 @@ public class HeroInterface : MonoBehaviour {
         heroName.text = "";
     }
 
-    public void equipHero()
+    public void equipHero(GameObject item)
     {
-        if (createInventory.swords.GetCurrentSize() > 0)
-        {
-            Debug.Log("Current Hero Status: " + currentHeroStatus);
-            adventurers[currentHeroStatus].equip(createInventory.swords.GetItem(0));
-            createInventory.swords.RemoveItem(createInventory.swords.GetItem(0));
-            weaponButton.GetComponent<Image>().sprite = equipButtonTest.GetComponent<Image>().sprite;
-            weaponButton.transform.GetChild(0).GetComponent<Text>().text = "";
-            setHeroInfo();
-        }
+        adventurers[currentHeroStatus].equip(item);
+        createInventory.swords.RemoveItem(item);
+        weaponButton.GetComponent<Image>().sprite = swordImage;
+        weaponButton.transform.GetChild(0).GetComponent<Text>().text = "";
+        clearEquipmentList();
+        hideEquipmentWindow();
+        setHeroInfo();
     }
 
     public void pullUpEquipHero()
@@ -289,5 +292,71 @@ public class HeroInterface : MonoBehaviour {
         adventurersText.text = "";
         statusWindow.gameObject.SetActive(false);
         equipButtonTest.gameObject.SetActive(false);
+    }
+
+    public void toggleEquipmentWindow()
+    {
+        equipmentWindow.SetActive(!equipmentWindow.activeSelf);
+        equipmentBorder.SetActive(!equipmentBorder.activeSelf);
+    }
+
+    public void hideEquipmentWindow()
+    {
+        equipmentWindow.SetActive(false);
+        equipmentBorder.SetActive(false);
+    }
+
+    public void clearEquipmentList()
+    {
+        foreach (Transform itemLine in equipmentBackground.transform)
+        {
+            Destroy(itemLine.gameObject);
+        }
+    }
+
+    public void buildEquipmentList()
+    {
+        int totalItems = 0;
+
+        for (int i = 0; i < createInventory.getItemType("sword").GetCurrentSize(); i++)
+        {
+            addEquipmentLine(createInventory.getItemType("sword").GetItem(i).GetComponent<ItemScript>().GetItemDescription(), equipmentBackground, false, createInventory.getItemType("sword").GetItem(i));
+            totalItems++;
+        }
+
+        if (totalItems == 0)
+        {
+            addEquipmentLine("No Equipment Availible", equipmentBackground, false, null);
+            totalItems++;
+        }
+
+        for (int i = totalItems; i < 20; i++)
+        {
+            addEquipmentLine("", equipmentBackground, true, null);
+        }
+    }
+
+    private void addEquipmentLine(string item, GameObject background, bool blank, GameObject type)
+    {
+        GameObject tempObj;
+
+        tempObj = Instantiate(equipmentLine, background.transform.position, Quaternion.identity) as GameObject;
+        tempObj.transform.SetParent(background.transform);
+        tempObj.transform.localScale = new Vector3(1, 1, 1);
+        tempObj.name = item;
+        if (type != null)
+        {
+            tempObj.AddComponent<SellItem>();
+            tempObj.GetComponent<SellItem>().setCraftedItem(type);
+        }
+
+        if (!blank)
+        {
+            tempObj.transform.GetChild(0).GetComponent<Text>().text = item;
+        }
+        else
+        {
+            tempObj.transform.GetChild(0).GetComponent<Text>().text = "";
+        }
     }
 }

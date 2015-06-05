@@ -56,6 +56,7 @@ public class TownBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        /*
         if (adventurers[0].getAdventuringState())
         {
             travelHeroOne.GetComponent<Button>().interactable = false;
@@ -67,7 +68,7 @@ public class TownBehavior : MonoBehaviour {
         if (adventurers[2].getAdventuringState())
         {
             travelHeroThree.GetComponent<Button>().interactable = false;
-        }
+        }*/
 	}
 
     public void toggleTavernWindow()
@@ -195,6 +196,7 @@ public class TownBehavior : MonoBehaviour {
 
     public void toggleTravelWindow()
     {
+        Debug.Log("toggleTravelWindow called");
         if (!travelCanvas.gameObject.activeSelf)
         {
             travelCanvas.gameObject.SetActive(true);
@@ -284,32 +286,54 @@ public class TownBehavior : MonoBehaviour {
                 travelCanvas.transform.GetChild(i).gameObject.SetActive(set);
             }
     }
-   
+
+
     public void setTravelHeroButtons()
     {
         if (adventurers[0] != null)
         {
-            travelHeroOne.GetComponent<Button>().interactable = true;
+            if (adventurers[0].getAdventuringState())
+            {
+                travelHeroOne.GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                travelHeroOne.GetComponent<Button>().interactable = true;
+            }
         }
-        else if (adventurers[0] == null)
+        else
         {
             travelHeroOne.GetComponent<Button>().interactable = false;
         }
-        
+
         if (adventurers[1] != null)
         {
-            travelHeroTwo.GetComponent<Button>().interactable = true;
+            if (adventurers[1].getAdventuringState())
+            {
+                travelHeroTwo.GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                travelHeroTwo.GetComponent<Button>().interactable = true;
+            }
         }
-        else if (adventurers[1] == null)
+        else
         {
             travelHeroTwo.GetComponent<Button>().interactable = false;
         }
 
         if (adventurers[2] != null)
         {
-            travelHeroThree.GetComponent<Button>().interactable = true;
+            if (adventurers[2].getAdventuringState())
+            {
+                travelHeroThree.GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                travelHeroThree.GetComponent<Button>().interactable = true;
+            }
         }
-        else if (adventurers[2] == null)
+        else
         {
             travelHeroThree.GetComponent<Button>().interactable = false;
         }

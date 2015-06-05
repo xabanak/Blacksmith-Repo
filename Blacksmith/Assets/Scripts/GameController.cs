@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour {
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         hammer = GameObject.Find("Crafting/Hammer");
         component = GameObject.Find("Crafting/Component");
-        SetScene("workshop");
+        setScene("workshop");
         tutorialRoutine = this.GetComponent<TutorialRoutine>();
         soundController = this.GetComponent<SoundController>();
         UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks;
@@ -119,7 +119,9 @@ public class GameController : MonoBehaviour {
         }
         else if (town && !inventoryCanvas.GetComponent<Canvas>().enabled)
         {
+            invOpen.Play();
             inventoryCanvas.worldCamera = townCamera;
+            inventoryCanvas.GetComponent<Canvas>().enabled = true;
         }
         else if (!inventoryCanvas.GetComponent<Canvas>().enabled)
         {
@@ -127,15 +129,17 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    void SetScene(string scene)
+    public void setScene(string scene)
     {
         switch(scene)
         {
             case "workshop":
                 workshop = true;
+                town = false;
                 break;
             case "town":
                 town = true;
+                workshop = false;
                 break;
             default:
                 Debug.Log("scene not found");

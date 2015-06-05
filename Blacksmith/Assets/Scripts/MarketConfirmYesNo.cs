@@ -34,7 +34,7 @@ public class MarketConfirmYesNo : MonoBehaviour {
     {
         if (gameController.decGold(marketRoutine.getCurrentPurchasePrice()))
         {
-            Debug.Log("You have purchased " + marketRoutine.getCurrentPurchaseItem() + " for " + marketRoutine.getCurrentPurchasePrice() + " gold");
+            //Debug.Log("You have purchased " + marketRoutine.getCurrentPurchaseItem() + " for " + marketRoutine.getCurrentPurchasePrice() + " gold");
             marketRoutine.updateGold();
             createInventory.addItem(marketRoutine.getCurrentPurchaseItem(), 1);
             marketRoutine.setMarketWindow();
@@ -50,18 +50,18 @@ public class MarketConfirmYesNo : MonoBehaviour {
     public void selectYesSell()
     {
         gameController.incGold(marketRoutine.getCurrentSellPrice());
-        Debug.Log("You have sold " + marketRoutine.getCurrentSellItem() + " for " + marketRoutine.getCurrentSellPrice() + " gold");
+        //Debug.Log("You have sold " + marketRoutine.getCurrentSellItem() + " for " + marketRoutine.getCurrentSellPrice() + " gold");
         marketRoutine.updateGold();
         if (marketRoutine.getCurrentSellCraftedItem() != null)
         {
             createInventory.deleteCraftedItem(marketRoutine.getCurrentSellCraftedItem());
-            Debug.Log("Sell Crafted Item");
+            //Debug.Log("Sell Crafted Item");
             marketRoutine.setCurrentSellCraftedItem(null);
         }
         else
         {
             createInventory.removeItem(marketRoutine.getCurrentSellItem(), 1);
-            Debug.Log("Sell Basic Item");
+            //Debug.Log("Sell Basic Item");
         }
         marketRoutine.setMarketWindow();
 
