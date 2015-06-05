@@ -78,6 +78,7 @@ public class CraftRoutine : MonoBehaviour
     public Text stage;
     public Text popUpText;
     public Text results;
+    public Text grinderScore;
 
     //CRAFTING TOOL INTERACTION ALLOWANCES
 
@@ -1140,6 +1141,49 @@ public class CraftRoutine : MonoBehaviour
             grindTime -= Time.deltaTime;
             step = speed * Time.deltaTime;
 
+            /*
+            if (rotateRight)
+            {
+                grinderGauge.GetComponent<Slider>().value += step;
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    if (grinderGauge.GetComponent<Slider>().value >= 80 && grinderGauge.GetComponent<Slider>().value <= 85)
+                    {
+                        quality += 5;
+                        Text tempTxt = Instantiate(grinderScore) as Text;
+                        tempTxt.text = "+ 5";
+                    }
+                    else if (grinderGauge.GetComponent<Slider>().value >= 75 && grinderGauge.GetComponent<Slider>().value <= 90)
+                    {
+                        quality += 2;
+                        Text tempTxt = Instantiate(grinderScore) as Text;
+                        tempTxt.text = "+ 2";
+                    }
+                    rotateRight = !rotateRight;
+                }
+            }
+            else
+            {
+                grinderGauge.GetComponent<Slider>().value -= step;
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    if (grinderGauge.GetComponent<Slider>().value >= 15 && grinderGauge.GetComponent<Slider>().value <= 20)
+                    {
+                        quality += 5;
+                        Text tempTxt = Instantiate(grinderScore) as Text;
+                        tempTxt.text = "+ 5";
+                    }
+                    else if (grinderGauge.GetComponent<Slider>().value >= 10 && grinderGauge.GetComponent<Slider>().value <= 25)
+                    {
+                        quality += 2;
+                        Text tempTxt = Instantiate(grinderScore) as Text;
+                        tempTxt.text = "+ 2";
+                    }
+                    rotateRight = !rotateRight;
+                }
+            }*/
+
+
             if (rotateRight)
             {
                 grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
@@ -1362,6 +1406,7 @@ public class CraftRoutine : MonoBehaviour
             barrelSliderObject.SetActive(false);
             craftingComponent.SetActive(true);
             craftingComponent.GetComponent<ComponentBehavior>().removeFromBarrel();
+            barrelSteam.Stop();
         }
         else if (!componentInBarrel)
         {
@@ -1409,7 +1454,7 @@ public class CraftRoutine : MonoBehaviour
     public void toggleComponentOnGrinder()
     {
         componentOnGrinder = !componentOnGrinder;
-        grinderSparksBase.SetActive(true);
+        grinderSparksBase.SetActive(!grinderSparksBase.activeSelf);
         soundController.playGrinding();
         tutorialHelper(21);
     }

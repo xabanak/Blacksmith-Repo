@@ -24949,6 +24949,7 @@ MonoBehaviour:
   stage: {fileID: 1847773638}
   popUpText: {fileID: 287891303}
   results: {fileID: 0}
+  grinderScore: {fileID: 11420674, guid: 86208f3ea7b67f14b980a6a3c0992fbe, type: 2}
   itemQuality: 0
   possibleItemQuality: 0
   forgeOne: {fileID: 547063440}
