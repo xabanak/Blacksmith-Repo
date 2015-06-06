@@ -42,6 +42,7 @@ public class CraftRoutine : MonoBehaviour
     public Button workshopButton;
 
     public Canvas overlayCanvas;
+    public Canvas workshopCanvas;
 
     public GameObject townCamera;
     public GameObject craftingCamera;
@@ -170,20 +171,14 @@ public class CraftRoutine : MonoBehaviour
     //GRINDING STAGE
 
     private bool grinded;
-    public Transform tiltedRight;
-    public Transform tiltedLeft;
     public GameObject grinderGauge;
     public GameObject grinderSparksBase;
     public GameObject grinderSparks;
-    public GameObject grinderGauge2;
-    private const int speed = 3;
-    private const float grinderSpeed = 0.05f;
+    private Text tempTxt;
+    private const int speed = 70;
+    private int grindCycles;
     private float step;
-    private float counterStep;
-    private bool grindCycle;
-    private float grindTime;
-    private bool rotateRight;
-    private int playerRotation; // 0 for none, 1 for right, 2 for left
+    private bool slideRight;
 
     //POlISHING STAGE
 
@@ -267,6 +262,7 @@ public class CraftRoutine : MonoBehaviour
         needUnPaused = false;
         pauseTimer = 0.0f;
         dunk = false;
+        grindCycles = 0;
 
         needSetAnnouncement = false;
         tutorialRoutine = GameObject.Find("GameController").GetComponent<TutorialRoutine>();
@@ -512,9 +508,7 @@ public class CraftRoutine : MonoBehaviour
         resetBetweenStages();
 
         grinded = false;
-        rotateRight = false;
-        grindCycle = false;
-        playerRotation = 0;
+        slideRight = true;
        
         spawnShimmersNeeded = true;
         top = true;
@@ -606,7 +600,6 @@ public class CraftRoutine : MonoBehaviour
         hammerSliderObject.SetActive(false);
         heatSliderObject.SetActive(false);
         grinderGauge.SetActive(false);
-        grinderGauge2.SetActive(false);
         resetTimer();
     }
 
@@ -1101,7 +1094,6 @@ public class CraftRoutine : MonoBehaviour
         useGrinder = true;
 
         grinderGauge.SetActive(true);
-        grinderGauge2.SetActive(true);
         timerSliderObject.SetActive(true);
         grinderGauge.GetComponent<Slider>().value = grinderGauge.GetComponent<Slider>().maxValue / 2;
 
@@ -1109,7 +1101,7 @@ public class CraftRoutine : MonoBehaviour
         setTimer((float)dataScript.getStageTime(currentStageAbsVal) * (float)dataScript.getMult(itemType, materialType));
         timerSliderObject.GetComponent<Slider>().value = 0;
 
-        possibleItemQuality += timerEndTime;
+        possibleItemQuality += 50;
 
         setAnnouncement("Grind!", 3.0f);
     }
@@ -1126,40 +1118,46 @@ public class CraftRoutine : MonoBehaviour
         {
             startTimer();
             timeQuality = timeSync;
+            grindCycles = 0;
         }
 
         if (timerActive)
         {
-            // The first section is automated and creates imbalance on the component
-            if (grindCycle == false)
-            {
-                grindTime = Random.Range(2.0f, 5.0f);
-                grindCycle = true;
-                rotateRight = !rotateRight;
-            }
-
-            grindTime -= Time.deltaTime;
             step = speed * Time.deltaTime;
 
-            /*
-            if (rotateRight)
+            
+            if (slideRight)
             {
                 grinderGauge.GetComponent<Slider>().value += step;
                 if (Input.GetKeyDown(KeyCode.A))
                 {
+                    displayGrindCycleScore();
                     if (grinderGauge.GetComponent<Slider>().value >= 80 && grinderGauge.GetComponent<Slider>().value <= 85)
                     {
-                        quality += 5;
-                        Text tempTxt = Instantiate(grinderScore) as Text;
-                        tempTxt.text = "+ 5";
+                        quality += 2.5f;
+                        tempTxt.text = "Excellent";
                     }
                     else if (grinderGauge.GetComponent<Slider>().value >= 75 && grinderGauge.GetComponent<Slider>().value <= 90)
                     {
-                        quality += 2;
-                        Text tempTxt = Instantiate(grinderScore) as Text;
-                        tempTxt.text = "+ 2";
+                        quality += 1;
+                        tempTxt.text = "Good";
                     }
-                    rotateRight = !rotateRight;
+                    else
+                    {
+                        tempTxt.text = "Bad";
+                    }
+                    slideRight = !slideRight;
+                    grindCycles++;
+                    Debug.Log("Grind Cycles: " + grindCycles);
+                }
+                else if(grinderGauge.GetComponent<Slider>().value >= 99.9f)
+                {
+                    displayGrindCycleScore();
+                    quality -= 1;
+                    tempTxt.text = "Terrible";
+                    slideRight = !slideRight;
+                    grindCycles++;
+                    Debug.Log("Grind Cycles: " + grindCycles);
                 }
             }
             else
@@ -1167,118 +1165,42 @@ public class CraftRoutine : MonoBehaviour
                 grinderGauge.GetComponent<Slider>().value -= step;
                 if (Input.GetKeyDown(KeyCode.D))
                 {
+                    displayGrindCycleScore();
                     if (grinderGauge.GetComponent<Slider>().value >= 15 && grinderGauge.GetComponent<Slider>().value <= 20)
                     {
-                        quality += 5;
-                        Text tempTxt = Instantiate(grinderScore) as Text;
-                        tempTxt.text = "+ 5";
+                        quality += 2.5f;
+                        tempTxt.text = "Excellent";
                     }
                     else if (grinderGauge.GetComponent<Slider>().value >= 10 && grinderGauge.GetComponent<Slider>().value <= 25)
                     {
-                        quality += 2;
-                        Text tempTxt = Instantiate(grinderScore) as Text;
-                        tempTxt.text = "+ 2";
+                        quality += 1;
+                        tempTxt.text = "Good";
                     }
-                    rotateRight = !rotateRight;
+                    else
+                    {
+                        tempTxt.text = "Bad";
+                    }
+                    slideRight = !slideRight;
+                    grindCycles++;
+                    Debug.Log("Grind Cycles: " + grindCycles);
                 }
-            }*/
-
-
-            if (rotateRight)
-            {
-                grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, step);
-                grinderGauge.GetComponent<Slider>().value += step;
-                if (grinderGauge.GetComponent<Slider>().value <= 60)
+                else if(grinderGauge.GetComponent<Slider>().value <= 0.1f)
                 {
-                    grinderSparks.transform.Rotate(Vector3.up, speed * Time.deltaTime);
-                    craftingComponent.transform.position = new Vector3(craftingComponent.transform.position.x + grinderSpeed * Time.deltaTime, craftingComponent.transform.position.y, craftingComponent.transform.position.z);
-
+                    displayGrindCycleScore();
+                    quality -= 1;
+                    tempTxt.text = "Terrible";
+                    slideRight = !slideRight;
+                    grindCycles++;
+                    Debug.Log("Grind Cycles: " + grindCycles);
                 }
-            }
-            else
-            {
-                grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, step);
-                grinderGauge.GetComponent<Slider>().value -= step;
-                if (grinderGauge.GetComponent<Slider>().value >= 0)
-                {
-                    grinderSparks.transform.Rotate(Vector3.down, speed * Time.deltaTime);
-                    craftingComponent.transform.position = new Vector3(craftingComponent.transform.position.x - grinderSpeed * Time.deltaTime, craftingComponent.transform.position.y, craftingComponent.transform.position.z);
-
-                }
-
-            }
-
-            if (grindTime <= 0.0f)
-            {
-                grindCycle = false;
-            }
-
-            // In this section the player controls the balance of the grinding process
-            counterStep = speed * 2 * Time.deltaTime;
-
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                playerRotation = 0;
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                playerRotation = 1;
-            }
-            else if (Input.GetKeyDown(KeyCode.A))
-            {
-                playerRotation = 2;
-            }
-
-            if (playerRotation == 1)
-            {
-                grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedRight.rotation, counterStep);
-                grinderGauge.GetComponent<Slider>().value += counterStep;
-                if (grinderGauge.GetComponent<Slider>().value <= 60)
-                {
-                    grinderSparks.transform.Rotate(Vector3.up, speed * 2 * Time.deltaTime);
-                    craftingComponent.transform.position = new Vector3(craftingComponent.transform.position.x + grinderSpeed * 2 * Time.deltaTime, craftingComponent.transform.position.y, craftingComponent.transform.position.z);
-
-                }
-
-            }
-            else if (playerRotation == 2)
-            {
-                grinderGauge.transform.rotation = Quaternion.RotateTowards(grinderGauge.transform.rotation, tiltedLeft.rotation, counterStep);
-                grinderGauge.GetComponent<Slider>().value -= counterStep;
-                if (grinderGauge.GetComponent<Slider>().value >= 0)
-                {
-                    grinderSparks.transform.Rotate(Vector3.down, speed * 2 * Time.deltaTime);
-                    craftingComponent.transform.position = new Vector3(craftingComponent.transform.position.x - grinderSpeed * 2 * Time.deltaTime, craftingComponent.transform.position.y, craftingComponent.transform.position.z);
-
-                }
-
-            }
-
-            if (timeQuality <= 0)
-            {
-                timeQuality = timeSync;
-                if (grinderGauge.GetComponent<Slider>().value > 25 && grinderGauge.GetComponent<Slider>().value < 35)
-                {
-                    itemQuality += 1;
-                }
-                else if (grinderGauge.GetComponent<Slider>().value > 20 && grinderGauge.GetComponent<Slider>().value < 40)
-                {
-                    itemQuality += 0.5f;
-                }
-            }
-
-            timeQuality -= Time.deltaTime;
-
-            if (grinderGauge.GetComponent<Slider>().value <= 0 || grinderGauge.GetComponent<Slider>().value >= 60)
-            {
-                setAnnouncement("The blade slipped!", 2.0f);
-                timedPause(2);
-                nextStage();
             }
         }
         if (!timerActive && !timerSet)
         {
-            setAnnouncement("Grinding Done", 1.0f);
+            nextStage();
+        }
+        else if (grindCycles >= 20)
+        {
             nextStage();
         }
     }
@@ -1848,6 +1770,14 @@ public class CraftRoutine : MonoBehaviour
 
         tutorialHelper(32);
         
+    }
+
+    private void displayGrindCycleScore()
+    {
+        tempTxt = Instantiate(grinderScore) as Text;
+        tempTxt.transform.SetParent(workshopCanvas.transform);
+        tempTxt.transform.localScale = new Vector3(1, 1, 1);
+        tempTxt.transform.position = new Vector3(grinderGauge.transform.position.x, grinderGauge.transform.position.y + 0.2f, grinderGauge.transform.position.z);
     }
 
     private void showCraftResult(GameObject newObj)

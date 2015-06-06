@@ -3,7 +3,8 @@ using System.Collections;
 
 public class GrinderTextBehavior : MonoBehaviour {
 
-    int speed = 10;
+    int speed = 1;
+    float step;
 
 	// Use this for initialization
 	void Start () 
@@ -14,6 +15,7 @@ public class GrinderTextBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        this.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y * speed * Time.deltaTime, transform.position.z);
+        step = speed * Time.deltaTime;
+        this.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + step, transform.position.z);
 	}
 }

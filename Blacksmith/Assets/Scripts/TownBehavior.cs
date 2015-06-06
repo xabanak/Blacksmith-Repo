@@ -56,19 +56,6 @@ public class TownBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        /*
-        if (adventurers[0].getAdventuringState())
-        {
-            travelHeroOne.GetComponent<Button>().interactable = false;
-        }
-        if (adventurers[1].getAdventuringState())
-        {
-            travelHeroTwo.GetComponent<Button>().interactable = false;
-        }
-        if (adventurers[2].getAdventuringState())
-        {
-            travelHeroThree.GetComponent<Button>().interactable = false;
-        }*/
 	}
 
     public void toggleTavernWindow()
@@ -290,10 +277,12 @@ public class TownBehavior : MonoBehaviour {
 
     public void setTravelHeroButtons()
     {
+        Debug.Log("setTravelHeroButtons called");
         if (adventurers[0] != null)
         {
-            if (adventurers[0].getAdventuringState())
+            if (!adventurers[0].canAdventure())
             {
+                Debug.Log("Hero one interactable: false");
                 travelHeroOne.GetComponent<Button>().interactable = false;
             }
             else
@@ -308,8 +297,9 @@ public class TownBehavior : MonoBehaviour {
 
         if (adventurers[1] != null)
         {
-            if (adventurers[1].getAdventuringState())
+            if (!adventurers[1].canAdventure())
             {
+                Debug.Log("Hero two interactable: false");
                 travelHeroTwo.GetComponent<Button>().interactable = false;
             }
             else
@@ -324,8 +314,9 @@ public class TownBehavior : MonoBehaviour {
 
         if (adventurers[2] != null)
         {
-            if (adventurers[2].getAdventuringState())
+            if (!adventurers[2].canAdventure())
             {
+                Debug.Log("Hero three interactable: false");
                 travelHeroThree.GetComponent<Button>().interactable = false;
             }
             else
