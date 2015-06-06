@@ -79,7 +79,7 @@ public class CraftRoutine : MonoBehaviour
     public Text stage;
     public Text popUpText;
     public Text results;
-    public Text grinderScore;
+    public Text cycleScore;
 
     //CRAFTING TOOL INTERACTION ALLOWANCES
 
@@ -198,6 +198,7 @@ public class CraftRoutine : MonoBehaviour
     private GameObject file;
     private GameObject swordLeft;
     private GameObject swordRight;
+    private GameObject sharpeningComponent;
     private float sharpenCycleQuality;
     private const int totalFilesNeeded = 12;
     private int currentFiles;
@@ -369,6 +370,7 @@ public class CraftRoutine : MonoBehaviour
         file = GameObject.Find("Crafting/File");
         swordLeft = GameObject.Find("Sharpening/Sword Left");
         swordRight = GameObject.Find("Sharpening/Sword Right");
+        sharpeningComponent = GameObject.Find("Crafting/Polishing Component");
 
         resetCrafting();
     }
@@ -1063,7 +1065,6 @@ public class CraftRoutine : MonoBehaviour
         {
             timerActive = false;
             isSharpened = true;
-            setAnnouncement("Sharpening done!", 1.0f);
             spawnShimmersNeeded = false;
             nextStage();
         }
@@ -1608,6 +1609,23 @@ public class CraftRoutine : MonoBehaviour
     {
         sharpenCycleQuality /= 24;
         itemQuality += 5 * sharpenCycleQuality;
+        if (sharpenCycleQuality >= 0.9f)
+        {
+            displaySharpenCycleScore("Excellent");
+
+        }
+        else if (sharpenCycleQuality >= 0.8f)
+        {
+            displaySharpenCycleScore("Good");
+        }
+        else if (sharpenCycleQuality >= 0.7f)
+        {
+            displaySharpenCycleScore("Bad");
+        }
+        else
+        {
+            displaySharpenCycleScore("Terrible");
+        }
         sharpenCycleQuality = 0;
         possibleItemQuality += 5;
     }
@@ -1774,10 +1792,19 @@ public class CraftRoutine : MonoBehaviour
 
     private void displayGrindCycleScore()
     {
-        tempTxt = Instantiate(grinderScore) as Text;
+        tempTxt = Instantiate(cycleScore) as Text;
         tempTxt.transform.SetParent(workshopCanvas.transform);
         tempTxt.transform.localScale = new Vector3(1, 1, 1);
         tempTxt.transform.position = new Vector3(grinderGauge.transform.position.x, grinderGauge.transform.position.y + 0.2f, grinderGauge.transform.position.z);
+    }
+
+    private void displaySharpenCycleScore(string result)
+    {
+        tempTxt = Instantiate(cycleScore) as Text;
+        tempTxt.transform.SetParent(workshopCanvas.transform);
+        tempTxt.transform.localScale = new Vector3(1, 1, 1);
+        tempTxt.transform.position = new Vector3(sharpeningComponent.transform.position.x, sharpeningComponent.transform.position.y + 0.2f, sharpeningComponent.transform.position.z - 7);
+        tempTxt.text = result;
     }
 
     private void showCraftResult(GameObject newObj)

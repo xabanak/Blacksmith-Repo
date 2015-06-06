@@ -3158,6 +3158,10 @@ Prefab:
       propertyPath: m_AnchorMax.x
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 110298, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ecc89213347ae8449a745c091f6f70be, type: 2}
   m_IsPrefabParent: 0
@@ -24933,7 +24937,7 @@ MonoBehaviour:
   stage: {fileID: 1847773638}
   popUpText: {fileID: 287891303}
   results: {fileID: 0}
-  grinderScore: {fileID: 11420674, guid: 86208f3ea7b67f14b980a6a3c0992fbe, type: 2}
+  cycleScore: {fileID: 11420674, guid: 86208f3ea7b67f14b980a6a3c0992fbe, type: 2}
   itemQuality: 0
   possibleItemQuality: 0
   forgeOne: {fileID: 547063440}
@@ -25977,7 +25981,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1370886550}
   - 212: {fileID: 1370886554}
-  - 61: {fileID: 1370886551}
   m_Layer: 0
   m_Name: Polishing Component
   m_TagString: Untagged
@@ -25997,19 +26000,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1012210086}
   m_RootOrder: 12
---- !u!61 &1370886551
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1370886549}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: -.100000001, y: .100000001}
-  serializedVersion: 2
-  m_Size: {x: 8, y: 1.20000005}
 --- !u!212 &1370886554
 SpriteRenderer:
   m_ObjectHideFlags: 0
