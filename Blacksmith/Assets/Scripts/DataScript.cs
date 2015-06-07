@@ -29,6 +29,7 @@ public class DataScript : MonoBehaviour
     double[] adventureLevelMultiplier;
     LootEntry[,,] lootTables;
     string[] returnScripts;
+    double[] smelterTimerMultiplier;
 
     
     public int testInt;
@@ -100,6 +101,7 @@ public class DataScript : MonoBehaviour
         adventureLevelMultiplier = new double[numLevelOptions];
         lootTables = new LootEntry[numLevels, itemTypes, lootOptions];
         returnScripts = new string[numReturnScripts];
+        smelterTimerMultiplier = new double[numMats];
         readDataFile("stageTime.dat");
         readDataFile("stageCount.dat");
         readDataFile("stageListing.dat");
@@ -110,6 +112,7 @@ public class DataScript : MonoBehaviour
         readDataFile("adventureLevelMultiplier.dat");
         readDataFile("lootTables.dat");
         readDataFile("heroReturnScripts.dat");
+        readDataFile("smelterTimerMultiplier.dat");
 	}
     void readDataFile(string filePath)
     {
@@ -361,15 +364,22 @@ public class DataScript : MonoBehaviour
                     {
                         continue;
                     }
-                    if (i == numReturnScripts)
+                    if (i == numMats)
                     {
                         break;
                     }
                     else
                     {
-                        returnScripts[i] = tempString;
+                        smelterTimerMultiplier[i] = Convert.ToDouble(tempString);
                         i++;
                     }
+                }
+                break;
+
+            case 'K':
+                while (!inputStream.EndOfStream)
+                {
+                    
                 }
                 break;
 
@@ -452,6 +462,11 @@ public class DataScript : MonoBehaviour
     {
         int randomNum = UnityEngine.Random.Range(0, numReturnScripts);
         return returnScripts[randomNum];
+    }
+
+    public double getSmelterMult(string material)
+    {
+        return smelterTimerMultiplier[(int)Enum.Parse(typeof(Material), material)];
     }
 }
 

@@ -1,0 +1,25 @@
+K
+*This file contains the time multipliers for each material type in the smelter
+*Lines beginning with a * will be ignored upon loading. Do not modify the first line.
+*Make sure there are no trailing empty lines at the end.
+*
+**Tin
+1.0
+**Copper
+1.2
+**Bronze
+1.4
+**Brass
+1.6
+**Iron
+1.8
+**BlackenedIron
+2.0
+**Steel
+2.2
+**SteelAlloyL1
+2.4
+**SteelAlloyL2
+2.6
+**Titanium
+3.0

@@ -196,7 +196,7 @@ public class AdventureRoutine : MonoBehaviour
         
         if (chanceToSucceedDbl >= 1.0f)
         {
-            return;
+            returnFromAdventure(adventurerIter);
         }
 
         chanceToSucceedDbl *= 100.0f;
@@ -204,18 +204,21 @@ public class AdventureRoutine : MonoBehaviour
         int randomNumber = UnityEngine.Random.Range(0, 101);
         Debug.Log("Chance To Succeed: " + chanceToSucceedInt + ", randomNumer: " + randomNumber);
 
-        heroIndicators[adventurerIter].text = "Returned.";
-
         if (randomNumber >= chanceToSucceedInt)
         {
             removeAdventurer(adventurers[adventurerIter]);
         }
         else
         {
-            adventurers[adventurerIter].returnFromAdventure();
-            heroStatus[adventurerIter].interactable = true;
-            //adventurers[adventurerIter].collectFromAdventure(adventureDecriment[adventurerIter]);
+            returnFromAdventure(adventurerIter);
         }
+    }
+
+    private void returnFromAdventure(int adventurerIter)
+    {
+        heroIndicators[adventurerIter].text = "Returned.";
+        adventurers[adventurerIter].returnFromAdventure();
+        heroStatus[adventurerIter].interactable = true;
     }
 
     public void collectFromAdventurer(Adventurer adventurer)
