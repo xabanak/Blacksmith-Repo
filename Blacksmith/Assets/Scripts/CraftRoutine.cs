@@ -513,7 +513,7 @@ public class CraftRoutine : MonoBehaviour
             totalStages = dataScript.getStageCount(itemType);
 
             instantiateComponent();
-            Debug.Log(craftingComponent.name);
+            useRequiredMaterials();
             nextStage();
         }
     }
@@ -1722,7 +1722,7 @@ public class CraftRoutine : MonoBehaviour
             clearRequiredMaterialsWindow();
         }
 
-        if (!materialSet || !itemSet)
+        if (materialSet || itemSet)
         {
             materialSet = false;
             itemSet = false;
@@ -1856,7 +1856,7 @@ public class CraftRoutine : MonoBehaviour
     {
         for (int i = 0; i < requiredQuantites.Length; i++)
         {
-            createInventory.removeItem(itemType, requiredQuantites[i]);
+            createInventory.removeItem(requiredNames[i], requiredQuantites[i]);
         }
     }
 

@@ -752,6 +752,12 @@ public class CreateInventory : MonoBehaviour
             }
         }
 
+        if (totalItems == 0)
+        {
+            addInventoryLine("You have no materials", 0, materialBackground, true);
+            totalItems++;
+        }
+
         for (int i = totalItems; i < 19; i++)
         {
             addInventoryLine("", 0, materialBackground, true);
@@ -814,9 +820,15 @@ public class CreateInventory : MonoBehaviour
             }
         }
 
+        if (totalItems == 0)
+        {
+            addInventoryLine("You have no components", 0, componentBackground, true);
+            totalItems++;
+        }
+
         for (int i = totalItems; i < 19; i++)
         {
-            addInventoryLine("", 0, materialBackground, true);
+            addInventoryLine("", 0, componentBackground, true);
         }
     }
 
@@ -1688,7 +1700,14 @@ public class CreateInventory : MonoBehaviour
         }
         else
         {
-            tempObj.transform.GetChild(0).GetComponent<Text>().text = "";
+            if (qty == 0)
+            {
+                tempObj.transform.GetChild(0).GetComponent<Text>().text = item;
+            }
+            else
+            {
+                tempObj.transform.GetChild(0).GetComponent<Text>().text = "";
+            }
             tempObj.transform.GetChild(1).GetComponent<Text>().text = "";
         }
     }
