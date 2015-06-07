@@ -17,6 +17,7 @@ public class DataScript : MonoBehaviour
     const int itemTypes = 3;
     const int lootOptions = 8;
     const int numReturnScripts = 3;
+    const int maxItemsToCraft = 6;
 
     int [] stageCount; // Number of total stages to craft each type of item
     int [,] stageListing; // Listing per item type of which number stage is what crafting stage
@@ -30,10 +31,10 @@ public class DataScript : MonoBehaviour
     LootEntry[,,] lootTables;
     string[] returnScripts;
     double[] smelterTimerMultiplier;
-
+    string[,,] requiredItemsToCraft;
     
     public int testInt;
-       enum Item // Listing of items
+    enum Item // Listing of items
     {
         Sword = 0,
         Shield,
@@ -102,6 +103,7 @@ public class DataScript : MonoBehaviour
         lootTables = new LootEntry[numLevels, itemTypes, lootOptions];
         returnScripts = new string[numReturnScripts];
         smelterTimerMultiplier = new double[numMats];
+        requiredItemsToCraft = new string[numItems, numMats, maxItemsToCraft];
         readDataFile("stageTime.dat");
         readDataFile("stageCount.dat");
         readDataFile("stageListing.dat");
@@ -113,6 +115,30 @@ public class DataScript : MonoBehaviour
         readDataFile("lootTables.dat");
         readDataFile("heroReturnScripts.dat");
         readDataFile("smelterTimerMultiplier.dat");
+        readDataFile("requiredItemsToCraft.dat");     
+
+        Debug.Log(requiredItemsToCraft[0, 0, 0]);
+        Debug.Log(requiredItemsToCraft[0, 0, 1]);
+        Debug.Log(requiredItemsToCraft[0, 0, 2]);
+
+        Debug.Log(requiredItemsToCraft[0, 1, 0]);
+        Debug.Log(requiredItemsToCraft[0, 1, 1]);
+        Debug.Log(requiredItemsToCraft[0, 1, 2]);
+
+        Debug.Log(requiredItemsToCraft[2, 0, 0]);
+        Debug.Log(requiredItemsToCraft[2, 1, 0]);
+        Debug.Log(requiredItemsToCraft[2, 2, 0]);
+        Debug.Log(requiredItemsToCraft[2, 3, 0]);
+        Debug.Log(requiredItemsToCraft[2, 4, 0]);
+        Debug.Log(requiredItemsToCraft[2, 5, 0]);
+        Debug.Log(requiredItemsToCraft[2, 6, 0]);
+        Debug.Log(requiredItemsToCraft[2, 7, 0]);
+        Debug.Log(requiredItemsToCraft[2, 8, 0]);
+        Debug.Log(requiredItemsToCraft[2, 9, 0]);
+
+        Debug.Log(requiredItemsToCraft[3, 0, 0]);
+
+        Debug.Log(requiredItemsToCraft[4, 0, 0]);
 	}
     void readDataFile(string filePath)
     {
@@ -125,6 +151,8 @@ public class DataScript : MonoBehaviour
         int m = 0;
 
         bool firstNamesRead = false;
+        bool lastLineSpacer = false;
+        bool lastLineNonSpacer = false;
 
         switch(fileIdentity)
         {
@@ -396,6 +424,51 @@ public class DataScript : MonoBehaviour
                 }
                 break;
 
+            case 'L': //requiredItemsToCraft = new string[numItems, numMats, maxItemsToCraft];
+                while (!inputStream.EndOfStream)
+                {
+                    string tempString = inputStream.ReadLine();
+                    if (tempString[0] == '*')
+                    {
+                        lastLineSpacer = true;
+                        if (lastLineNonSpacer == true)
+                        {
+                            j++;
+                            lastLineNonSpacer = false;
+                        }
+                        continue;
+                    }
+                    if (j == numMats)
+                    {
+                        //Debug.Log("Resetting mats for new item");
+                        j = 0;
+                        i++;
+                    }
+                    if (i == numItems)
+                    {
+                        //Debug.Log("Breaking loop, finished reading file");
+                        break;
+                    }
+                    if (lastLineNonSpacer == false && lastLineSpacer == true)
+                    {
+                        //Debug.Log("Adding first item for crafting for item" + i + ", " + j);
+                        //Debug.Log(tempString);
+                        lastLineSpacer = false;
+                        lastLineNonSpacer = true;
+                        m = 0;
+                        //Debug.Log(m);
+                        requiredItemsToCraft[i, j, m] = tempString;
+                    }
+                    else if(lastLineNonSpacer == true && lastLineSpacer == false)
+                    {
+                        m++;
+                        //Debug.Log("Adding " + m + " item for crafting item " + i + ", " + j);
+                        //Debug.Log(tempString);
+                        requiredItemsToCraft[i, j, m] = tempString;
+                    }
+                }
+                break;
+
             default:
                 Debug.Log("Failed to load correct data file. " + filePath + " did not load.");
                 break;
@@ -480,6 +553,24 @@ public class DataScript : MonoBehaviour
     public double getSmelterMult(string material)
     {
         return smelterTimerMultiplier[(int)Enum.Parse(typeof(Material), material)];
+    }
+
+    public string[] getRequiredItemsToCraft(string item, string material)
+    {
+        string[] tempArray;
+        int i = 0;
+        while (requiredItemsToCraft[(int)Enum.Parse(typeof(Item), item), (int)Enum.Parse(typeof(Material), material), i] != null)
+        {
+            i++;
+        }
+        tempArray = new string[i];
+        
+        for (int j = 0; j < i; j++)
+        {
+            tempArray[j] = requiredItemsToCraft[(int)Enum.Parse(typeof(Item), item), (int)Enum.Parse(typeof(Material), material), i];
+        }
+
+        return tempArray;
     }
 }
 

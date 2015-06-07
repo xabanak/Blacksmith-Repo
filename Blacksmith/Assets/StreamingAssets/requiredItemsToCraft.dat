@@ -1,0 +1,239 @@
+L
+*This file contains the time multipliers for each item type and material type
+*Lines beginning with a * will be ignored upon loading. Do not modify the first line.
+*Make sure there are no trailing empty lines at the end.
+*
+*Sword
+**Tin
+1Tin Ingot
+1Basic Hilt
+1Basic Sheath
+**Copper
+1Copper Ingot
+1Basic Hilt
+1Basic Sheath
+**Bronze
+1Bronze Ingot
+1Standard Hilt
+1Standard Sheath
+**Brass
+1Brass Ingot
+1Standard Hilt
+1Standard Sheath
+**Iron
+1Iron Ingot
+1Good Hilt
+1Good Sheath
+**BlackenedIron
+1Blackened Iron Ingot
+1Good Hilt
+1Good Sheath
+**Steel
+1Steel Ingot
+1Excellent Hilt
+1Excellent Sheath
+**SteelAlloyL1
+1Low Grade Steel Alloy Ingot
+1Excellent Hilt
+1Excellent Sheath
+**SteelAlloyL2
+1High Grade Steel Alloy Ingot
+1Expert Hilt
+1Expert Sheath
+**Titanium
+1Titanium Ingot
+1Expert Hilt
+1Expert Sheath
+*
+****Everything past sword is only here for debugging purposes
+****Sword is the only item type in initial prototype
+*
+*Shield
+**Tin
+1Tin Ingot
+**Copper
+1Copper Ingot
+**Bronze
+1Bronze Ingot
+**Brass
+1Brass Ingot
+**Iron
+1Iron Ingot
+**BlackenedIron
+1Blackened Iron Ingot
+**Steel
+1Steel Ingot
+**SteelAlloyL1
+1Low Grade Steel Alloy Ingot
+**SteelAlloyL2
+1High Grade Steel Alloy Ingot
+**Titanium
+1Titanium Ingot
+*
+*
+*
+*Breastplate
+**Tin
+1Tin Ingot
+**Copper
+1Copper Ingot
+**Bronze
+1Bronze Ingot
+**Brass
+1Brass Ingot
+**Iron
+1Iron Ingot
+**BlackenedIron
+1Blackened Iron Ingot
+**Steel
+1Steel Ingot
+**SteelAlloyL1
+1Low Grade Steel Alloy Ingot
+**SteelAlloyL2
+1High Grade Steel Alloy Ingot
+**Titanium
+1Titanium Ingot
+*
+*
+*
+*Helm
+**Tin
+1Tin Ingot
+**Copper
+1Copper Ingot
+**Bronze
+1Bronze Ingot
+**Brass
+1Brass Ingot
+**Iron
+1Iron Ingot
+**BlackenedIron
+1Blackened Iron Ingot
+**Steel
+1Steel Ingot
+**SteelAlloyL1
+1Low Grade Steel Alloy Ingot
+**SteelAlloyL2
+1High Grade Steel Alloy Ingot
+**Titanium
+1Titanium Ingot
+*
+*
+*
+*Bracers
+**Tin
+1Tin Ingot
+**Copper
+1Copper Ingot
+**Bronze
+1Bronze Ingot
+**Brass
+1Brass Ingot
+**Iron
+1Iron Ingot
+**BlackenedIron
+1Blackened Iron Ingot
+**Steel
+1Steel Ingot
+**SteelAlloyL1
+1Low Grade Steel Alloy Ingot
+**SteelAlloyL2
+1High Grade Steel Alloy Ingot
+**Titanium
+1Titanium Ingot
+*
+*
+*
+*Gauntlet
+**Tin
+1Tin Ingot
+**Copper
+1Copper Ingot
+**Bronze
+1Bronze Ingot
+**Brass
+1Brass Ingot
+**Iron
+1Iron Ingot
+**BlackenedIron
+1Blackened Iron Ingot
+**Steel
+1Steel Ingot
+**SteelAlloyL1
+1Low Grade Steel Alloy Ingot
+**SteelAlloyL2
+1High Grade Steel Alloy Ingot
+**Titanium
+1Titanium Ingot
+*
+*
+*
+*Boots
+**Tin
+1Tin Ingot
+**Copper
+1Copper Ingot
+**Bronze
+1Bronze Ingot
+**Brass
+1Brass Ingot
+**Iron
+1Iron Ingot
+**BlackenedIron
+1Blackened Iron Ingot
+**Steel
+1Steel Ingot
+**SteelAlloyL1
+1Low Grade Steel Alloy Ingot
+**SteelAlloyL2
+1High Grade Steel Alloy Ingot
+**Titanium
+1Titanium Ingot
+*
+*
+*
+*Greaves
+**Tin
+1Tin Ingot
+**Copper
+1Copper Ingot
+**Bronze
+1Bronze Ingot
+**Brass
+1Brass Ingot
+**Iron
+1Iron Ingot
+**BlackenedIron
+1Blackened Iron Ingot
+**Steel
+1Steel Ingot
+**SteelAlloyL1
+1Low Grade Steel Alloy Ingot
+**SteelAlloyL2
+1High Grade Steel Alloy Ingot
+**Titanium
+1Titanium Ingot
+*
+*
+*
+*Pauldrons
+**Tin
+1Tin Ingot
+**Copper
+1Copper Ingot
+**Bronze
+1Bronze Ingot
+**Brass
+1Brass Ingot
+**Iron
+1Iron Ingot
+**BlackenedIron
+1Blackened Iron Ingot
+**Steel
+1Steel Ingot
+**SteelAlloyL1
+1Low Grade Steel Alloy Ingot
+**SteelAlloyL2
+1High Grade Steel Alloy Ingot
+**Titanium
+1Titanium Ingot
