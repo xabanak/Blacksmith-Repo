@@ -12532,6 +12532,73 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 635255969}
+--- !u!1 &638295307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 638295308}
+  - 60: {fileID: 638295309}
+  m_Layer: 0
+  m_Name: Smelter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &638295308
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638295307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -33.6419983, y: -.393999994, z: 10.1079998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1012210086}
+  m_RootOrder: 18
+--- !u!60 &638295309
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638295307}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: -1.1678772, y: .573786676}
+      - {x: -.919235229, y: 1.0542326}
+      - {x: -.634552002, y: 1.45939159}
+      - {x: -.308990479, y: 1.65025616}
+      - {x: .272521973, y: 1.62890911}
+      - {x: .52243042, y: 1.47185802}
+      - {x: .817779541, y: 1.1422224}
+      - {x: .987579346, y: .812159479}
+      - {x: 1.12882996, y: .410601556}
+      - {x: 1.16775513, y: -.0765200257}
+      - {x: 1.34970093, y: -.885205328}
+      - {x: 1.39996338, y: -1.27370167}
+      - {x: 1.32600403, y: -1.36140919}
+      - {x: 1.15614319, y: -1.45909595}
+      - {x: .970428467, y: -1.54726887}
+      - {x: .976959229, y: -1.61441517}
+      - {x: .742599487, y: -1.68870258}
+      - {x: .457855225, y: -1.74092579}
+      - {x: .33253479, y: -1.69885731}
+      - {x: .0163726807, y: -1.73219776}
+      - {x: -.440048218, y: -1.77147388}
+      - {x: -.890533447, y: -1.74231434}
+      - {x: -1.18699646, y: -1.69183826}
+      - {x: -1.34017944, y: -1.55750751}
+      - {x: -1.3344574, y: -.920765936}
+      - {x: -1.19993591, y: -.295430243}
 --- !u!1001 &640848843
 Prefab:
   m_ObjectHideFlags: 0
@@ -19666,6 +19733,7 @@ Transform:
   - {fileID: 2112113941}
   - {fileID: 1479012703}
   - {fileID: 1280072560}
+  - {fileID: 638295308}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!1 &1016547738
