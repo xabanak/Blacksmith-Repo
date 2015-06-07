@@ -1,5 +1,5 @@
 L
-*This file contains the time multipliers for each item type and material type
+*This file contains the required materials for crafting every item in the game.
 *Lines beginning with a * will be ignored upon loading. Do not modify the first line.
 *Make sure there are no trailing empty lines at the end.
 *

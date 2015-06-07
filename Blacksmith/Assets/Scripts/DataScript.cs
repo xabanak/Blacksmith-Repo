@@ -115,30 +115,13 @@ public class DataScript : MonoBehaviour
         readDataFile("lootTables.dat");
         readDataFile("heroReturnScripts.dat");
         readDataFile("smelterTimerMultiplier.dat");
-        readDataFile("requiredItemsToCraft.dat");     
+        readDataFile("requiredItemsToCraft.dat");
 
-        Debug.Log(requiredItemsToCraft[0, 0, 0]);
-        Debug.Log(requiredItemsToCraft[0, 0, 1]);
-        Debug.Log(requiredItemsToCraft[0, 0, 2]);
-
-        Debug.Log(requiredItemsToCraft[0, 1, 0]);
-        Debug.Log(requiredItemsToCraft[0, 1, 1]);
-        Debug.Log(requiredItemsToCraft[0, 1, 2]);
-
-        Debug.Log(requiredItemsToCraft[2, 0, 0]);
-        Debug.Log(requiredItemsToCraft[2, 1, 0]);
-        Debug.Log(requiredItemsToCraft[2, 2, 0]);
-        Debug.Log(requiredItemsToCraft[2, 3, 0]);
-        Debug.Log(requiredItemsToCraft[2, 4, 0]);
-        Debug.Log(requiredItemsToCraft[2, 5, 0]);
-        Debug.Log(requiredItemsToCraft[2, 6, 0]);
-        Debug.Log(requiredItemsToCraft[2, 7, 0]);
-        Debug.Log(requiredItemsToCraft[2, 8, 0]);
-        Debug.Log(requiredItemsToCraft[2, 9, 0]);
-
-        Debug.Log(requiredItemsToCraft[3, 0, 0]);
-
-        Debug.Log(requiredItemsToCraft[4, 0, 0]);
+        string[] tempStringArray = getRequiredItemsToCraft("Sword", "Tin");
+        foreach(string tempString in tempStringArray)
+        {
+            Debug.Log(tempString);
+        }
 	}
     void readDataFile(string filePath)
     {
@@ -567,7 +550,7 @@ public class DataScript : MonoBehaviour
         
         for (int j = 0; j < i; j++)
         {
-            tempArray[j] = requiredItemsToCraft[(int)Enum.Parse(typeof(Item), item), (int)Enum.Parse(typeof(Material), material), i];
+            tempArray[j] = requiredItemsToCraft[(int)Enum.Parse(typeof(Item), item), (int)Enum.Parse(typeof(Material), material), j];
         }
 
         return tempArray;
