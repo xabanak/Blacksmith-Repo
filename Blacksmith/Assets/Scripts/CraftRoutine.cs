@@ -229,14 +229,21 @@ public class CraftRoutine : MonoBehaviour
     private GameObject materialTypeButton;
     private GameObject types;
     private GameObject materials;
+    private GameObject requiredMaterialsWindow;
     private GameObject[] itemTypeButtons;
     private GameObject[] materialTypeButtons;
+    private Text[] requiredMaterialTexts;
+    private Button cancelButton;
+    private Button craftButton;
     private const int itemTypes = 9;
     private const int materialTypes = 10;
     private bool materialSet;
     private bool itemSet;
     private bool[] knownMaterials;
     private bool[] knownItems;
+    private bool itemMaterials;
+    private bool itemSub;
+    private bool materialSub;
 
     //CRAFT RESULT STUFF
     private GameObject craftResultBG;
@@ -372,6 +379,34 @@ public class CraftRoutine : MonoBehaviour
         swordRight = GameObject.Find("Sharpening/Sword Right");
         sharpeningComponent = GameObject.Find("Crafting/Polishing Component");
 
+        requiredMaterialsWindow = GameObject.Find("Canvas/Required Materials Background");
+        requiredMaterialsWindow.SetActive(false);
+        requiredMaterialTexts = new Text[14];
+        requiredMaterialTexts[0] = GameObject.Find("Cavans/Required Materials Background/Required Materials").GetComponent<Text>();
+        requiredMaterialTexts[1] = GameObject.Find("Cavans/Required Materials Background/Craft Item").GetComponent<Text>();
+        requiredMaterialTexts[2] = GameObject.Find("Cavans/Required Materials Background/Required Materials 1").GetComponent<Text>();
+        requiredMaterialTexts[3] = GameObject.Find("Cavans/Required Materials Background/Total Materials 1").GetComponent<Text>();
+        requiredMaterialTexts[4] = GameObject.Find("Cavans/Required Materials Background/Required Materials 2").GetComponent<Text>();
+        requiredMaterialTexts[5] = GameObject.Find("Cavans/Required Materials Background/Total Materials 2").GetComponent<Text>();
+        requiredMaterialTexts[6] = GameObject.Find("Cavans/Required Materials Background/Required Materials 3").GetComponent<Text>();
+        requiredMaterialTexts[7] = GameObject.Find("Cavans/Required Materials Background/Total Materials 3").GetComponent<Text>();
+        requiredMaterialTexts[8] = GameObject.Find("Cavans/Required Materials Background/Required Materials 4").GetComponent<Text>();
+        requiredMaterialTexts[9] = GameObject.Find("Cavans/Required Materials Background/Total Materials 4").GetComponent<Text>();
+        requiredMaterialTexts[10] = GameObject.Find("Cavans/Required Materials Background/Required Materials 5").GetComponent<Text>();
+        requiredMaterialTexts[11] = GameObject.Find("Cavans/Required Materials Background/Total Materials 5").GetComponent<Text>();
+        requiredMaterialTexts[12] = GameObject.Find("Cavans/Required Materials Background/Required Materials 6").GetComponent<Text>();
+        requiredMaterialTexts[13] = GameObject.Find("Cavans/Required Materials Background/Total Materials 6").GetComponent<Text>();
+        for (int i = 0; i < 14; i++)
+        {
+            requiredMaterialTexts[i].text = "";
+        }
+        cancelButton = GameObject.Find("Canvas/Required Materials Background/Cancel Button").GetComponent<Button>();
+        craftButton = GameObject.Find("Canvas/Required Materials Background/Craft Button").GetComponent<Button>();
+
+        itemMaterials = false;
+        itemSub = false;
+        materialSub = false;
+
         resetCrafting();
     }
 
@@ -493,7 +528,7 @@ public class CraftRoutine : MonoBehaviour
         CreateItem();
         Destroy(craftingComponent);
         startButton.SetActive(true);
-        startButton.GetComponentInChildren<Text>().text = "Craft";
+        startButton.GetComponentInChildren<Text>().text = "Start Craft Process";
         startButton.GetComponent<Image>().color = new Vector4(255, 255, 255, 255);
         townButton.gameObject.SetActive(true);
         rearButton.gameObject.SetActive(true);
@@ -1653,10 +1688,39 @@ public class CraftRoutine : MonoBehaviour
 
     public void ShowItemMaterialButtons()
     {
-        itemTypeButton.SetActive(true);
-        materialTypeButton.SetActive(true);
-        SetItemButton();
-        SetMaterialButton();
+        if (!itemMaterials)
+        {
+            itemTypeButton.SetActive(true);
+            materialTypeButton.SetActive(true);
+            itemMaterials = true;
+            SetItemButton();
+            SetMaterialButton();
+            startButton.transform.GetChild(0).GetComponent<Text>().text = "Reset Craft Process";
+        }
+        else
+        {
+            itemTypeButton.SetActive(false);
+            materialTypeButton.SetActive(false);
+            itemMaterials = false;
+            startButton.transform.GetChild(0).GetComponent<Text>().text = "Start Craft Process";
+        }
+
+        if (itemSub)
+        {
+            types.SetActive(false);
+            itemSub = false;
+        }
+        else if (materialSub)
+        {
+            materials.SetActive(false);
+            materialSub = false;
+        }
+
+        if (!materialSet || !itemSet)
+        {
+            materialSet = false;
+            itemSet = false;
+        }
 
         tutorialHelper(2);
     }
@@ -1668,6 +1732,7 @@ public class CraftRoutine : MonoBehaviour
             types.SetActive(!types.activeSelf);
         }
 
+        itemSub = true;
         tutorialHelper(3);
     }
 
@@ -1678,6 +1743,7 @@ public class CraftRoutine : MonoBehaviour
             materials.SetActive(!materials.activeSelf);
         }
 
+        materialSub = true;
         tutorialHelper(4);
     }
      
@@ -1689,9 +1755,7 @@ public class CraftRoutine : MonoBehaviour
         materialSet = true;
         if (itemSet)
         {
-            startButton.GetComponentInChildren<Text>().text = "Ready";
-            startButton.GetComponent<Image>().color = new Vector4(0, 255, 0, 255);
-
+            requiredMaterialsWindow.SetActive(true);
             tutorialHelper(5);
         }
     }
@@ -1707,6 +1771,11 @@ public class CraftRoutine : MonoBehaviour
         materialType = material;
     }
 
+    public void removeMaterial()
+    {
+
+    }
+
     public void SetItemButton(Sprite image)
     {
         itemTypeButton.GetComponent<Image>().sprite = image;
@@ -1715,9 +1784,7 @@ public class CraftRoutine : MonoBehaviour
         itemSet = true;
         if (materialSet)
         {
-            startButton.GetComponentInChildren<Text>().text = "Ready";
-            startButton.GetComponent<Image>().color = new Vector4(0, 255, 0, 255);
-
+            requiredMaterialsWindow.SetActive(true);
             tutorialHelper(5);
         }
     }
