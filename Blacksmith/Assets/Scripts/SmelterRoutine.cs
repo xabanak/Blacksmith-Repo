@@ -35,9 +35,9 @@ public class SmelterRoutine : MonoBehaviour
 	void Start () 
     {
         smelter = GameObject.Find("Smelter");
-        gameController = GameObject.Find("Game Controller").GetComponent<GameController>();
-        inventoryController = gameController.transform.parent.gameObject.GetComponent<CreateInventory>();
-        dataScript = gameController.transform.parent.gameObject.GetComponent<DataScript>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        //inventoryController = gameController.transform.parent.GetComponent<CreateInventory>();
+        //dataScript = gameController.transform.parent.GetComponent<DataScript>();
         smeltingSlider = GameObject.Find("Furnace Timer Gauge");
         smeltingSlider.SetActive(false);
         isSmelting = false;
