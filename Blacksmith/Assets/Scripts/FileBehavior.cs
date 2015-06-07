@@ -18,7 +18,7 @@ public class FileBehavior : MonoBehaviour {
     {
         soundController = GameObject.Find("GameController").GetComponent<SoundController>();
         craftingController = GameObject.Find("Crafting/CraftingController").GetComponent<CraftRoutine>();
-        startLocation = this.transform.position;
+        startLocation = transform.position;
         fileSet = 1;
     }
 
@@ -78,7 +78,7 @@ public class FileBehavior : MonoBehaviour {
 
     void OnMouseUp()
     {
-        this.transform.position = startLocation;
+        transform.position = startLocation;
     }
 
     void OnMouseDrag()
@@ -92,5 +92,10 @@ public class FileBehavior : MonoBehaviour {
     public int getFileSet()
     {
         return fileSet;
+    }
+
+    public void resetLocation()
+    {
+        transform.position = startLocation;
     }
 }

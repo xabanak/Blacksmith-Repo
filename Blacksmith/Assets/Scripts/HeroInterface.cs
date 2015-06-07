@@ -50,12 +50,6 @@ public class HeroInterface : MonoBehaviour {
         dataScript = GameObject.Find("GameController").GetComponent<DataScript>();
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
 	}
-	
-	// Update is called once per frame
-	void Update () 
-    {
-	    
-	}
 
     private void clearLootItems()
     {
@@ -63,11 +57,6 @@ public class HeroInterface : MonoBehaviour {
         {
             lootItems[i] = 0;
         }
-    }
-
-    void updateActiveHeroes()
-    {
-        
     }
 
     public void setHeroScript()

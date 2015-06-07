@@ -14121,7 +14121,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ff5d4dacd1c4e5246aeebfe25ce7be6b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -23129,6 +23129,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1565756066}
+        m_MethodName: clearEquipmentList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1149571756
@@ -24950,6 +24962,9 @@ MonoBehaviour:
   grinderSparksBase: {fileID: 1371465923}
   grinderSparks: {fileID: 881281047}
   swordShines: []
+  excellentBurst: {fileID: 190178, guid: 58c33dffa99e59a4984725a4440b924c, type: 2}
+  goodBurst: {fileID: 127850, guid: 431d762f5692b044faf63171ee39fe46, type: 2}
+  badBurst: {fileID: 173578, guid: a5cf81a7dc3e76a459e4fbea60227d3b, type: 2}
   paused: 0
   needUnPaused: 0
   pauseTimer: 0
@@ -28753,7 +28768,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1473750754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.6200008, y: -.540000021, z: -.689999998}
+  m_LocalPosition: {x: -30.9699993, y: -.540000021, z: -.689999998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1012210086}

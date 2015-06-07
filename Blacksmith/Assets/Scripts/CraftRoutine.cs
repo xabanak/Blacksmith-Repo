@@ -170,14 +170,15 @@ public class CraftRoutine : MonoBehaviour
 
     //GRINDING STAGE
 
-    private bool grinded;
     public GameObject grinderGauge;
     public GameObject grinderSparksBase;
     public GameObject grinderSparks;
     private Text tempTxt;
     private const int speed = 70;
+    private const float componentSpeed = 1.0f;
     private int grindCycles;
     private float step;
+    private float componentStep;
     private bool slideRight;
 
     //POlISHING STAGE
@@ -195,6 +196,10 @@ public class CraftRoutine : MonoBehaviour
 
     //SHARPENING STAGE
 
+    private FileBehavior fileBehavior;
+    public GameObject excellentBurst;
+    public GameObject goodBurst;
+    public GameObject badBurst;
     private GameObject file;
     private GameObject swordLeft;
     private GameObject swordRight;
@@ -250,12 +255,6 @@ public class CraftRoutine : MonoBehaviour
     private TutorialRoutine tutorialRoutine;
     public bool needSetAnnouncement;
 
-    void Awake()
-    {
-        //grinderSparksBase = GameObject.Find("Grinder");
-        //grinderSparks = GameObject.Find("Grinder/Sparks");
-    }
-
     void Start()
     {
         // Start Crafting Setup
@@ -265,6 +264,7 @@ public class CraftRoutine : MonoBehaviour
         dunk = false;
         grindCycles = 0;
 
+        fileBehavior = GameObject.Find("Crafting/File").GetComponent<FileBehavior>();
         needSetAnnouncement = false;
         tutorialRoutine = GameObject.Find("GameController").GetComponent<TutorialRoutine>();
         startButton = GameObject.Find("Canvas/Crafting Startup/Start Crafting");
@@ -464,6 +464,7 @@ public class CraftRoutine : MonoBehaviour
     {
         if (itemSet && materialSet && currentStage == -1)
         {
+            soundController.stopAllMusic();
             soundController.PlayCraftingMusic();
             startButton.SetActive(false);
             materialTypeButton.SetActive(false);
@@ -496,6 +497,7 @@ public class CraftRoutine : MonoBehaviour
         startButton.GetComponent<Image>().color = new Vector4(255, 255, 255, 255);
         townButton.gameObject.SetActive(true);
         rearButton.gameObject.SetActive(true);
+        fileBehavior.resetLocation();
     }
 
     void resetCrafting()
@@ -509,7 +511,6 @@ public class CraftRoutine : MonoBehaviour
 
         resetBetweenStages();
 
-        grinded = false;
         slideRight = true;
        
         spawnShimmersNeeded = true;
@@ -1093,12 +1094,12 @@ public class CraftRoutine : MonoBehaviour
         switchScene("workshop back");
 
         useGrinder = true;
-
+        timerSet = true;
         grinderGauge.SetActive(true);
         timerSliderObject.SetActive(true);
         grinderGauge.GetComponent<Slider>().value = grinderGauge.GetComponent<Slider>().maxValue / 2;
 
-        grinded = false;
+        grindCycles = 0;
         setTimer((float)dataScript.getStageTime(currentStageAbsVal) * (float)dataScript.getMult(itemType, materialType));
         timerSliderObject.GetComponent<Slider>().value = 0;
 
@@ -1119,28 +1120,29 @@ public class CraftRoutine : MonoBehaviour
         {
             startTimer();
             timeQuality = timeSync;
-            grindCycles = 0;
         }
 
         if (timerActive)
         {
             step = speed * Time.deltaTime;
+            componentStep = componentSpeed * Time.deltaTime;
 
             
             if (slideRight)
             {
+                craftingComponent.transform.position = new Vector3(craftingComponent.transform.position.x + componentStep, craftingComponent.transform.position.y, craftingComponent.transform.position.z);
                 grinderGauge.GetComponent<Slider>().value += step;
                 if (Input.GetKeyDown(KeyCode.A))
                 {
                     displayGrindCycleScore();
                     if (grinderGauge.GetComponent<Slider>().value >= 80 && grinderGauge.GetComponent<Slider>().value <= 85)
                     {
-                        quality += 2.5f;
+                        itemQuality += 2.5f;
                         tempTxt.text = "Excellent";
                     }
                     else if (grinderGauge.GetComponent<Slider>().value >= 75 && grinderGauge.GetComponent<Slider>().value <= 90)
                     {
-                        quality += 1;
+                        itemQuality += 1;
                         tempTxt.text = "Good";
                     }
                     else
@@ -1154,7 +1156,7 @@ public class CraftRoutine : MonoBehaviour
                 else if(grinderGauge.GetComponent<Slider>().value >= 99.9f)
                 {
                     displayGrindCycleScore();
-                    quality -= 1;
+                    itemQuality -= 1;
                     tempTxt.text = "Terrible";
                     slideRight = !slideRight;
                     grindCycles++;
@@ -1163,18 +1165,19 @@ public class CraftRoutine : MonoBehaviour
             }
             else
             {
+                craftingComponent.transform.position = new Vector3(craftingComponent.transform.position.x - componentStep, craftingComponent.transform.position.y, craftingComponent.transform.position.z);
                 grinderGauge.GetComponent<Slider>().value -= step;
                 if (Input.GetKeyDown(KeyCode.D))
                 {
                     displayGrindCycleScore();
                     if (grinderGauge.GetComponent<Slider>().value >= 15 && grinderGauge.GetComponent<Slider>().value <= 20)
                     {
-                        quality += 2.5f;
+                        itemQuality += 2.5f;
                         tempTxt.text = "Excellent";
                     }
                     else if (grinderGauge.GetComponent<Slider>().value >= 10 && grinderGauge.GetComponent<Slider>().value <= 25)
                     {
-                        quality += 1;
+                        itemQuality += 1;
                         tempTxt.text = "Good";
                     }
                     else
@@ -1188,7 +1191,7 @@ public class CraftRoutine : MonoBehaviour
                 else if(grinderGauge.GetComponent<Slider>().value <= 0.1f)
                 {
                     displayGrindCycleScore();
-                    quality -= 1;
+                    itemQuality -= 1;
                     tempTxt.text = "Terrible";
                     slideRight = !slideRight;
                     grindCycles++;
@@ -1202,6 +1205,7 @@ public class CraftRoutine : MonoBehaviour
         }
         else if (grindCycles >= 20)
         {
+            timerActive = false;
             nextStage();
         }
     }
@@ -1279,12 +1283,10 @@ public class CraftRoutine : MonoBehaviour
         else if (bellowsSlider.value >= 2.0f && bellowsSlider.value < 4.0f)
         {
             bellows.GetComponent<SpriteRenderer>().sprite = bellowsMid;
-            //soundController.playBellowsBlow();
         }
         else
         {
             bellows.GetComponent<SpriteRenderer>().sprite = bellowsOpen;
-            //soundController.playBellowsBlow();
         }
     }
 
@@ -1402,20 +1404,14 @@ public class CraftRoutine : MonoBehaviour
         switch(scene)
         {
             case "workshop front":
-//                 soundController.stopAllMusic();
-//                 soundController.PlayCraftingMusic();
                 craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, - 10);
                 craftingComponent.GetComponent<ComponentBehavior>().switchRoom(true);
                 break;
             case "workshop back":
-//                 soundController.stopAllMusic();
-//                 soundController.PlayCraftingMusic();
                 craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, - 10);
                 craftingComponent.GetComponent<ComponentBehavior>().switchRoom(false);
                 break;
             case "workbench":
-                soundController.stopAllMusic();
-                soundController.PlayCraftingMusic();
                 craftingCamera.transform.position = new Vector3(background3.transform.position.x, background3.transform.position.y, -10);
                 break;
             case "town":
@@ -1612,19 +1608,30 @@ public class CraftRoutine : MonoBehaviour
         if (sharpenCycleQuality >= 0.9f)
         {
             displaySharpenCycleScore("Excellent");
-
+            GameObject tempBurst;
+            tempBurst = Instantiate(excellentBurst) as GameObject;
+            Destroy(tempBurst, 2.0f);
         }
         else if (sharpenCycleQuality >= 0.8f)
         {
             displaySharpenCycleScore("Good");
+            GameObject tempBurst;
+            tempBurst = Instantiate(goodBurst) as GameObject;
+            Destroy(tempBurst, 2.0f);
         }
         else if (sharpenCycleQuality >= 0.7f)
         {
             displaySharpenCycleScore("Bad");
+            GameObject tempBurst;
+            tempBurst = Instantiate(badBurst) as GameObject;
+            Destroy(tempBurst, 2.0f);
         }
         else
         {
             displaySharpenCycleScore("Terrible");
+            GameObject tempBurst;
+            tempBurst = Instantiate(badBurst) as GameObject;
+            Destroy(tempBurst, 2.0f);
         }
         sharpenCycleQuality = 0;
         possibleItemQuality += 5;
