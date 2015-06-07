@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class SmelterRoutine : MonoBehaviour 
 {
@@ -14,6 +15,22 @@ public class SmelterRoutine : MonoBehaviour
     GameObject smeltingSlider;
     double smelterTimer;
     double smelterTimerEnd;
+
+    public Button[] oreButtons;
+
+    enum SmeltMats
+    {
+        Tin,
+        Copper,
+        Zinc,
+        Iron,
+        Charcoal,
+        Chromium,
+        Manganese,
+        Cobalt,
+        Tungsten,
+        Titanium
+    }
 
 	void Start () 
     {
@@ -56,5 +73,15 @@ public class SmelterRoutine : MonoBehaviour
         smeltingSlider.SetActive(false);
         isSmelting = false;
         inventoryController.addItem(metalSmelting + " Ore", 1);
+    }
+
+    public void enableOre(string ore)
+    {
+        oreButtons[(int)Enum.Parse(typeof(SmeltMats), ore)].interactable = true;
+    }
+
+    public void selectSmeltingMaterial(string ore)
+    {
+        
     }
 }
