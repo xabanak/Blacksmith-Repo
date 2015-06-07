@@ -380,7 +380,6 @@ public class CraftRoutine : MonoBehaviour
         sharpeningComponent = GameObject.Find("Crafting/Polishing Component");
 
         requiredMaterialsWindow = GameObject.Find("Canvas/Required Materials Background");
-        requiredMaterialsWindow.SetActive(false);
         requiredMaterialTexts = new Text[14];
         requiredMaterialTexts[0] = GameObject.Find("Canvas/Required Materials Background/Required Materials").GetComponent<Text>();
         requiredMaterialTexts[1] = GameObject.Find("Canvas/Required Materials Background/Craft Item").GetComponent<Text>();
@@ -403,6 +402,7 @@ public class CraftRoutine : MonoBehaviour
         cancelButton = GameObject.Find("Canvas/Required Materials Background/Cancel Button").GetComponent<Button>();
         craftButton = GameObject.Find("Canvas/Required Materials Background/Craft Button").GetComponent<Button>();
 
+        requiredMaterialsWindow.SetActive(false);
         itemMaterials = false;
         itemSub = false;
         materialSub = false;

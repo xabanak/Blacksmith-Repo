@@ -364,6 +364,26 @@ public class DataScript : MonoBehaviour
                     {
                         continue;
                     }
+                    if (i == numReturnScripts)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        returnScripts[i] = tempString;
+                        i++;
+                    }
+                }
+                break;
+
+            case 'K':
+                while (!inputStream.EndOfStream)
+                {
+                    string tempString = inputStream.ReadLine();
+                    if (tempString[0] == '*')
+                    {
+                        continue;
+                    }
                     if (i == numMats)
                     {
                         break;
@@ -373,13 +393,6 @@ public class DataScript : MonoBehaviour
                         smelterTimerMultiplier[i] = Convert.ToDouble(tempString);
                         i++;
                     }
-                }
-                break;
-
-            case 'K':
-                while (!inputStream.EndOfStream)
-                {
-                    
                 }
                 break;
 
