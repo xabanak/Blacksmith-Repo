@@ -382,20 +382,20 @@ public class CraftRoutine : MonoBehaviour
         requiredMaterialsWindow = GameObject.Find("Canvas/Required Materials Background");
         requiredMaterialsWindow.SetActive(false);
         requiredMaterialTexts = new Text[14];
-        requiredMaterialTexts[0] = GameObject.Find("Cavans/Required Materials Background/Required Materials").GetComponent<Text>();
-        requiredMaterialTexts[1] = GameObject.Find("Cavans/Required Materials Background/Craft Item").GetComponent<Text>();
-        requiredMaterialTexts[2] = GameObject.Find("Cavans/Required Materials Background/Required Materials 1").GetComponent<Text>();
-        requiredMaterialTexts[3] = GameObject.Find("Cavans/Required Materials Background/Total Materials 1").GetComponent<Text>();
-        requiredMaterialTexts[4] = GameObject.Find("Cavans/Required Materials Background/Required Materials 2").GetComponent<Text>();
-        requiredMaterialTexts[5] = GameObject.Find("Cavans/Required Materials Background/Total Materials 2").GetComponent<Text>();
-        requiredMaterialTexts[6] = GameObject.Find("Cavans/Required Materials Background/Required Materials 3").GetComponent<Text>();
-        requiredMaterialTexts[7] = GameObject.Find("Cavans/Required Materials Background/Total Materials 3").GetComponent<Text>();
-        requiredMaterialTexts[8] = GameObject.Find("Cavans/Required Materials Background/Required Materials 4").GetComponent<Text>();
-        requiredMaterialTexts[9] = GameObject.Find("Cavans/Required Materials Background/Total Materials 4").GetComponent<Text>();
-        requiredMaterialTexts[10] = GameObject.Find("Cavans/Required Materials Background/Required Materials 5").GetComponent<Text>();
-        requiredMaterialTexts[11] = GameObject.Find("Cavans/Required Materials Background/Total Materials 5").GetComponent<Text>();
-        requiredMaterialTexts[12] = GameObject.Find("Cavans/Required Materials Background/Required Materials 6").GetComponent<Text>();
-        requiredMaterialTexts[13] = GameObject.Find("Cavans/Required Materials Background/Total Materials 6").GetComponent<Text>();
+        requiredMaterialTexts[0] = GameObject.Find("Canvas/Required Materials Background/Required Materials").GetComponent<Text>();
+        requiredMaterialTexts[1] = GameObject.Find("Canvas/Required Materials Background/Craft Item").GetComponent<Text>();
+        requiredMaterialTexts[2] = GameObject.Find("Canvas/Required Materials Background/Required Materials 1").GetComponent<Text>();
+        requiredMaterialTexts[3] = GameObject.Find("Canvas/Required Materials Background/Total Materials 1").GetComponent<Text>();
+        requiredMaterialTexts[4] = GameObject.Find("Canvas/Required Materials Background/Required Materials 2").GetComponent<Text>();
+        requiredMaterialTexts[5] = GameObject.Find("Canvas/Required Materials Background/Total Materials 2").GetComponent<Text>();
+        requiredMaterialTexts[6] = GameObject.Find("Canvas/Required Materials Background/Required Materials 3").GetComponent<Text>();
+        requiredMaterialTexts[7] = GameObject.Find("Canvas/Required Materials Background/Total Materials 3").GetComponent<Text>();
+        requiredMaterialTexts[8] = GameObject.Find("Canvas/Required Materials Background/Required Materials 4").GetComponent<Text>();
+        requiredMaterialTexts[9] = GameObject.Find("Canvas/Required Materials Background/Total Materials 4").GetComponent<Text>();
+        requiredMaterialTexts[10] = GameObject.Find("Canvas/Required Materials Background/Required Materials 5").GetComponent<Text>();
+        requiredMaterialTexts[11] = GameObject.Find("Canvas/Required Materials Background/Total Materials 5").GetComponent<Text>();
+        requiredMaterialTexts[12] = GameObject.Find("Canvas/Required Materials Background/Required Materials 6").GetComponent<Text>();
+        requiredMaterialTexts[13] = GameObject.Find("Canvas/Required Materials Background/Total Materials 6").GetComponent<Text>();
         for (int i = 0; i < 14; i++)
         {
             requiredMaterialTexts[i].text = "";
