@@ -1047,6 +1047,56 @@ public class CreateInventory : MonoBehaviour
         }
     }
 
+    public int getQuantity(string item)
+    {
+        switch (item)
+        {
+            case "Tin Ingot":
+                return ingotQty[0];
+            case "Copper Ingot":
+                return ingotQty[1];
+            case "Bronze Ingot":
+                return ingotQty[2];
+            case "Brass Ingot":
+                return ingotQty[3];
+            case "Iron Ingot":
+                return ingotQty[4];
+            case "Blackened Iron Ingot":
+                return ingotQty[5];
+            case "Steel Ingot":
+                return ingotQty[6];
+            case "Low Grade Steel Alloy Ingot":
+                return ingotQty[7];
+            case "High Grade Steel Alloy Ingot":
+                return ingotQty[8];
+            case "Titanium Ingot":
+                return ingotQty[9];
+            case "Basic Sheath":
+                return sheathQty[0];
+            case "Standard Sheath":
+                return sheathQty[1];
+            case "Good Sheath":
+                return sheathQty[2];
+            case "Excellent Sheath":
+                return sheathQty[3];
+            case "Expert Sheath":
+                return sheathQty[4];
+            case "Basic Hilt":
+                return hiltQty[0];
+            case "Standard Hilt":
+                return hiltQty[1];
+            case "Good Hilt":
+                return hiltQty[2];
+            case "Excellent Hilt":
+                return hiltQty[3];
+            case "Expert Hilt":
+                return hiltQty[4];
+        }
+
+        Debug.Log("Item parse not found");
+        return 0;
+    }
+
     public void addItem(string itemName, int quantity)
     {
         switch (itemName)

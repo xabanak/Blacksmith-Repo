@@ -244,6 +244,8 @@ public class CraftRoutine : MonoBehaviour
     private bool itemMaterials;
     private bool itemSub;
     private bool materialSub;
+    private string[] requiredNames;
+    private int[] requiredQuantites;
 
     //CRAFT RESULT STUFF
     private GameObject craftResultBG;
@@ -1798,6 +1800,23 @@ public class CraftRoutine : MonoBehaviour
     public void SetItem(string item)
     {
         itemType = item;
+    }
+
+    void setRequiredMaterials()
+    {
+        char tempChar;
+
+        //requiredNames = dataScript.getRequiredItemsToCraft(itemType, materialType);
+        requiredQuantites = new int[requiredNames.Length];
+
+        for (int i = 0; i < requiredNames.Length; i++)
+        {
+            tempChar = requiredNames[i][0];
+            requiredQuantites[i] = (int)tempChar;
+            requiredNames[i] = requiredNames[0].Remove(0);
+            requiredMaterialTexts[(i * 2) + 2].text = requiredNames[i] + " X " + requiredQuantites[i];
+            requiredMaterialTexts[(i * 2) + 3].text = "" + createInventory.getQuantity(requiredNames[i]);
+        }
     }
 
 //*****************************************************************************************************************************
