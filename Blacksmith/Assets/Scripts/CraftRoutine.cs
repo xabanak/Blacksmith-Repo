@@ -1758,6 +1758,7 @@ public class CraftRoutine : MonoBehaviour
         if (itemSet)
         {
             requiredMaterialsWindow.SetActive(true);
+            setRequiredMaterials();
             tutorialHelper(5);
         }
     }
@@ -1787,6 +1788,7 @@ public class CraftRoutine : MonoBehaviour
         if (materialSet)
         {
             requiredMaterialsWindow.SetActive(true);
+            setRequiredMaterials();
             tutorialHelper(5);
         }
     }
@@ -1806,7 +1808,12 @@ public class CraftRoutine : MonoBehaviour
     {
         char tempChar;
 
-        //requiredNames = dataScript.getRequiredItemsToCraft(itemType, materialType);
+        requiredNames = dataScript.getRequiredItemsToCraft(itemType, materialType);
+        Debug.Log("Required Names: " + requiredNames);
+        foreach (string stuff in requiredNames)
+        {
+            Debug.Log(stuff);
+        }
         requiredQuantites = new int[requiredNames.Length];
 
         for (int i = 0; i < requiredNames.Length; i++)
