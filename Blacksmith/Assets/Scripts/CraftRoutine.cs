@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class CraftRoutine : MonoBehaviour 
 {
@@ -396,10 +397,7 @@ public class CraftRoutine : MonoBehaviour
         requiredMaterialTexts[11] = GameObject.Find("Canvas/Required Materials Background/Total Materials 5").GetComponent<Text>();
         requiredMaterialTexts[12] = GameObject.Find("Canvas/Required Materials Background/Required Materials 6").GetComponent<Text>();
         requiredMaterialTexts[13] = GameObject.Find("Canvas/Required Materials Background/Total Materials 6").GetComponent<Text>();
-        for (int i = 0; i < 14; i++)
-        {
-            requiredMaterialTexts[i].text = "";
-        }
+        clearRequiredMaterialsWindow();
         cancelButton = GameObject.Find("Canvas/Required Materials Background/Cancel Button").GetComponent<Button>();
         craftButton = GameObject.Find("Canvas/Required Materials Background/Craft Button").GetComponent<Button>();
         requiredMaterialsWindow.SetActive(false);
@@ -1034,7 +1032,7 @@ public class CraftRoutine : MonoBehaviour
             {
                 do
                 {
-                    shineSpot = Random.Range(0, 11);
+                    shineSpot = UnityEngine.Random.Range(0, 11);
                 } while (shineSpot == lastShine);
 
                 lastShine = shineSpot;
@@ -1718,6 +1716,12 @@ public class CraftRoutine : MonoBehaviour
             materialSub = false;
         }
 
+        if (requiredMaterialsWindow.activeSelf)
+        {
+            requiredMaterialsWindow.SetActive(false);
+            clearRequiredMaterialsWindow();
+        }
+
         if (!materialSet || !itemSet)
         {
             materialSet = false;
@@ -1759,6 +1763,14 @@ public class CraftRoutine : MonoBehaviour
         {
             requiredMaterialsWindow.SetActive(true);
             setRequiredMaterials();
+            if (haveRequiredMaterials())
+            {
+                craftButton.interactable = true;
+            }
+            else
+            {
+                craftButton.interactable = false;
+            }
             tutorialHelper(5);
         }
     }
@@ -1789,6 +1801,14 @@ public class CraftRoutine : MonoBehaviour
         {
             requiredMaterialsWindow.SetActive(true);
             setRequiredMaterials();
+            if (haveRequiredMaterials())
+            {
+                craftButton.interactable = true;
+            }
+            else
+            {
+                craftButton.interactable = false;
+            }
             tutorialHelper(5);
         }
     }
@@ -1806,23 +1826,58 @@ public class CraftRoutine : MonoBehaviour
 
     void setRequiredMaterials()
     {
-        char tempChar;
+        string tempChar;
 
         requiredNames = dataScript.getRequiredItemsToCraft(itemType, materialType);
-        Debug.Log("Required Names: " + requiredNames);
-        foreach (string stuff in requiredNames)
-        {
-            Debug.Log(stuff);
-        }
+        
         requiredQuantites = new int[requiredNames.Length];
 
         for (int i = 0; i < requiredNames.Length; i++)
         {
-            tempChar = requiredNames[i][0];
-            requiredQuantites[i] = (int)tempChar;
-            requiredNames[i] = requiredNames[0].Remove(0);
+            tempChar = "" + requiredNames[i][0];
+            requiredQuantites[i] = Convert.ToInt32(tempChar);
+            requiredNames[i] = requiredNames[i].Remove(0, 1);
             requiredMaterialTexts[(i * 2) + 2].text = requiredNames[i] + " X " + requiredQuantites[i];
-            requiredMaterialTexts[(i * 2) + 3].text = "" + createInventory.getQuantity(requiredNames[i]);
+            requiredMaterialTexts[(i * 2) + 3].text = "(" + createInventory.getQuantity(requiredNames[i]) + ")";
+            if (requiredQuantites[i] <= createInventory.getQuantity(requiredNames[i]))
+            {
+                requiredMaterialTexts[(i * 2) + 3].color = Color.green;
+            }
+            else
+            {
+                requiredMaterialTexts[(i * 2) + 3].color = Color.red;
+            }
+        }
+
+        requiredMaterialTexts[1].text = materialType + " " + itemType;
+    }
+
+    private void useRequiredMaterials()
+    {
+        for (int i = 0; i < requiredQuantites.Length; i++)
+        {
+            createInventory.removeItem(itemType, requiredQuantites[i]);
+        }
+    }
+
+    private bool haveRequiredMaterials()
+    {
+        for (int i = 0; i < requiredQuantites.Length; i++)
+        {
+            if (requiredQuantites[i] > createInventory.getQuantity(requiredNames[i]))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void clearRequiredMaterialsWindow()
+    {
+        for (int i = 1; i < 14; i++)
+        {
+            requiredMaterialTexts[i].text = "";
         }
     }
 

@@ -539,6 +539,7 @@ public class CreateInventory : MonoBehaviour
         // End Define handle types
 
         //SetQuantitiesTestMethod();
+        giveStartMaterials();
 	}
 
     // TEST METHOD FOR ADDING IN A RANDOM AMOUNT OF ITEMS.
@@ -567,6 +568,12 @@ public class CreateInventory : MonoBehaviour
         }
     }
 
+    void giveStartMaterials()
+    {
+        ingotQty[0]++;
+        sheathQty[0]++;
+        hiltQty[0]++;
+    }
     // Calls all updates to update the current on hand inventory.
     public void BuildInventory()
     {
