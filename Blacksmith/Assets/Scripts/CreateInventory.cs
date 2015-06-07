@@ -181,12 +181,12 @@ public class CreateInventory : MonoBehaviour
         oreName[1] = "Copper Ore";
         oreName[2] = "Zinc Ore";
         oreName[3] = "Iron Ore";
-        oreName[4] = "Black Ore";
-        oreName[5] = "Nickel Ore";
-        oreName[6] = "Carbon Ore";
-        oreName[7] = "Manganese Ore";
-        oreName[8] = "Chromium Ore";
-        oreName[9] = "Dragon Ore";
+        oreName[4] = "Charcoal";
+        oreName[5] = "Chromium Ore";
+        oreName[6] = "Manganese Ore";
+        oreName[7] = "Cobalt Ore";
+        oreName[8] = "Tungsten Ore";
+        oreName[9] = "Titanium Ore";
         // End Define ore types
 
         // Define ingot types
@@ -1132,22 +1132,22 @@ public class CreateInventory : MonoBehaviour
             case "Iron Ore":
                 oreQty[3] += quantity;
                 break;
-            case "Black Ore":
+            case "Carbon":
                 oreQty[4] += quantity;
                 break;
-            case "Nickel Ore":
+            case "Chromium Ore":
                 oreQty[5] += quantity;
                 break;
-            case "Carbon Ore":
+            case "Manganese Ore":
                 oreQty[6] += quantity;
                 break;
-            case "Manganese Ore":
+            case "Cobalt Ore":
                 oreQty[7] += quantity;
                 break;
-            case "Chromium Ore":
+            case "Tungsten Ore":
                 oreQty[8] += quantity;
                 break;
-            case "Dragon Ore":
+            case "Titanium Ore":
                 oreQty[9] += quantity;
                 break;
             case "Sheep Skin":

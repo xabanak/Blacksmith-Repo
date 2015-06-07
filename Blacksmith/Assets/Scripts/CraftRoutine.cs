@@ -233,6 +233,7 @@ public class CraftRoutine : MonoBehaviour
     private GameObject requiredMaterialsWindow;
     private GameObject[] itemTypeButtons;
     private GameObject[] materialTypeButtons;
+    public Sprite[] materialTypeButtonImages;
     private Text[] requiredMaterialTexts;
     private Button cancelButton;
     private Button craftButton;
@@ -284,6 +285,8 @@ public class CraftRoutine : MonoBehaviour
         materials = GameObject.Find("Canvas/Crafting Startup/Materials");
         itemTypeButtons = new GameObject[itemTypes];
         materialTypeButtons = new GameObject[materialTypes];
+        //materialTypeButtonImages = new Sprite[materialTypes];
+        //materialTypeButtonImages[1] = 
         itemTypeButtons[0] = GameObject.Find("Canvas/Crafting Startup/Types/Sword Button");
         itemTypeButtons[1] = GameObject.Find("Canvas/Crafting Startup/Types/Shield Button");
         itemTypeButtons[1].GetComponent<Button>().interactable = false;
@@ -1407,8 +1410,6 @@ public class CraftRoutine : MonoBehaviour
                 dunk = false;
             }
         }
-
-        
     }
 
     public void toggleComponentOnGrinder()
@@ -1430,7 +1431,6 @@ public class CraftRoutine : MonoBehaviour
         {
             return false;
         }
-
         return true;
     }
 
@@ -1879,6 +1879,12 @@ public class CraftRoutine : MonoBehaviour
         {
             requiredMaterialTexts[i].text = "";
         }
+    }
+
+    public void enableNewIngot(int ingotIter)
+    {
+        materialTypeButtons[ingotIter].GetComponent<Button>().image.sprite = materialTypeButtonImages[ingotIter];
+        materialTypeButtons[ingotIter].GetComponent<Button>().interactable = true;
     }
 
 //*****************************************************************************************************************************

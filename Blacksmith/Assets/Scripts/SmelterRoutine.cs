@@ -5,10 +5,13 @@ using System;
 
 public class SmelterRoutine : MonoBehaviour 
 {
+    CraftRoutine craftingController;
     GameObject smelter;
-    GameController gameController;
+    GameObject gameController;
     CreateInventory inventoryController;
     DataScript dataScript;
+    const int numOreButtons = 10;
+    const int numIngots = 10;
 
     bool isSmelting;
     string metalSmelting;
@@ -17,6 +20,9 @@ public class SmelterRoutine : MonoBehaviour
     double smelterTimerEnd;
 
     public Button[] oreButtons;
+
+    private bool[] discoveredOres;
+    private bool[] createdIngots;
 
     enum SmeltMats
     {
@@ -32,16 +38,18 @@ public class SmelterRoutine : MonoBehaviour
         Titanium
     }
 
-	void Start () 
+    void Start()
     {
+        discoveredOres = new bool[numOreButtons] { false, false, false, false, false, false, false, false, false, false };
+        createdIngots = new bool[numIngots] { false, false, false, false, false, false, false, false, false, false };
+        discoveredOres[0] = true; // Initializes with Tin Ore discovered and all other ores undiscovered
         smelter = GameObject.Find("Smelter");
-        gameController = GameObject.Find("GameController").GetComponent<GameController>();
-        //inventoryController = gameController.transform.parent.GetComponent<CreateInventory>();
-        //dataScript = gameController.transform.parent.GetComponent<DataScript>();
+        gameController = GameObject.Find("GameController");
         smeltingSlider = GameObject.Find("Furnace Timer Gauge");
         smeltingSlider.SetActive(false);
         isSmelting = false;
-	}
+        craftingController = GameObject.Find("CraftingController").GetComponent<CraftRoutine>();
+    }
 
     void startSmelter(string metal)
     {
@@ -72,16 +80,29 @@ public class SmelterRoutine : MonoBehaviour
     {
         smeltingSlider.SetActive(false);
         isSmelting = false;
-        inventoryController.addItem(metalSmelting + " Ore", 1);
+        inventoryController.addItem(metalSmelting + " Ingot", 1);
+        if(!createdIngots[(int)Enum.Parse(typeof(SmeltMats), metalSmelting)])
+        {
+            craftingController.GetComponent<CraftRoutine>().enableNewIngot((int)Enum.Parse(typeof(SmeltMats), metalSmelting));
+        }
     }
 
-    public void enableOre(string ore)
+    public void checkForNewOres()
     {
-        oreButtons[(int)Enum.Parse(typeof(SmeltMats), ore)].interactable = true;
+        for (int i = 0; i < numOreButtons; i++)
+        {
+            if (!discoveredOres[i])
+            {
+                if (gameController.GetComponent<CreateInventory>().oreQty[i] > 0)
+                {
+                    discoveredOres[i] = true;
+                }
+            }
+        }
     }
 
     public void selectSmeltingMaterial(string ore)
     {
-        
+        checkForNewOres();
     }
 }
