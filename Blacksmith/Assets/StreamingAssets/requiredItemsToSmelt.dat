@@ -1,0 +1,36 @@
+M
+*This file contains the base times for each type of stage. 
+*Lines beginning with a * will be ignored upon loading. Do not modify the first line.
+*Make sure there are no trailing empty lines at the end.
+*
+*Tin
+5Tin Ore
+*
+*Copper
+5Copper Ore
+*
+*Bronze
+9Copper Ore
+1Tin Ore
+*
+*Brass
+9Copper Ore
+1Zinc Ore
+*
+*Iron
+5Iron Ore
+*
+*Blackened Iron
+5Iron Ore
+2Charcoal
+*Steel
+10Iron Ore
+5Carbon
+*Steel Alloy Low Grade
+20Iron Ore
+10Carbon
+*Steel Alloy High Grade
+30Iron Ore
+15Carbon
+*Titanium
+10Titanium Ore

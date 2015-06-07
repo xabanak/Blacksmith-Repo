@@ -46,9 +46,9 @@ next item
 *******Level 3
 **Ore
 Copper Ore
-50
+60
 Nothing
-50
+40
 next item
 **Wood
 Raw Elm
@@ -65,9 +65,9 @@ next item
 *******Level 4
 **Ore
 Copper Ore
-40
+70
 Zinc Ore
-40
+10
 Nothing
 20
 next item
@@ -86,9 +86,9 @@ next item
 *******Level 5
 **Ore
 Copper Ore
-45
+80
 Zinc Ore
-45
+10
 Nothing
 10
 next item
@@ -107,9 +107,9 @@ next item
 *******Level 6
 **Ore
 Copper Ore
-50
+90
 Zinc Ore
-50
+10
 next item
 **Wood
 Raw Elm

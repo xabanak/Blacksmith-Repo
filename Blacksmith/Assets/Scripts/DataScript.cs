@@ -32,6 +32,7 @@ public class DataScript : MonoBehaviour
     string[] returnScripts;
     double[] smelterTimerMultiplier;
     string[,,] requiredItemsToCraft;
+    string[,] requiredItemsToSmelt;
     
     public int testInt;
     enum Item // Listing of items
@@ -104,6 +105,7 @@ public class DataScript : MonoBehaviour
         returnScripts = new string[numReturnScripts];
         smelterTimerMultiplier = new double[numMats];
         requiredItemsToCraft = new string[numItems, numMats, maxItemsToCraft];
+        requiredItemsToSmelt = new string[numMats, maxItemsToCraft];
         readDataFile("stageTime.dat");
         readDataFile("stageCount.dat");
         readDataFile("stageListing.dat");
@@ -116,9 +118,19 @@ public class DataScript : MonoBehaviour
         readDataFile("heroReturnScripts.dat");
         readDataFile("smelterTimerMultiplier.dat");
         readDataFile("requiredItemsToCraft.dat");
-
-        string[] tempStringArray = getRequiredItemsToCraft("Sword", "Tin");
+        readDataFile("requiredItemsToSmelt.dat");
+        string[] tempStringArray = getRequiredItemsToSmelt("Tin");
         foreach(string tempString in tempStringArray)
+        {
+            Debug.Log(tempString);
+        }
+        tempStringArray = getRequiredItemsToSmelt("Brass");
+        foreach (string tempString in tempStringArray)
+        {
+            Debug.Log(tempString);
+        }
+        tempStringArray = getRequiredItemsToSmelt("BlackenedIron");
+        foreach (string tempString in tempStringArray)
         {
             Debug.Log(tempString);
         }
@@ -452,6 +464,45 @@ public class DataScript : MonoBehaviour
                 }
                 break;
 
+            case 'M': //requiredItemsToCraft = new string[numItems, numMats, maxItemsToCraft];
+                while (!inputStream.EndOfStream)
+                {
+                    string tempString = inputStream.ReadLine();
+                    if (tempString[0] == '*')
+                    {
+                        lastLineSpacer = true;
+                        if (lastLineNonSpacer == true)
+                        {
+                            i++;
+                            lastLineNonSpacer = false;
+                        }
+                        continue;
+                    }
+                    if (i == numItems)
+                    {
+                        //Debug.Log("Breaking loop, finished reading file");
+                        break;
+                    }
+                    if (lastLineNonSpacer == false && lastLineSpacer == true)
+                    {
+                        //Debug.Log("Adding first item for crafting for item" + i + ", " + j);
+                        //Debug.Log(tempString);
+                        lastLineSpacer = false;
+                        lastLineNonSpacer = true;
+                        j = 0;
+                        //Debug.Log(m);
+                        requiredItemsToSmelt[i, j] = tempString;
+                    }
+                    else if (lastLineNonSpacer == true && lastLineSpacer == false)
+                    {
+                        j++;
+                        //Debug.Log("Adding " + m + " item for crafting item " + i + ", " + j);
+                        //Debug.Log(tempString);
+                        requiredItemsToSmelt[i, j] = tempString;
+                    }
+                }
+                break;
+
             default:
                 Debug.Log("Failed to load correct data file. " + filePath + " did not load.");
                 break;
@@ -551,6 +602,24 @@ public class DataScript : MonoBehaviour
         for (int j = 0; j < i; j++)
         {
             tempArray[j] = requiredItemsToCraft[(int)Enum.Parse(typeof(Item), item), (int)Enum.Parse(typeof(Material), material), j];
+        }
+
+        return tempArray;
+    }
+
+    public string[] getRequiredItemsToSmelt(string material)
+    {
+        string[] tempArray;
+        int i = 0;
+        while(requiredItemsToSmelt[(int)Enum.Parse(typeof(Material), material), i] != null)
+        {
+            i++;
+        }
+        tempArray = new string[i];
+
+        for (int j = 0; j < i; j++)
+        {
+            tempArray[j] = requiredItemsToSmelt[(int)Enum.Parse(typeof(Material), material), j];
         }
 
         return tempArray;
