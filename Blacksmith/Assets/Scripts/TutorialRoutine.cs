@@ -125,8 +125,9 @@ public class TutorialRoutine : MonoBehaviour {
         if (tutorialDisplayed)
         {
             toggleTutorialActive();
-            craftRoutine.unPause();
         }
+
+        craftRoutine.unPause();
     }
 
     public void tutorialMachine(int step)
