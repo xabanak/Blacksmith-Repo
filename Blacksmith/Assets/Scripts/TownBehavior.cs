@@ -163,6 +163,7 @@ public class TownBehavior : MonoBehaviour {
         switch (from)
         {
             case "Travel":
+                resetTravelWindow();
                 toggleTravelWindow();
                 buildingsBehavior.toggleBuildings();
                 toggleTravelInfo(false);
@@ -387,16 +388,18 @@ public class TownBehavior : MonoBehaviour {
 
     public void resetTravelWindow()
     {
-        for (int i = 0; i < 6; i++)
+        foreach (Button levelButton in levelButtons)
         {
-            levelButtons[i].gameObject.SetActive(false);
+            levelButton.gameObject.SetActive(false);
+            levelButton.gameObject.GetComponent<RectTransform>().transform.localPosition = new Vector3(315, 0, 0);
         }
 
-        for (int i = 0; i < 4; i++)
+        foreach (GameObject spot in travelSpots)
         {
-            travelSpots[i].gameObject.SetActive(false);
+            spot.gameObject.GetComponent<Image>().color = Color.black;
+            spot.gameObject.SetActive(false);
         }
 
-        returnToTown("Travel");
+        //returnToTown("Travel");
     }
 }
