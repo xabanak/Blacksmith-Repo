@@ -9,6 +9,7 @@ public class HeroInterface : MonoBehaviour {
     private Adventurer[] adventurers;
     private AdventureRoutine adventurerRoutine;
     private CreateInventory createInventory;
+    private BuildingsBehavior buildingsBehavior;
     public GameObject baseWindow;
     public GameObject statusWindow;
     public GameObject finishedAdventureWindow;
@@ -41,6 +42,7 @@ public class HeroInterface : MonoBehaviour {
     {
         currentHeroStatus = 0;
         adventurerRoutine = GameObject.Find("GameController").GetComponent<AdventureRoutine>();
+        buildingsBehavior = GameObject.Find("Town/Buildings").GetComponent<BuildingsBehavior>();
         adventurers = adventurerRoutine.getAdventurers();
         statusButtons[0].interactable = false;
         statusButtons[1].interactable = false;
@@ -81,7 +83,11 @@ public class HeroInterface : MonoBehaviour {
             {
                 adventureStatus.interactable = true;
             }
+
+            buildingsBehavior.hideSigns();
         }
+
+        buildingsBehavior.showSigns();
         //Debug.Log("Hero :" + hero);
     }
 
@@ -252,6 +258,7 @@ public class HeroInterface : MonoBehaviour {
         adventurers = adventurerRoutine.getAdventurers();
         baseWindow.SetActive(false);
         heroName.text = "";
+        //buildingsBehavior.toggleSigns();
     }
 
     public void equipHero(GameObject item)
