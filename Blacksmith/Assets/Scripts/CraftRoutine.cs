@@ -1466,6 +1466,10 @@ public class CraftRoutine : MonoBehaviour
                 townCamera.SetActive(true);
                 workshopButton.gameObject.SetActive(true);
                 overlayCanvas.worldCamera = townCamera.GetComponent<Camera>();
+                if (itemMaterials)
+                {
+                    ShowItemMaterialButtons();
+                }
                 break;
             case "rear":
                 craftingCamera.transform.position = new Vector3(background2.transform.position.x, background2.transform.position.y, -10);
@@ -1473,6 +1477,10 @@ public class CraftRoutine : MonoBehaviour
                 rearButton.gameObject.SetActive(false);
                 frontButton.gameObject.SetActive(true);
                 craftingButton.gameObject.SetActive(false);
+                if (itemMaterials)
+                {
+                    ShowItemMaterialButtons();
+                }
                 break;
             case "front":
                 craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, -10);

@@ -193,7 +193,7 @@ public class SmelterRoutine : MonoBehaviour
             return;
         }
         checkForNewOres();
-        startCraftingButton.SetActive(false);
+        //startCraftingButton.SetActive(false);
         changeRoomButton.SetActive(false);
         //Debug.Log("Opening smelter interface");
         smeltingCanvas.worldCamera = workshopCamera;
@@ -209,7 +209,7 @@ public class SmelterRoutine : MonoBehaviour
             closeSmelterWindow();
         }
         smeltingCanvas.worldCamera = standbyCamera;
-        startCraftingButton.SetActive(true);
+        //startCraftingButton.SetActive(true);
         changeRoomButton.SetActive(true);
         for (int i = 0; i < numOreButtons; i++)
         {
