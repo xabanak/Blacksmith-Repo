@@ -7,7 +7,7 @@ public class HammerBehavior : MonoBehaviour
 
     private Vector3 screenPoint;
     public Vector3 offset;
-    private Vector3 resetPoint;
+    public Vector3 resetPoint;
     private const float angleChange = 35.0f;
 
     public GameObject anvil;
@@ -32,7 +32,7 @@ public class HammerBehavior : MonoBehaviour
         craftingController = GameObject.Find("Crafting/CraftingController");
     }
 
-    void OnEnable()
+    void OnDisable()
     {
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z - angleChange);
         isDragged = false;
