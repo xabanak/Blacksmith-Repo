@@ -3924,7 +3924,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: .5, y: 0, z: 0}
-  resetPoint: {x: 0, y: 0, z: 0}
   anvil: {fileID: 1129777919}
   craftController: {fileID: 1302979229}
   snapBack: 1
@@ -37071,14 +37070,11 @@ MonoBehaviour:
   market: {fileID: 622864346}
   travel: {fileID: 1259690576}
   message: {fileID: 154432, guid: 601f78405640bde439cef21fcef0d129, type: 2}
-<<<<<<< HEAD
   returnToWorkshopBtn: {fileID: 1847505858}
-=======
   tavernSign: {fileID: 153909230}
   emporiumSign: {fileID: 177537300}
   marketSign: {fileID: 1754738517}
   travelSign: {fileID: 1221265527}
->>>>>>> origin/master
   townCanvas: {fileID: 1808428895}
 --- !u!1 &1731491678
 GameObject:

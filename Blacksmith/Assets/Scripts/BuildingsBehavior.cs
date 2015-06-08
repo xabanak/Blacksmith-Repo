@@ -14,14 +14,11 @@ public class BuildingsBehavior : MonoBehaviour {
     public GameObject travel;
     public GameObject message;
 
-<<<<<<< HEAD
     public GameObject returnToWorkshopBtn;
-=======
     public GameObject tavernSign;
     public GameObject emporiumSign;
     public GameObject marketSign;
     public GameObject travelSign;
->>>>>>> origin/master
 
     public Canvas townCanvas;
 
