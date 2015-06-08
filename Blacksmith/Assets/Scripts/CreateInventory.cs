@@ -573,6 +573,7 @@ public class CreateInventory : MonoBehaviour
         ingotQty[0]++;
         sheathQty[0]++;
         hiltQty[0]++;
+        oreQty[0] = 5;
     }
     // Calls all updates to update the current on hand inventory.
     public void BuildInventory()
@@ -1070,6 +1071,26 @@ public class CreateInventory : MonoBehaviour
     {
         switch (item)
         {
+            case "Tin Ore":
+                return oreQty[0];
+            case "Copper Ore":
+                return oreQty[1];
+            case "Zinc Ore":
+                return oreQty[2];
+            case "Iron Ore":
+                return oreQty[3];
+            case "Charcoal":
+                return oreQty[4];
+            case "Chromium Ore":
+                return oreQty[5];
+            case "Manganese Ore":
+                return oreQty[6];
+            case "Cobalt Ore":
+                return oreQty[7];
+            case "Tungsten Ore":
+                return oreQty[8];
+            case "Titanium Ore":
+                return oreQty[9];
             case "Tin Ingot":
                 return ingotQty[0];
             case "Copper Ingot":
@@ -1149,6 +1170,33 @@ public class CreateInventory : MonoBehaviour
                 break;
             case "Titanium Ore":
                 oreQty[9] += quantity;
+                break;
+            case "Copper Ingot":
+                ingotQty[1] += quantity;
+                break;
+            case "Bronze Ingot":
+                ingotQty[2] += quantity;
+                break;
+            case "Brass Ingot":
+                ingotQty[3] += quantity;
+                break;
+            case "Iron Ingot":
+                ingotQty[4] += quantity;
+                break;
+            case "Blackened Iron Ingot":
+                ingotQty[5] += quantity;
+                break;
+            case "Steel Ingot":
+                ingotQty[6] += quantity;
+                break;
+            case "Low Grade Steel Alloy Ingot":
+                ingotQty[7] += quantity;
+                break;
+            case "High Grade Steel Alloy Ingot":
+                ingotQty[8] += quantity;
+                break;
+            case "Titanium Ingot":
+                ingotQty[9] += quantity;
                 break;
             case "Sheep Skin":
                 skinQty[0] += quantity;
