@@ -24,6 +24,9 @@ public class GameController : MonoBehaviour {
     public Canvas workshopCanvas;
     public Canvas inventoryCanvas;
 
+    public Button creditsButton;
+    public GameObject creditsBackground;
+
     private bool workshop;
     private bool town;
 
@@ -202,5 +205,10 @@ public class GameController : MonoBehaviour {
     public void exitGame()
     {
         Application.Quit();
+    }
+
+    public void displayCredits()
+    {
+        creditsBackground.SetActive(!creditsBackground.activeSelf);
     }
 }

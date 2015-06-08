@@ -11,6 +11,9 @@ public class BuildingsBehavior : MonoBehaviour {
     public GameObject emporium;
     public GameObject market;
     public GameObject travel;
+    public GameObject message;
+
+    public Canvas townCanvas;
 
 	void Start () 
     {
@@ -38,6 +41,11 @@ public class BuildingsBehavior : MonoBehaviour {
                 }
                 else
                 {
+                    GameObject tempObj;
+                    tempObj = Instantiate(message);
+                    tempObj.transform.SetParent(townCanvas.transform);
+                    tempObj.transform.localScale = new Vector3(.3f, .3f, .3f);
+                    tempObj.transform.localPosition = new Vector3(-250, 85, 0);
                     toggleBuildings();
                 }
                 break;

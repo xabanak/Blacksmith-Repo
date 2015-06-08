@@ -36,8 +36,6 @@ public class TownBehavior : MonoBehaviour {
     private string currentTravelZone;
     public Button[] levelButtons;
     public GameObject[] travelSpots;
-    
-    public Text testText;
 
     void Awake ()
     {
@@ -92,17 +90,14 @@ public class TownBehavior : MonoBehaviour {
         {
             case 1:
                 adventureRoutine.addAdventurer(adventurerOne);
-                testText.text = adventurerOne.getDescription();
                 newHeroes = true;
                 break;
             case 2:
                 adventureRoutine.addAdventurer(adventurerTwo);
-                testText.text = adventurerTwo.getDescription();
                 newHeroes = true;
                 break;
             case 3:
                 adventureRoutine.addAdventurer(adventurerThree);
-                testText.text = adventurerThree.getDescription();
                 newHeroes = true;
                 break;
             default:
