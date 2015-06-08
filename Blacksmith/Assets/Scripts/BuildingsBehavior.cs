@@ -14,7 +14,14 @@ public class BuildingsBehavior : MonoBehaviour {
     public GameObject travel;
     public GameObject message;
 
+<<<<<<< HEAD
     public GameObject returnToWorkshopBtn;
+=======
+    public GameObject tavernSign;
+    public GameObject emporiumSign;
+    public GameObject marketSign;
+    public GameObject travelSign;
+>>>>>>> origin/master
 
     public Canvas townCanvas;
 
@@ -73,5 +80,30 @@ public class BuildingsBehavior : MonoBehaviour {
         emporium.SetActive(!emporium.activeSelf);
         market.SetActive(!market.activeSelf);
         travel.SetActive(!travel.activeSelf);
+        toggleSigns();
+    }
+
+    public void toggleSigns()
+    {
+        tavernSign.SetActive(!tavernSign.activeSelf);
+        emporiumSign.SetActive(!emporiumSign.activeSelf);
+        marketSign.SetActive(!marketSign.activeSelf);
+        travelSign.SetActive(!travelSign.activeSelf);
+    }
+    
+    public void showSigns()
+    {
+        tavernSign.SetActive(true);
+        emporiumSign.SetActive(true);
+        marketSign.SetActive(true);
+        travelSign.SetActive(true);
+    }
+
+    public void hideSigns()
+    {
+        tavernSign.SetActive(false);
+        emporiumSign.SetActive(false);
+        marketSign.SetActive(false);
+        travelSign.SetActive(false);
     }
 }
