@@ -5,6 +5,7 @@ public class BuildingsBehavior : MonoBehaviour {
 
     private TownBehavior townBehavior;
     private SoundController soundController;
+    private AdventureRoutine adventureRoutine;
 
     public GameObject tavern;
     public GameObject emporium;
@@ -15,6 +16,7 @@ public class BuildingsBehavior : MonoBehaviour {
     {
         townBehavior = GameObject.Find("GameController").GetComponent<TownBehavior>();
         soundController = GameObject.Find("GameController").GetComponent<SoundController>();
+        adventureRoutine = GameObject.Find("GameController").GetComponent<AdventureRoutine>();
 	}
 	
 	void Update () {
@@ -28,9 +30,16 @@ public class BuildingsBehavior : MonoBehaviour {
         switch(window)
         {
             case "Tavern":
-                townBehavior.toggleTavernWindow();
-                townBehavior.getAdventurerSet();
-                townBehavior.setTavernWindow();
+                if (adventureRoutine.getNumAdventurers() < 3)
+                {
+                    townBehavior.toggleTavernWindow();
+                    townBehavior.getAdventurerSet();
+                    townBehavior.setTavernWindow();
+                }
+                else
+                {
+                    toggleBuildings();
+                }
                 break;
             case "Travel":
                 townBehavior.toggleTravelWindow();
