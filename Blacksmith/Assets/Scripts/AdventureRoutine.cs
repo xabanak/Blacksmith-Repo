@@ -195,26 +195,24 @@ public class AdventureRoutine : MonoBehaviour
         int level = adventurers[adventurerIter].getLevel();
         int chanceToSucceedInt;
         double chanceToSucceedDbl = ((5.0f * Convert.ToDouble(level - adventureDecriment[adventurerIter])) + adventurers[adventurerIter].getPowerLevel()) / (15.0f * Convert.ToDouble(level - adventureDecriment[adventurerIter]));
-        
+
         if (chanceToSucceedDbl >= 1.0f)
         {
-            Debug.Log("Guaranteed success");
+            //Debug.Log("Guaranteed success");
             returnFromAdventure(adventurerIter);
-        }
-
-        chanceToSucceedDbl *= 100.0f;
-        chanceToSucceedInt = Convert.ToInt32(chanceToSucceedDbl);
-        int randomNumber = UnityEngine.Random.Range(0, 101);
-        Debug.Log("Chance To Succeed: " + chanceToSucceedInt + ", randomNumer: " + randomNumber);
-
-        if (randomNumber >= chanceToSucceedInt)
-        {
-            removeAdventurer(adventurers[adventurerIter]);
         }
         else
         {
-            returnFromAdventure(adventurerIter);
+            chanceToSucceedDbl *= 100.0f;
+            chanceToSucceedInt = Convert.ToInt32(chanceToSucceedDbl);
+            int randomNumber = UnityEngine.Random.Range(0, 101);
+            if (randomNumber >= chanceToSucceedInt)
+            {
+                removeAdventurer(adventurers[adventurerIter]);
+                return;
+            }
         }
+        returnFromAdventure(adventurerIter);
     }
 
     private void returnFromAdventure(int adventurerIter)

@@ -32,6 +32,13 @@ public class HammerBehavior : MonoBehaviour
         craftingController = GameObject.Find("Crafting/CraftingController");
     }
 
+    void OnEnable()
+    {
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z - angleChange);
+        isDragged = false;
+        transform.position = resetPoint;
+    }
+
     void Update()
     {
         Vector2 tempPosition = transform.position;
@@ -84,13 +91,13 @@ public class HammerBehavior : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D myCollider)
+    /*void OnTriggerStay2D(Collider2D myCollider)
     {
         if (myCollider.gameObject.name == "Anvil")
         {
             Debug.Log("Currently in 2d trigger");
         }
-    }
+    }*/
     void OnMouseDown()
     {
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
