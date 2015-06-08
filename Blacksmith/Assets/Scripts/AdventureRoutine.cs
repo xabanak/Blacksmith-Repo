@@ -14,6 +14,7 @@ public class AdventureRoutine : MonoBehaviour
     public GameController gameController;
     public CreateInventory inventoryController;
     private DataScript dataScript;
+    private CraftRoutine craftRoutine;
 
     private Text[] heroIndicators;
     private Button[] heroStatus;
@@ -45,6 +46,7 @@ public class AdventureRoutine : MonoBehaviour
         adventurers[1] = null; 
         adventurers[2] = null;
         heroInterface = gameController.GetComponent<HeroInterface>();
+        craftRoutine = GameObject.Find("CraftingController").GetComponent<CraftRoutine>();
 
         numAdventurers = 0;
 	}
@@ -219,7 +221,10 @@ public class AdventureRoutine : MonoBehaviour
     {
         heroIndicators[adventurerIter].text = "Returned.";
         adventurers[adventurerIter].returnFromAdventure();
-        heroStatus[adventurerIter].interactable = true;
+        if (!craftRoutine.isCrafting())
+        {
+            heroStatus[adventurerIter].interactable = true;
+        }
     }
 
     public void collectFromAdventurer(Adventurer adventurer)

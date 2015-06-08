@@ -36,6 +36,7 @@ public class TownBehavior : MonoBehaviour {
     private string currentTravelZone;
     public Button[] levelButtons;
     public GameObject[] travelSpots;
+    public GameObject returnToWorkshopBtn;
 
     void Awake ()
     {
@@ -85,6 +86,7 @@ public class TownBehavior : MonoBehaviour {
         confirmationBox.SetActive(false);
         toggleTavernWindow();
         buildingsBehavior.toggleBuildings();
+        returnToWorkshopBtn.SetActive(true);
 
         switch(heroSelection)
         {
@@ -169,16 +171,19 @@ public class TownBehavior : MonoBehaviour {
                 travelHeroOne.GetComponent<Image>().color = Color.white;
                 travelHeroTwo.GetComponent<Image>().color = Color.white;
                 travelHeroThree.GetComponent<Image>().color = Color.white;
+                returnToWorkshopBtn.SetActive(true);
                 break;
             case "Tavern":
                 toggleTavernWindow();
                 buildingsBehavior.toggleBuildings();
+                returnToWorkshopBtn.SetActive(true);
                 break;
             case "Market":
                 toggleMarketWindow();
                 //marketCanvas.worldCamera = marketCamera;
                 //marketCanvas.gameObject.SetActive(false);
                 buildingsBehavior.toggleBuildings();
+                returnToWorkshopBtn.SetActive(true);
                 break;
             default:
                 Debug.Log("Returning from not found!");

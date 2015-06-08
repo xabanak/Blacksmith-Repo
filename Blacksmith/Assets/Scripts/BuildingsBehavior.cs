@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class BuildingsBehavior : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class BuildingsBehavior : MonoBehaviour {
     public GameObject market;
     public GameObject travel;
     public GameObject message;
+
+    public GameObject returnToWorkshopBtn;
 
     public Canvas townCanvas;
 
@@ -38,6 +41,7 @@ public class BuildingsBehavior : MonoBehaviour {
                     townBehavior.toggleTavernWindow();
                     townBehavior.getAdventurerSet();
                     townBehavior.setTavernWindow();
+                    returnToWorkshopBtn.SetActive(false);
                 }
                 else
                 {
@@ -52,9 +56,11 @@ public class BuildingsBehavior : MonoBehaviour {
             case "Travel":
                 townBehavior.toggleTravelWindow();
                 townBehavior.setTravelHeroButtons();
+                returnToWorkshopBtn.SetActive(false);
                 break;
             case "Market":
                 townBehavior.toggleMarketWindow();
+                returnToWorkshopBtn.SetActive(false);
                 break;
             default:
                 break;

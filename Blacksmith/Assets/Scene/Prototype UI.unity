@@ -33725,6 +33725,7 @@ MonoBehaviour:
   - {fileID: 1848148423}
   - {fileID: 489705472}
   - {fileID: 1341327150}
+  returnToWorkshopBtn: {fileID: 1847505858}
 --- !u!114 &1565756064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37021,6 +37022,7 @@ MonoBehaviour:
   market: {fileID: 622864346}
   travel: {fileID: 1259690576}
   message: {fileID: 154432, guid: 601f78405640bde439cef21fcef0d129, type: 2}
+  returnToWorkshopBtn: {fileID: 1847505858}
   townCanvas: {fileID: 1808428895}
 --- !u!1 &1731491678
 GameObject:
@@ -42918,7 +42920,7 @@ MonoBehaviour:
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
