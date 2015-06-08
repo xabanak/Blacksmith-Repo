@@ -23,6 +23,7 @@ public class SmelterRoutine : MonoBehaviour
     bool smelterWindowOpen;
 
     public Button[] oreButtons;
+    public Sprite[] oreButtonImages;
 
     private bool[] discoveredOres;
     private bool[] createdIngots;
@@ -52,6 +53,20 @@ public class SmelterRoutine : MonoBehaviour
         Manganese,
         Cobalt,
         Tungsten,
+        Titanium
+    }
+
+    enum IngotTypes
+    {
+        Tin,
+        Copper,
+        Bronze,
+        Brass,
+        Iron,
+        BlackenedIron,
+        Steel,
+        SteelAlloyl1,
+        SteelAlloyl2,
         Titanium
     }
 
@@ -140,9 +155,9 @@ public class SmelterRoutine : MonoBehaviour
             ingotQty = 1;
         }
         inventoryController.addItem(metalSmelting + " Ingot", ingotQty);
-        if(!createdIngots[(int)Enum.Parse(typeof(SmeltMats), metalSmelting)])
+        if(!createdIngots[(int)Enum.Parse(typeof(IngotTypes), metalSmelting)])
         {
-            craftingController.GetComponent<CraftRoutine>().enableNewIngot((int)Enum.Parse(typeof(SmeltMats), metalSmelting));
+            craftingController.GetComponent<CraftRoutine>().enableNewIngot((int)Enum.Parse(typeof(IngotTypes), metalSmelting));
         }
     }
 
@@ -152,9 +167,11 @@ public class SmelterRoutine : MonoBehaviour
         {
             if (!discoveredOres[i])
             {
-                if (gameController.GetComponent<CreateInventory>().oreQty[i] > 0)
+                if (inventoryController.oreQty[i] > 0)
                 {
                     discoveredOres[i] = true;
+                    oreButtons[i].image.overrideSprite = oreButtonImages[i];
+                    oreButtons[i].interactable = true;  
                 }
 
             }
@@ -167,6 +184,7 @@ public class SmelterRoutine : MonoBehaviour
         {
             return;
         }
+        checkForNewOres();
         startCraftingButton.SetActive(false);
         changeRoomButton.SetActive(false);
         //Debug.Log("Opening smelter interface");
@@ -275,8 +293,11 @@ public class SmelterRoutine : MonoBehaviour
             }
         }
         else // No Combination 
-        { 
-
+        {
+            ingotName.text = "No combination";
+            requiredMat1.text = "";
+            requiredMat2.text = "";
+            smeltButton.interactable = false;
         }
     }
 

@@ -1888,7 +1888,7 @@ public class SortedInventory
                 {
                     if (inventorySize > 10)
                     {
-                        DecreaseSize();
+                        //DecreaseSize();
                     }
                 }
                 return true;

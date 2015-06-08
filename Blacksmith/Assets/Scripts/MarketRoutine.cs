@@ -66,9 +66,9 @@ public class MarketRoutine : MonoBehaviour {
 
         
         // TEST METHOD
-        //GameObject tempSword = Instantiate(testSword) as GameObject;
-        //tempSword.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 11);
-        //createInventory.addCraftedItem(tempSword);
+        /*GameObject tempSword = Instantiate(testSword) as GameObject;
+        tempSword.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 11);
+        createInventory.addCraftedItem(tempSword);*/
 	}
 	
     public bool getConfirm()

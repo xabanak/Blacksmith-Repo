@@ -7365,7 +7365,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 1
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -13480,32 +13480,14 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -1.1678772, y: .573786676}
-      - {x: -.919235229, y: 1.0542326}
-      - {x: -.634552002, y: 1.45939159}
-      - {x: -.308990479, y: 1.65025616}
-      - {x: .272521973, y: 1.62890911}
-      - {x: .52243042, y: 1.47185802}
-      - {x: .817779541, y: 1.1422224}
-      - {x: .987579346, y: .812159479}
-      - {x: 1.12882996, y: .410601556}
-      - {x: 1.16775513, y: -.0765200257}
-      - {x: 1.34970093, y: -.885205328}
-      - {x: 1.39996338, y: -1.27370167}
-      - {x: 1.32600403, y: -1.36140919}
-      - {x: 1.15614319, y: -1.45909595}
-      - {x: .970428467, y: -1.54726887}
-      - {x: .976959229, y: -1.61441517}
-      - {x: .742599487, y: -1.68870258}
-      - {x: .457855225, y: -1.74092579}
-      - {x: .33253479, y: -1.69885731}
-      - {x: .0163726807, y: -1.73219776}
-      - {x: -.440048218, y: -1.77147388}
-      - {x: -.890533447, y: -1.74231434}
-      - {x: -1.18699646, y: -1.69183826}
-      - {x: -1.34017944, y: -1.55750751}
-      - {x: -1.3344574, y: -.920765936}
-      - {x: -1.19993591, y: -.295430243}
+    - - {x: -1.01999998, y: 1.20000005}
+      - {x: -1.20000005, y: 1.02999997}
+      - {x: -1.20000005, y: -1.08000004}
+      - {x: -1.16999996, y: -1.20000005}
+      - {x: 1.11000001, y: -1.20000005}
+      - {x: 1.20000005, y: -1.19000006}
+      - {x: 1.20000005, y: 1.01999998}
+      - {x: 1.02999997, y: 1.20000005}
 --- !u!114 &638295310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13528,6 +13510,17 @@ MonoBehaviour:
   - {fileID: 75039000}
   - {fileID: 464513626}
   - {fileID: 475812574}
+  oreButtonImages:
+  - {fileID: 21300000, guid: d2a5c46b4298b9c4784832d6a499ccb3, type: 3}
+  - {fileID: 21300000, guid: b03da20533f359f46a2914616318f0a2, type: 3}
+  - {fileID: 21300000, guid: 876af97c4378eaa41af7a9870063c94a, type: 3}
+  - {fileID: 21300000, guid: d2a5c46b4298b9c4784832d6a499ccb3, type: 3}
+  - {fileID: 21300000, guid: d2a5c46b4298b9c4784832d6a499ccb3, type: 3}
+  - {fileID: 21300000, guid: d2a5c46b4298b9c4784832d6a499ccb3, type: 3}
+  - {fileID: 21300000, guid: d2a5c46b4298b9c4784832d6a499ccb3, type: 3}
+  - {fileID: 21300000, guid: d2a5c46b4298b9c4784832d6a499ccb3, type: 3}
+  - {fileID: 21300000, guid: d2a5c46b4298b9c4784832d6a499ccb3, type: 3}
+  - {fileID: 21300000, guid: d2a5c46b4298b9c4784832d6a499ccb3, type: 3}
   smeltingCanvas: {fileID: 1933890444}
   smeltingWindow: {fileID: 839899385}
   smeltButton: {fileID: 1111038076}
@@ -15963,7 +15956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: e5ab4ad7229000942848e4560449cce3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d2a5c46b4298b9c4784832d6a499ccb3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20642,7 +20635,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 1
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -25931,7 +25924,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 1
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -26572,7 +26565,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

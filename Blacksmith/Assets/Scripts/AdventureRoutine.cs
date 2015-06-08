@@ -182,7 +182,9 @@ public class AdventureRoutine : MonoBehaviour
             heroStatus[adventurerIter].interactable = false;
             this.adventureZone[adventurerIter] = adventureZone;
             adventureDecriment[adventurerIter] = levelDecrimentor;
+            Debug.Log(adventureDecriment[adventurerIter]);
             adventureTimers[adventurerIter] = baseTimer * dataScript.getAdvTimeMult(adventurers[adventurerIter].getLevel(), adventureDecriment[adventurerIter]);
+            Debug.Log(adventureTimers[adventurerIter]);
             return true;
         }
         return false;
@@ -192,17 +194,18 @@ public class AdventureRoutine : MonoBehaviour
     {
         int level = adventurers[adventurerIter].getLevel();
         int chanceToSucceedInt;
-        double chanceToSucceedDbl = ((5.0f * Convert.ToDouble(level)) + adventurers[adventurerIter].getPowerLevel()) / (15.0f * Convert.ToDouble(level));
+        double chanceToSucceedDbl = ((5.0f * Convert.ToDouble(level - adventureDecriment[adventurerIter])) + adventurers[adventurerIter].getPowerLevel()) / (15.0f * Convert.ToDouble(level - adventureDecriment[adventurerIter]));
         
         if (chanceToSucceedDbl >= 1.0f)
         {
+            Debug.Log("Guaranteed success");
             returnFromAdventure(adventurerIter);
         }
 
         chanceToSucceedDbl *= 100.0f;
         chanceToSucceedInt = Convert.ToInt32(chanceToSucceedDbl);
         int randomNumber = UnityEngine.Random.Range(0, 101);
-        //Debug.Log("Chance To Succeed: " + chanceToSucceedInt + ", randomNumer: " + randomNumber);
+        Debug.Log("Chance To Succeed: " + chanceToSucceedInt + ", randomNumer: " + randomNumber);
 
         if (randomNumber >= chanceToSucceedInt)
         {
@@ -246,6 +249,19 @@ public class AdventureRoutine : MonoBehaviour
             heroIndicators[adventurerIter].text = "Ready to adventure";
         }
     }
+
+    public void destroyInventory(GameObject[] inventory)
+    {
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (inventory[i] != null)
+            {
+                GameObject tempObject = inventory[i];
+                inventory[i] = null;
+                GameObject.Destroy(tempObject);
+            }
+        }
+    }
 }
 
 public class Adventurer
@@ -259,6 +275,7 @@ public class Adventurer
     private int oreModifier;
     private int skinsModifier;
     private int woodModifier;
+    private AdventureRoutine adventureRoutine;
     private GameObject[] inventory;
     private Sprite portrait;
     private DataScript dataScript;
@@ -295,6 +312,7 @@ public class Adventurer
     public Adventurer()
     {
         gameController = GameObject.Find("GameController");
+        adventureRoutine = gameController.GetComponent<AdventureRoutine>();
         heroInterface = gameController.GetComponent<HeroInterface>();
         inventoryController = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         dataScript = gameController.GetComponent<DataScript>();
@@ -417,16 +435,10 @@ public class Adventurer
         }
     }
 
-    ~Adventurer()
+   /* ~Adventurer()
     {
-        foreach (GameObject gameObject in inventory)
-        {
-            if (gameObject != null)
-            {
-                UnityEngine.Object.Destroy(gameObject);
-            }
-        }
-    }
+        adventureRoutine.destroyInventory(inventory);
+    }*/
 
     public void equip(GameObject item)
     {
@@ -666,7 +678,10 @@ public class Adventurer
                 }
             }
 
-            levelUp();
+            if (adventureDecriment == 0)
+            {
+                levelUp();
+            }
             isReturned = false;
             adventures++;
             return true;
