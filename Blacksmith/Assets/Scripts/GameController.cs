@@ -106,7 +106,7 @@ public class GameController : MonoBehaviour {
             inventoryCanvas.worldCamera = workCamera;
             inventoryCanvas.GetComponent<Canvas>().enabled = true;
             //inventory.SetActive(true);
-            ToggleTools();
+            //ToggleTools();
         }
         else if (inventoryCanvas.enabled)
         {
@@ -115,7 +115,7 @@ public class GameController : MonoBehaviour {
             inventoryCanvas.worldCamera = inventoryCamera;
             inventoryCanvas.GetComponent<Canvas>().enabled = false;
             //inventory.SetActive(false);
-            ToggleTools();
+            //ToggleTools();
         }
         else if (town && !inventoryCanvas.GetComponent<Canvas>().enabled)
         {
@@ -147,10 +147,10 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    void ToggleTools()
+    /*void ToggleTools()
     {
         hammer.SetActive(!hammer.activeSelf);
-    }
+    }*/
 
     private void tutorialHelper(int step)
     {

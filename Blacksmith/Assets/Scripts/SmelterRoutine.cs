@@ -121,10 +121,18 @@ public class SmelterRoutine : MonoBehaviour
 
     void OnMouseUp()
     {
+        if (craftingController.isCrafting())
+        {
+            return;
+        }
         //Debug.Log("OnMouseUp");
         if (smeltingCanvas.worldCamera == standbyCamera)
         {
             openSmeltingInterface();
+        }
+        else
+        {
+            closeSmeltingInterface();
         }
     }
 

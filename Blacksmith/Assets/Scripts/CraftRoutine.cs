@@ -41,6 +41,7 @@ public class CraftRoutine : MonoBehaviour
     public Button rearButton;
     public Button frontButton;
     public Button workshopButton;
+    public Button craftingButton;
 
     public Canvas overlayCanvas;
     public Canvas workshopCanvas;
@@ -639,6 +640,8 @@ public class CraftRoutine : MonoBehaviour
         usePolisher = false;
         useBarrel = false;
 
+        hammer.SetActive(false);
+
         bellowsSliderObject.SetActive(false);
         barrelSliderObject.SetActive(false);
         timerSliderObject.SetActive(false);
@@ -732,6 +735,8 @@ public class CraftRoutine : MonoBehaviour
         useAnvil = true;
         useForge = true;
         useBarrel = true;
+
+        hammer.SetActive(true);
 
         bellowsSliderObject.SetActive(true);
         timerSliderObject.SetActive(true);
@@ -1467,12 +1472,14 @@ public class CraftRoutine : MonoBehaviour
                 townButton.gameObject.SetActive(false);
                 rearButton.gameObject.SetActive(false);
                 frontButton.gameObject.SetActive(true);
+                craftingButton.gameObject.SetActive(false);
                 break;
             case "front":
                 craftingCamera.transform.position = new Vector3(background1.transform.position.x, background1.transform.position.y, -10);
                 townButton.gameObject.SetActive(true);
                 rearButton.gameObject.SetActive(true);
                 frontButton.gameObject.SetActive(false);
+                craftingButton.gameObject.SetActive(true);
                 break;
             case "workshop":
                 soundController.stopAllMusic();
