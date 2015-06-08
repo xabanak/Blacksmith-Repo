@@ -27470,6 +27470,7 @@ MonoBehaviour:
   rearButton: {fileID: 1520061631}
   frontButton: {fileID: 1165746581}
   workshopButton: {fileID: 1847505859}
+  craftingButton: {fileID: 1637928028}
   overlayCanvas: {fileID: 403744611}
   workshopCanvas: {fileID: 2056784991}
   townCamera: {fileID: 1316506709}
