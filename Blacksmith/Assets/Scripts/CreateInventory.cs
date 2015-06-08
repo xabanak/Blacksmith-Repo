@@ -980,8 +980,10 @@ public class CreateInventory : MonoBehaviour
                 break;
         }
 
-        Debug.Log("Destroying " + item.name);
+        //Debug.Log("Destroying " + item.name);
         DestroyImmediate(item);
+
+        BuildInventory();
     }
 
     public void removeCraftedItem(GameObject item)
@@ -995,6 +997,8 @@ public class CreateInventory : MonoBehaviour
                 Debug.Log("Crafted item not found on remove");
                 break;
         }
+
+        BuildInventory();
     }
 
     private void DisableInventoryWindows()
@@ -1368,14 +1372,14 @@ public class CreateInventory : MonoBehaviour
                 break;
         }
 
-        Debug.Log("Added " + itemName + " of quantity: " + quantity + " to inventory");
+        //Debug.Log("Added " + itemName + " of quantity: " + quantity + " to inventory");
 
         BuildInventory();
     }
 
     public void removeItem(string itemName, int quantity)
     {
-        Debug.Log(itemName + " " + quantity);
+        //Debug.Log(itemName + " " + quantity);
         switch (itemName)
         {
             case "Basic Fuel":
@@ -1713,7 +1717,9 @@ public class CreateInventory : MonoBehaviour
                 break;
         }
 
-        Debug.Log("Added " + itemName + " of quantity: " + quantity + " to inventory");
+        //Debug.Log("Added " + itemName + " of quantity: " + quantity + " to inventory");
+
+        BuildInventory();
     }
 
     public SortedInventory getItemType(string type)

@@ -120,20 +120,20 @@ public class DataScript : MonoBehaviour
         readDataFile("requiredItemsToCraft.dat");
         readDataFile("requiredItemsToSmelt.dat");
         string[] tempStringArray = getRequiredItemsToSmelt("Tin");
-        foreach(string tempString in tempStringArray)
+        /*foreach(string tempString in tempStringArray)
         {
             Debug.Log(tempString);
-        }
+        }*/
         tempStringArray = getRequiredItemsToSmelt("Brass");
-        foreach (string tempString in tempStringArray)
+        /*foreach (string tempString in tempStringArray)
         {
             Debug.Log(tempString);
-        }
+        }*/
         tempStringArray = getRequiredItemsToSmelt("BlackenedIron");
-        foreach (string tempString in tempStringArray)
+        /*foreach (string tempString in tempStringArray)
         {
             Debug.Log(tempString);
-        }
+        }*/
 	}
     void readDataFile(string filePath)
     {
@@ -374,7 +374,7 @@ public class DataScript : MonoBehaviour
                     }
 
                     lootTables[i, j, m] = new LootEntry(tempString, Convert.ToInt32(inputStream.ReadLine()));
-                    Debug.Log("LootEntry: Item: " + lootTables[i, j, m].getItem() + " \n Weight: " + lootTables[i, j, m].getWeight());
+                    //Debug.Log("LootEntry: Item: " + lootTables[i, j, m].getItem() + " \n Weight: " + lootTables[i, j, m].getWeight());
                     m++;
                 }
                 break;

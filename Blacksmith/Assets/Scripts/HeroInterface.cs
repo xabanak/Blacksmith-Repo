@@ -338,6 +338,7 @@ public class HeroInterface : MonoBehaviour {
         tempObj.name = item;
         if (type != null)
         {
+            tempObj.AddComponent<EquipHero>();
             tempObj.AddComponent<SellItem>();
             tempObj.GetComponent<SellItem>().setCraftedItem(type);
         }
