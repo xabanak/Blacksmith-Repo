@@ -70,13 +70,13 @@ public class HeroInterface : MonoBehaviour {
         baseWindow.SetActive(true);
         heroName.text = adventurers[hero].getName();
         currentHeroStatus = hero;
-        Debug.Log("Hero :" + hero);
+        //Debug.Log("Hero :" + hero);
     }
 
     public void setLootItems(string item, int qty)
     {
         item = addUnderscore(item);
-        Debug.Log("loot string" + item);
+        //Debug.Log("loot string" + item);
         int itemType = (int)Enum.Parse(typeof(Item), item);
         item = removeUnderscore(item);
         lootItems[itemType] += qty;

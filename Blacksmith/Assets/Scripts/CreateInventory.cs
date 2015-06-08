@@ -1135,10 +1135,13 @@ public class CreateInventory : MonoBehaviour
                 return hiltQty[3];
             case "Expert Hilt":
                 return hiltQty[4];
+            default:
+                Debug.Log("Item parse not found");
+                return 0;
         }
 
-        Debug.Log("Item parse not found");
-        return 0;
+        //Debug.Log("Item parse not found");
+        //return 0;
     }
 
     public void addItem(string itemName, int quantity)
@@ -1174,6 +1177,9 @@ public class CreateInventory : MonoBehaviour
                 break;
             case "Titanium Ore":
                 oreQty[9] += quantity;
+                break;
+            case "Tin Ingot":
+                ingotQty[0] += quantity;
                 break;
             case "Copper Ingot":
                 ingotQty[1] += quantity;

@@ -106,7 +106,7 @@ public class SmelterRoutine : MonoBehaviour
 
     void OnMouseUp()
     {
-        Debug.Log("OnMouseUp");
+        //Debug.Log("OnMouseUp");
         if (smeltingCanvas.worldCamera == standbyCamera)
         {
             openSmeltingInterface();
@@ -169,7 +169,7 @@ public class SmelterRoutine : MonoBehaviour
         }
         startCraftingButton.SetActive(false);
         changeRoomButton.SetActive(false);
-        Debug.Log("Opening smelter interface");
+        //Debug.Log("Opening smelter interface");
         smeltingCanvas.worldCamera = workshopCamera;
         oreButton.SetActive(true);
     }

@@ -157,7 +157,7 @@ public class AdventureRoutine : MonoBehaviour
 
     public bool sendOnAdventure(Adventurer adventurer, string adventureZone, int levelDecrimentor)
     {
-        Debug.Log("Send on adventure called");
+        //Debug.Log("Send on adventure called");
         int adventurerIter;
         if (adventurers[0] == adventurer)
         {
@@ -202,7 +202,7 @@ public class AdventureRoutine : MonoBehaviour
         chanceToSucceedDbl *= 100.0f;
         chanceToSucceedInt = Convert.ToInt32(chanceToSucceedDbl);
         int randomNumber = UnityEngine.Random.Range(0, 101);
-        Debug.Log("Chance To Succeed: " + chanceToSucceedInt + ", randomNumer: " + randomNumber);
+        //Debug.Log("Chance To Succeed: " + chanceToSucceedInt + ", randomNumer: " + randomNumber);
 
         if (randomNumber >= chanceToSucceedInt)
         {
@@ -546,7 +546,7 @@ public class Adventurer
 
     public bool sendOnAdventure(string adventureZone)
     {
-        Debug.Log(isHome + " " + isReturned);
+        //Debug.Log(isHome + " " + isReturned);
         if (isHome && !isReturned)
         {
             this.adventureZone = (AdventureZone)Enum.Parse(typeof(AdventureZone), adventureZone);

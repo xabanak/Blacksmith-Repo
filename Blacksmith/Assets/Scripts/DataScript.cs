@@ -532,10 +532,10 @@ public class DataScript : MonoBehaviour
             return -1;
         }
 
-        Debug.Log("Getting stage " + stage + " for " + item);
+        //Debug.Log("Getting stage " + stage + " for " + item);
         int itemValue = (int)Enum.Parse(typeof(Item), item);
 
-        Debug.Log("Stage value is" + stageListing[itemValue, stage]);
+        //Debug.Log("Stage value is" + stageListing[itemValue, stage]);
         return stageListing[itemValue, stage];
     }
 
@@ -560,7 +560,7 @@ public class DataScript : MonoBehaviour
 
     public double getAdvTimeMult(int level, int levelDecrementer)
     {
-        Debug.Log(adventureTimeMultiplier[level - 1] + " " + adventureLevelMultiplier[levelDecrementer]);
+        //Debug.Log(adventureTimeMultiplier[level - 1] + " " + adventureLevelMultiplier[levelDecrementer]);
         return adventureTimeMultiplier[level - 1] * adventureLevelMultiplier[levelDecrementer];
     }
 

@@ -437,7 +437,7 @@ public class CraftRoutine : MonoBehaviour
     {
         timerSet = false;
         timerActive = true;
-        Debug.Log("startTimer set timerActive true");
+        //Debug.Log("startTimer set timerActive true");
     }
 
     void timerManager()
@@ -526,7 +526,7 @@ public class CraftRoutine : MonoBehaviour
         soundController.StopAllCrafingNoise();
         soundController.playWorkshopMusic();
         resetCrafting();
-        Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
+        //Debug.Log("Total Item Quality: " + itemQuality + "/" + possibleItemQuality);
         switchScene("workshop front");
         CreateItem();
         Destroy(craftingComponent);
@@ -583,7 +583,7 @@ public class CraftRoutine : MonoBehaviour
 
         stage.text = "Stage: " + (currentStage+1) + "/" + totalStages;
 		currentStageAbsVal = (dataScript.getStage(itemType, currentStage));
-        Debug.Log("Current stage abs val is:" + currentStageAbsVal);
+        //Debug.Log("Current stage abs val is:" + currentStageAbsVal);
 		
 		switch(currentStageAbsVal)
 		{
@@ -1050,7 +1050,7 @@ public class CraftRoutine : MonoBehaviour
 
                 if (shineSpot < 0 || shineSpot > 11)
                 {
-                    Debug.Log("Shinespot out of range!");
+                    //Debug.Log("Shinespot out of range!");
                 }
 
                 polishTimer = basePolishTime;
@@ -1189,7 +1189,7 @@ public class CraftRoutine : MonoBehaviour
                     }
                     slideRight = !slideRight;
                     grindCycles++;
-                    Debug.Log("Grind Cycles: " + grindCycles);
+                    //Debug.Log("Grind Cycles: " + grindCycles);
                 }
                 else if(grinderGauge.GetComponent<Slider>().value >= 99.9f)
                 {
@@ -1198,7 +1198,7 @@ public class CraftRoutine : MonoBehaviour
                     tempTxt.text = "Terrible";
                     slideRight = !slideRight;
                     grindCycles++;
-                    Debug.Log("Grind Cycles: " + grindCycles);
+                    //Debug.Log("Grind Cycles: " + grindCycles);
                 }
             }
             else
@@ -1224,7 +1224,7 @@ public class CraftRoutine : MonoBehaviour
                     }
                     slideRight = !slideRight;
                     grindCycles++;
-                    Debug.Log("Grind Cycles: " + grindCycles);
+                    //Debug.Log("Grind Cycles: " + grindCycles);
                 }
                 else if(grinderGauge.GetComponent<Slider>().value <= 0.1f)
                 {
@@ -1233,7 +1233,7 @@ public class CraftRoutine : MonoBehaviour
                     tempTxt.text = "Terrible";
                     slideRight = !slideRight;
                     grindCycles++;
-                    Debug.Log("Grind Cycles: " + grindCycles);
+                    //Debug.Log("Grind Cycles: " + grindCycles);
                 }
             }
         }
@@ -1259,7 +1259,7 @@ public class CraftRoutine : MonoBehaviour
             if (componentOnAnvil)
             {
                 soundController.PlayHammerHit();
-                Debug.Log(magnitude);
+                //Debug.Log(magnitude);
                 hammerSlider.value += hammerHitIncrease * magnitude;
             }
         }
@@ -1679,7 +1679,7 @@ public class CraftRoutine : MonoBehaviour
             Destroy(GameObject.Find("Shimmer " + i + "(Clone)"));
         }
 
-        Debug.Log("Destroy all called");
+        //Debug.Log("Destroy all called");
     }
 
 //**********************************************************************************************************************
