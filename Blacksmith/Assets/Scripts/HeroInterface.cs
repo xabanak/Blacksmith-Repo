@@ -336,7 +336,7 @@ public class HeroInterface : MonoBehaviour {
 
         foreach (Adventurer hero in adventurers)
         {
-            if (hero != null)
+            if (hero != null && !hero.getAdventuringState())
             {
                 statusButtons[i].interactable = true;
             }

@@ -30,6 +30,9 @@ public class MarketRoutine : MonoBehaviour {
     private const int totalTierOneItems = 8;
 
     // TIER TWO MERCHANT ITEMS
+    private string[] tierTwoNames;
+    private int[] tierTwoCosts;
+    private const int totalTierTwoItems = 8;
 
     // TIER THREE MERCHANT ITEMS
 
@@ -64,6 +67,24 @@ public class MarketRoutine : MonoBehaviour {
         tierOneCosts[6] = createInventory.hiltCost[0];
         tierOneCosts[7] = createInventory.handleCost[0];
 
+        tierTwoNames = new string[totalTierTwoItems];
+        tierTwoCosts = new int[totalTierTwoItems];
+        tierTwoNames[0] = createInventory.oreName[1];
+        tierTwoNames[1] = createInventory.woodName[1];
+        tierTwoNames[2] = createInventory.skinName[1];
+        tierTwoNames[3] = createInventory.leatherStrapName[1];
+        tierTwoNames[4] = createInventory.leatherPaddingName[1];
+        tierTwoNames[5] = createInventory.sheathName[1];
+        tierTwoNames[6] = createInventory.hiltName[1];
+        tierTwoNames[7] = createInventory.handleName[1];
+        tierTwoCosts[0] = createInventory.oreCost[1];
+        tierTwoCosts[1] = createInventory.woodCost[1];
+        tierTwoCosts[2] = createInventory.skinCost[1];
+        tierTwoCosts[3] = createInventory.leatherStrapCost[1];
+        tierTwoCosts[4] = createInventory.leatherPaddingCost[1];
+        tierTwoCosts[5] = createInventory.sheathCost[1];
+        tierTwoCosts[6] = createInventory.hiltCost[1];
+        tierTwoCosts[7] = createInventory.handleCost[1];
         
         // TEST METHOD
         /*GameObject tempSword = Instantiate(testSword) as GameObject;
@@ -148,8 +169,9 @@ public class MarketRoutine : MonoBehaviour {
     {
         int totalItems = 0;
         totalItems += totalTierOneItems;
+        totalItems += totalTierTwoItems;
 
-        for (int i = 0; i < totalItems; i++)
+        for (int i = 0; i < totalTierOneItems; i++)
         {
             tempObj = Instantiate(itemLine, buyBackground.transform.position, Quaternion.identity) as GameObject;
             tempObj.transform.SetParent(buyBackground.transform);
@@ -158,6 +180,17 @@ public class MarketRoutine : MonoBehaviour {
             tempObj.AddComponent<ConfirmPurchase>();
             tempObj.transform.GetChild(0).GetComponent<Text>().text = tierOneNames[i];
             tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + tierOneCosts[i] + " gold";
+        }
+
+        for (int i = 0; i < totalTierTwoItems; i++)
+        {
+            tempObj = Instantiate(itemLine, buyBackground.transform.position, Quaternion.identity) as GameObject;
+            tempObj.transform.SetParent(buyBackground.transform);
+            tempObj.transform.localScale = new Vector3(1, 1, 1);
+            tempObj.name = tierTwoNames[i];
+            tempObj.AddComponent<ConfirmPurchase>();
+            tempObj.transform.GetChild(0).GetComponent<Text>().text = tierTwoNames[i];
+            tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + tierTwoCosts[i] + " gold";
         }
 
         for (int i = totalItems; i < 19; i++)

@@ -34,7 +34,7 @@ public class MarketConfirmYesNo : MonoBehaviour {
     {
         if (gameController.decGold(marketRoutine.getCurrentPurchasePrice()))
         {
-            //Debug.Log("You have purchased " + marketRoutine.getCurrentPurchaseItem() + " for " + marketRoutine.getCurrentPurchasePrice() + " gold");
+            Debug.Log("You have purchased " + marketRoutine.getCurrentPurchaseItem() + " for " + marketRoutine.getCurrentPurchasePrice() + " gold");
             marketRoutine.updateGold();
             createInventory.addItem(marketRoutine.getCurrentPurchaseItem(), 1);
             marketRoutine.setMarketWindow();
