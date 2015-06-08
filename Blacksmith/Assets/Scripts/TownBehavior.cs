@@ -10,6 +10,7 @@ public class TownBehavior : MonoBehaviour {
     public GameObject travelHeroThree;
     public GameObject confirmationBox;
     public Text confirmationBoxText;
+    private SoundController soundController;
     private AdventureRoutine adventureRoutine;
     private Adventurer adventurerOne;
     private Adventurer adventurerTwo;
@@ -45,6 +46,7 @@ public class TownBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
+        soundController = GameObject.Find("GameController").GetComponent<SoundController>();
         adventureRoutine = GameObject.Find("GameController").GetComponent<AdventureRoutine>();
         buildingsBehavior = GameObject.Find("Town/Buildings").GetComponent<BuildingsBehavior>();
         marketRoutine = GetComponent<MarketRoutine>();
@@ -64,11 +66,15 @@ public class TownBehavior : MonoBehaviour {
         {
             tavernCanvas.gameObject.SetActive(true);
             tavernCanvas.worldCamera = townCamera;
+            soundController.stopAllMusic();
+            soundController.playTavernMusic();
         }
         else
         {
             tavernCanvas.gameObject.SetActive(false);
             tavernCanvas.worldCamera = tavernCamera;
+            soundController.playTavernMusic();
+            soundController.playTownMusic();
         }
     }
 
@@ -157,8 +163,7 @@ public class TownBehavior : MonoBehaviour {
         switch (from)
         {
             case "Travel":
-                travelCanvas.worldCamera = travelCamera;
-                travelCanvas.gameObject.SetActive(false);
+                toggleTravelWindow();
                 buildingsBehavior.toggleBuildings();
                 toggleTravelInfo(false);
                 travelHeroOne.GetComponent<Image>().color = Color.white;
@@ -166,13 +171,13 @@ public class TownBehavior : MonoBehaviour {
                 travelHeroThree.GetComponent<Image>().color = Color.white;
                 break;
             case "Tavern":
-                tavernCanvas.worldCamera = tavernCamera;
-                tavernCanvas.gameObject.SetActive(false);
+                toggleTavernWindow();
                 buildingsBehavior.toggleBuildings();
                 break;
             case "Market":
-                marketCanvas.worldCamera = marketCamera;
-                marketCanvas.gameObject.SetActive(false);
+                toggleMarketWindow();
+                //marketCanvas.worldCamera = marketCamera;
+                //marketCanvas.gameObject.SetActive(false);
                 buildingsBehavior.toggleBuildings();
                 break;
             default:
@@ -201,11 +206,17 @@ public class TownBehavior : MonoBehaviour {
                     tempHeroes[i].transform.GetChild(0).GetComponent<Text>().text = adventurers[i].getName();
                 }
             }
+
+            soundController.stopAllMusic();
+            soundController.playTravelMusic();
         }
         else
         {
             travelCanvas.gameObject.SetActive(false);
             travelCanvas.worldCamera = travelCamera;
+            soundController.playTravelMusic();
+            soundController.playTownMusic();
+
         }
     }
 
@@ -337,12 +348,15 @@ public class TownBehavior : MonoBehaviour {
             marketCanvas.gameObject.SetActive(true);
             marketCanvas.worldCamera = townCamera;
             marketRoutine.setMarketWindow();
-            
+            soundController.stopAllMusic();
+            soundController.playMarketMusic();
         }
         else
         {
             marketCanvas.gameObject.SetActive(false);
             marketCanvas.worldCamera = marketCamera;
+            soundController.playMarketMusic();
+            soundController.playTownMusic();
         }
     }
 

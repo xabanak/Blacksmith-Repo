@@ -3,22 +3,20 @@ using System.Collections;
 
 public class BuildingsBehavior : MonoBehaviour {
 
-   // private string name;
     private TownBehavior townBehavior;
+    private SoundController soundController;
 
     public GameObject tavern;
     public GameObject emporium;
     public GameObject market;
     public GameObject travel;
 
-	// Use this for initialization
 	void Start () 
     {
-        //name = gameObject.name;
         townBehavior = GameObject.Find("GameController").GetComponent<TownBehavior>();
+        soundController = GameObject.Find("GameController").GetComponent<SoundController>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
