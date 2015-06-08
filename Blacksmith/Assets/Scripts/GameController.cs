@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour {
         soundController = this.GetComponent<SoundController>();
         UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks;
         soundController.playWorkshopMusic();
-        gold = 1000;
+        gold = 100;
     }
 	// Use this for initialization
 	void Start () 

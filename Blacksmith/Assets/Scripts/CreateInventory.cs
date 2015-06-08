@@ -573,7 +573,7 @@ public class CreateInventory : MonoBehaviour
         ingotQty[0]++;
         sheathQty[0]++;
         hiltQty[0]++;
-        oreQty[0] = 5;
+        //oreQty[0] = 5;
     }
     // Calls all updates to update the current on hand inventory.
     public void BuildInventory()
