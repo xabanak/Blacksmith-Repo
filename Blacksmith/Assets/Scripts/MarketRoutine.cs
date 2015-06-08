@@ -88,8 +88,14 @@ public class MarketRoutine : MonoBehaviour {
         
         // TEST METHOD
         /*GameObject tempSword = Instantiate(testSword) as GameObject;
-        tempSword.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 11);
-        createInventory.addCraftedItem(tempSword);*/
+        tempSword.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 110);
+        createInventory.addCraftedItem(tempSword);
+        GameObject tempSword1 = Instantiate(testSword) as GameObject;
+        tempSword1.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 110);
+        createInventory.addCraftedItem(tempSword1);
+        GameObject tempSword2 = Instantiate(testSword) as GameObject;
+        tempSword2.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 110);
+        createInventory.addCraftedItem(tempSword2);*/
 	}
 	
     public bool getConfirm()

@@ -7,7 +7,7 @@ public class HammerBehavior : MonoBehaviour
 
     private Vector3 screenPoint;
     public Vector3 offset;
-    public Vector3 resetPoint;
+    private Vector3 resetPoint;
     private const float angleChange = 35.0f;
 
     public GameObject anvil;

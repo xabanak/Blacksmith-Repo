@@ -182,9 +182,9 @@ public class AdventureRoutine : MonoBehaviour
             heroStatus[adventurerIter].interactable = false;
             this.adventureZone[adventurerIter] = adventureZone;
             adventureDecriment[adventurerIter] = levelDecrimentor;
-            Debug.Log(adventureDecriment[adventurerIter]);
+            //Debug.Log(adventureDecriment[adventurerIter]);
             adventureTimers[adventurerIter] = baseTimer * dataScript.getAdvTimeMult(adventurers[adventurerIter].getLevel(), adventureDecriment[adventurerIter]);
-            Debug.Log(adventureTimers[adventurerIter]);
+            //Debug.Log(adventureTimers[adventurerIter]);
             return true;
         }
         return false;
@@ -663,13 +663,16 @@ public class Adventurer
                             //Debug.Log("Null lootOption found, breaking loop");
                             break;
                         }
-                        if (roll > lootOptions[k].getWeight())
+                        if (roll > lootOptions[k].getWeight() + currentWeight)
                         {
                             currentWeight += lootOptions[k].getWeight();
                             continue;
                         }
-                        inventoryController.addItem(lootOptions[k].getItem(), 1);
-                        heroInterface.setLootItems(lootOptions[k].getItem(), 1);
+                        if (lootOptions[k].getItem() != "Nothing")
+                        {
+                            inventoryController.addItem(lootOptions[k].getItem(), 1);
+                            heroInterface.setLootItems(lootOptions[k].getItem(), 1);
+                        }
                         //Debug.Log("Added " + lootOptions[k].getItem() + " to inventory.");
                         break;
                     }
