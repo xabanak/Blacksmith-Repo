@@ -6930,7 +6930,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8f89079e29105f64182c5aa698b7d5e5, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .699999988
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -12165,7 +12165,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 567314316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -103.044464, y: 97.001564, z: 0}
+  m_LocalPosition: {x: -83.1299973, y: 97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1987501770}
@@ -14080,7 +14080,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 673719707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.97097778, y: .594192505, z: 9.71679688}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 567314317}
@@ -15484,7 +15484,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 744087628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.97097778, y: .594192505, z: 9.71679688}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 567314317}
@@ -32894,9 +32894,10 @@ MonoBehaviour:
   baseWindow: {fileID: 1403005247}
   statusWindow: {fileID: 629654616}
   finishedAdventureWindow: {fileID: 2054699797}
-  heroStatus: {fileID: 1149571755}
-  adventureStatus: {fileID: 1372171334}
-  heroName: {fileID: 1574722014}
+  equipmentLine: {fileID: 143244, guid: e712ab9e4b50a594796704a3259b4fed, type: 2}
+  equipmentBackground: {fileID: 655335777}
+  equipmentWindow: {fileID: 1547141216}
+  equipmentBorder: {fileID: 1734315504}
   lootLines:
   - {fileID: 2048461037}
   - {fileID: 1574657872}
@@ -32904,7 +32905,12 @@ MonoBehaviour:
   - {fileID: 533787493}
   - {fileID: 601046362}
   - {fileID: 758966401}
+  heroName: {fileID: 1574722014}
   heroScript: {fileID: 1182966046}
+  nameText: {fileID: 294964384}
+  levelText: {fileID: 330427762}
+  powerText: {fileID: 1763648626}
+  adventurersText: {fileID: 736424936}
   statusButtons:
   - {fileID: 364789516}
   - {fileID: 899892644}
@@ -32912,14 +32918,8 @@ MonoBehaviour:
   equipButtonTest: {fileID: 2130382443}
   weaponButton: {fileID: 290819468}
   doneButton: {fileID: 1978265390}
-  nameText: {fileID: 294964384}
-  levelText: {fileID: 330427762}
-  powerText: {fileID: 1763648626}
-  adventurersText: {fileID: 736424936}
-  equipmentLine: {fileID: 143244, guid: e712ab9e4b50a594796704a3259b4fed, type: 2}
-  equipmentBackground: {fileID: 655335777}
-  equipmentWindow: {fileID: 1547141216}
-  equipmentBorder: {fileID: 1734315504}
+  heroStatus: {fileID: 1149571755}
+  adventureStatus: {fileID: 1372171334}
   swordImage: {fileID: 21300000, guid: 173b8e6a6cf9d814ba2300bcfb95819f, type: 3}
 --- !u!114 &1565756067
 MonoBehaviour:

@@ -255,6 +255,7 @@ public class Adventurer
     private string name;
     private int level;
     private int powerLevel;
+    private int adventures;
     private int oreModifier;
     private int skinsModifier;
     private int woodModifier;
@@ -304,7 +305,8 @@ public class Adventurer
         isReturned = false;
         inventory = new GameObject[INV_OBJECTS];
         portrait = Resources.Load("Images/First_warrior_trans", typeof(Sprite)) as Sprite;
-        Debug.Log(portrait);
+        adventures = 0;
+        //Debug.Log(portrait);
 
         oreModifier = UnityEngine.Random.Range(0, 6);
         //Debug.Log("oreModifier: " + oreModifier);
@@ -666,9 +668,15 @@ public class Adventurer
 
             levelUp();
             isReturned = false;
+            adventures++;
             return true;
         }
         return false;
+    }
+
+    public int getAdventures()
+    {
+        return adventures;
     }
 
     public void returnFromAdventure()
@@ -700,5 +708,16 @@ public class Adventurer
     public Sprite getPortrait()
     {
         return portrait;
+    }
+
+    public GameObject getEquipment(string item)
+    {
+        switch (item)
+        {
+            case "sword":
+                return inventory[0];
+        }
+
+        return null;
     }
 }

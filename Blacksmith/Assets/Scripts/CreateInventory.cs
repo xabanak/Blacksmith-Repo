@@ -167,15 +167,15 @@ public class CreateInventory : MonoBehaviour
         }
 
         oreCost[0] = 50;
-        oreCost[1] = 100;
-        oreCost[2] = 200;
-        oreCost[3] = 300;
-        oreCost[4] = 400;
-        oreCost[5] = 500;
-        oreCost[6] = 600;
-        oreCost[7] = 700;
-        oreCost[8] = 800;
-        oreCost[9] = 900;
+        oreCost[1] = 150;
+        oreCost[2] = 300;
+        oreCost[3] = 500;
+        oreCost[4] = 700;
+        oreCost[5] = 1000;
+        oreCost[6] = 1200;
+        oreCost[7] = 1400;
+        oreCost[8] = 1600;
+        oreCost[9] = 2000;
 
         oreName[0] = "Tin Ore";
         oreName[1] = "Copper Ore";
@@ -200,15 +200,15 @@ public class CreateInventory : MonoBehaviour
         }
 
         ingotCost[0] = 100;
-        ingotCost[1] = 200;
-        ingotCost[2] = 300;
-        ingotCost[3] = 400;
-        ingotCost[4] = 500;
-        ingotCost[5] = 600;
-        ingotCost[6] = 700;
-        ingotCost[7] = 800;
-        ingotCost[8] = 900;
-        ingotCost[9] = 1000;
+        ingotCost[1] = 300;
+        ingotCost[2] = 600;
+        ingotCost[3] = 1000;
+        ingotCost[4] = 1400;
+        ingotCost[5] = 2000;
+        ingotCost[6] = 2400;
+        ingotCost[7] = 2800;
+        ingotCost[8] = 3200;
+        ingotCost[9] = 4000;
         
 
         ingotName[0] = "Tin Ingot";
@@ -233,16 +233,16 @@ public class CreateInventory : MonoBehaviour
             skinQty[i] = 0;
         }
 
-        skinCost[0] = 50;
+        skinCost[0] = 30;
         skinCost[1] = 100;
-        skinCost[2] = 150;
-        skinCost[3] = 200;
-        skinCost[4] = 250;
-        skinCost[5] = 300;
-        skinCost[6] = 350;
-        skinCost[7] = 400;
-        skinCost[8] = 450;
-        skinCost[9] = 500;
+        skinCost[2] = 250;
+        skinCost[3] = 400;
+        skinCost[4] = 600;
+        skinCost[5] = 800;
+        skinCost[6] = 1000;
+        skinCost[7] = 1200;
+        skinCost[8] = 1400;
+        skinCost[9] = 1600;
 
 
         skinName[0] = "Sheep Skin";
@@ -267,16 +267,16 @@ public class CreateInventory : MonoBehaviour
             leatherQty[i] = 0;
         }
 
-        leatherCost[0] = 100;
+        leatherCost[0] = 60;
         leatherCost[1] = 200;
-        leatherCost[2] = 300;
-        leatherCost[3] = 400;
-        leatherCost[4] = 500;
-        leatherCost[5] = 600;
-        leatherCost[6] = 700;
-        leatherCost[7] = 800;
-        leatherCost[8] = 900;
-        leatherCost[9] = 1000;
+        leatherCost[2] = 500;
+        leatherCost[3] = 800;
+        leatherCost[4] = 1200;
+        leatherCost[5] = 1600;
+        leatherCost[6] = 2000;
+        leatherCost[7] = 2400;
+        leatherCost[8] = 2800;
+        leatherCost[9] = 3200;
 
         leatherName[0] = "Sheep Leather";
         leatherName[1] = "Goat Leather";
@@ -366,16 +366,16 @@ public class CreateInventory : MonoBehaviour
             woodQty[i] = 0;
         }
 
-        woodCost[0] = 50;
-        woodCost[1] = 100;
+        woodCost[0] = 40;
+        woodCost[1] = 80;
         woodCost[2] = 200;
-        woodCost[3] = 300;
-        woodCost[4] = 400;
-        woodCost[5] = 500;
-        woodCost[6] = 600;
-        woodCost[7] = 700;
-        woodCost[8] = 800;
-        woodCost[9] = 900;
+        woodCost[3] = 350;
+        woodCost[4] = 500;
+        woodCost[5] = 700;
+        woodCost[6] = 900;
+        woodCost[7] = 1100;
+        woodCost[8] = 1300;
+        woodCost[9] = 1500;
 
         woodName[0] = "Raw Elm";
         woodName[1] = "Raw Alder";
@@ -399,16 +399,16 @@ public class CreateInventory : MonoBehaviour
             lumberQty[i] = 0;
         }
 
-        lumberCost[0] = 100;
-        lumberCost[1] = 200;
-        lumberCost[2] = 300;
-        lumberCost[3] = 400;
-        lumberCost[4] = 500;
-        lumberCost[5] = 600;
-        lumberCost[6] = 700;
-        lumberCost[7] = 800;
-        lumberCost[8] = 900;
-        lumberCost[9] = 1000;
+        lumberCost[0] = 80;
+        lumberCost[1] = 160;
+        lumberCost[2] = 400;
+        lumberCost[3] = 700;
+        lumberCost[4] = 1000;
+        lumberCost[5] = 1400;
+        lumberCost[6] = 1800;
+        lumberCost[7] = 2200;
+        lumberCost[8] = 2600;
+        lumberCost[9] = 3000;
 
         lumberName[0] = "Elm Lumber";
         lumberName[1] = "Alder Lumber";
@@ -434,11 +434,11 @@ public class CreateInventory : MonoBehaviour
             leatherStrapQty[i] = 0;
         }
 
-        leatherStrapCost[0] = 25;
-        leatherStrapCost[1] = 50;
+        leatherStrapCost[0] = 5;
+        leatherStrapCost[1] = 25;
         leatherStrapCost[2] = 100;
-        leatherStrapCost[3] = 150;
-        leatherStrapCost[4] = 200;
+        leatherStrapCost[3] = 300;
+        leatherStrapCost[4] = 500;
 
         leatherStrapName[0] = "Basic Leather Strap";
         leatherStrapName[1] = "Standard Leather Strap";
@@ -456,11 +456,11 @@ public class CreateInventory : MonoBehaviour
             leatherPaddingQty[i] = 0;
         }
 
-        leatherPaddingCost[0] = 25;
-        leatherPaddingCost[1] = 50;
+        leatherPaddingCost[0] = 5;
+        leatherPaddingCost[1] = 25;
         leatherPaddingCost[2] = 100;
-        leatherPaddingCost[3] = 150;
-        leatherPaddingCost[4] = 200;
+        leatherPaddingCost[3] = 300;
+        leatherPaddingCost[4] = 500;
 
         leatherPaddingName[0] = "Basic Leather Padding";
         leatherPaddingName[1] = "Standard Leather Padding";
@@ -479,11 +479,11 @@ public class CreateInventory : MonoBehaviour
             hiltQty[i] = 0;
         }
 
-        hiltCost[0] = 50;
-        hiltCost[1] = 100;
-        hiltCost[2] = 150;
-        hiltCost[3] = 250;
-        hiltCost[4] = 500;
+        hiltCost[0] = 3;
+        hiltCost[1] = 30;
+        hiltCost[2] = 75;
+        hiltCost[3] = 150;
+        hiltCost[4] = 300;
 
         hiltName[0] = "Basic Hilt";
         hiltName[1] = "Standard Hilt";
@@ -502,11 +502,11 @@ public class CreateInventory : MonoBehaviour
             sheathQty[i] = 0;
         }
 
-        sheathCost[0] = 25;
-        sheathCost[1] = 50;
-        sheathCost[2] = 75;
-        sheathCost[3] = 100;
-        sheathCost[4] = 200;
+        sheathCost[0] = 2;
+        sheathCost[1] = 20;
+        sheathCost[2] = 60;
+        sheathCost[3] = 125;
+        sheathCost[4] = 250;
 
         sheathName[0] = "Basic Sheath";
         sheathName[1] = "Standard Sheath";
@@ -525,11 +525,11 @@ public class CreateInventory : MonoBehaviour
             handleQty[i] = 0;
         }
 
-        handleCost[0] = 30;
-        handleCost[1] = 60;
+        handleCost[0] = 4;
+        handleCost[1] = 40;
         handleCost[2] = 90;
-        handleCost[3] = 120;
-        handleCost[4] = 250;
+        handleCost[3] = 200;
+        handleCost[4] = 400;
 
         handleName[0] = "Basic Handle";
         handleName[1] = "Standard Handle";

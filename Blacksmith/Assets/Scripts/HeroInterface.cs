@@ -8,33 +8,33 @@ public class HeroInterface : MonoBehaviour {
     private DataScript dataScript;
     private Adventurer[] adventurers;
     private AdventureRoutine adventurerRoutine;
+    private CreateInventory createInventory;
     public GameObject baseWindow;
     public GameObject statusWindow;
     public GameObject finishedAdventureWindow;
-    public Button heroStatus;
-    public Button adventureStatus;
-    public Text heroName;
-    public Text[] lootLines;
-    private const int totalLootLines = 6;
-    public Text heroScript;
-    public Button[] statusButtons;
-    private int[] lootItems;
-    private const int totalLootItems = 39;
-    private int currentHeroStatus;
-    private bool[] heroHasReturned;
-    private CreateInventory createInventory;
-    public Button equipButtonTest;
-    public Button weaponButton;
-    public Button doneButton;
-    public Text nameText;
-    public Text levelText;
-    public Text powerText;
-    public Text adventurersText;
     public GameObject equipmentLine;
     public GameObject equipmentBackground;
     public GameObject equipmentWindow;
     public GameObject equipmentBorder;
+    public Text[] lootLines;
+    public Text heroName;
+    public Text heroScript;
+    public Text nameText;
+    public Text levelText;
+    public Text powerText;
+    public Text adventurersText;
+    public Button[] statusButtons;
+    public Button equipButtonTest;
+    public Button weaponButton;
+    public Button doneButton;
+    public Button heroStatus;
+    public Button adventureStatus;
     public Sprite swordImage;
+    private const int totalLootItems = 39;
+    private const int totalLootLines = 6;
+    private int currentHeroStatus;
+    private int[] lootItems;
+    private bool[] heroHasReturned;
 
 	// Use this for initialization
 	void Start () 
@@ -246,16 +246,9 @@ public class HeroInterface : MonoBehaviour {
     {
         adventurers[currentHeroStatus].equip(item);
         createInventory.swords.RemoveItem(item);
-        weaponButton.GetComponent<Image>().sprite = swordImage;
-        weaponButton.transform.GetChild(0).GetComponent<Text>().text = "";
         clearEquipmentList();
         hideEquipmentWindow();
         setHeroInfo();
-    }
-
-    public void pullUpEquipHero()
-    {
-        equipButtonTest.gameObject.SetActive(true);
     }
 
     public void pullUpStatus()
@@ -267,10 +260,20 @@ public class HeroInterface : MonoBehaviour {
 
     private void setHeroInfo()
     {
-        nameText.text = "Name: " + adventurers[currentHeroStatus].getName();
+        nameText.text = adventurers[currentHeroStatus].getName();
         levelText.text = "Level: " + adventurers[currentHeroStatus].getLevel();
         powerText.text = "Power: " + adventurers[currentHeroStatus].getPowerLevel();
-        adventurersText.text = "Adventurers: 0";
+        adventurersText.text = "Adventures: " + adventurers[currentHeroStatus].getAdventures();
+        if (adventurers[currentHeroStatus].getEquipment("sword") != null)
+        {
+            weaponButton.image.overrideSprite = swordImage;
+            weaponButton.transform.GetChild(0).GetComponent<Text>().text = "";
+        }
+        else
+        {
+            weaponButton.image.overrideSprite = null;
+            weaponButton.transform.GetChild(0).GetComponent<Text>().text = "Weapon";
+        }
     }
 
     public void closeHeroStatus()

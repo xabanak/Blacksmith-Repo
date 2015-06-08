@@ -64,11 +64,11 @@ public class MarketRoutine : MonoBehaviour {
         tierOneCosts[6] = createInventory.hiltCost[0];
         tierOneCosts[7] = createInventory.handleCost[0];
 
-        /*
+        
         // TEST METHOD
         GameObject tempSword = Instantiate(testSword) as GameObject;
         tempSword.GetComponent<ItemScript>().SetItemStats("Tin", "Sword", "Good", 11);
-        createInventory.addCraftedItem(tempSword);*/
+        createInventory.addCraftedItem(tempSword);
 	}
 	
     public bool getConfirm()
