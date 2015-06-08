@@ -583,7 +583,7 @@ public class CreateInventory : MonoBehaviour
         UpdateArmorList();
         UpdateMaterialList();
         UpdateComponentList();
-        //UpdateMiscList();
+        UpdateMiscList();
 
         DisableInventoryWindows();
     }
@@ -599,6 +599,12 @@ public class CreateInventory : MonoBehaviour
             totalItems++;
         }
 
+        if (totalItems == 0)
+        {
+            addInventoryLine("You have no weapons", 0, weaponBackground, true);
+            totalItems++;
+        }
+
         for (int i = totalItems; i < 19; i++)
         {
             addInventoryLine("", 0, weaponBackground, true);
@@ -608,6 +614,8 @@ public class CreateInventory : MonoBehaviour
     // Creates a list displaying all the armor/shields in inventory.
     void UpdateArmorList()
     {
+        totalItems = 0;
+
         for (int i = 0; i < shields.GetCurrentSize(); i++)
         {
             addInventoryLine(shields.GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0, armorBackground);
@@ -654,6 +662,17 @@ public class CreateInventory : MonoBehaviour
         {
             addInventoryLine(pauldrons.GetItem(i).GetComponent<ItemScript>().GetItemDescription(), 0, armorBackground);
             totalItems++;
+        }
+
+        if (totalItems == 0)
+        {
+            addInventoryLine("You have no armor", 0, armorBackground, true);
+            totalItems++;
+        }
+
+        for (int i = totalItems; i < 19; i++)
+        {
+            addInventoryLine("", 0, armorBackground, true);
         }
     }
 
@@ -834,10 +853,21 @@ public class CreateInventory : MonoBehaviour
     }
 
     // Creates a list displaying all the miscellaneous items in inventory.
-    /*void UpdateMiscList()
+    void UpdateMiscList()
     {
+        totalItems = 0;
 
-    }*/
+        if (totalItems == 0)
+        {
+            addInventoryLine("You have no miscellaneous items", 0, miscBackground, true);
+            totalItems++;
+        }
+
+        for (int i = totalItems; i < 19; i++)
+        {
+            addInventoryLine("", 0, miscBackground, true);
+        }
+    }
 
     // Set the weapons window as the only active window
     public void viewWeaponList()

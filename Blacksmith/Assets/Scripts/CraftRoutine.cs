@@ -264,6 +264,7 @@ public class CraftRoutine : MonoBehaviour
     public float pauseTimer;
     //private bool tutorial;
     private TutorialRoutine tutorialRoutine;
+    private HeroInterface heroInterface;
     public bool needSetAnnouncement;
 
     void Start()
@@ -275,6 +276,7 @@ public class CraftRoutine : MonoBehaviour
         dunk = false;
         grindCycles = 0;
 
+        heroInterface = GameObject.Find("GameController").GetComponent<HeroInterface>();
         fileBehavior = GameObject.Find("Crafting/File").GetComponent<FileBehavior>();
         needSetAnnouncement = false;
         tutorialRoutine = GameObject.Find("GameController").GetComponent<TutorialRoutine>();
@@ -502,6 +504,7 @@ public class CraftRoutine : MonoBehaviour
     {
         if (itemSet && materialSet && currentStage == -1)
         {
+            heroInterface.deactivateHeroInterface();
             soundController.stopAllMusic();
             soundController.PlayCraftingMusic();
             startButton.SetActive(false);
@@ -523,6 +526,7 @@ public class CraftRoutine : MonoBehaviour
 
     void endCrafting()
     {
+        heroInterface.activateHeroInterface();
         soundController.StopAllCrafingNoise();
         soundController.playWorkshopMusic();
         resetCrafting();
@@ -1997,6 +2001,11 @@ public class CraftRoutine : MonoBehaviour
     public void Pause()
     {
         paused = !paused;
+    }
+
+    public void unPause()
+    {
+        paused = false;
     }
 
     public bool isPaused()

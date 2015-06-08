@@ -18,6 +18,7 @@ public class TownBehavior : MonoBehaviour {
     private Adventurer[] adventurers;
     private BuildingsBehavior buildingsBehavior;
     private MarketRoutine marketRoutine;
+    private HeroInterface heroInterface;
     public Text textOne;
     public Text textTwo;
     public Text textThree;
@@ -49,6 +50,7 @@ public class TownBehavior : MonoBehaviour {
         soundController = GameObject.Find("GameController").GetComponent<SoundController>();
         adventureRoutine = GameObject.Find("GameController").GetComponent<AdventureRoutine>();
         buildingsBehavior = GameObject.Find("Town/Buildings").GetComponent<BuildingsBehavior>();
+        heroInterface = GameObject.Find("GameController").GetComponent<HeroInterface>();
         marketRoutine = GetComponent<MarketRoutine>();
         adventurers = adventureRoutine.getAdventurers();
         newHeroes = true;
@@ -66,6 +68,7 @@ public class TownBehavior : MonoBehaviour {
         {
             tavernCanvas.gameObject.SetActive(true);
             tavernCanvas.worldCamera = townCamera;
+            heroInterface.deactivateHeroInterface();
             soundController.stopAllMusic();
             soundController.playTavernMusic();
         }
@@ -73,6 +76,7 @@ public class TownBehavior : MonoBehaviour {
         {
             tavernCanvas.gameObject.SetActive(false);
             tavernCanvas.worldCamera = tavernCamera;
+            heroInterface.activateHeroInterface();
             soundController.playTavernMusic();
             soundController.playTownMusic();
         }
@@ -208,6 +212,7 @@ public class TownBehavior : MonoBehaviour {
                 }
             }
 
+            heroInterface.deactivateHeroInterface();
             soundController.stopAllMusic();
             soundController.playTravelMusic();
         }
@@ -215,6 +220,7 @@ public class TownBehavior : MonoBehaviour {
         {
             travelCanvas.gameObject.SetActive(false);
             travelCanvas.worldCamera = travelCamera;
+            heroInterface.activateHeroInterface();
             soundController.playTravelMusic();
             soundController.playTownMusic();
 
@@ -349,6 +355,7 @@ public class TownBehavior : MonoBehaviour {
             marketCanvas.gameObject.SetActive(true);
             marketCanvas.worldCamera = townCamera;
             marketRoutine.setMarketWindow();
+            heroInterface.deactivateHeroInterface();
             soundController.stopAllMusic();
             soundController.playMarketMusic();
         }
@@ -356,6 +363,7 @@ public class TownBehavior : MonoBehaviour {
         {
             marketCanvas.gameObject.SetActive(false);
             marketCanvas.worldCamera = marketCamera;
+            heroInterface.activateHeroInterface();
             soundController.playMarketMusic();
             soundController.playTownMusic();
         }

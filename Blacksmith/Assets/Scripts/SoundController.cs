@@ -188,7 +188,7 @@ public class SoundController : MonoBehaviour {
         }
         else
         {
-            tavernMusic.Pause();
+            tavernMusic.Stop();
         }
     }
 
@@ -200,7 +200,7 @@ public class SoundController : MonoBehaviour {
         }
         else
         {
-            travelMusic.Pause();
+            travelMusic.Stop();
         }
     }
 
@@ -212,7 +212,7 @@ public class SoundController : MonoBehaviour {
         }
         else
         {
-            marketMusic.Pause();
+            marketMusic.Stop();
         }
     }
 

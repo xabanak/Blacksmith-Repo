@@ -67,9 +67,21 @@ public class HeroInterface : MonoBehaviour {
     public void showBaseWindow(int hero)
     {
         adventurers = adventurerRoutine.getAdventurers();
-        baseWindow.SetActive(true);
-        heroName.text = adventurers[hero].getName();
-        currentHeroStatus = hero;
+        if (!statusWindow.activeSelf)
+        {
+            baseWindow.SetActive(true);
+            heroName.text = adventurers[hero].getName();
+            currentHeroStatus = hero;
+
+            if (adventurers[hero].canAdventure())
+            {
+                adventureStatus.interactable = false;
+            }
+            else
+            {
+                adventureStatus.interactable = true;
+            }
+        }
         //Debug.Log("Hero :" + hero);
     }
 
@@ -306,6 +318,32 @@ public class HeroInterface : MonoBehaviour {
         }
     }
 
+    public void deactivateHeroInterface()
+    {
+        closeHeroStatus();
+        hideEquipmentWindow();
+        resetBaseWindow();
+        foreach (Button status in statusButtons)
+        {
+            status.interactable = false;
+        }
+    }
+
+    public void activateHeroInterface()
+    {
+        adventurers = adventurerRoutine.getAdventurers();
+        int i = 0;
+
+        foreach (Adventurer hero in adventurers)
+        {
+            if (hero != null)
+            {
+                statusButtons[i].interactable = true;
+            }
+
+            i++;
+        }
+    }
     public void buildEquipmentList()
     {
         int totalItems = 0;

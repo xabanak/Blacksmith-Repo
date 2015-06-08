@@ -73,6 +73,7 @@ public class TutorialRoutine : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && tutorialDisplayed)
         {
             toggleTutorialActive();
+            craftRoutine.unPause();
         }
 
         if (tutorialStep == 34 && Input.GetKeyDown(KeyCode.I))
@@ -124,7 +125,7 @@ public class TutorialRoutine : MonoBehaviour {
         if (tutorialDisplayed)
         {
             toggleTutorialActive();
-            craftRoutine.Pause();
+            craftRoutine.unPause();
         }
     }
 
@@ -323,8 +324,11 @@ public class TutorialRoutine : MonoBehaviour {
     void initiateCrafting()
     {
         toggleTutorialActive();
-        message.text = "You are now ready to start crafting. Click the ready button to get started.";
-        pointersLeftRight[0].SetActive(true);
+        message.text = "You are now ready to start crafting. Click the Craft button to get started.";
+        text.transform.position = new Vector3(text.transform.position.x + 5.5f, text.transform.position.y, text.transform.position.z);
+        textBox.transform.position = new Vector3(textBox.transform.position.x + 5.5f, textBox.transform.position.y, textBox.transform.position.z);
+        //pointersLeftRight[0].SetActive(true);
+        pointersUpDown[6].SetActive(true);
         increaseTutorialStep();
     }
 
@@ -385,8 +389,8 @@ public class TutorialRoutine : MonoBehaviour {
         toggleTutorialActive();
         message.text = "Now that the component is in the forge click on the top handle of the bellows and drag down then up to increase the heat. ";
         message.text += "Repeat this process to increase heat until the indicator nears the right end of the gauge.";
-        text.transform.position = new Vector3(text.transform.position.x + 5, text.transform.position.y, text.transform.position.z);
-        textBox.transform.position = new Vector3(textBox.transform.position.x + 5, textBox.transform.position.y, textBox.transform.position.z);
+        text.transform.position = new Vector3(text.transform.position.x - 0.5f, text.transform.position.y, text.transform.position.z);
+        textBox.transform.position = new Vector3(textBox.transform.position.x - 0.5f, textBox.transform.position.y, textBox.transform.position.z);
         shimmers[1].SetActive(true);
         increaseTutorialStep();
     }
@@ -461,6 +465,8 @@ public class TutorialRoutine : MonoBehaviour {
         message.text  = "The hardening stage is now complete. Next is the grinding stage.";
         text.transform.position = new Vector3(text.transform.position.x + 5, text.transform.position.y - 5, text.transform.position.z);
         textBox.transform.position = new Vector3(textBox.transform.position.x + 5, textBox.transform.position.y - 5, textBox.transform.position.z);
+        component = GameObject.Find("Component(Clone)");
+        component.SetActive(false);
         increaseTutorialStep();
     }
 
@@ -469,6 +475,7 @@ public class TutorialRoutine : MonoBehaviour {
     {
         toggleTutorialActive();
         message.text = "Grab your component and put it onto the grinding wheel.";
+        component.SetActive(true);
         shimmers[3].SetActive(true);
         pointersLeftRight[6].SetActive(true);
         increaseTutorialStep();
@@ -478,7 +485,7 @@ public class TutorialRoutine : MonoBehaviour {
     void grindingStage3()
     {
         toggleTutorialActive();
-        message.text = "Now the grinding wheel is fired up. You need to keep the component balanced while grinding.";
+        message.text = "Now the grinding wheel is fired up. You need to slide the component back and forth across the grinding wheel.";
         increaseTutorialStep();
     }
 
@@ -486,7 +493,7 @@ public class TutorialRoutine : MonoBehaviour {
     void grindingStage4()
     {
         toggleTutorialActive();
-        message.text = "Use the 'a' and 'd' keys to balance the component. You get the best quality by keeping it level. The stage will complete when the timer runs out.";
+        message.text = "Use the 'a' and 'd' keys to slide the component left and right. You get the best quality by reversing direction in the green on each side of the gauge.";
         increaseTutorialStep();
     }
 

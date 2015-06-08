@@ -2043,7 +2043,7 @@ RectTransform:
   m_RootOrder: 10
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -62, y: 188}
+  m_AnchoredPosition: {x: -83.0999985, y: 188}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &103767233
@@ -2631,6 +2631,10 @@ Prefab:
     - target: {fileID: 22427874, guid: cb240a354afd71748ae32103b4be27a3, type: 2}
       propertyPath: m_Pivot.y
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403320, guid: cb240a354afd71748ae32103b4be27a3, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb240a354afd71748ae32103b4be27a3, type: 2}
@@ -5514,7 +5518,7 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -7.62939453e-05, y: -.000122070312}
+  m_AnchoredPosition: {x: 52, y: -46}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &279664665
@@ -6566,7 +6570,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -50, y: 180}
+  m_AnchoredPosition: {x: -25, y: 180}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &314208146
@@ -6986,7 +6990,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: .699999988
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -7861,7 +7865,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -10209,6 +10213,10 @@ Prefab:
     - target: {fileID: 22494118, guid: 82b8a513b69cd9d4d93e839a7e2dd9c0, type: 2}
       propertyPath: m_Pivot.y
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11447022, guid: 82b8a513b69cd9d4d93e839a7e2dd9c0, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82b8a513b69cd9d4d93e839a7e2dd9c0, type: 2}
@@ -13189,7 +13197,7 @@ MonoBehaviour:
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_FontSize: 10
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -18870,6 +18878,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 11445924, guid: af7ed15699eb8e64ebf0b81c6c99429f, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af7ed15699eb8e64ebf0b81c6c99429f, type: 2}
   m_IsPrefabParent: 0
@@ -19162,7 +19174,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 50, y: 180}
+  m_AnchoredPosition: {x: 25, y: 180}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &891597557
@@ -19787,6 +19799,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 11491506, guid: 1626992aac5d66c44a5d0c88d012b2b5, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1626992aac5d66c44a5d0c88d012b2b5, type: 2}
   m_IsPrefabParent: 0
@@ -20273,7 +20289,7 @@ RectTransform:
   m_RootOrder: 16
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -159, y: -36}
+  m_AnchoredPosition: {x: -105, y: -36}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &968144533
@@ -24404,6 +24420,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 11455098, guid: 81a34ff03615a0e4dbcdbe6d5a20440b, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 81a34ff03615a0e4dbcdbe6d5a20440b, type: 2}
   m_IsPrefabParent: 0
@@ -26851,6 +26871,10 @@ Prefab:
     - target: {fileID: 22465360, guid: 30ef95d83dcf7c542801fc95b3f96fdd, type: 2}
       propertyPath: m_Pivot.y
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11431220, guid: 30ef95d83dcf7c542801fc95b3f96fdd, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 30ef95d83dcf7c542801fc95b3f96fdd, type: 2}
@@ -31387,6 +31411,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 11410998, guid: d94cfca34a3d92a4583be386c897f0fc, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d94cfca34a3d92a4583be386c897f0fc, type: 2}
   m_IsPrefabParent: 0
@@ -32176,6 +32204,10 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1565756066}
+    - target: {fileID: 11422278, guid: cd59152dd1ada0344aa9ab19521536cf, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd59152dd1ada0344aa9ab19521536cf, type: 2}
   m_IsPrefabParent: 0
@@ -32399,7 +32431,7 @@ RectTransform:
   m_RootOrder: 15
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -295, y: 208}
+  m_AnchoredPosition: {x: -282, y: -207}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1516949212
@@ -34104,6 +34136,10 @@ Prefab:
     - target: {fileID: 22457034, guid: 4a3b6056a3624224f8048a4c689bbd31, type: 2}
       propertyPath: m_Pivot.y
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438008, guid: 4a3b6056a3624224f8048a4c689bbd31, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a3b6056a3624224f8048a4c689bbd31, type: 2}
