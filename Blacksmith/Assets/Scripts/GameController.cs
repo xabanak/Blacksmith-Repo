@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour {
     public AudioSource invClosed;
 
     private int gold;
+    private int tier;
 
     void Awake()
     {
@@ -66,15 +67,6 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        
-//         if (workshop && !soundController.isWorkshopMusicPlaying())
-//         {
-//             soundController.playWorkshopMusic();
-//         }
-//         if (craftRoutine.isCrafting())
-//         {
-//             soundController.playWorkshopMusic();
-//         }
         if (Input.GetKeyDown(KeyCode.I))
         {
             InventoryToggle();
@@ -210,5 +202,15 @@ public class GameController : MonoBehaviour {
     public void displayCredits()
     {
         creditsBackground.SetActive(!creditsBackground.activeSelf);
+    }
+
+    public void incTier()
+    {
+        tier++;
+    }
+
+    public int getTier()
+    {
+        return tier;
     }
 }

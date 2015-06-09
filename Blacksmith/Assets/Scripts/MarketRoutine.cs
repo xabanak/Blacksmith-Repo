@@ -32,9 +32,12 @@ public class MarketRoutine : MonoBehaviour {
     // TIER TWO MERCHANT ITEMS
     private string[] tierTwoNames;
     private int[] tierTwoCosts;
-    private const int totalTierTwoItems = 8;
+    private const int totalTierTwoItems = 3;
 
     // TIER THREE MERCHANT ITEMS
+    private string[] tierThreeNames;
+    private int[] tierThreeCosts;
+    private const int totalTierThreeItems = 8;
 
     // TIER FOUR MERCHANT ITEMS
 
@@ -72,19 +75,28 @@ public class MarketRoutine : MonoBehaviour {
         tierTwoNames[0] = createInventory.oreName[1];
         tierTwoNames[1] = createInventory.woodName[1];
         tierTwoNames[2] = createInventory.skinName[1];
-        tierTwoNames[3] = createInventory.leatherStrapName[1];
-        tierTwoNames[4] = createInventory.leatherPaddingName[1];
-        tierTwoNames[5] = createInventory.sheathName[1];
-        tierTwoNames[6] = createInventory.hiltName[1];
-        tierTwoNames[7] = createInventory.handleName[1];
         tierTwoCosts[0] = createInventory.oreCost[1];
         tierTwoCosts[1] = createInventory.woodCost[1];
         tierTwoCosts[2] = createInventory.skinCost[1];
-        tierTwoCosts[3] = createInventory.leatherStrapCost[1];
-        tierTwoCosts[4] = createInventory.leatherPaddingCost[1];
-        tierTwoCosts[5] = createInventory.sheathCost[1];
-        tierTwoCosts[6] = createInventory.hiltCost[1];
-        tierTwoCosts[7] = createInventory.handleCost[1];
+
+        tierThreeNames = new string[totalTierThreeItems];
+        tierThreeCosts = new int[totalTierThreeItems];
+        tierThreeNames[0] = createInventory.oreName[2];
+        tierThreeNames[1] = createInventory.woodName[2];
+        tierThreeNames[2] = createInventory.skinName[2];
+        tierThreeNames[3] = createInventory.leatherStrapName[1];
+        tierThreeNames[4] = createInventory.leatherPaddingName[1];
+        tierThreeNames[5] = createInventory.sheathName[1];
+        tierThreeNames[6] = createInventory.hiltName[1];
+        tierThreeNames[7] = createInventory.handleName[1];
+        tierThreeCosts[0] = createInventory.oreCost[2];
+        tierThreeCosts[1] = createInventory.woodCost[2];
+        tierThreeCosts[2] = createInventory.skinCost[2];
+        tierThreeCosts[3] = createInventory.leatherStrapCost[1];
+        tierThreeCosts[4] = createInventory.leatherPaddingCost[1];
+        tierThreeCosts[5] = createInventory.sheathCost[1];
+        tierThreeCosts[6] = createInventory.hiltCost[1];
+        tierThreeCosts[7] = createInventory.handleCost[1];
         
         // TEST METHOD
         /*GameObject tempSword = Instantiate(testSword) as GameObject;
@@ -197,6 +209,17 @@ public class MarketRoutine : MonoBehaviour {
             tempObj.AddComponent<ConfirmPurchase>();
             tempObj.transform.GetChild(0).GetComponent<Text>().text = tierTwoNames[i];
             tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + tierTwoCosts[i] + " gold";
+        }
+
+        for (int i = 0; i < totalTierThreeItems; i++)
+        {
+            tempObj = Instantiate(itemLine, buyBackground.transform.position, Quaternion.identity) as GameObject;
+            tempObj.transform.SetParent(buyBackground.transform);
+            tempObj.transform.localScale = new Vector3(1, 1, 1);
+            tempObj.name = tierThreeNames[i];
+            tempObj.AddComponent<ConfirmPurchase>();
+            tempObj.transform.GetChild(0).GetComponent<Text>().text = tierThreeNames[i];
+            tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + tierThreeCosts[i] + " gold";
         }
 
         for (int i = totalItems; i < 19; i++)
