@@ -283,6 +283,7 @@ public class Adventurer
     private Sprite portrait;
     private DataScript dataScript;
     private GameObject gameController;
+    private GameController gameControllerScript;
     private HeroInterface heroInterface;
     private CreateInventory inventoryController;
     AdventureZone adventureZone;
@@ -315,6 +316,7 @@ public class Adventurer
     public Adventurer()
     {
         gameController = GameObject.Find("GameController");
+        gameControllerScript = gameController.GetComponent<GameController>();
         adventureRoutine = gameController.GetComponent<AdventureRoutine>();
         heroInterface = gameController.GetComponent<HeroInterface>();
         inventoryController = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
@@ -547,6 +549,7 @@ public class Adventurer
     {
         level++;
         calculatePower();
+        gameControllerScript.unlockTier(level);
     }
 
     public int getLevel()

@@ -187,39 +187,28 @@ public class MarketRoutine : MonoBehaviour {
     {
         int totalItems = 0;
         totalItems += totalTierOneItems;
-        totalItems += totalTierTwoItems;
 
         for (int i = 0; i < totalTierOneItems; i++)
         {
-            tempObj = Instantiate(itemLine, buyBackground.transform.position, Quaternion.identity) as GameObject;
-            tempObj.transform.SetParent(buyBackground.transform);
-            tempObj.transform.localScale = new Vector3(1, 1, 1);
-            tempObj.name = tierOneNames[i];
-            tempObj.AddComponent<ConfirmPurchase>();
-            tempObj.transform.GetChild(0).GetComponent<Text>().text = tierOneNames[i];
-            tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + tierOneCosts[i] + " gold";
+            addBuyLine(tierOneNames, tierOneCosts, i);
         }
 
-        for (int i = 0; i < totalTierTwoItems; i++)
+        if (gameController.checkProgression(2))
         {
-            tempObj = Instantiate(itemLine, buyBackground.transform.position, Quaternion.identity) as GameObject;
-            tempObj.transform.SetParent(buyBackground.transform);
-            tempObj.transform.localScale = new Vector3(1, 1, 1);
-            tempObj.name = tierTwoNames[i];
-            tempObj.AddComponent<ConfirmPurchase>();
-            tempObj.transform.GetChild(0).GetComponent<Text>().text = tierTwoNames[i];
-            tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + tierTwoCosts[i] + " gold";
+            totalItems += totalTierTwoItems;
+            for (int i = 0; i < totalTierTwoItems; i++)
+            {
+                addBuyLine(tierTwoNames, tierTwoCosts, i);
+            }
         }
 
-        for (int i = 0; i < totalTierThreeItems; i++)
+        if (gameController.checkProgression(3))
         {
-            tempObj = Instantiate(itemLine, buyBackground.transform.position, Quaternion.identity) as GameObject;
-            tempObj.transform.SetParent(buyBackground.transform);
-            tempObj.transform.localScale = new Vector3(1, 1, 1);
-            tempObj.name = tierThreeNames[i];
-            tempObj.AddComponent<ConfirmPurchase>();
-            tempObj.transform.GetChild(0).GetComponent<Text>().text = tierThreeNames[i];
-            tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + tierThreeCosts[i] + " gold";
+            totalItems += totalTierThreeItems;
+            for (int i = 0; i < totalTierThreeItems; i++)
+            {
+                addBuyLine(tierThreeNames, tierThreeCosts, i);
+            }
         }
 
         for (int i = totalItems; i < 19; i++)
@@ -229,6 +218,7 @@ public class MarketRoutine : MonoBehaviour {
             tempObj.transform.localScale = new Vector3(1, 1, 1);
             tempObj.transform.GetChild(0).GetComponent<Text>().text = "";
             tempObj.transform.GetChild(1).GetComponent<Text>().text = "";
+            Destroy(tempObj.GetComponent<Highlighter>());
         }
     }
 
@@ -383,6 +373,7 @@ public class MarketRoutine : MonoBehaviour {
                 tempObj.transform.GetChild(0).GetComponent<Text>().text = "";
             }
             tempObj.transform.GetChild(1).GetComponent<Text>().text = "";
+            Destroy(tempObj.GetComponent<Highlighter>());
         }
     }
 
@@ -450,5 +441,16 @@ public class MarketRoutine : MonoBehaviour {
         tempObj.GetComponent<SellItem>().setCraftedItem(type);
         tempObj.transform.GetChild(0).GetComponent<Text>().text = item;
         tempObj.transform.GetChild(1).GetComponent<Text>().text = "";
+    }
+
+    private void addBuyLine(string[] names, int[] cost, int index)
+    {
+        tempObj = Instantiate(itemLine, buyBackground.transform.position, Quaternion.identity) as GameObject;
+        tempObj.transform.SetParent(buyBackground.transform);
+        tempObj.transform.localScale = new Vector3(1, 1, 1);
+        tempObj.name = names[index];
+        tempObj.AddComponent<ConfirmPurchase>();
+        tempObj.transform.GetChild(0).GetComponent<Text>().text = names[index];
+        tempObj.transform.GetChild(1).GetComponent<Text>().text = "" + cost[index] + " gold";
     }
 }

@@ -29,7 +29,6 @@ public class GameController : MonoBehaviour {
 
     private bool workshop;
     private bool town;
-
     private bool tutorial;
 
     private TutorialRoutine tutorialRoutine;
@@ -39,7 +38,8 @@ public class GameController : MonoBehaviour {
     public AudioSource invClosed;
 
     private int gold;
-    private int tier;
+    private bool[] tiers; // holds identity for if a tier is unlocked
+    private const int totalTiers = 10;
 
     void Awake()
     {
@@ -56,11 +56,18 @@ public class GameController : MonoBehaviour {
         UnityEngine.Random.seed = (int)System.DateTime.Now.Ticks;
         soundController.playWorkshopMusic();
         gold = 100;
+        
     }
 	// Use this for initialization
 	void Start () 
     {
         //workCameraObj.SetActive(false);
+        tiers = new bool[totalTiers];
+        tiers[0] = true;
+        for (int i = 1; i < totalTiers; i++)
+        {
+            tiers[i] = false;
+        }
     }
     
 	
@@ -204,13 +211,13 @@ public class GameController : MonoBehaviour {
         creditsBackground.SetActive(!creditsBackground.activeSelf);
     }
 
-    public void incTier()
+    public void unlockTier(int tier)
     {
-        tier++;
+        tiers[tier - 1] = true;
     }
 
-    public int getTier()
+    public bool checkProgression(int tier)
     {
-        return tier;
+        return tiers[tier - 1];
     }
 }
