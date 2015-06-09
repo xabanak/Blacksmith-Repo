@@ -1179,7 +1179,7 @@ public class CraftRoutine : MonoBehaviour
             {
                 craftingComponent.transform.position = new Vector3(craftingComponent.transform.position.x + componentStep, craftingComponent.transform.position.y, craftingComponent.transform.position.z);
                 grinderGauge.GetComponent<Slider>().value += step;
-                if (Input.GetKeyDown(KeyCode.A))
+                if (Input.GetButtonDown("Fire1"))
                 {
                     displayGrindCycleScore();
                     if (grinderGauge.GetComponent<Slider>().value >= 80 && grinderGauge.GetComponent<Slider>().value <= 85)
@@ -1214,7 +1214,7 @@ public class CraftRoutine : MonoBehaviour
             {
                 craftingComponent.transform.position = new Vector3(craftingComponent.transform.position.x - componentStep, craftingComponent.transform.position.y, craftingComponent.transform.position.z);
                 grinderGauge.GetComponent<Slider>().value -= step;
-                if (Input.GetKeyDown(KeyCode.D))
+                if (Input.GetButtonDown("Fire1"))
                 {
                     displayGrindCycleScore();
                     if (grinderGauge.GetComponent<Slider>().value >= 15 && grinderGauge.GetComponent<Slider>().value <= 20)
