@@ -1424,6 +1424,7 @@ public class CraftRoutine : MonoBehaviour
     public void toggleComponentOnGrinder()
     {
         componentOnGrinder = !componentOnGrinder;
+        craftingComponent.GetComponent<Collider2D>().enabled = !craftingComponent.GetComponent<Collider2D>().enabled;
         grinderSparksBase.SetActive(!grinderSparksBase.activeSelf);
         soundController.playGrinding();
         tutorialHelper(21);
