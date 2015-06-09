@@ -40,8 +40,39 @@ public class MarketRoutine : MonoBehaviour {
     private const int totalTierThreeItems = 8;
 
     // TIER FOUR MERCHANT ITEMS
+    private string[] tierFourNames;
+    private int[] tierFourCosts;
+    private const int totalTierFourItems = 3;
 
     // TIER FIVE MERCHANT ITEMS
+    private string[] tierFiveNames;
+    private int[] tierFiveCosts;
+    private const int totalTierFiveItems = 8;
+
+    // TIER SIX MERCHANT ITEMS
+    private string[] tierSixNames;
+    private int[] tierSixCosts;
+    private const int totalTierSixItems = 3;
+
+    // TIER SEVEN MERCHANT ITEMS
+    private string[] tierSevenNames;
+    private int[] tierSevenCosts;
+    private const int totalTierSevenItems = 8;
+
+    // TIER EIGHT MERCHANT ITEMS
+    private string[] tierEightNames;
+    private int[] tierEightCosts;
+    private const int totalTierEightItems = 3;
+
+    // TIER NINE MERCHANT ITEMS
+    private string[] tierNineNames;
+    private int[] tierNineCosts;
+    private const int totalTierNineItems = 8;
+
+    // TIER TEN MERCHANT ITEMS
+    private string[] tierTenNames;
+    private int[] tierTenCosts;
+    private const int totalTierTenItems = 3;
 
 	void Start () 
     {
@@ -51,6 +82,7 @@ public class MarketRoutine : MonoBehaviour {
         createInventory = GameObject.Find("Inventory/InventoryController").GetComponent<CreateInventory>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
+        // TIER ONE DATA GATHER
         tierOneNames = new string[totalTierOneItems];
         tierOneCosts = new int[totalTierOneItems];
         tierOneNames[0] = createInventory.oreName[0];
@@ -70,6 +102,7 @@ public class MarketRoutine : MonoBehaviour {
         tierOneCosts[6] = createInventory.hiltCost[0];
         tierOneCosts[7] = createInventory.handleCost[0];
 
+        // TIER TWO DATA GATHER
         tierTwoNames = new string[totalTierTwoItems];
         tierTwoCosts = new int[totalTierTwoItems];
         tierTwoNames[0] = createInventory.oreName[1];
@@ -79,6 +112,7 @@ public class MarketRoutine : MonoBehaviour {
         tierTwoCosts[1] = createInventory.woodCost[1];
         tierTwoCosts[2] = createInventory.skinCost[1];
 
+        // TIER THREE DATA GATHER
         tierThreeNames = new string[totalTierThreeItems];
         tierThreeCosts = new int[totalTierThreeItems];
         tierThreeNames[0] = createInventory.oreName[2];
@@ -97,6 +131,107 @@ public class MarketRoutine : MonoBehaviour {
         tierThreeCosts[5] = createInventory.sheathCost[1];
         tierThreeCosts[6] = createInventory.hiltCost[1];
         tierThreeCosts[7] = createInventory.handleCost[1];
+
+        // TIER FOUR DATA GATHER
+        tierFourNames = new string[totalTierFourItems];
+        tierFourCosts = new int[totalTierFourItems];
+        tierFourNames[0] = createInventory.oreName[3];
+        tierFourNames[1] = createInventory.woodName[3];
+        tierFourNames[2] = createInventory.skinName[3];
+        tierFourCosts[0] = createInventory.oreCost[3];
+        tierFourCosts[1] = createInventory.woodCost[3];
+        tierFourCosts[2] = createInventory.skinCost[3];
+
+        // TIER FIVE DATA GATHER
+        tierFiveNames = new string[totalTierFiveItems];
+        tierFiveCosts = new int[totalTierFiveItems];
+        tierFiveNames[0] = createInventory.oreName[4];
+        tierFiveNames[1] = createInventory.woodName[4];
+        tierFiveNames[2] = createInventory.skinName[4];
+        tierFiveNames[3] = createInventory.leatherStrapName[2];
+        tierFiveNames[4] = createInventory.leatherPaddingName[2];
+        tierFiveNames[5] = createInventory.sheathName[2];
+        tierFiveNames[6] = createInventory.hiltName[2];
+        tierFiveNames[7] = createInventory.handleName[2];
+        tierFiveCosts[0] = createInventory.oreCost[4];
+        tierFiveCosts[1] = createInventory.woodCost[4];
+        tierFiveCosts[2] = createInventory.skinCost[4];
+        tierFiveCosts[3] = createInventory.leatherStrapCost[2];
+        tierFiveCosts[4] = createInventory.leatherPaddingCost[2];
+        tierFiveCosts[5] = createInventory.sheathCost[2];
+        tierFiveCosts[6] = createInventory.hiltCost[2];
+        tierFiveCosts[7] = createInventory.handleCost[2];
+
+        // TIER SIX DATA GATHER
+        tierSixNames = new string[totalTierSixItems];
+        tierSixCosts = new int[totalTierSixItems];
+        tierSixNames[0] = createInventory.oreName[5];
+        tierSixNames[1] = createInventory.woodName[5];
+        tierSixNames[2] = createInventory.skinName[5];
+        tierSixCosts[0] = createInventory.oreCost[5];
+        tierSixCosts[1] = createInventory.woodCost[5];
+        tierSixCosts[2] = createInventory.skinCost[5];
+
+        // TIER SEVEN DATA GATHER
+        tierSevenNames = new string[totalTierSevenItems];
+        tierSevenCosts = new int[totalTierSevenItems];
+        tierSevenNames[0] = createInventory.oreName[6];
+        tierSevenNames[1] = createInventory.woodName[6];
+        tierSevenNames[2] = createInventory.skinName[6];
+        tierSevenNames[3] = createInventory.leatherStrapName[3];
+        tierSevenNames[4] = createInventory.leatherPaddingName[3];
+        tierSevenNames[5] = createInventory.sheathName[3];
+        tierSevenNames[6] = createInventory.hiltName[3];
+        tierSevenNames[7] = createInventory.handleName[3];
+        tierSevenCosts[0] = createInventory.oreCost[6];
+        tierSevenCosts[1] = createInventory.woodCost[6];
+        tierSevenCosts[2] = createInventory.skinCost[6];
+        tierSevenCosts[3] = createInventory.leatherStrapCost[3];
+        tierSevenCosts[4] = createInventory.leatherPaddingCost[3];
+        tierSevenCosts[5] = createInventory.sheathCost[3];
+        tierSevenCosts[6] = createInventory.hiltCost[3];
+        tierSevenCosts[7] = createInventory.handleCost[3];
+
+        // TIER EIGHT DATA GATHER
+        tierEightNames = new string[totalTierEightItems];
+        tierEightCosts = new int[totalTierEightItems];
+        tierEightNames[0] = createInventory.oreName[7];
+        tierEightNames[1] = createInventory.woodName[7];
+        tierEightNames[2] = createInventory.skinName[7];
+        tierEightCosts[0] = createInventory.oreCost[7];
+        tierEightCosts[1] = createInventory.woodCost[7];
+        tierEightCosts[2] = createInventory.skinCost[7];
+
+        // TIER NINE DATA GATHER
+        tierNineNames = new string[totalTierNineItems];
+        tierNineCosts = new int[totalTierNineItems];
+        tierNineNames[0] = createInventory.oreName[8];
+        tierNineNames[1] = createInventory.woodName[8];
+        tierNineNames[2] = createInventory.skinName[8];
+        tierNineNames[3] = createInventory.leatherStrapName[4];
+        tierNineNames[4] = createInventory.leatherPaddingName[4];
+        tierNineNames[5] = createInventory.sheathName[4];
+        tierNineNames[6] = createInventory.hiltName[4];
+        tierNineNames[7] = createInventory.handleName[4];
+        tierNineCosts[0] = createInventory.oreCost[8];
+        tierNineCosts[1] = createInventory.woodCost[8];
+        tierNineCosts[2] = createInventory.skinCost[8];
+        tierNineCosts[3] = createInventory.leatherStrapCost[4];
+        tierNineCosts[4] = createInventory.leatherPaddingCost[4];
+        tierNineCosts[5] = createInventory.sheathCost[4];
+        tierNineCosts[6] = createInventory.hiltCost[4];
+        tierNineCosts[7] = createInventory.handleCost[4];
+
+        // TIER TEN DATA GATHER
+        tierTenNames = new string[totalTierTenItems];
+        tierTenCosts = new int[totalTierTenItems];
+        tierTenNames[0] = createInventory.oreName[9];
+        tierTenNames[1] = createInventory.woodName[9];
+        tierTenNames[2] = createInventory.skinName[9];
+        tierTenCosts[0] = createInventory.oreCost[9];
+        tierTenCosts[1] = createInventory.woodCost[9];
+        tierTenCosts[2] = createInventory.skinCost[9];
+
         
         // TEST METHOD
         /*GameObject tempSword = Instantiate(testSword) as GameObject;
@@ -208,6 +343,69 @@ public class MarketRoutine : MonoBehaviour {
             for (int i = 0; i < totalTierThreeItems; i++)
             {
                 addBuyLine(tierThreeNames, tierThreeCosts, i);
+            }
+        }
+
+        if (gameController.checkProgression(4))
+        {
+            totalItems += totalTierFourItems;
+            for (int i = 0; i < totalTierFourItems; i++)
+            {
+                addBuyLine(tierFourNames, tierFourCosts, i);
+            }
+        }
+
+        if (gameController.checkProgression(5))
+        {
+            totalItems += totalTierFiveItems;
+            for (int i = 0; i < totalTierFiveItems; i++)
+            {
+                addBuyLine(tierFiveNames, tierFiveCosts, i);
+            }
+        }
+
+        if (gameController.checkProgression(6))
+        {
+            totalItems += totalTierSixItems;
+            for (int i = 0; i < totalTierSixItems; i++)
+            {
+                addBuyLine(tierSixNames, tierSixCosts, i);
+            }
+        }
+
+        if (gameController.checkProgression(7))
+        {
+            totalItems += totalTierSevenItems;
+            for (int i = 0; i < totalTierSevenItems; i++)
+            {
+                addBuyLine(tierSevenNames, tierSevenCosts, i);
+            }
+        }
+
+        if (gameController.checkProgression(8))
+        {
+            totalItems += totalTierEightItems;
+            for (int i = 0; i < totalTierEightItems; i++)
+            {
+                addBuyLine(tierEightNames, tierEightCosts, i);
+            }
+        }
+
+        if (gameController.checkProgression(9))
+        {
+            totalItems += totalTierNineItems;
+            for (int i = 0; i < totalTierNineItems; i++)
+            {
+                addBuyLine(tierNineNames, tierNineCosts, i);
+            }
+        }
+
+        if (gameController.checkProgression(10))
+        {
+            totalItems += totalTierTenItems;
+            for (int i = 0; i < totalTierTenItems; i++)
+            {
+                addBuyLine(tierTenNames, tierTenCosts, i);
             }
         }
 
